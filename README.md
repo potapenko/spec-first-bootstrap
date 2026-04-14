@@ -1,24 +1,17 @@
 # Spec-First Bootstrap for AI-Assisted Projects
 
-Most AI coding failures are not coding failures.
-They are specification failures.
-This repo helps you make product behavior explicit before code starts.
-
-A lightweight bootstrap for teams and solo builders who want AI to work from
-product contracts instead of jumping straight into code.
-
-The core idea is simple:
+A lot of AI coding failures are not coding failures.
+They happen earlier, when product behavior was never made explicit.
+This repo gives the agent a simple place to keep that truth before code starts.
 
 **Do not start with code. Start with a spec.**
 
-This repository is meant to be pointed at by an agent such as Codex or Claude
-Code.
-The agent reads the bootstrap, applies the workflow to your real project, and
-generates the first draft of the product specs for you.
+Point Codex or Claude Code at this repo, then tell it to apply the same setup
+to your real project. The agent can set up the spec layer, generate first-pass
+specs, and work from them.
 
-It is not just for browser apps.
-The core model works for web, backend, API, CLI, and other software projects.
-Browser QA is optional and project-appropriate.
+This is not just for browser apps. The same model works for web, backend, API,
+CLI, and other software projects. Browser QA is optional.
 
 ## Start here in 5 minutes
 
@@ -28,6 +21,16 @@ Browser QA is optional and project-appropriate.
 4. Tell the agent whether the project is greenfield or brownfield.
 5. Let the agent set up the spec layer and generate first-pass specs before implementation starts.
 
+Example:
+
+```text
+Use this bootstrap repository as the reference:
+/absolute/path/to/spec-first-bootstrap
+
+This is a brownfield project.
+Start with the brownfield discovery workflow and do not write code yet.
+```
+
 ## What this is for
 
 Use this repository in either of these situations:
@@ -35,7 +38,7 @@ Use this repository in either of these situations:
 - you are starting a new project and want spec-first work from day one
 - you already have a working project and want to migrate it to a spec-first workflow
 
-This repo gives you:
+Included:
 
 - a minimal public `AGENTS.md`
 - a product-spec layer under `docs/specs/`
@@ -53,33 +56,9 @@ workflow keeps three separate layers:
 2. implementation — code that follows the contract
 3. `qa/` — verification evidence when the project needs it
 
-The point is simple:
-
 - context should live in specs, not only in code
 - code should implement the contract
 - QA should verify the contract when the project needs QA artifacts
-
-## Before / after
-
-Without a spec-first workflow:
-
-```text
-Add favorites import/export.
-```
-
-The agent often starts coding immediately, and the important questions show up
-too late.
-
-With a spec-first workflow:
-
-```text
-Clarify current favorites behavior.
-Generate or update the product spec.
-Confirm import, export, merge, and delete rules.
-Only then implement.
-```
-
-That small change in order usually removes a lot of drift and rework.
 
 ## Important: this is chat-driven
 
@@ -93,20 +72,7 @@ The practical workflow is:
 4. let the agent set up or update the spec layer
 5. let the agent implement against those specs
 
-The goal is to keep the process automated and simple.
 The user mainly works through chat with the agent.
-
-## Quick start
-
-1. Clone this repository from GitHub.
-2. Put it into or next to your real project.
-3. Open your real project locally.
-4. In Codex or Claude Code, give the agent the local path to this bootstrap
-   repo.
-5. Tell the agent whether your project is:
-   - greenfield
-   - brownfield
-6. Use one of the prompts from [`prompts/`](prompts/README.md).
 
 You do not need to scaffold `AGENTS.md` or `docs/specs/` manually first.
 The normal flow is to ask the agent to apply this bootstrap to the project for
@@ -115,23 +81,13 @@ you.
 The local path matters. In practice it is usually better to point the agent at
 the real local folder than to rely on a repo summary from memory.
 
-Example:
-
-```text
-Use this bootstrap repository as the reference:
-/absolute/path/to/spec-first-bootstrap
-
-This is a brownfield project.
-Start with the brownfield discovery workflow and do not write code yet.
-```
-
 ## Two common scenarios
 
 ### 1. Greenfield project
 
 Use this when the project is new or mostly empty.
 
-The agent should:
+Ask the agent to:
 
 - read this bootstrap first
 - set up the spec-first workflow in the new project
@@ -146,7 +102,7 @@ Start with:
 
 Use this when the project already exists and you want to retrofit specs.
 
-The agent should:
+Ask the agent to:
 
 - analyze the current codebase
 - extract product behavior from code, routes, state, tests, UI flows, and docs
@@ -169,7 +125,7 @@ Start with:
 
 ## How brownfield migration works
 
-For an existing product, do not try to write every spec yourself first.
+For an existing product, do not start by writing specs one by one yourself.
 
 Instead, ask the agent to use the existing project as evidence:
 
@@ -188,8 +144,7 @@ Good brownfield output usually includes:
 - first-pass specs for risky or important areas
 - unknowns that still need confirmation
 
-The user can resolve those unknowns in chat.
-The point is still to keep the work agent-driven rather than document-driven.
+Resolve those unknowns in chat and let the agent update the specs.
 
 ## Minimal workflow
 
