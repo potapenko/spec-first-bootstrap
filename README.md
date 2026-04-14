@@ -27,28 +27,46 @@ This repo gives you:
 - prompt files for greenfield and brownfield adoption
 - an optional browser-QA starter pack for web UI projects
 
-## Important: the agent writes the first draft
+## Three layers
 
-In this workflow, specs usually are **not** written manually from scratch.
+Instead of keeping product truth scattered across code and chat history, this
+workflow keeps three separate layers:
 
-A practical default is:
+1. `docs/specs/` — product truth
+2. implementation — code that follows the contract
+3. `qa/` — verification evidence when the project needs it
 
-1. the agent generates the first draft
-2. a human reviews and corrects it
-3. implementation starts only after the product contract is clear enough
+The point is simple:
 
-The goal is not to create more documentation work for humans.
-The goal is to make product behavior explicit before code is written.
+- context should live in specs, not only in code
+- code should implement the contract
+- QA should verify the contract
+
+## Important: this is chat-driven
+
+The user does not need to write specs manually.
+
+The practical workflow is:
+
+1. put this bootstrap into the project
+2. point the agent at it
+3. explain the goal in chat
+4. let the agent generate or update the specs
+5. let the agent implement against those specs
+
+The goal is to keep the process automated and simple.
+The user mainly works through chat with the agent.
 
 ## Quick start
 
 1. Clone this repository from GitHub.
-2. Open your real project locally.
-3. In CodeX or Codex, give the agent the local path to this bootstrap repo.
-4. Tell the agent whether your project is:
+2. Put it into or next to your real project.
+3. Open your real project locally.
+4. In CodeX or Codex, give the agent the local path to this bootstrap repo.
+5. Tell the agent whether your project is:
    - greenfield
    - brownfield
-5. Use one of the prompts from [`prompts/`](prompts/README.md).
+6. Use one of the prompts from [`prompts/`](prompts/README.md).
 
 The local path matters. In practice it is usually better to point the agent at
 the real local folder than to rely on a repo summary from memory.
@@ -107,7 +125,7 @@ Start with:
 
 ## How brownfield migration works
 
-For an existing product, do not try to write every spec manually first.
+For an existing product, do not try to write every spec yourself first.
 
 Instead, ask the agent to use the existing project as evidence:
 
@@ -125,6 +143,9 @@ Good brownfield output usually includes:
 - a spec backlog
 - first-pass specs for risky or important areas
 - unknowns that still need confirmation
+
+The user can resolve those unknowns in chat.
+The point is still to keep the work agent-driven rather than document-driven.
 
 ## Minimal workflow
 
