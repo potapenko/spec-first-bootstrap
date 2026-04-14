@@ -1,7 +1,7 @@
 # Prompt Pack
 
-Use these prompts as a starting point when you point CodeX or Codex at this
-bootstrap repository.
+Use these prompts as a starting point when you point Codex or Claude Code at
+this bootstrap repository.
 
 Replace:
 

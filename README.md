@@ -7,7 +7,8 @@ The core idea is simple:
 
 **Do not start with code. Start with a spec.**
 
-This repository is meant to be pointed at by an agent such as CodeX or Codex.
+This repository is meant to be pointed at by an agent such as Codex or Claude
+Code.
 The agent reads the bootstrap, applies the workflow to your real project, and
 generates the first draft of the product specs for you.
 
@@ -62,7 +63,8 @@ The user mainly works through chat with the agent.
 1. Clone this repository from GitHub.
 2. Put it into or next to your real project.
 3. Open your real project locally.
-4. In CodeX or Codex, give the agent the local path to this bootstrap repo.
+4. In Codex or Claude Code, give the agent the local path to this bootstrap
+   repo.
 5. Tell the agent whether your project is:
    - greenfield
    - brownfield
