@@ -22,11 +22,11 @@ Browser QA is optional and project-appropriate.
 
 ## Start here in 5 minutes
 
-1. Put `AGENTS.md` into your project.
-2. Create `docs/specs/`.
+1. Clone this repository.
+2. Open your real project.
 3. Point the agent at this bootstrap repo.
-4. Run one prompt from [`prompts/`](prompts/README.md).
-5. Let the agent generate first-pass specs before implementation starts.
+4. Tell the agent whether the project is greenfield or brownfield.
+5. Let the agent set up the spec layer and generate first-pass specs before implementation starts.
 
 ## What this is for
 
@@ -87,10 +87,10 @@ The user does not need to write specs manually.
 
 The practical workflow is:
 
-1. put this bootstrap into the project
+1. clone or place this bootstrap next to the project
 2. point the agent at it
 3. explain the goal in chat
-4. let the agent generate or update the specs
+4. let the agent set up or update the spec layer
 5. let the agent implement against those specs
 
 The goal is to keep the process automated and simple.
@@ -107,6 +107,10 @@ The user mainly works through chat with the agent.
    - greenfield
    - brownfield
 6. Use one of the prompts from [`prompts/`](prompts/README.md).
+
+You do not need to scaffold `AGENTS.md` or `docs/specs/` manually first.
+The normal flow is to ask the agent to apply this bootstrap to the project for
+you.
 
 The local path matters. In practice it is usually better to point the agent at
 the real local folder than to rely on a repo summary from memory.
