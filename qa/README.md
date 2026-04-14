@@ -14,3 +14,8 @@ Verification artifacts provide evidence that the implementation matches that con
 
 Verification does not need to be browser-based.
 Use the form that best matches the project.
+
+If your project has a browser UI and you want a lightweight starter pack for
+browser QA, see:
+
+- `qa/web/`

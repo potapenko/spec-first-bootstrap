@@ -1,101 +1,176 @@
 # Spec-First Bootstrap for AI-Assisted Projects
 
-A lightweight bootstrap for teams and solo builders who want AI to produce reliable product work.
+A lightweight bootstrap for teams and solo builders who want AI to work from
+product contracts instead of jumping straight into code.
 
 The core idea is simple:
 
 **Do not start with code. Start with a spec.**
 
-When working with AI, most failures do not come from weak code generation. They come from weak problem framing, missing behavior contracts, and unclear edge cases. This repository provides a practical starting point for a spec-first workflow that can be embedded directly into `AGENTS.md` and used from day one.
+This repository is meant to be pointed at by an agent such as CodeX or Codex.
+The agent reads the bootstrap, applies the workflow to your real project, and
+generates the first draft of the product specs for you.
 
-## What this repository contains
+## What this is for
+
+Use this repository in either of these situations:
+
+- you are starting a new project and want spec-first work from day one
+- you already have a working project and want to migrate it to a spec-first workflow
+
+This repo gives you:
 
 - a minimal public `AGENTS.md`
 - a product-spec layer under `docs/specs/`
 - a reusable feature spec template
 - a real example spec
-- a simple repository structure that can be copied into a live project
+- prompt files for greenfield and brownfield adoption
+- an optional browser-QA starter pack for web UI projects
 
-## The problem
+## Important: the agent writes the first draft
 
-A common workflow today looks like this:
+In this workflow, specs usually are **not** written manually from scratch.
 
-1. You have an idea.
-2. You ask the AI to build it.
-3. The AI starts coding immediately.
-4. The task drifts.
-5. You discover missing cases, broken assumptions, and behavior mismatches later.
+A practical default is:
 
-The usual mistake is treating specification as optional overhead. In practice, specification is the cheapest place to find mistakes.
+1. the agent generates the first draft
+2. a human reviews and corrects it
+3. implementation starts only after the product contract is clear enough
 
-## The principle
+The goal is not to create more documentation work for humans.
+The goal is to make product behavior explicit before code is written.
 
-**Code is no longer the most expensive part. Misunderstanding is.**
+## Quick start
 
-So the workflow becomes:
+1. Clone this repository from GitHub.
+2. Open your real project locally.
+3. In CodeX or Codex, give the agent the local path to this bootstrap repo.
+4. Tell the agent whether your project is:
+   - greenfield
+   - brownfield
+5. Use one of the prompts from [`prompts/`](prompts/README.md).
 
-Idea → Discussion → Specification → Implementation → Verification
+The local path matters. In practice it is usually better to point the agent at
+the real local folder than to rely on a repo summary from memory.
 
-The specification is not documentation for later. It is the behavioral contract the implementation must follow.
+Example:
 
-## Layer model
+```text
+Use this bootstrap repository as the reference:
+/absolute/path/to/spec-first-bootstrap
 
-A reliable setup separates three kinds of truth.
+This is a brownfield project.
+Start with the brownfield discovery workflow and do not write code yet.
+```
 
-### 1. Product truth
-This is the actual feature behavior.
+## Two common scenarios
 
-Examples:
-- what users can do
-- what must always remain true
-- route, state, and data contracts
-- edge cases
-- failure behavior
+### 1. Greenfield project
 
-Store this in specs, not in `AGENTS.md`.
+Use this when the project is new or mostly empty.
 
-### 2. Workflow truth
-This is how the agent should operate.
+The agent should:
 
-Examples:
-- what files must be read first
-- when specs are required
-- what order work happens in
-- what can and cannot be changed
+- read this bootstrap first
+- set up the spec-first workflow in the new project
+- create the initial product-spec structure
+- propose the first specs that should exist before feature code
 
-Store this in `AGENTS.md`.
+Start with:
 
-### 3. Verification truth
-This is how you check that the work matches reality.
+- [`prompts/greenfield-bootstrap.md`](prompts/greenfield-bootstrap.md)
 
-Examples:
-- QA cases
-- test scenarios
-- verification scripts
-- acceptance checks
+### 2. Brownfield project
 
-This can be browser-based or non-browser-based depending on the project.
+Use this when the project already exists and you want to retrofit specs.
+
+The agent should:
+
+- analyze the current codebase
+- extract product behavior from code, routes, state, tests, UI flows, and docs
+- ask the user for clarification where the product intent is still unclear
+- generate first-pass specs for the most important product areas
+
+In practice, brownfield migration usually means:
+
+1. map the product
+2. build a spec backlog
+3. generate first-pass specs
+4. review unknowns and conflicts
+5. only then start changing code
+
+Start with:
+
+- [`prompts/brownfield-discovery.md`](prompts/brownfield-discovery.md)
+- [`prompts/brownfield-interview.md`](prompts/brownfield-interview.md)
+- [`prompts/generate-first-specs.md`](prompts/generate-first-specs.md)
+
+## How brownfield migration works
+
+For an existing product, do not try to write every spec manually first.
+
+Instead, ask the agent to use the existing project as evidence:
+
+- current code
+- routes and state flow
+- tests and QA cases
+- existing docs
+- product interviews with the user or team
+
+The job of the agent is to turn those artifacts into a short product contract.
+
+Good brownfield output usually includes:
+
+- a product map
+- a spec backlog
+- first-pass specs for risky or important areas
+- unknowns that still need confirmation
 
 ## Minimal workflow
 
 Use this workflow for non-trivial work:
 
 1. Clarify the product goal.
-2. Write or update a spec.
-3. Review the behavior, invariants, and edge cases.
+2. Create or update a spec.
+3. Review behavior, invariants, and edge cases.
 4. Implement against the spec.
-5. Add or update verification artifacts if needed.
+5. Add or update verification artifacts if the project needs them.
 
-## Adoption path
+## Optional web QA layer
 
-### Level 1 — Minimal
-Add a spec-first rule to `AGENTS.md`.
+Browser QA is **optional**.
 
-### Level 2 — Structured
-Create `docs/specs/` and use a standard feature spec template.
+Use it if your project has a browser UI and you want a lightweight structure
+for smoke checks, regression cases, and run reports.
 
-### Level 3 — Operational
-Add role routing, verification rules, and more explicit implementation discipline.
+Do not treat browser QA as mandatory for every project. Many projects are
+better served by API, CLI, integration, or operator-level verification.
+
+If you do have a browser UI, this repo includes a compact starter pack under:
+
+- [`qa/web/README.md`](qa/web/README.md)
+
+And a matching prompt:
+
+- [`prompts/optional-web-qa.md`](prompts/optional-web-qa.md)
+
+## Prompt pack
+
+The easiest way to use this repo is to copy one prompt, replace
+`<BOOTSTRAP_PATH>`, and send it to the agent.
+
+Start here:
+
+- [`prompts/README.md`](prompts/README.md)
+
+Included prompt files:
+
+- `greenfield-bootstrap.md`
+- `brownfield-discovery.md`
+- `brownfield-interview.md`
+- `generate-first-specs.md`
+- `optional-web-qa.md`
+- `day-to-day-spec-first.md`
 
 ## Suggested repository structure
 
@@ -112,18 +187,24 @@ Add role routing, verification rules, and more explicit implementation disciplin
 │           └── favorites-spec.md
 ├── examples/
 │   └── favorites-spec.md
+├── prompts/
+│   ├── README.md
+│   └── *.md
 └── qa/
-    └── README.md
+    ├── README.md
+    └── web/
+        └── ...
 ```
 
 ## Included files
 
-- `AGENTS.md` — minimal public workflow rules
+- `AGENTS.md` — minimal workflow rules for agents
 - `docs/specs/README.md` — how the spec layer works
 - `docs/specs/templates/feature-spec.md` — reusable template
 - `docs/specs/features/favorites-spec.md` — example production-style spec
 - `examples/favorites-spec.md` — same example in a simpler discovery path
-- `qa/README.md` — placeholder for later verification strategy
+- `prompts/` — ready-to-send prompts for setup and migration
+- `qa/web/` — optional browser-QA starter pack for web UI projects
 
 ## Copy-paste starting point
 
@@ -142,27 +223,6 @@ Before implementing any non-trivial feature:
 `AGENTS.md` is not the source of truth for detailed feature behavior.
 Detailed behavior must live in specs.
 ```
-
-## Anti-pattern
-
-Do not start implementation from a vague request like:
-
-> Add feature X.
-
-Instead:
-
-1. Turn the request into a spec.
-2. Confirm behavior and edge cases.
-3. Only then implement.
-
-Skipping this step usually leads to rework.
-
-## Positioning
-
-This project is not claiming to invent specification-driven development.
-Its goal is more practical:
-
-**make spec-first AI development easy to adopt in real repositories.**
 
 ## License
 
