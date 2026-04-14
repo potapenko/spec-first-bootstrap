@@ -1,5 +1,9 @@
 # Spec-First Bootstrap for AI-Assisted Projects
 
+Most AI coding failures are not coding failures.
+They are specification failures.
+This repo helps you make product behavior explicit before code starts.
+
 A lightweight bootstrap for teams and solo builders who want AI to work from
 product contracts instead of jumping straight into code.
 
@@ -11,6 +15,18 @@ This repository is meant to be pointed at by an agent such as Codex or Claude
 Code.
 The agent reads the bootstrap, applies the workflow to your real project, and
 generates the first draft of the product specs for you.
+
+It is not just for browser apps.
+The core model works for web, backend, API, CLI, and other software projects.
+Browser QA is optional and project-appropriate.
+
+## Start here in 5 minutes
+
+1. Put `AGENTS.md` into your project.
+2. Create `docs/specs/`.
+3. Point the agent at this bootstrap repo.
+4. Run one prompt from [`prompts/`](prompts/README.md).
+5. Let the agent generate first-pass specs before implementation starts.
 
 ## What this is for
 
@@ -41,7 +57,29 @@ The point is simple:
 
 - context should live in specs, not only in code
 - code should implement the contract
-- QA should verify the contract
+- QA should verify the contract when the project needs QA artifacts
+
+## Before / after
+
+Without a spec-first workflow:
+
+```text
+Add favorites import/export.
+```
+
+The agent often starts coding immediately, and the important questions show up
+too late.
+
+With a spec-first workflow:
+
+```text
+Clarify current favorites behavior.
+Generate or update the product spec.
+Confirm import, export, merge, and delete rules.
+Only then implement.
+```
+
+That small change in order usually removes a lot of drift and rework.
 
 ## Important: this is chat-driven
 
@@ -166,8 +204,15 @@ Browser QA is **optional**.
 Use it if your project has a browser UI and you want a lightweight structure
 for smoke checks, regression cases, and run reports.
 
-Do not treat browser QA as mandatory for every project. Many projects are
-better served by API, CLI, integration, or operator-level verification.
+Do not treat browser QA as mandatory for every project.
+
+Many projects are better served by:
+
+- API verification
+- CLI verification
+- integration testing
+- operator runbooks
+- other project-specific checks
 
 If you do have a browser UI, this repo includes a compact starter pack under:
 
