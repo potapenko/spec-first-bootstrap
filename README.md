@@ -13,6 +13,10 @@ specs, and work from them.
 This is not just for browser apps. The same model works for web, backend, API,
 CLI, and other software projects. Browser QA is optional.
 
+This bootstrap did not come out of theory. It was extracted from several
+months of work on four internal projects behind `playphrase.me`, then cleaned
+up into a small public setup.
+
 ## Start here in 5 minutes
 
 1. Clone this repository.
