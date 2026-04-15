@@ -18,6 +18,8 @@ instead.
 
 ## What this pack includes
 
+- `AGENTS.snippet.md` — small block to paste into a project's `AGENTS.md`
+  so the agent loads browser QA instructions automatically
 - `AGENTS.run.md` — runner instructions for browser QA runs
 - `AGENTS.cases.md` — author instructions for QA case creation
 - `create-cases-prompt.md` — reusable prompt for generating browser cases

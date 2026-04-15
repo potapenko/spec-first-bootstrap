@@ -64,6 +64,13 @@ Optional:
 After that, ask the agent to work from the copied files already inside the
 project.
 
+If you copy `qa/`, also add the optional browser-QA routing block from:
+
+- `qa/web/AGENTS.snippet.md`
+
+Without that extra block in the project's `AGENTS.md`, the agent may not load
+the QA instructions automatically.
+
 Typical follow-up:
 
 ```text
@@ -206,6 +213,8 @@ Browser QA is **optional**.
 Use it if your project has a browser UI and you want a lightweight structure
 for smoke checks, regression cases, and run reports.
 
+The optional web QA pack assumes Playwright-style real-browser checks.
+
 Do not treat browser QA as mandatory for every project.
 
 Many projects are better served by:
@@ -219,6 +228,7 @@ Many projects are better served by:
 If you do have a browser UI, this repo includes a compact starter pack under:
 
 - [`qa/web/README.md`](qa/web/README.md)
+- [`qa/web/AGENTS.snippet.md`](qa/web/AGENTS.snippet.md)
 
 And a matching prompt:
 
