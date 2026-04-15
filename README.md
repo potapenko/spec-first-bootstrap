@@ -19,6 +19,8 @@ up into a small public setup.
 
 ## Start here in 5 minutes
 
+Recommended path:
+
 1. Clone this repository.
 2. Open your real project.
 3. Point the agent at this bootstrap repo.
@@ -33,6 +35,38 @@ Use this bootstrap repository as the reference:
 
 This is a brownfield project.
 Start with the brownfield discovery workflow and do not write code yet.
+```
+
+## Alternative: manual install
+
+If you prefer, you can copy the bootstrap into your project manually.
+
+Copy these into the target project:
+
+Required:
+
+- `AGENTS.md`
+- `docs/`
+
+Recommended:
+
+- `prompts/`
+
+Optional:
+
+- `qa/`
+
+After that, ask the agent to work from the copied files already inside the
+project.
+
+Typical follow-up:
+
+```text
+Read AGENTS.md and docs/specs/README.md in this project first.
+
+This is a brownfield project.
+Use the existing bootstrap files in the repo, generate first-pass specs, and
+do not write code yet.
 ```
 
 ## What this is for
