@@ -14,8 +14,13 @@ This is not just for browser apps. The same model works for web, backend, API,
 CLI, and other software projects. Browser QA is optional.
 
 This bootstrap did not come out of theory. It was extracted from several
-months of work on four internal projects behind `playphrase.me`, then cleaned
-up into a small public setup.
+months of work on four internal projects behind
+[`playphrase.me`](https://playphrase.me), then cleaned up into a small public
+setup.
+
+If you want the broader context behind this workflow, the main ideas are also
+written up in a short article
+[here](https://x.com/potapenko_ru/status/2044084230846882029).
 
 ## Start here in 5 minutes
 
