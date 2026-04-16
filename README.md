@@ -20,7 +20,7 @@ setup.
 
 If you want the broader context behind this workflow, the main ideas are also
 written up in a short article
-[here](https://x.com/potapenko_ru/status/2044084230846882029).
+[here](https://www.patreon.com/posts/spec-first-or-ai-155606468?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link).
 
 ## Start here in 5 minutes
 
