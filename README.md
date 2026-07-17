@@ -10,7 +10,7 @@ Step 1: set up spec-first development
 ```text
 Use https://github.com/potapenko/spec-first-bootstrap as the reference and set up this project for spec-first development.
 
-Read the bootstrap repository first. Add or adapt the needed AGENTS.md, the docs/specs README and template layer, and prompts. If this is an existing project, do brownfield discovery and create project-specific first-pass specs before changing implementation code.
+Read the bootstrap repository and docs/spec-first-workflow.md first. Add or adapt the needed AGENTS.md, the docs/specs README and template layer, and prompts. Require a visible Spec Basis before implementation source is opened. If this is an existing project, do brownfield discovery and create project-specific first-pass specs before changing implementation code.
 ```
 
 Optional step 2: add browser QA for a web UI project
@@ -23,6 +23,12 @@ Assume the spec-first bootstrap from step 1 is already installed. Read qa/README
 
 That is the normal setup path. Start with step 1. Run step 2 only when the
 project has a browser UI and you want browser QA artifacts.
+
+The canonical strict workflow is
+[`docs/spec-first-workflow.md`](docs/spec-first-workflow.md). Use
+[`prompts/repair-spec-first-workflow.md`](prompts/repair-spec-first-workflow.md)
+to repair an existing project whose agents have started reading code before
+specs or updating specs only after implementation decisions.
 
 ## Why this exists
 
@@ -39,6 +45,7 @@ The agent should:
 - read this bootstrap repository first
 - preserve existing project-specific agent instructions
 - add or adapt `AGENTS.md`
+- install the Mandatory Spec Gate from `docs/spec-first-workflow.md`
 - add the `docs/specs/` README and template layer
 - add useful prompts from `prompts/`
 - add `qa/web` only in the optional browser-QA step
@@ -119,11 +126,13 @@ The agent should:
 
 In practice, brownfield migration usually means:
 
-1. map the product
-2. build a spec backlog
-3. generate first-pass specs
-4. review unknowns and conflicts
-5. only then start changing code
+1. record where reliable active specs are missing
+2. inspect implementation as evidence without changing it
+3. map the product
+4. build a spec backlog
+5. generate first-pass specs
+6. review unknowns and conflicts
+7. only then start changing code
 
 Reference prompts:
 
@@ -135,11 +144,13 @@ Reference prompts:
 
 Use this workflow for non-trivial work:
 
-1. Clarify the product goal.
-2. Create or update a spec.
-3. Review behavior, invariants, and edge cases.
-4. Implement against the spec.
-5. Add or update verification artifacts if the project needs them.
+1. Read the active specs.
+2. State the Spec Basis before opening implementation source.
+3. Clarify the product goal.
+4. Create or update the spec before implementation edits.
+5. Review behavior, invariants, and edge cases.
+6. Inspect implementation and implement against the Spec Basis.
+7. Add or update verification artifacts if the project needs them.
 
 ## Optional web QA layer
 
@@ -176,6 +187,7 @@ situations:
 - `generate-first-specs.md`
 - `optional-web-qa.md`
 - `day-to-day-spec-first.md`
+- `repair-spec-first-workflow.md`
 
 <details>
 <summary>Manual install fallback</summary>
@@ -187,6 +199,7 @@ Copy these into the target project:
 Required:
 
 - `AGENTS.md`
+- `docs/spec-first-workflow.md`
 - `docs/specs/README.md`
 - `docs/specs/templates/`
 
@@ -226,6 +239,7 @@ This is a brownfield project. Generate project-specific first-pass specs before 
 ├── AGENTS.md
 ├── README.md
 ├── docs/
+│   ├── spec-first-workflow.md
 │   └── specs/
 │       ├── README.md
 │       ├── templates/
@@ -246,6 +260,7 @@ This is a brownfield project. Generate project-specific first-pass specs before 
 ## Included files
 
 - `AGENTS.md` - minimal workflow rules for agents
+- `docs/spec-first-workflow.md` - canonical strict gate and migration audit
 - `docs/specs/README.md` - how the spec layer works
 - `docs/specs/templates/feature-spec.md` - reusable template
 - `examples/favorites-spec.md` - example production-style spec for reference

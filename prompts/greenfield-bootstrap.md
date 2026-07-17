@@ -1,8 +1,8 @@
 Use https://github.com/potapenko/spec-first-bootstrap as the spec-first
 reference.
 
-Read its `AGENTS.md`, `docs/specs/README.md`, spec template, and
-`examples/favorites-spec.md` as an example only.
+Read its `docs/spec-first-workflow.md`, `AGENTS.md`, `docs/specs/README.md`,
+spec template, and `examples/favorites-spec.md` as an example only.
 
 This is a new or mostly empty project.
 

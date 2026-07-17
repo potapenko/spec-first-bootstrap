@@ -1,12 +1,13 @@
 Use https://github.com/potapenko/spec-first-bootstrap as the spec-first
 reference.
 
-Read its `AGENTS.md`, `docs/specs/README.md`, spec template, and
-`examples/favorites-spec.md` as an example only.
+Read its `docs/spec-first-workflow.md`, `AGENTS.md`, `docs/specs/README.md`,
+spec template, and `examples/favorites-spec.md` as an example only.
 
 This is an existing project that needs a spec-first migration.
 
-Do not write code yet.
+Record that reliable specs are missing or incomplete before inspecting source.
+Do not change implementation code during this discovery pass.
 
 Analyze the current repository and extract product behavior from:
 

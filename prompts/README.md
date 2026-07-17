@@ -8,7 +8,7 @@ Step 1: set up spec-first development
 ```text
 Use https://github.com/potapenko/spec-first-bootstrap as the reference and set up this project for spec-first development.
 
-Read the bootstrap repository first. Add or adapt the needed AGENTS.md, the docs/specs README and template layer, and prompts. If this is an existing project, do brownfield discovery and create project-specific first-pass specs before changing implementation code.
+Read the bootstrap repository and docs/spec-first-workflow.md first. Add or adapt the needed AGENTS.md, the docs/specs README and template layer, and prompts. Require a visible Spec Basis before implementation source is opened. If this is an existing project, do brownfield discovery and create project-specific first-pass specs before changing implementation code.
 ```
 
 Optional step 2: add browser QA for a web UI project
@@ -29,3 +29,4 @@ Available prompts:
 - [`generate-first-specs.md`](generate-first-specs.md)
 - [`optional-web-qa.md`](optional-web-qa.md)
 - [`day-to-day-spec-first.md`](day-to-day-spec-first.md)
+- [`repair-spec-first-workflow.md`](repair-spec-first-workflow.md)

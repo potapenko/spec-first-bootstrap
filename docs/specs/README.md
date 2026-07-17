@@ -2,14 +2,40 @@
 
 This directory is the product behavior layer.
 
-It captures expected user-visible behavior for complex features before or
-alongside implementation.
+It captures expected user-visible behavior for complex features before
+implementation begins.
 
 Specs are lightweight and product-oriented.
 They define **what the system must do**, not how it is implemented.
 
 QA cases are separate verification artifacts.
 They provide evidence but do not replace the product contract.
+
+## Authority and evidence
+
+Active specs define intended product behavior. Source code, tests, runtime
+output, screenshots, and Git history establish current behavior and ownership.
+They may reveal a missing or stale contract, but they do not silently override
+product intent.
+
+Use a project spec index to distinguish active contracts from historical,
+legacy, deferred, or superseded evidence. Resolve conflicts in specs or their
+index instead of choosing a winner from current code.
+
+## Mandatory Spec Basis
+
+For every product feature, behavioral bug, behavioral investigation,
+product-behavior plan, or potentially behavioral refactor, state the Spec Basis
+before opening implementation source:
+
+- authoritative spec paths;
+- expected user-visible behavior;
+- invariants and edge cases;
+- gaps or conflicts;
+- required spec impact;
+- whether implementation is authorized.
+
+The full gate is defined in `docs/spec-first-workflow.md`.
 
 ## What lives here
 
@@ -40,11 +66,18 @@ should contain that project's own specs only.
 
 ## How to use this directory
 
-1. Check whether the feature already has a spec.
-2. If yes, update it before or alongside the code change.
-3. If not, create a new spec using the template.
-4. Keep the spec short and product-level.
-5. Use existing behavior, tests, and documentation as evidence, but write the contract in clear product language.
+1. Read the project spec index when one exists.
+2. Read every active spec relevant to the task.
+3. State the Spec Basis before opening implementation source.
+4. If the contract exists but must change, update it before editing code.
+5. If it is missing, create a new spec using the template before implementation.
+6. Keep the spec short and product-level.
+7. Use existing behavior, tests, and documentation as evidence after the Spec
+   Basis, but write the contract in clear product language.
+
+Explicit brownfield discovery is the exception. Record that the contract is
+missing, inspect source only as evidence for first-pass specs, and do not change
+implementation during the discovery pass.
 
 ## Reading guide
 
@@ -87,7 +120,7 @@ docs/specs/
 
 - Specs are contracts, not documentation.
 - Specs should be short but precise.
-- Specs should be updated together with behavior changes.
+- Specs should be updated before implementation changes to behavior.
 - Specs should reflect what users experience, not internal structure.
 
 ## Relationship with other layers

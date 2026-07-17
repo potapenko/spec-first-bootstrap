@@ -5,6 +5,9 @@ Use this bootstrap repository as the reference:
 
 https://github.com/potapenko/spec-first-bootstrap
 
+Read `docs/spec-first-workflow.md` from that reference first. Treat current
+implementation as evidence, not as product intent when the two differ.
+
 Each spec should include:
 
 - Goal

@@ -1,9 +1,12 @@
 Use https://github.com/potapenko/spec-first-bootstrap as the spec-first
 reference.
 
+Read `docs/spec-first-workflow.md` from that reference first.
+
 This is an existing project with incomplete or unreliable documentation.
 
-First analyze the codebase and identify the main product areas.
+First record which product areas lack reliable active specs. Then analyze the
+codebase as evidence and identify the main product areas.
 
 Then prepare a structured clarification pass for the user or team.
 
