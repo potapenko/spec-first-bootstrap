@@ -6,6 +6,7 @@
 - Base URL:
 - Browser:
 - Viewport:
+- Contract revisions or epochs:
 - Total:
 - PASS:
 - FAIL:
@@ -34,7 +35,11 @@
 
 ### <TC-ID> — <Title> — <STATUS>
 
+- Governing clause IDs:
 - URL:
+- Expected action-state-result chain:
+- Actual result:
+- Discrepancy classification:
 - Evidence:
   - Screenshot(s):
   - Console errors:

@@ -1,5 +1,15 @@
 # Favorites Spec
 
+- Contract ID: `example.favorites`
+- Domain ID: `example.favorites`
+- Authority: Historical
+- Stability: Accepted
+- Release baseline: illustrative only
+
+This is a format example, not an Active product contract for the Bootstrap or
+for a target project. Preserve its product detail as reference evidence; do not
+copy it into another project's authority registry.
+
 ## Goal
 
 Define favorites as a user-managed set of saved phrase collections that can be

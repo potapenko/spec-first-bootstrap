@@ -26,6 +26,7 @@ Set the correct base URL for the project before running.
 - Mark each case as `PASS`, `FAIL`, `FLAKY`, or `SKIPPED`.
 - For `FAIL` and `FLAKY`, include:
   - URL
+  - governing contract or clause identifiers when available
   - expected vs actual
   - console errors
   - failed requests
@@ -36,3 +37,6 @@ Set the correct base URL for the project before running.
 - Retry once after reload.
 - Retry once in a fresh browser context.
 - If still broken, record evidence and continue.
+
+Do not edit a case or product contract during a run merely to match current
+browser behavior.

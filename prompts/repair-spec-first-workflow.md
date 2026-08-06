@@ -1,70 +1,82 @@
-Use the strict spec-first workflow at:
+# Repair An Existing Spec-First Workflow
 
-https://github.com/potapenko/spec-first-bootstrap/blob/master/docs/spec-first-workflow.md
+Use https://github.com/potapenko/spec-first-bootstrap as the canonical source.
 
-Repair this project's spec-first development workflow. This is a workflow and
-documentation migration only: do not change product implementation code.
+Repair this project's specification-first workflow. Keep the repair inside the
+target repository unless the user explicitly requested global setup. Do not
+change product implementation.
 
-First read, in this order:
+## Read first
 
-1. every applicable `AGENTS.md`, `AGENTS.override.md`, or equivalent agent
-   instruction file;
-2. the project's onboarding, planning, development, and Git workflow docs;
-3. `docs/specs/README.md`, the spec index or registry, and the smallest sample
-   of active and historical specs needed to audit authority and precedence;
-4. existing day-to-day, greenfield, brownfield, and implementation prompts.
+Read completely:
 
-Preserve all project-specific safety, permissions, build, test, release, Git,
-and operator rules. Do not replace the whole instruction system with the
-bootstrap template.
+1. every applicable global and project instruction file;
+2. project onboarding, development, safety, build, test, QA, release, and Git
+   docs;
+3. the spec README, index, and the smallest active and historical contract set
+   needed to audit authority and precedence;
+4. existing day-to-day, greenfield, brownfield, implementation, and repair
+   prompts;
+5. from the Bootstrap:
+   - `docs/spec-first-workflow.md`;
+   - `docs/agent-governance/product-truth-governance.md`;
+   - the Project: product specifications section in
+     `docs/agent-governance/agents-sections.md`;
+   - `docs/specs/templates/`.
 
-Then make the smallest coherent changes needed so that:
+Preserve every project-specific safety, permission, framework, build, test,
+release, Git, and operator rule. Never replace the complete instruction system
+with the Bootstrap example.
 
-1. a Mandatory Spec Gate appears near the top of the main agent entry point;
-2. the gate covers product features, behavioral bugs, behavioral
-   investigations, product-behavior plans, and potentially behavioral
-   refactors;
-3. before implementation source is opened, the agent must read the spec README,
-   index, and all active relevant specs;
-4. the agent must state a visible Spec Basis containing authoritative paths,
-   expected behavior, invariants, gaps or conflicts, spec impact, and whether
-   implementation is authorized;
-5. missing or conflicting behavior is settled in specs before implementation;
-6. any behavior-changing spec edit occurs before the first implementation edit;
-7. code, tests, runtime output, screenshots, and Git history are explicitly
-   treated as evidence of current behavior, not as product intent;
-8. behavioral diagnosis derives expected behavior from specs first, actual
-   behavior from evidence second, and names the discrepancy before a fix;
-9. planning-only and investigation-only requests are hard stops on
-   implementation until the user explicitly authorizes it;
-10. explicit brownfield discovery may inspect source only after recording that
-    reliable specs are missing, and must create first-pass specs without
-    changing product code;
-11. wording such as `before or alongside implementation` is removed;
-12. the spec index clearly distinguishes active contracts from historical,
-    legacy, deferred, and superseded evidence and defines precedence where
-    active specs overlap;
-13. onboarding and prompt files repeat the same routing without creating a
-    weaker competing version of the gate.
+## Repair contract
 
-Do not invent or rewrite product decisions merely to clean the documentation.
-If active specs conflict and the correct product decision is not already clear,
-record the conflict and ask the user instead of choosing from current code.
+Use Evolve mode only for workflow, specification routing, governance docs, and
+neutral templates. Protect all product behavior and implementation.
 
-Verify the migration by:
+Make the smallest coherent changes needed so that:
 
-- searching for contradictory `before or alongside` or code-first instructions;
-- checking every changed Markdown file for internal consistency and valid local
-  links;
-- running the repository's lightweight docs checks and `git diff --check`;
-- reviewing the final diff to ensure no product implementation files changed;
-- following the target repository's checkpoint and branch rules.
+1. one compact Product Truth gate appears near the top of the agent entry
+   point;
+2. the full governance document is conditionally loaded outside that entry
+   point;
+3. covered work is Restore, Reconcile, Evolve, Discover, or Behavior-neutral;
+4. a Contract Change Envelope names authorized and protected domains, required
+   evidence, allowed spec delta, release baseline, and revision;
+5. the agent states a provisional Spec Basis before implementation evidence;
+6. it then inspects the smallest complete applicable source, design, QA,
+   runtime, history, upstream, and release evidence set;
+7. material discrepancies are classified before repair;
+8. the final reconciled Spec Basis is pinned before implementation;
+9. semantic spec edits require legitimate external authority and happen before
+   implementation;
+10. a spec edit cannot authorize itself;
+11. authority (Draft/Active/Superseded/Historical) remains separate from
+    stability (Evolving/Accepted/Released/Deprecated);
+12. accepted or released adjacent domains remain protected;
+13. semantic contract changes advance the affected epoch and stale worker
+    packets are revalidated or retired;
+14. brownfield discovery separates observed from intended behavior and changes
+    no product code;
+15. QA maps pinned clauses to action-state-result chains and does not weaken
+    expectations merely to obtain a green result;
+16. day-to-day and setup prompts repeat the same routing without creating a
+    weaker competing doctrine.
 
-In the final response, report:
+Remove or repair wording that permits code-first product decisions,
+before-or-alongside specification updates, spec-only escalation before evidence
+reconciliation, current tests to define intent, or an Active label to imply a
+public release.
 
-1. the files changed;
-2. where the Mandatory Spec Gate now lives;
-3. how active versus historical specs are selected;
-4. any unresolved product-contract conflicts;
-5. verification performed;
-6. the checkpoint commit, when the repository requires one.
+Do not invent or rewrite product decisions merely to make documentation
+consistent. Ask the user only when a material product fork genuinely remains
+after the evidence pass.
+
+## Verification
+
+Verify contradictory wording, duplicate gates, Markdown fences, local links,
+whitespace, preserved existing instructions, exact project-only scope, and the
+absence of product implementation changes. Run the repository's lightweight
+docs checks and `git diff --check`, then follow its checkpoint policy.
+
+Report changed paths, the compact and full governance locations, unresolved
+contract conflicts, verification, and checkpoint state.

@@ -5,20 +5,26 @@ Read `docs/spec-first-workflow.md` from that reference first.
 
 This is an existing project with incomplete or unreliable documentation.
 
-First record which product areas lack reliable active specs. Then analyze the
-codebase as evidence and identify the main product areas.
+Use Discover mode. First record which product areas lack reliable active specs
+and establish a Contract Change Envelope with implementation unauthorized.
 
-Then prepare a structured clarification pass for the user or team.
+Inspect the smallest complete applicable source, design, QA, runtime, history,
+and release evidence set. Resolve questions answerable from that evidence
+before preparing a clarification pass for the user or team.
 
-The clarification should focus on:
+The clarification should contain only material unresolved items:
 
-- intended behavior
-- edge cases
-- business rules
-- known exceptions
-- places where current code may not reflect intended product behavior
+- conflicting intended behavior;
+- missing business rules;
+- materially different valid outcomes;
+- cross-domain or compatibility consequences;
+- missing external authority.
+
+For each item, name the evidence inspected, concrete alternatives,
+consequences, and recommended choice.
 
 After that, recommend which specs should be created first and which areas can
 wait.
 
 Do not implement anything yet.
+Do not ask questions that source, QA, or runtime reconciliation can answer.

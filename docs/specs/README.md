@@ -11,6 +11,11 @@ They define **what the system must do**, not how it is implemented.
 QA cases are separate verification artifacts.
 They provide evidence but do not replace the product contract.
 
+The specification system is the canonical product artifact, but it is not
+infallible or self-authorizing. Source, design, runtime behavior, QA, history,
+and release records answer different questions and must be reconciled before
+final implementation authority. Spec-first does not mean spec-only.
+
 ## Authority and evidence
 
 Active specs define intended product behavior. Source code, tests, runtime
@@ -18,22 +23,23 @@ output, screenshots, and Git history establish current behavior and ownership.
 They may reveal a missing or stale contract, but they do not silently override
 product intent.
 
-Use a project spec index to distinguish active contracts from historical,
-legacy, deferred, or superseded evidence. Resolve conflicts in specs or their
-index instead of choosing a winner from current code.
+Use a project spec index to record both contract authority
+(Draft/Active/Superseded/Historical) and domain stability
+(Evolving/Accepted/Released/Deprecated). Resolve conflicts and precedence in
+the specification system instead of choosing a winner from current code.
 
-## Mandatory Spec Basis
+## Provisional and final Spec Basis
 
 For every product feature, behavioral bug, behavioral investigation,
-product-behavior plan, or potentially behavioral refactor, state the Spec Basis
-before opening implementation source:
+product-behavior plan, transfer, or potentially behavioral refactor:
 
-- authoritative spec paths;
-- expected user-visible behavior;
-- invariants and edge cases;
-- gaps or conflicts;
-- required spec impact;
-- whether implementation is authorized.
+1. classify the work and establish a bounded Contract Change Envelope;
+2. state a provisional Spec Basis from active authority;
+3. inspect the smallest complete applicable evidence set;
+4. classify discrepancies;
+5. accept only a legitimately authorized Contract Delta;
+6. state the final reconciled Spec Basis with a pinned revision or epoch;
+7. only then implement.
 
 The full gate is defined in `docs/spec-first-workflow.md`.
 
@@ -46,6 +52,9 @@ The full gate is defined in `docs/spec-first-workflow.md`.
 - important thresholds and state or route implications
 - failure policy and edge cases
 - optional links to representative verification coverage
+- stable domain, clause, and QA scenario identifiers in mature projects
+- evidence mappings when a behavior needs source, design, runtime, upstream, or
+  release reconciliation
 
 In this bootstrap repository, production-style example specs live under
 `examples/`, not under `docs/specs/features/`.
@@ -68,12 +77,14 @@ should contain that project's own specs only.
 
 1. Read the project spec index when one exists.
 2. Read every active spec relevant to the task.
-3. State the Spec Basis before opening implementation source.
-4. If the contract exists but must change, update it before editing code.
-5. If it is missing, create a new spec using the template before implementation.
-6. Keep the spec short and product-level.
-7. Use existing behavior, tests, and documentation as evidence after the Spec
-   Basis, but write the contract in clear product language.
+3. Establish the change mode, envelope, and provisional basis.
+4. Inspect the smallest complete applicable source, design, QA, runtime,
+   history, upstream, and release evidence set.
+5. Classify discrepancies and accept only a legitimate Contract Delta.
+6. Update the contract before implementation when intended meaning changes.
+7. Pin the final basis to a revision or epoch.
+8. Keep normative contracts short and product-level; put hashes, captures, and
+   mechanical proof in evidence artifacts.
 
 Explicit brownfield discovery is the exception. Record that the contract is
 missing, inspect source only as evidence for first-pass specs, and do not change
@@ -110,8 +121,13 @@ Skip new specs for:
 ```text
 docs/specs/
   README.md
+  index.md
   templates/
     feature-spec.md
+    spec-index.md
+    contract-change-envelope.md
+    contract-delta.md
+    release-contract-baseline.md
   features/
     <feature-name>.md
 ```
@@ -120,7 +136,8 @@ docs/specs/
 
 - Specs are contracts, not documentation.
 - Specs should be short but precise.
-- Specs should be updated before implementation changes to behavior.
+- Authorized semantic changes update specs before implementation.
+- A spec edit cannot create its own product authority.
 - Specs should reflect what users experience, not internal structure.
 
 ## Relationship with other layers

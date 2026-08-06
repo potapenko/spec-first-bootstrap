@@ -47,3 +47,7 @@ Keep these layers separate:
 - specs define the product contract
 - QA cases verify representative behavior
 - run reports capture execution evidence
+
+Cases should pin the governing contract when available and record explicit
+actions, state transitions, and expected results. If the contract, case, and
+browser disagree, record the discrepancy before editing any of them.

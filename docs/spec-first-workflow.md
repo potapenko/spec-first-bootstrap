@@ -1,170 +1,271 @@
 # Strict Spec-First Workflow
 
-This document is the canonical workflow for projects that use
+This document is the compact canonical workflow for projects that use
 `spec-first-bootstrap`.
 
-Its purpose is simple: intended product behavior must be established from the
-active specs before implementation code is used to design, diagnose, or change
-that behavior.
+Its purpose is to make intended product behavior explicit before implementation
+choices begin shaping it. The active specification system frames the work
+first; applicable source, design, QA, runtime, history, and release evidence
+then complete the product picture before implementation.
+
+The full reusable contract is in
+`docs/agent-governance/product-truth-governance.md` in this Bootstrap. An
+installed project normally keeps its copy under `docs/agent/`.
 
 ## Three Separate Layers
 
 1. `docs/specs/` defines intended product behavior.
-2. Implementation code realizes that contract.
-3. Tests, QA, runtime output, screenshots, and history verify or explain the
-   implementation.
+2. Design and implementation realize that contract and establish current
+   structure and ownership.
+3. Tests, QA, runtime output, screenshots, history, and release records establish
+   observed behavior, acceptance, and compatibility.
 
-The second and third layers may expose a missing, stale, or contradictory spec.
-They must not silently replace the first layer as product truth.
+The specification system is the canonical product artifact, but it is not
+infallible or self-authorizing. The other layers may expose a missing, stale,
+ambiguous, or contradictory spec. They do not silently replace it, and a spec
+edit cannot turn an agent preference or current defect into product intent.
+
+Spec-first therefore does not mean spec-only.
 
 ## Tasks Covered By The Gate
 
-The Mandatory Spec Gate applies to:
+The gate applies to:
 
 - new product features;
 - observable behavior changes;
 - behavioral bugs and regressions;
 - behavioral investigations and product-behavior planning;
-- route, state, persistence, permission, eligibility, or data-contract changes;
+- UX, state, route, persistence, permission, eligibility, compatibility, or
+  data-contract changes;
 - multi-step user flows;
-- refactors whose behavioral impact is possible or uncertain.
+- product transfers, ports, rewrites, and migrations;
+- refactors whose behavioral impact is possible or uncertain;
+- product QA and release behavior.
 
-It normally does not require a feature spec for formatting, comments,
-copy-only work, documentation-only maintenance, or proven behavior-neutral
-internal cleanup. If impact is uncertain, the gate applies.
+It normally does not require a product-contract change for formatting,
+comments, documentation-only maintenance, or proven behavior-neutral internal
+cleanup. If impact is uncertain, the gate applies.
+
+## Change Mode And Envelope
+
+Classify every covered task before implementation:
+
+- **Restore**: bring implementation back to an established contract.
+- **Reconcile**: recover or faithfully transfer one existing product truth
+  into a complete current contract.
+- **Evolve**: implement a semantic change the user requested in a named domain.
+- **Discover**: understand a product whose contract is missing or unreliable,
+  without changing implementation.
+- **Behavior-neutral**: make a proven non-behavioral change.
+
+Establish a bounded Contract Change Envelope. For a small task it may be in the
+first progress update; for long-running, multi-agent, accepted, released, or
+cross-domain work it should be durable.
+
+```text
+Contract Change Envelope
+- Task and change mode:
+- User-authorized outcome:
+- Authorized domains or clauses:
+- Protected adjacent domains:
+- Stability or release baseline:
+- Required evidence:
+- Allowed and forbidden spec delta:
+- Material decisions requiring the user:
+- Current contract revision or epoch:
+- Required review and QA:
+```
+
+The user's request opens only the product domain and behavior it actually
+names. A writable source path does not open every product contract implemented
+by that file.
 
 ## Required Start Order
 
-Before opening implementation source for a covered task:
+Before implementation for a covered task:
 
-1. Read the project's active instruction files, starting with `AGENTS.md`.
-2. Read `docs/specs/README.md` and the project spec index when one exists.
-3. Select and read every active spec that governs the task.
-4. State a compact **Spec Basis** in the plan or first progress update.
-5. Resolve missing or conflicting behavior in the specs.
-6. Only then inspect implementation source, tests, runtime evidence, or Git
-   history.
+1. Read every applicable global and project instruction layer.
+2. Read `docs/specs/README.md`, the authority index when one exists, and the
+   smallest active contract set that governs the task.
+3. Classify the change mode and establish the Contract Change Envelope.
+4. State a provisional Spec Basis.
+5. Inspect the smallest complete applicable source, design, QA, runtime,
+   history, upstream, and release evidence set.
+6. Classify every material discrepancy.
+7. Accept only a legitimately authorized Contract Delta and update the spec
+   before implementation when meaning changes.
+8. State the final reconciled Spec Basis with a pinned revision or epoch.
+9. Only then implement and verify the authorized slice.
 
-Use this template:
+Use this provisional form:
 
 ```text
-Spec Basis
-- Task:
-- Authoritative specs:
+Provisional Spec Basis
+- Task and change mode:
+- Authoritative specs and clauses:
 - Expected behavior:
-- Invariants and edge cases:
-- Gaps or conflicts:
-- Required spec impact:
+- Invariants and protected domains:
+- Apparent gaps or conflicts:
+- Required evidence:
+- Allowed spec impact:
 - Implementation authorized: yes / no
 ```
 
-The Spec Basis is deliberately observable. It lets the user verify that the
-agent found the right contract before code begins shaping the answer.
+Use this final form:
+
+```text
+Final Reconciled Spec Basis
+- Contract revision or epoch:
+- Governing clauses:
+- Resolved intended behavior:
+- Evidence inspected and its role:
+- Discrepancy dispositions:
+- Accepted Contract Delta:
+- Protected adjacent domains:
+- Required acceptance scenarios:
+- Implementation authorized: yes / no
+```
+
+The provisional basis frames the investigation. It is not permission to stop
+at Markdown or turn the first mismatch into a user decision.
+
+## Evidence And Discrepancies
+
+Use the smallest complete evidence set that can settle the task. Do not sample
+only the artifact that supports the easiest conclusion, and do not create a
+broad audit when a bounded slice is sufficient.
+
+Classify each material mismatch as:
+
+- **implementation defect**: the contract remains correct;
+- **specification defect or omission**: accepted evidence and task authority
+  establish one existing behavior missing from the contract;
+- **stale or inapplicable evidence**: an old test, design, source, or runtime
+  observation no longer governs;
+- **authorized evolution**: the user requested changed behavior inside the
+  open domain;
+- **real product fork**: complete evidence leaves materially different valid
+  outcomes;
+- **external authority blocker**: continuation requires credentials,
+  destructive action, policy input, physical access, or another outside
+  authority.
+
+Current code alone, a test alone, implementation convenience, platform
+convention, or the spec edit itself is not semantic product authority.
+
+Do not invent behavior, write it into a spec, and then cite that edit as
+permission to implement it.
 
 ## Missing Or Conflicting Specs
 
-When no adequate spec exists:
+When no adequate contract exists, use Discover or Reconcile as justified:
 
-1. state the gap;
-2. create a first-pass spec or update the correct existing spec;
-3. settle behavior that follows directly from the user's request;
-4. ask the user only when a material product choice remains ambiguous;
-5. do not edit implementation until the contract is explicit.
+1. record the gap;
+2. inspect the complete applicable evidence without changing implementation;
+3. separate observed behavior from intended behavior;
+4. create or repair the correct contract;
+5. ask the user only when a material product decision remains after evidence
+   reconciliation.
 
-When active specs conflict:
-
-- follow explicit `canonical`, `governs`, `wins`, or `supersedes` language;
-- treat historical, legacy, and deferred specs as evidence only;
-- if precedence is not explicit, update the index or specs before proceeding;
-- never use current code to choose which product rule should win.
+When active contracts conflict, follow explicit precedence or supersession.
+If no precedence exists, stop the affected slice and return the exact conflict.
+Never use current code merely to choose which product rule should win.
 
 ## Behavioral Diagnosis
 
-Behavioral investigation has a fixed order:
+For a behavioral defect:
 
-1. derive expected behavior from the active specs;
-2. derive actual behavior from code, tests, runtime evidence, and history;
-3. state the exact discrepancy;
-4. decide whether the spec is already correct or needs a product change;
-5. only then propose or implement the fix.
+1. establish expected behavior from the active and accepted or released
+   contract;
+2. establish actual behavior from applicable source, QA, and runtime evidence;
+3. name and classify the discrepancy;
+4. use Restore when the contract remains correct;
+5. use Reconcile only when the contract is proven stale or incomplete;
+6. use Evolve only when the user requested new behavior.
 
-A bug fix that restores an already explicit contract may not require new
-product behavior, but the agent must still name the governing spec before
-reading code. If the fix changes the contract, edit the spec first.
+Do not convert a bug into a spec change because editing the expectation is
+easier than fixing implementation.
 
 ## Implementation Ordering
 
-For a behavior change, the spec edit must happen before the first
-implementation edit. Spec and code may share one checkpoint commit; the rule is
-about reasoning and working order, not mandatory commit separation.
+When intended behavior legitimately changes, update the contract before the
+first implementation edit and record a compact Contract Delta.
 
-High-risk or cross-cutting changes may use a separate spec checkpoint when that
-makes review, approval, or restartability clearer.
+Spec and code may share one checkpoint commit. The rule is about authority and
+working order, not mandatory commit separation.
 
-Planning-only and investigation-only requests are hard boundaries. Reading a
-spec or discovering a plausible fix does not authorize implementation.
+Planning-only and investigation-only requests remain hard implementation
+boundaries.
 
 ## Brownfield Discovery
 
-Brownfield projects may not yet have reliable specs. This is the narrow
-exception to source-after-spec ordering.
+Brownfield discovery is the narrow exception to a complete-contract gate.
 
-Before source inspection, record that the relevant contract is absent or
-unreliable. Then:
+Before broad source inspection, record that the relevant contract is missing
+or unreliable. Then inspect code, routes, state, tests, docs, design, QA,
+runtime, history, and released behavior as evidence; create a product map,
+spec backlog, first-pass contracts, unknowns, and conflicts; and do not change
+product implementation.
 
-1. inspect code, routes, state, tests, docs, and UI flows as evidence;
-2. separate observed behavior from intended behavior;
-3. create a product map and active-spec backlog;
-4. write first-pass specs with unknowns and conflicts called out;
-5. do not modify product implementation during the discovery pass.
+Once first-pass contracts exist, later slices use Restore, Reconcile, or
+Evolve.
 
-Once first-pass specs exist, ordinary work returns to the Mandatory Spec Gate.
+## Spec Index, Stability, And Revisions
 
-## Spec Index And Lifecycle
+Mature projects keep a small authority registry, normally
+`docs/specs/index.md`.
 
-Mature projects should keep a small authority registry, normally
-`docs/specs/index.md`, that identifies:
+It records:
 
-- active specs and when to read them;
-- explicit precedence between overlapping contracts;
-- historical, legacy, deferred, or superseded material;
-- the smallest active slice needed for a task.
+- contract and domain identifiers;
+- authority: Draft, Active, Superseded, or Historical;
+- stability: Evolving, Accepted, Released, or Deprecated;
+- when to read each contract;
+- precedence and shared dependencies;
+- latest accepted or released baseline.
 
-Historical material may remain in the repository, but it must not look equally
-authoritative. Use explicit status metadata, a separate archive directory, or
-both.
+Authority identifies which contract governs. Stability identifies how strongly
+existing behavior is protected.
+
+A semantic contract change advances the affected revision or epoch. Open
+multi-agent packets using changed clauses must be revalidated or retired before
+their work can be accepted.
+
+## QA And Acceptance
+
+QA verifies a pinned contract through preconditions, actions, state
+transitions, intermediate results, final results, and failure or recovery
+behavior.
+
+QA does not independently create product intent. A green suite cannot authorize
+a product change or prove an unexercised user journey. Runtime and visual
+evidence cannot be replaced by unit tests when the contract requires observable
+behavior.
 
 ## Repository Enforcement
 
-Put the compact Mandatory Spec Gate near the top of `AGENTS.md`, before
-lower-priority build and workflow detail. Repeat only routing, not competing
-versions of the rule, in onboarding and prompt files.
+Put a compact routing gate near the top of `AGENTS.md`. Keep the full governance
+document outside automatically loaded instructions. Workers without product
+authority receive only the finite clauses, evidence paths, protected
+boundaries, and acceptance conditions required by their task.
 
-For stronger enforcement, projects may add a hook or preflight that blocks
-implementation edits until the task records its Spec Basis. Review and CI can
-also require a declared spec impact for behavior-changing diffs.
-
-At minimum, an agent's first progress update for a covered task should make the
-Spec Basis visible, and the final response should identify the governing specs
-and any spec changes.
+The first progress update for covered work should show the envelope and
+provisional basis. The final response should identify the final governing basis,
+accepted Contract Delta, verification, and residuals.
 
 ## Migration Audit
 
-When repairing an existing project's spec-first workflow:
+When repairing an existing project's workflow:
 
-1. read all applicable `AGENTS.md` and onboarding files;
-2. preserve project-specific safety, build, test, and Git rules;
-3. move the Mandatory Spec Gate close to the top-level entry point;
-4. replace phrases such as `before or alongside implementation` with explicit
-   spec-before-implementation ordering;
-5. require a visible Spec Basis before implementation source is opened;
-6. make behavioral diagnosis spec-first, evidence-second;
-7. make planning-only wording a hard implementation stop;
-8. establish or repair the active spec index and lifecycle labels;
-9. update day-to-day and brownfield prompts to match the same contract;
-10. do not change product implementation during the workflow-migration task;
-11. verify the resulting docs for contradictions and broken links;
-12. create a scoped checkpoint according to the target repository's Git rules.
+1. read and preserve all existing project instructions;
+2. keep project-specific safety, build, test, release, and Git rules;
+3. merge the compact gate instead of replacing the instruction file;
+4. install the full governance document conditionally;
+5. replace code-first and spec-only shortcuts with the provisional-evidence-
+   final sequence;
+6. establish authority, stability, precedence, revisions, and QA mapping;
+7. update day-to-day and brownfield prompts without changing product code;
+8. verify Markdown, links, contradictions, and changed-file scope;
+9. follow the target repository's checkpoint policy.
 
-Use `prompts/repair-spec-first-workflow.md` as the ready-to-send migration
-prompt for another project.
+Use `prompts/repair-spec-first-workflow.md` for a ready-to-send repair contract.
