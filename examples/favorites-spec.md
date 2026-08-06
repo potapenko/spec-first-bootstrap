@@ -1,17 +1,5 @@
 # Favorites Spec
 
-- Contract ID: example.favorites
-- Domain ID: example.favorites
-- Authority: Historical
-- Stability: Accepted
-- Governs: illustrative favorites collection behavior
-- Last reviewed: 2026-08-06
-- Supersedes: None
-- Release baseline: illustrative only
-
-This is a production-style example, not an Active product contract for the
-bootstrap repository or for a target project.
-
 ## Goal
 
 Define favorites as a user-managed set of saved phrase collections that can be
@@ -91,8 +79,3 @@ This spec covers:
 ## Verification mapping
 
 - Add project-specific tests or QA cases here.
-
-## Unknowns requiring confirmation
-
-- A real target project must establish its own duplicate policy, persistence
-  contract, and release baseline before treating this example as authority.

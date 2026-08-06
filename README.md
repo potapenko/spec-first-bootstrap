@@ -1,255 +1,236 @@
 # Spec-First Bootstrap for AI-Assisted Projects
 
-This repository installs two related but separate capabilities:
-
-1. **Product-truth governance** — specifications remain the canonical product
-   contract, while source, design, runtime behavior, QA, and release baselines
-   are reconciled as distinct evidence layers.
-2. **Persistent-goal agent architecture** — an optional orchestration contract
-   for long-running work in which the primary `/root` preserves context and
-   coordinates finite workers instead of becoming another implementation
-   worker.
-
-Both capabilities can be installed globally for every Codex project or only
-inside one repository. Browser QA remains a separate optional layer.
-
-## Choose an installation scope
-
-Do not install the same full governance document in both scopes by default.
-
-| Scope | Use it when | Where the rules live |
-| --- | --- | --- |
-| `GLOBAL` | You want the same product-truth or persistent-goal discipline in every Codex project. | The active Codex home and its global `AGENTS.md`. |
-| `PROJECT_ONLY` | You want one repository to be self-contained or to use different governance. | The target repository and its project-root `AGENTS.md`. |
-
-Global rules provide reusable doctrine. Project-local rules add product,
-framework, safety, build, test, database, storage, and release constraints.
-Installers merge existing `AGENTS.md` files; they must not replace unrelated
-instructions.
-
 ## Start here
 
-### Option A: install product-truth governance globally
+Open your real project in Codex, Claude Code, or another coding agent and paste
+this prompt first:
 
-Open [`prompts/install-global-product-truth-governance.md`](prompts/install-global-product-truth-governance.md),
-copy its prompt, and send it to Codex.
-
-This option:
-
-- changes only the active Codex home;
-- adds the compact global Product Truth gate to global `AGENTS.md`;
-- installs the full governance document as conditionally loaded guidance;
-- does not mutate the current project;
-- preserves project-local rules.
-
-### Option B: install product-truth governance in one project
-
-Open [`prompts/install-project-product-truth-governance.md`](prompts/install-project-product-truth-governance.md),
-replace the target-repository placeholder, and send the prompt to Codex.
-
-This option:
-
-- changes only the named repository;
-- installs a complete project-local Product Truth gate and governance document;
-- adds or reconciles the spec registry and neutral templates;
-- preserves existing product behavior and project instructions;
-- does not write to the Codex home.
-
-### Optional: add persistent-goal agent architecture
-
-After product-truth governance is available in the chosen scope, use
-[`prompts/install-persistent-goal-agent-architecture.md`](prompts/install-persistent-goal-agent-architecture.md).
-Set exactly one deployment scope in the prompt:
+Step 1: set up spec-first development
 
 ```text
-Deployment scope: GLOBAL
+Use https://github.com/potapenko/spec-first-bootstrap as the reference and set up this project for spec-first development.
+
+Read the bootstrap repository and docs/spec-first-workflow.md first. Add or adapt the needed AGENTS.md, the docs/specs README and template layer, and prompts. Require a visible Spec Basis before implementation source is opened. If this is an existing project, do brownfield discovery and create project-specific first-pass specs before changing implementation code.
 ```
 
-or:
+Optional step 2: add browser QA for a web UI project
 
 ```text
-Deployment scope: PROJECT_ONLY
-Target repository: /absolute/path/to/repository
+Use https://github.com/potapenko/spec-first-bootstrap as the reference and add the optional browser-QA layer to this web UI project.
+
+Assume the spec-first bootstrap from step 1 is already installed. Read qa/README.md, qa/web/README.md, and qa/web/AGENTS.snippet.md from the bootstrap repository. Add or adapt the qa/web files for this project, and merge the qa/web/AGENTS.snippet.md routing block into the project's AGENTS.md so browser-QA instructions load automatically. Keep browser QA optional and do not change product code.
 ```
 
-The installer adds orchestration rules; it does not create, resume, pause,
-block, or complete a persistent goal. It also does not change model defaults,
-reasoning defaults, concurrency limits, or provider configuration unless that
-is separately requested.
+That is the normal setup path. Start with step 1. Run step 2 only when the
+project has a browser UI and you want browser QA artifacts.
 
-### Optional: add browser QA to a web project
+The canonical strict workflow is
+[`docs/spec-first-workflow.md`](docs/spec-first-workflow.md). Use
+[`prompts/repair-spec-first-workflow.md`](prompts/repair-spec-first-workflow.md)
+to repair an existing project whose agents have started reading code before
+specs or updating specs only after implementation decisions.
 
-Use [`prompts/optional-web-qa.md`](prompts/optional-web-qa.md) after the
-project-local spec-first layer exists. Browser QA verifies pinned product
-contracts; it does not define product intent or weaken a contract to obtain a
-green result.
+## Why this exists
 
-## The product-truth model
+A lot of AI coding failures are not coding failures.
+They happen earlier, when product behavior was never made explicit.
+This repo gives the agent a simple place to keep that truth before code starts.
 
-The specification system is the primary product artifact and the canonical
-statement of intended behavior. Canonical does not mean infallible, and a spec
-edit cannot authorize itself.
+**Do not start with code. Start with a spec.**
 
-Different artifacts answer different questions:
+## What the agent should do
 
-| Layer | Primary question |
-| --- | --- |
-| User objective or decision | What product change is authorized now? |
-| Active product contract | How should the product behave? |
-| Design and product model | How is the behavior expressed structurally and visually? |
-| Implementation source | How is it currently realized, and who owns it? |
-| Runtime behavior | What does the product actually do in the relevant state? |
-| QA and acceptance evidence | Which action-state-result chains have been verified? |
-| Release baseline | Which behavior may users or consumers already rely on? |
+The agent should:
 
-These layers are not a flat vote. The active contract defines intent; the
-other layers expose ownership, realization, observed behavior, acceptance,
-compatibility, omissions, and stale assumptions.
+- read this bootstrap repository first
+- preserve existing project-specific agent instructions
+- add or adapt `AGENTS.md`
+- install the Mandatory Spec Gate from `docs/spec-first-workflow.md`
+- add the `docs/specs/` README and template layer
+- add useful prompts from `prompts/`
+- add `qa/web` only in the optional browser-QA step
+- create a product map, spec backlog, or project-specific first-pass specs
+  before implementation work starts
 
-Spec-first therefore means:
+This is not just for browser apps. The same model works for web, backend, API,
+CLI, data pipelines, internal tools, and other software projects. Browser QA is
+optional.
 
-1. classify the task as Restore, Reconcile, Evolve, Discover, or
-   Behavior-neutral;
-2. establish a bounded Contract Change Envelope;
-3. state a provisional Spec Basis;
-4. inspect the smallest complete applicable evidence set;
-5. classify discrepancies;
-6. accept only a legitimately authorized Contract Delta;
-7. update the contract first when meaning changes;
-8. pin the final reconciled Spec Basis;
-9. implement and verify that exact basis.
+This bootstrap did not come out of theory. It was extracted from several
+months of work on four internal projects behind
+[`playphrase.me`](https://playphrase.me), then cleaned up into a small public
+setup.
 
-It does **not** mean reading only Markdown, treating current code as automatic
-intent, or changing a spec after the fact to make an implementation look
-compliant.
+If you want the broader context behind this workflow, the main ideas are also
+written up in a short article
+[here](https://www.patreon.com/posts/spec-first-or-ai-155606468?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link).
 
-The compact workflow is
-[`docs/spec-first-workflow.md`](docs/spec-first-workflow.md). The complete
-reusable contract is
-[`docs/agent-governance/product-truth-governance.md`](docs/agent-governance/product-truth-governance.md).
+## What this is for
 
-## Persistent-goal architecture
+Use this repository in either of these situations:
 
-A persistent goal is different from an ordinary bounded task because the
-primary model's context must survive many implementation, review, build, QA,
-pause, and restart cycles.
+- you are starting a new project and want spec-first work from day one
+- you already have a working project and want to migrate it to a spec-first
+  workflow
 
-When a request advances a running persistent goal:
+Included:
 
-- the primary agent acts as `/root` and remains coordinator-only;
-- `/root` preserves the objective, authority, dependency graph, contract
-  epochs, accepted receipts, blockers, and next ready work;
-- workers receive finite packets with exact authority, scope, owners,
-  invariants, checks, and stopping conditions;
-- implementation receives independent review before acceptance;
-- one restart-safe registry records packet state and exact residuals;
-- pause and resume are explicit and durable;
-- context quality and correctness outrank maximum fan-out or token savings.
+- a minimal public `AGENTS.md`
+- a product-spec layer under `docs/specs/`
+- a reusable feature spec template
+- an example spec under `examples/`
+- prompt files for greenfield and brownfield adoption
+- an optional browser-QA starter pack for web UI projects
 
-Workers do not all read the full orchestration manual. Automatically loaded
-`AGENTS.md` contains only a compact routing gate; the full document is read by
-the coordinating `/root` when the persistent-goal boundary actually applies.
+## Three layers
 
-Model selection is role-based. Strong reasoning is used for coordination,
-authority, architecture, risky implementation, and independent review.
-Efficient tool-capable models may handle bounded exploration, known-file work,
-builds, tests, or mechanical extraction when the packet leaves no product
-judgment unresolved. Quality is never downgraded merely to save tokens.
+Instead of keeping product truth scattered across code and chat history, this
+workflow keeps three separate layers:
 
-The complete contract is
-[`docs/agent-governance/root-orchestration.md`](docs/agent-governance/root-orchestration.md).
-Reusable compact `AGENTS.md` sections are in
-[`docs/agent-governance/agents-sections.md`](docs/agent-governance/agents-sections.md).
+1. `docs/specs/` - product truth
+2. implementation - code that follows the contract
+3. `qa/` - verification evidence when the project needs it
 
-## Greenfield and brownfield projects
+The rules are simple:
 
-### Greenfield
+- context should live in specs, not only in code
+- code should implement the contract
+- QA should verify the contract when the project needs QA artifacts
 
-Use [`prompts/greenfield-bootstrap.md`](prompts/greenfield-bootstrap.md) after
-choosing project-local deployment. Create the domain registry and initial
-contracts before feature implementation begins.
+## Two common scenarios
 
-### Brownfield
+### Greenfield project
 
-Use Discover when reliable contracts do not yet exist:
+Use this when the project is new or mostly empty.
 
-1. record the missing or unreliable contract;
-2. inspect code, routes, state, design, tests, QA, runtime, history, and
-   released behavior as evidence;
-3. separate observed behavior from intended behavior;
-4. map domains, owners, compatibility, unknowns, and conflicts;
-5. write first-pass contracts without changing product implementation;
-6. use Restore, Reconcile, or Evolve for later implementation slices.
+The agent should:
 
-Brownfield prompts:
+- set up the spec-first workflow in the new project
+- create the initial product-spec structure
+- propose the first specs that should exist before feature code
+
+Reference prompt:
+
+- [`prompts/greenfield-bootstrap.md`](prompts/greenfield-bootstrap.md)
+
+### Brownfield project
+
+Use this when the project already exists and you want to retrofit specs.
+
+The agent should:
+
+- analyze the current codebase
+- extract product behavior from code, routes, state, tests, UI flows, and docs
+- ask for clarification where product intent is unclear
+- generate first-pass specs for the most important product areas
+
+In practice, brownfield migration usually means:
+
+1. record where reliable active specs are missing
+2. inspect implementation as evidence without changing it
+3. map the product
+4. build a spec backlog
+5. generate first-pass specs
+6. review unknowns and conflicts
+7. only then start changing code
+
+Reference prompts:
 
 - [`prompts/brownfield-discovery.md`](prompts/brownfield-discovery.md)
 - [`prompts/brownfield-interview.md`](prompts/brownfield-interview.md)
 - [`prompts/generate-first-specs.md`](prompts/generate-first-specs.md)
 
+## Minimal workflow
+
+Use this workflow for non-trivial work:
+
+1. Read the active specs.
+2. State the Spec Basis before opening implementation source.
+3. Clarify the product goal.
+4. Create or update the spec before implementation edits.
+5. Review behavior, invariants, and edge cases.
+6. Inspect implementation and implement against the Spec Basis.
+7. Add or update verification artifacts if the project needs them.
+
+## Optional web QA layer
+
+Browser QA is **optional**.
+
+Use it if your project has a browser UI and you want a lightweight structure
+for smoke checks, regression cases, and run reports.
+
+The optional web QA pack assumes Playwright-style real-browser checks.
+
+Do not treat browser QA as mandatory for every project. Many projects are
+better served by API verification, CLI verification, integration testing,
+operator runbooks, or other project-specific checks.
+
+If you do have a browser UI, this repo includes a compact starter pack under:
+
+- [`qa/web/README.md`](qa/web/README.md)
+- [`qa/web/AGENTS.snippet.md`](qa/web/AGENTS.snippet.md)
+
+And a matching prompt:
+
+- [`prompts/optional-web-qa.md`](prompts/optional-web-qa.md)
+
 ## Prompt pack
 
-Installation and architecture:
+The default setup prompt above is usually enough.
 
-- [`install-global-product-truth-governance.md`](prompts/install-global-product-truth-governance.md)
-- [`install-project-product-truth-governance.md`](prompts/install-project-product-truth-governance.md)
-- [`install-persistent-goal-agent-architecture.md`](prompts/install-persistent-goal-agent-architecture.md)
+The files under [`prompts/`](prompts/) are follow-up prompts for specific
+situations:
 
-Project work:
+- `greenfield-bootstrap.md`
+- `brownfield-discovery.md`
+- `brownfield-interview.md`
+- `generate-first-specs.md`
+- `optional-web-qa.md`
+- `day-to-day-spec-first.md`
+- `repair-spec-first-workflow.md`
 
-- [`greenfield-bootstrap.md`](prompts/greenfield-bootstrap.md)
-- [`brownfield-discovery.md`](prompts/brownfield-discovery.md)
-- [`brownfield-interview.md`](prompts/brownfield-interview.md)
-- [`generate-first-specs.md`](prompts/generate-first-specs.md)
-- [`day-to-day-spec-first.md`](prompts/day-to-day-spec-first.md)
-- [`repair-spec-first-workflow.md`](prompts/repair-spec-first-workflow.md)
-- [`optional-web-qa.md`](prompts/optional-web-qa.md)
+<details>
+<summary>Manual install fallback</summary>
 
-See [`prompts/README.md`](prompts/README.md) for ready-to-copy invocation
-examples and scope details.
+Use this only if your agent cannot fetch or inspect the GitHub repository.
 
-## Included artifacts
+Copy these into the target project:
 
-- `AGENTS.md` — a self-contained project-local example and maintenance rules
-  for this repository.
-- `docs/spec-first-workflow.md` — the compact canonical workflow.
-- `docs/agent-governance/` — full global/project governance sources, compact
-  `AGENTS.md` sections, and deployment guidance.
-- `docs/specs/README.md` — the project specification-layer contract.
-- `docs/specs/index.md` — this repository's product-contract authority
-  registry.
-- `docs/specs/templates/` — templates for a feature contract, spec index,
-  Change Envelope, Contract Delta, and release baseline.
-- `examples/favorites-spec.md` — a historical example contract, not product
-  authority for a target project.
-- `prompts/` — ready-to-send installers and working prompts.
-- `qa/web/` — an optional browser-QA starter pack.
+Required:
 
-## Manual installation fallback
+- `AGENTS.md`
+- `docs/spec-first-workflow.md`
+- `docs/specs/README.md`
+- `docs/specs/templates/`
 
-Use this only when an agent cannot inspect the repository directly.
+Recommended:
 
-For a global install:
+- `prompts/`
 
-1. copy the chosen full governance document from `docs/agent-governance/` to
-   the active Codex home;
-2. merge the matching global gate from `agents-sections.md` into global
-   `AGENTS.md`;
-3. preserve every unrelated global instruction;
-4. do not copy project-specific safety or tooling rules globally.
+Optional:
 
-For a project-only install:
+- `qa/`
 
-1. copy `docs/spec-first-workflow.md`, `docs/specs/`, and the useful prompts;
-2. copy the required full governance document into a project-local
-   documentation path;
-3. merge the matching project-local gate into the repository's `AGENTS.md`;
-4. preserve existing project rules and product behavior;
-5. add project-specific contracts through Discover, not by copying the example
-   as authority.
+Reference only, not installed as project specs:
 
-If browser QA is installed, also merge the routing block from
-[`qa/web/AGENTS.snippet.md`](qa/web/AGENTS.snippet.md).
+- `examples/`
+
+If you copy `qa/`, also add the optional browser-QA routing block from:
+
+- `qa/web/AGENTS.snippet.md`
+
+Without that extra block in the project's `AGENTS.md`, the agent may not load
+the QA instructions automatically.
+
+After copying, ask the agent to work from the files already inside the project:
+
+```text
+Read AGENTS.md and docs/specs/README.md in this project first.
+
+This is a brownfield project. Generate project-specific first-pass specs before changing implementation code.
+```
+
+</details>
 
 ## Suggested repository structure
 
@@ -258,27 +239,33 @@ If browser QA is installed, also merge the routing block from
 ├── AGENTS.md
 ├── README.md
 ├── docs/
-│   ├── agent-governance/
-│   │   ├── README.md
-│   │   ├── agents-sections.md
-│   │   ├── product-truth-governance.md
-│   │   └── root-orchestration.md
 │   ├── spec-first-workflow.md
 │   └── specs/
 │       ├── README.md
-│       ├── index.md
 │       ├── templates/
-│       │   ├── contract-change-envelope.md
-│       │   ├── contract-delta.md
-│       │   ├── feature-spec.md
-│       │   ├── release-contract-baseline.md
-│       │   └── spec-index.md
+│       │   └── feature-spec.md
 │       └── features/
 │           └── <project-feature>.md
 ├── examples/
+│   └── favorites-spec.md
 ├── prompts/
+│   ├── README.md
+│   └── *.md
 └── qa/
+    ├── README.md
+    └── web/
+        └── ...
 ```
+
+## Included files
+
+- `AGENTS.md` - minimal workflow rules for agents
+- `docs/spec-first-workflow.md` - canonical strict gate and migration audit
+- `docs/specs/README.md` - how the spec layer works
+- `docs/specs/templates/feature-spec.md` - reusable template
+- `examples/favorites-spec.md` - example production-style spec for reference
+- `prompts/` - ready-to-send prompts for setup and migration
+- `qa/web/` - optional browser-QA starter pack for web UI projects
 
 ## License
 

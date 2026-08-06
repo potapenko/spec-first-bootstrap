@@ -47,8 +47,3 @@ Keep these layers separate:
 - specs define the product contract
 - QA cases verify representative behavior
 - run reports capture execution evidence
-
-Cases should identify the pinned contract revision or epoch and the expected
-action-state-result chain. Browser observations can expose a contract gap or a
-stale case, but they do not silently redefine product intent. Classify the
-discrepancy before changing the contract, implementation, or QA expectation.

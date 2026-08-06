@@ -6,27 +6,21 @@ spec template, and `examples/favorites-spec.md` as an example only.
 
 This is an existing project that needs a spec-first migration.
 
-Use Discover mode. Record that reliable specs are missing or incomplete before
-inspecting source. Establish a bounded Contract Change Envelope with
-implementation unauthorized.
-
+Record that reliable specs are missing or incomplete before inspecting source.
 Do not change implementation code during this discovery pass.
 
-Analyze the smallest complete relevant evidence set:
+Analyze the current repository and extract product behavior from:
 
-- source and ownership;
-- routes, state, persistence, permissions, and public data contracts;
-- design and UI flows;
-- tests and QA action-state-result chains;
-- runtime behavior;
-- history and release evidence.
+- code
+- routes
+- state transitions
+- tests
+- docs
+- UI flows
 
 Produce:
 
-1. a product-domain map;
-2. observed behavior separated from intended behavior;
-3. a spec backlog;
-4. authority and stability classifications;
-5. the top domains needing first-pass specs;
-6. real conflicts, unknowns, and assumptions requiring confirmation;
-7. legacy-released behavior that must be protected until reconciled.
+1. a product map
+2. a spec backlog
+3. the top product areas that need first-pass specs
+4. unknowns, conflicts, and assumptions that need confirmation
