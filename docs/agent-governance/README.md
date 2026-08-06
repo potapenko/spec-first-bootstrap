@@ -12,6 +12,10 @@ The six setup prompts expose three independent layers:
 Each layer can be installed in one project or, by explicit advanced request,
 in the current user's global agent configuration.
 
+The layers are composable but independent. No setup prompt may install another
+layer as a prerequisite or hidden dependency. A user may install any one, any
+two, or all three in either scope.
+
 ## Files
 
 - `product-truth-governance.md` is the full specification and product-evidence

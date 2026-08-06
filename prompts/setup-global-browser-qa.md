@@ -9,6 +9,10 @@ This is an advanced global configuration task. Browser QA must remain
 conditional. Change no project repository during installation, and do not copy
 `qa/` into every project.
 
+Install only the optional browser-QA layer. Do not install specification-first
+governance or persistent-goal agent architecture as a prerequisite or hidden
+dependency. Preserve and interoperate with either layer when already present.
+
 ## Resolve the environment safely
 
 1. Detect the active agent environment and its supported user-level
@@ -44,6 +48,8 @@ Read completely:
 4. Keep the full document conditionally loaded only for browser-QA work.
 5. Do not make browser QA mandatory and do not install project artifacts until
    the user requests them for a specific web project.
+6. Do not add, remove, or rewrite specification, product-truth, persistent-goal
+   agent, or other unrelated global layers.
 
 Use `apply_patch` for edits.
 
@@ -51,7 +57,8 @@ Use `apply_patch` for edits.
 
 Verify canonical document identity, one merged conditional gate, preserved
 existing global instructions, instruction-size limits, Markdown and
-whitespace, no browser/session access, and no project-repository change.
+whitespace, no browser/session access, no project-repository change, and no
+installation or modification of specification or persistent-goal agent layers.
 
 Report the detected environment, exact paths, permission used, merge decision,
 verification, and residuals.

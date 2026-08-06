@@ -53,8 +53,9 @@ Use `apply_patch` for edits.
 
 Verify that the full document matches the canonical source, the compact gate
 appears once, existing global instructions remain intact, instruction-size
-limits are respected, Markdown and whitespace pass, and no project repository
-changed.
+limits are respected, Markdown and whitespace pass, no project repository
+changed, and no persistent-goal agent or browser-QA layer was installed or
+modified.
 
 Report the detected agent environment, exact global paths, merge decision,
 permission used, verification, and residuals. Do not create a Git commit for

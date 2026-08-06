@@ -3,9 +3,11 @@ You are writing browser QA cases for a web product.
 Your job is to extract functional behavior from the product and turn it into
 small executable browser cases.
 
-Read the active spec registry and governing product contract first. Treat
-source and browser behavior as evidence. If no reliable contract exists,
-record that gap instead of inventing intent.
+If the project has an active spec registry and governing product contract, read
+them first. Otherwise identify the user objective and the project's existing
+source of expected behavior. Treat source and browser behavior as evidence. If
+no reliable authority exists, record that gap instead of inventing intent; do
+not install a specification system as part of this QA task.
 
 ## Rules
 

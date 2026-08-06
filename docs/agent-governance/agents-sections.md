@@ -65,10 +65,11 @@ When the task installs, creates, runs, diagnoses, or reviews browser QA, read
 `qa/README.md` and the applicable files under `qa/web/` before action.
 
 Browser QA is optional and applies only to browser-facing projects that use
-this layer. Cases verify pinned product behavior through explicit
-action-state-result chains. Browser observations and QA cases are acceptance
-evidence; they do not independently create product intent or authorize weaker
-expectations.
+this layer. It does not require the product-specification or persistent-goal
+agent layers. Cases verify the best available named product authority through
+explicit action-state-result chains and link stable contract identifiers when
+they exist. Browser observations and QA cases are acceptance evidence; they do
+not independently create product intent or authorize weaker expectations.
 ~~~
 
 ## Global: product specifications
@@ -124,8 +125,10 @@ For a task that installs, creates, runs, diagnoses, or reviews browser QA, read
 the sibling `web-qa-governance.md` in the active user-level agent configuration
 directory before QA action.
 
-Browser QA remains optional and conditional. It is not installed into every
-project automatically. Cases verify pinned product behavior through explicit
-action-state-result chains; browser observations and QA cases do not
-independently create product intent or authorize weaker expectations.
+Browser QA remains optional, conditional, and independent. It is not installed
+into every project automatically and does not require global product-
+specification or persistent-goal agent layers. Cases verify the best available
+named product authority through explicit action-state-result chains and link
+stable contract identifiers when they exist. Browser observations and QA cases
+do not independently create product intent or authorize weaker expectations.
 ~~~

@@ -20,7 +20,13 @@ Do not load it for ordinary implementation work that has no browser-QA scope.
 
 ## Relationship to product truth
 
-Product specifications define intended behavior.
+When a project has active product specifications, they define intended
+behavior and QA cases should link to them.
+
+The browser-QA layer does not require or install a specification system. When
+no such system exists, use the user objective and the project's established
+requirements, release behavior, and other named authority; record material
+authority gaps instead of inventing expected behavior.
 
 Source and design establish implementation and ownership evidence.
 
@@ -48,7 +54,8 @@ Normally provide:
 - one case template;
 - one run-report template;
 - one bug-report template;
-- a stable spec-to-case mapping convention.
+- a stable behavior-authority-to-case mapping convention, using spec-to-case
+  links when specifications already exist.
 
 Preserve existing QA and test tooling. Do not replace a mature project system
 with this starter pack.
@@ -124,6 +131,10 @@ If classification is not yet established, say so. Do not guess.
 Global installation makes this conditional guidance available to future
 projects. It does not copy `qa/` into every repository and does not make
 browser QA mandatory.
+
+It also does not install specification governance or persistent-goal agent
+architecture. Those independent layers are preserved when present and remain
+absent when not selected.
 
 The global routing block must activate only for browser-QA tasks. Project
 artifacts are still created inside a target repository only when the user asks

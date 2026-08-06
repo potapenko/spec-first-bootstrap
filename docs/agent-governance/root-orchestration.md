@@ -119,11 +119,16 @@ working context unless an exact failure requires a bounded excerpt.
 Missing information in `/root`'s current context is not proof that product
 authority is missing.
 
-For product work, `/root` follows `product-truth-governance.md` and keeps
-the accepted Contract Change Envelope and current contract revision as durable
-goal state. A provisional specification discrepancy is an
-evidence-reconciliation trigger, not by itself a user decision or
-implementation blocker.
+When the project has an applicable product-truth or specification-governance
+layer, `/root` follows its named contract and keeps the accepted change
+envelope and current contract revision as durable goal state. A provisional
+specification discrepancy is then an evidence-reconciliation trigger, not by
+itself a user decision or implementation blocker.
+
+The agent architecture does not require or install that layer. Without it,
+`/root` uses the user's objective and the project's existing product,
+architecture, source, release, and acceptance authority. Missing standalone
+specification governance is never permission to invent product behavior.
 
 Before requesting a user decision or authorizing implementation, `/root` must
 obtain the necessary evidence through finite scoped workers.
@@ -179,10 +184,11 @@ Every worker packet must contain:
 - packet identifier;
 - one finite objective;
 - why the packet is ready now;
-- the accepted change mode and Contract Change Envelope when product behavior
-  is involved;
-- the pinned specification clauses and contract revision or epoch;
-- protected adjacent domains and the permitted specification delta;
+- the accepted change authority and bounded change envelope when behavior or
+  another protected contract is involved;
+- governing clauses, requirements, instructions, and their revision or epoch
+  when the project provides them;
+- protected adjacent domains and the permitted semantic delta;
 - exact authority sources and their precedence;
 - accepted upstream decisions and dependencies;
 - required existing owners, models, services, or abstractions to reuse;
@@ -369,7 +375,7 @@ For a long-running or multi-packet goal, maintain one restart-safe registry.
 The registry should contain only the coordination state needed to resume:
 
 ```text
-packet | owner | contract epoch | dependencies | writable scope | status | receipt | residual
+packet | owner | authority revision | dependencies | writable scope | status | receipt | residual
 ```
 
 Recommended states:
@@ -385,8 +391,9 @@ Rules:
 - `accepted` work is terminal unless new evidence invalidates it;
 - a blocked packet resumes only from its exact residual;
 - stale `running` rows are reconciled before new dispatch;
-- an accepted semantic contract change advances the affected contract epoch,
-  and packets pinned to the prior epoch are revalidated or retired;
+- when the project versions semantic authority, an accepted change advances
+  the affected revision or epoch, and packets pinned to the prior value are
+  revalidated or retired;
 - chat history and the live agent list do not replace the registry;
 - workers do not create competing registries;
 - checkpoint commits preserve accepted progress without rewriting history.
@@ -426,7 +433,8 @@ When the user pauses a goal:
 On resume or context compaction, `/root` first re-reads:
 
 - applicable global and project instructions;
-- `product-truth-governance.md` when the goal contains product work;
+- the applicable product-truth or specification-governance document when that
+  layer is installed and the goal contains product work;
 - the persistent goal;
 - the governing plan or runbook;
 - the single registry;

@@ -9,14 +9,17 @@ configuration.
 This is an instruction and documentation setup task. Do not create, resume,
 pause, block, or complete a persistent goal. Do not change product code.
 
+Install only the persistent-goal agent layer. Do not install specification-
+first governance or browser QA as a prerequisite or dependency. Preserve and
+interoperate with either layer when it is already present.
+
 ## Read first
 
 Read completely from the bootstrap repository:
 
 - `docs/agent-governance/root-orchestration.md`;
-- `docs/agent-governance/product-truth-governance.md`;
-- the two Project sections for product specifications and persistent-goal
-  agents in `docs/agent-governance/agents-sections.md`.
+- the Project: persistent-goal agents section in
+  `docs/agent-governance/agents-sections.md`.
 
 Read the target project's existing instruction hierarchy, coordination rules,
 worktree state, and any current goal state before editing. Preserve unrelated
@@ -28,11 +31,11 @@ content.
    `docs/agent/root-orchestration.md`.
 2. Merge the compact Project: persistent-goal agents section into the existing
    project-root instruction file. Never replace the complete file.
-3. If the matching project product-truth dependency is absent, also install
-   `docs/agent/product-truth-governance.md` and its compact project section.
-   Do not create project specs or change product behavior during this setup.
-4. Reconcile an equivalent existing coordination section instead of appending
+3. Reconcile an equivalent existing coordination section instead of appending
    a conflicting duplicate.
+4. Do not add, remove, or rewrite specification, product-truth, browser-QA, or
+   other unrelated workflow layers. If they already exist, preserve them and
+   keep the agent layer compatible with their established authority paths.
 5. Do not change model defaults, reasoning defaults, concurrency limits,
    custom agent profiles, provider settings, or application configuration.
    Apply the root contract's role-based model policy using models actually
@@ -56,8 +59,8 @@ The resulting project must preserve these rules:
   savings;
 - only independent ownership is parallelized;
 - product changes receive independent review;
-- one restart-safe registry carries packet state, contract epoch, receipts,
-  and residuals;
+- one restart-safe registry carries packet state, applicable authority
+  revision, receipts, and residuals;
 - a paused or blocked goal stays idle until explicitly resumed;
 - context compaction resumes from governing documents and durable state rather
   than chat memory.
@@ -66,7 +69,8 @@ The resulting project must preserve these rules:
 
 Verify exact project-only scope, one merged gate, complete canonical document,
 preserved existing instructions, valid Markdown, no product-code change, no
-goal-state change, and no model/configuration change.
+goal-state change, no model/configuration change, and no installation or
+modification of the specification or browser-QA layers.
 
-Follow the project's checkpoint policy and report changed paths, dependency
-handling, verification, and exact residuals.
+Follow the project's checkpoint policy and report changed paths, coexistence
+with any already installed layers, verification, and exact residuals.

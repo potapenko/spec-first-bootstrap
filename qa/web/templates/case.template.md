@@ -3,8 +3,9 @@
 - QA scenario ID:
 - Priority: P0/P1/P2
 - Status: VERIFIED / PARTIALLY_VERIFIED / UNVERIFIED
-- Governing contract revision or epoch:
-- Governing clause IDs:
+- Expected-behavior authority:
+- Governing contract revision or epoch, when available:
+- Governing clause IDs, when available:
 - Source reference:
 - Code reference:
 

@@ -3,7 +3,8 @@
 - Severity: S0/S1/S2/S3
 - Environment:
 - URL:
-- Governing contract revision or clause IDs:
+- Expected-behavior authority:
+- Governing contract revision or clause IDs, when available:
 - Steps to reproduce:
 - Expected result:
 - Actual result:

@@ -9,6 +9,10 @@ This is an advanced global configuration task. Change no project repository.
 Do not create, resume, pause, block, or complete a persistent goal during
 installation.
 
+Install only the persistent-goal agent layer. Do not install specification-
+first governance or browser-QA guidance as a prerequisite or dependency.
+Preserve and interoperate with either layer when it is already present.
+
 ## Resolve the environment safely
 
 1. Detect the active agent environment and its supported user-level
@@ -31,9 +35,8 @@ Read completely:
 
 - `docs/agent-governance/README.md`;
 - `docs/agent-governance/root-orchestration.md`;
-- `docs/agent-governance/product-truth-governance.md`;
-- the two Global sections for product specifications and persistent-goal
-  agents in `docs/agent-governance/agents-sections.md`.
+- the Global: persistent-goal agents section in
+  `docs/agent-governance/agents-sections.md`.
 
 ## Install
 
@@ -41,10 +44,11 @@ Read completely:
    entry point as `root-orchestration.md`.
 2. Merge the compact global persistent-goal section into the existing global
    instruction file. Never replace the complete file.
-3. If the matching global product-truth dependency is absent, install its full
-   canonical document and compact global section in the same directory.
-4. Reconcile equivalent existing sections instead of creating duplicates.
-5. Keep full documents conditionally loaded.
+3. Reconcile equivalent existing sections instead of creating duplicates.
+4. Keep the full root document conditionally loaded.
+5. Do not add, remove, or rewrite product-truth, specification, browser-QA, or
+   other unrelated global layers. If they already exist, preserve them and
+   keep the agent layer compatible with their established authority paths.
 6. Do not change model defaults, reasoning defaults, concurrency limits,
    custom profiles, providers, or agent application configuration.
    Apply the root contract's role-based policy using models actually supported
@@ -63,7 +67,8 @@ context-compaction recovery, and truthful completion.
 
 Verify canonical document identity, one merged gate, preserved existing global
 instructions, conditional loading, configured instruction-size limits, no
-goal/config/model change, and no project-repository change.
+goal/config/model change, no project-repository change, and no installation or
+modification of the specification or browser-QA layers.
 
-Report the detected environment, exact paths, dependency handling, permission
-used, verification, and residuals.
+Report the detected environment, exact paths, coexistence with any already
+installed layers, permission used, verification, and residuals.

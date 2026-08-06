@@ -1,35 +1,42 @@
 # Prompt Pack
 
-The repository-root [`README.md`](../README.md) contains exactly two prompts a
+The repository-root [`README.md`](../README.md) contains the short prompts a
 person can copy into Codex, Claude Code, or another coding agent.
 
 The files in this directory contain the detailed contracts that the selected
 agent reads and executes.
 
-## Human entry prompts
+## Set up one project
 
-1. [`setup-project.md`](setup-project.md) configures all three layers inside the
-   current project.
-2. [`setup-global.md`](setup-global.md) configures all three layers in the
-   current user's global agent environment.
+Recommended for most users:
 
-The project prompt is the recommended default. The global prompt requires
-permission to write outside the current repository and can affect every future
-project.
+1. [`setup-project-spec-first.md`](setup-project-spec-first.md) installs the
+   specification and product-truth layer in the current project.
+2. [`setup-project-agents.md`](setup-project-agents.md) installs
+   coordinator-and-workers rules for persistent goals in the current project.
+3. [`optional-web-qa.md`](optional-web-qa.md) installs optional browser QA in a
+   web UI project.
 
-## Layer contracts used by the entry prompts
+Each layer is independently selectable. An installer must not install either
+of the other layers as a prerequisite or dependency. Choose any one, any two,
+or all three. When all three are wanted, the listed order is recommended.
 
-Project phases:
+## Set up every project
 
-- [`setup-project-spec-first.md`](setup-project-spec-first.md)
-- [`setup-project-agents.md`](setup-project-agents.md)
-- [`optional-web-qa.md`](optional-web-qa.md)
+Advanced global setup:
 
-Global phases:
+1. [`setup-global-spec-first.md`](setup-global-spec-first.md)
+2. [`setup-global-agents.md`](setup-global-agents.md)
+3. [`setup-global-browser-qa.md`](setup-global-browser-qa.md)
 
-- [`setup-global-spec-first.md`](setup-global-spec-first.md)
-- [`setup-global-agents.md`](setup-global-agents.md)
-- [`setup-global-browser-qa.md`](setup-global-browser-qa.md)
+These global layers are also independently selectable. Each installer changes
+only its named global layer and preserves any selected or unselected layers
+already present.
+
+These prompts modify the active user's agent configuration outside the current
+repository. They must detect the active agent environment, state exact target
+paths, preserve existing global instructions, and request the required
+filesystem permission. They change no project during installation.
 
 ## Follow-up project work
 

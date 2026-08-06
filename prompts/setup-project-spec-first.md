@@ -36,8 +36,9 @@ worktree status before editing. Preserve unrelated changes.
 4. Add or reconcile the project's `docs/specs/README.md`, spec index, and
    neutral templates. Extend an existing mature spec system instead of
    creating a competing one.
-5. Add only the useful follow-up prompts. Do not install persistent-goal agent
-   architecture or browser QA in this step.
+5. Add only specification-related follow-up prompts. Do not install or copy
+   persistent-goal agent architecture, browser-QA prompts, or browser-QA
+   artifacts in this step.
 6. Keep project-specific framework, safety, build, test, Git, database,
    storage, and release rules intact.
 
@@ -72,6 +73,7 @@ Verify that:
 - Markdown, local links, and whitespace pass;
 - no product implementation changed;
 - no product behavior was invented merely to populate a template;
+- no persistent-goal agent or browser-QA layer was installed or modified;
 - any unresolved product decision is described with its evidence and impact.
 
 Follow the target repository's checkpoint policy. Report installed paths,

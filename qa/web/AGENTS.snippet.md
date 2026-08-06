@@ -16,6 +16,7 @@ If the task is about creating or updating browser QA cases:
 If the task changes user-visible browser behavior and this project uses browser
 QA, update or add the relevant QA artifacts in the same task.
 
-Browser QA verifies governing product contracts through explicit
-action-state-result chains. It does not independently create product intent or
-weaken expectations merely to match current implementation.
+Browser QA verifies the best available named product authority through
+explicit action-state-result chains and links governing contracts when they
+exist. It does not require a specification layer, independently create product
+intent, or weaken expectations merely to match current implementation.

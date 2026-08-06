@@ -6,7 +6,8 @@
 - Base URL:
 - Browser:
 - Viewport:
-- Contract revisions or epochs:
+- Expected-behavior authority:
+- Contract revisions or epochs, when available:
 - Total:
 - PASS:
 - FAIL:
@@ -35,7 +36,7 @@
 
 ### <TC-ID> — <Title> — <STATUS>
 
-- Governing clause IDs:
+- Governing clause IDs, when available:
 - URL:
 - Expected action-state-result chain:
 - Actual result:

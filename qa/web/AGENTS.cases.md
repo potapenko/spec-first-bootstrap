@@ -10,8 +10,10 @@ UI copy usually documents the feature.
 Write tests for behavior, not for static labels, unless text rendering itself
 is the feature.
 
-Read the governing product contract before treating source or live browser
-behavior as expected behavior.
+Read the governing product contract when one exists. Otherwise identify the
+user objective and the project's established source of expected behavior
+before treating source or live browser behavior as the expectation. Do not
+install a specification system as part of case authoring.
 
 ## Hard requirements
 
