@@ -6,13 +6,21 @@ spec template, and `examples/favorites-spec.md` as an example only.
 
 This is a new or mostly empty project.
 
-Set up a lightweight spec-first workflow for the current project.
+Set up project-local product-truth governance using
+`prompts/install-project-product-truth-governance.md`. Do not install global
+governance without an explicit global request.
 
 Do not start implementing product features yet.
 
 First:
 
-1. decide the minimal structure needed
-2. propose the first product areas that need specs
-3. generate an initial spec backlog
-4. recommend which first spec should be written before code
+1. create a Discover-mode Contract Change Envelope;
+2. decide the minimal structure needed;
+3. identify initial product domains and their boundaries;
+4. establish authority and stability fields in the registry;
+5. identify the first evidence and QA mappings needed;
+6. generate an initial spec backlog;
+7. recommend which first spec should be written before code.
+
+Do not infer detailed product intent from a framework scaffold, starter kit, or
+donor implementation pattern.

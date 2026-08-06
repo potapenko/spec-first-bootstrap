@@ -15,3 +15,7 @@ If the task is about creating or updating browser QA cases:
 
 If the task changes user-visible browser behavior and this project uses browser
 QA, update or add the relevant QA artifacts in the same task.
+
+Browser QA must verify pinned contract clauses and explicit
+action-state-result chains. It must not independently create product intent or
+change an expectation merely to match current implementation.

@@ -28,3 +28,7 @@ Keep this QA layer optional.
 Do not change product code.
 
 Do not assume browser QA is appropriate for non-web projects.
+
+QA cases must verify pinned contract clauses through action-state-result chains.
+They do not independently authorize product intent or weaken expectations to
+match current implementation.
