@@ -1,117 +1,60 @@
 # Spec-First Bootstrap for AI-Assisted Projects
 
-Open your project in Codex, Claude Code, or another coding agent. Copy only the
-prompts for the layers you want.
+Open your project in Codex, Claude Code, or another coding agent and choose one
+of these two prompts.
 
-## Set up this project
+## 1. Set up the current project
 
-This is the recommended option. Everything stays inside the current project.
-
-If you want all three layers, use them in this order: specifications, agents,
-then browser QA.
-
-### 1. Add specification-first development
+This is the recommended option. It installs all three layers inside the current
+project: specifications, coordinated agent work, and optional browser QA.
 
 ```text
-Use https://github.com/potapenko/spec-first-bootstrap as the reference and set up this project for specification-first development.
+Use https://github.com/potapenko/spec-first-bootstrap as the canonical reference and fully set up the current project with the Bootstrap.
 
-Follow prompts/setup-project-spec-first.md from that repository. Keep the setup inside this project, preserve its existing instructions and product code, and do not add global configuration, persistent-goal agent architecture, or browser QA in this step.
+Follow prompts/setup-project.md from that repository. In one project-local setup, configure all three layers in order: specification-first product work, coordinated agents for long-running goals, and the optional browser-QA layer when this project has a browser UI. Preserve all existing project instructions and product code. Do not modify my global Codex, Claude, or other agent configuration, and do not create or resume a goal during setup.
 ```
 
-### 2. Add agent teamwork
+The agent reads the three detailed project contracts, adapts them to the
+existing repository, and verifies the result. You do not need to copy files or
+run three separate prompts.
 
-Use this when the project will have long-running work handled by a coordinator
-and multiple focused agents.
+## 2. Set up every project globally
 
-```text
-Use https://github.com/potapenko/spec-first-bootstrap as the reference and set up coordinated multi-agent work for long-running goals in this project.
+Use this only when you deliberately want the same three layers available in
+all future projects.
 
-Follow prompts/setup-project-agents.md from that repository. Keep the setup inside this project. Do not create or resume a goal, change agent application settings, or change product code during setup.
-```
-
-### 3. Add optional browser QA
-
-Use this only for a project with a browser UI, after step 1.
-
-```text
-Use https://github.com/potapenko/spec-first-bootstrap as the reference and add the optional browser-QA layer to this web UI project.
-
-Follow prompts/optional-web-qa.md from that repository. Assume the specification-first layer is already installed. Keep browser QA optional and do not change product code.
-```
-
-That is the normal setup path. You do not need to copy files manually or
-understand the internal agent instructions first; the selected prompt tells
-the agent what to inspect, preserve, install, and verify.
-
-## Set up every project at once
-
-This is an advanced and less common option. Prefer project-only setup unless
-you deliberately want the same rules in every future project.
-
-> **Warning:** these prompts modify your user-level Codex, Claude, or other
-> agent configuration outside the current repository. The agent will need
+> **Warning:** this prompt modifies your user-level Codex, Claude, or other
+> agent configuration outside the current repository. The agent needs
 > permission to write there, and some environments may require broad or full
 > filesystem access. A mistake can affect every project. Review the exact
 > target paths and permission request before allowing the change.
 
-Run only the prompts for the global layers you want.
-If you want all three, use them in the listed order.
-
-### 1. Add specifications globally
-
 ```text
-Use https://github.com/potapenko/spec-first-bootstrap as the reference and set up specification-first product governance globally for all my projects.
+Use https://github.com/potapenko/spec-first-bootstrap as the canonical reference and fully set up the Bootstrap globally for all my projects.
 
-Follow prompts/setup-global-spec-first.md from that repository. Detect the active agent environment, show me the exact global paths before writing, preserve all existing global instructions, and do not modify any project repository.
+Follow prompts/setup-global.md from that repository. In one global setup, configure all three layers in order: specification-first product governance, coordinated agents for long-running goals, and optional browser-QA guidance. Detect the active agent environment, show me the exact global paths before writing, request the required filesystem permission, preserve all existing global instructions, and do not modify any project repository or create or resume a goal during setup.
 ```
 
-### 2. Add agent teamwork globally
+The global setup installs reusable conditional guidance. It does not copy
+specs, agent files, or QA folders into every existing repository.
 
-```text
-Use https://github.com/potapenko/spec-first-bootstrap as the reference and set up coordinated multi-agent work for long-running goals globally for all my projects.
-
-Follow prompts/setup-global-agents.md from that repository. Detect the active agent environment, show me the exact global paths before writing, preserve all existing global instructions, and do not create or resume a goal or modify any project repository.
-```
-
-### 3. Add optional browser QA globally
-
-```text
-Use https://github.com/potapenko/spec-first-bootstrap as the reference and set up optional browser-QA guidance globally for all my web projects.
-
-Follow prompts/setup-global-browser-qa.md from that repository. Detect the active agent environment, show me the exact global paths before writing, keep browser QA optional, preserve all existing global instructions, and do not modify any project repository.
-```
-
-Global setup installs reusable guidance. It does not automatically add specs,
-agent files, or QA folders to every existing repository.
-
-## What the three layers do
+## What the Bootstrap adds
 
 - **Specifications** keep intended product behavior explicit before code is
-  changed. The agent still reconciles specs with source, design, runtime
-  behavior, QA, and released behavior instead of treating Markdown as an
-  infallible substitute for understanding the product.
-- **Agents** keep the main agent focused on coordination and
-  context continuity while bounded workers implement, review, build, test, and
-  perform runtime QA.
+  changed. Agents reconcile specs with source, design, runtime behavior, QA,
+  and released behavior instead of treating Markdown as an infallible
+  substitute for understanding the product.
+- **Agent teamwork** keeps the main agent focused on context and coordination
+  while bounded workers implement, review, build, test, and perform runtime QA.
 - **Browser QA** adds optional real-browser cases and run reports for web UI
-  projects. It remains separate from product specifications and implementation.
+  projects. It remains separate from specifications and implementation.
 
-The Bootstrap works for both new and existing projects. In an existing
-project, the setup agent preserves current instructions, studies the product
-as evidence, creates first-pass specifications, and does not change product
-implementation during the discovery pass.
+The Bootstrap works for new and existing projects. In an existing project, the
+setup agent preserves current instructions, studies the product as evidence,
+creates first-pass specifications, and does not change product implementation
+during discovery.
 
-## What is included
-
-- a minimal project `AGENTS.md` example;
-- the canonical specification-first workflow;
-- reusable product-spec templates and a Favorites example;
-- project and global setup prompts;
-- optional browser-QA files;
-- detailed governance sources read by installer agents under
-  `docs/agent-governance/`.
-
-More detailed working prompts are listed in
+Detailed setup and follow-up contracts are listed in
 [`prompts/README.md`](prompts/README.md). The specification workflow is in
 [`docs/spec-first-workflow.md`](docs/spec-first-workflow.md), and the optional
 browser-QA pack is in [`qa/web/`](qa/web/).
