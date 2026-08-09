@@ -385,6 +385,43 @@ Do not infer authority for a materially different product from a broad verb
 such as improve, clean up, modernize, or optimize when the affected behavior is
 not otherwise named.
 
+## Pre-decision specification discovery
+
+Specification-first is a decision gate, not merely an implementation order.
+It applies before answering a project-specific behavior question, forming or
+testing a failure hypothesis, interpreting logs, choosing a runtime or
+operational action, reviewing a change, or recommending a repair.
+
+Before that decision work:
+
+1. Start at the project specification registry or index.
+2. Identify the exact domain, then follow its direct links to the active
+   contract, plan, registry, runbook, operator handoff, design contract, QA
+   workflow, accepted reusable baseline, and release evidence needed for the
+   question.
+3. Read each selected governing document completely. Search results, isolated
+   clauses, source comments, previous receipts, and chat summaries are routing
+   aids, not completed reading.
+4. Classify the change mode and establish the initial Contract Change Envelope.
+5. State a provisional Spec Basis containing the governing documents and
+   revisions, specified expectation, protected adjacent behavior, established
+   operational flow, and evidence needed next.
+6. Only then inspect code, tests, logs, processes, runtime, or history. Record
+   them as observed evidence rather than intended behavior.
+7. If observation differs from the Spec Basis, classify the discrepancy before
+   acting. Do not silently replace the specification with the observation or
+   rewrite the observation into a convenient hypothesis.
+
+If the bounded discovery pass finds no governing specification, record that
+absence explicitly and use Discover mode. Do not infer that the first source
+file, process, command, or old implementation found is the intended contract.
+
+The complete applicable set is the smallest set that can decide the question,
+not the smallest file that mentions one keyword. When a plan explicitly reuses
+another market, platform, product, or operational baseline, that accepted
+baseline and its directly relevant runtime/runbook documents are part of the
+mandatory reading set.
+
 ## Provisional and final Spec Basis
 
 Spec-first has two deliberate stages.

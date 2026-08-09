@@ -51,3 +51,8 @@ two, or all three in either scope.
 The detailed prompt files under `prompts/` are the executable installation
 contracts. This directory is their canonical source, not an additional human
 setup flow.
+
+The optional Codex lifecycle adapter lives under
+[`../../integrations/codex-lifecycle/`](../../integrations/codex-lifecycle/).
+It reinforces installed instruction layers but does not make any of the three
+governance layers depend on Codex or on the adapter.

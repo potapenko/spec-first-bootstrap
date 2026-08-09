@@ -1,0 +1,34 @@
+{
+  "description": "Reload mandatory guidance after Codex lifecycle events.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "^(startup|resume|clear|compact)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "__PYTHON_COMMAND__ \"__CODEX_HOME__/hooks/lifecycle_restart.py\"",
+            "commandWindows": "__PYTHON_COMMAND_WINDOWS__ \"__CODEX_HOME_WINDOWS__\\hooks\\lifecycle_restart.py\"",
+            "timeout": 10,
+            "statusMessage": "Reloading mandatory guidance",
+            "additionalContextLimit": 1200
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "__PYTHON_COMMAND__ \"__CODEX_HOME__/hooks/lifecycle_restart.py\"",
+            "commandWindows": "__PYTHON_COMMAND_WINDOWS__ \"__CODEX_HOME_WINDOWS__\\hooks\\lifecycle_restart.py\"",
+            "timeout": 10,
+            "statusMessage": "Loading worker governance",
+            "additionalContextLimit": 1200
+          }
+        ]
+      }
+    ]
+  }
+}

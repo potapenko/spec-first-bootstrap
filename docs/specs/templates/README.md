@@ -14,5 +14,9 @@ browser QA does not require this directory.
 - [`release-contract-baseline.md`](release-contract-baseline.md) — released
   behavior and compatibility baseline.
 
+The index and envelope templates carry the pre-decision reading receipt. Keep
+their exact-document, specified-expectation, protected-behavior, established-
+flow, and evidence-needed fields when adapting them.
+
 Return to the [`specification documentation`](../README.md) or the main
 [`documentation index`](../../README.md).

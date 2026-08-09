@@ -15,6 +15,27 @@ behavior, UX, state, data contracts, compatibility, or product QA, the primary
 single agent or coordinating `/root` must read
 `docs/agent/product-truth-governance.md` before product action.
 
+Before any project-specific answer, diagnosis, hypothesis, investigation,
+recommendation, decision, plan, source inspection, non-reading task tool,
+runtime action, implementation, or verification:
+
+1. re-read every applicable instruction layer;
+2. start at the specification README and index;
+3. read the complete governing set routed by that index, including every
+   directly relevant plan, registry, runbook, operator handoff, accepted
+   reusable baseline, design contract, QA workflow, and release record;
+4. classify the change mode and establish the initial Contract Change Envelope;
+5. state the exact documents read completely and a provisional Spec Basis that
+   separates specified expectation, protected behavior, established flow, and
+   evidence still needed;
+6. explicitly record a missing governing specification and use Discover before
+   consulting implementation evidence.
+
+Until that gate is complete, do not inspect implementation sources, interpret
+runtime evidence, form a failure hypothesis, recommend a repair, infer product
+intent, or call a non-reading task tool. There is no urgency, debugging,
+read-only-investigation, or one-command exception.
+
 The specification system is the canonical statement of intended behavior and
 the project's primary product artifact, but no specification is infallible or
 self-authorizing. Applicable source, design, QA, runtime, history, and release
@@ -83,6 +104,27 @@ single agent or coordinating `/root` must read the sibling
 `product-truth-governance.md` in the active user-level agent configuration
 directory before product action.
 
+Before any project-specific answer, diagnosis, hypothesis, investigation,
+recommendation, decision, plan, source inspection, non-reading task tool,
+runtime action, implementation, or verification:
+
+1. re-read every applicable instruction layer;
+2. start at the repository specification README and index;
+3. read the complete governing set routed by that index, including every
+   directly relevant plan, registry, runbook, operator handoff, accepted
+   reusable baseline, design contract, QA workflow, and release record;
+4. classify the change mode and establish the initial Contract Change Envelope;
+5. state the exact documents read completely and a provisional Spec Basis that
+   separates specified expectation, protected behavior, established flow, and
+   evidence still needed;
+6. explicitly record a missing governing specification and use Discover before
+   consulting implementation evidence.
+
+Until that gate is complete, do not inspect implementation sources, interpret
+runtime evidence, form a failure hypothesis, recommend a repair, infer product
+intent, or call a non-reading task tool. There is no urgency, debugging,
+read-only-investigation, or one-command exception.
+
 The specification system is canonical intended behavior and the primary
 product artifact, but no specification is infallible or self-authorizing.
 Establish a bounded change mode and envelope, state a provisional basis,
@@ -93,6 +135,52 @@ basis before implementation. A spec edit cannot create its own authority.
 Workers without product-authority, reconciliation, or contract-review
 responsibility receive only the finite pinned clauses, evidence paths,
 protected boundaries, and acceptance conditions required by their task.
+~~~
+
+## Project: Codex lifecycle restart adapter
+
+~~~markdown
+## Codex lifecycle restart gate
+
+When a trusted Codex lifecycle hook reports startup, resume, clear, context
+compaction, or a worker start, take no task action until the applicable
+instruction hierarchy and every action-specific governing document have been
+re-read.
+
+For a root or single-agent session, re-establish current goal state, governing
+plan or runbook, registry, Contract Change Envelope, specification index,
+governing clauses, contract epoch, accepted deltas, unresolved discrepancies,
+and next-action QA instructions as applicable. For a worker, read the finite
+packet and only the complete governing documents it names; do not reconstruct
+authority from the root conversation or read the root manual unless assigned
+the coordinator role.
+
+State the exact documents re-read in the next progress update. Chat summaries,
+memory, worker lists, old receipts, builds, tests, screenshots, and raw
+configuration never replace current governing documents.
+~~~
+
+## Global: Codex lifecycle restart adapter
+
+~~~markdown
+## Codex lifecycle restart gate
+
+When a trusted Codex lifecycle hook reports startup, resume, clear, context
+compaction, or a worker start, take no task action until the applicable global
+and project instruction hierarchy and every action-specific governing document
+have been re-read.
+
+For a root or single-agent session, re-establish current goal state, governing
+plan or runbook, registry, Contract Change Envelope, specification index,
+governing clauses, contract epoch, accepted deltas, unresolved discrepancies,
+and next-action QA instructions as applicable. For a worker, read the finite
+packet and only the complete governing documents it names; do not reconstruct
+authority from the root conversation or read the root manual unless assigned
+the coordinator role.
+
+State the exact documents re-read in the next progress update. Chat summaries,
+memory, worker lists, old receipts, builds, tests, screenshots, and raw
+configuration never replace current governing documents.
 ~~~
 
 ## Global: persistent-goal agents

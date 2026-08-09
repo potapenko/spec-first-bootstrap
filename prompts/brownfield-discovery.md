@@ -10,6 +10,11 @@ Use Discover mode. Record that reliable specs are missing or incomplete and
 establish a bounded Contract Change Envelope before inspecting source.
 Do not change implementation code during this discovery pass.
 
+Before source or runtime evidence, state the exact instruction, registry,
+contract, plan, runbook, design, QA, and release documents read completely and
+the provisional Spec Basis. If none govern the domain, record that absence
+explicitly; do not infer intent from the first implementation artifact found.
+
 Analyze the smallest complete applicable evidence set:
 
 - source and ownership;

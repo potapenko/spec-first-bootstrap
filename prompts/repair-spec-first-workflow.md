@@ -28,6 +28,12 @@ Preserve every project-specific safety, permission, framework, build, test,
 release, Git, and operator rule. Never replace the complete instruction system
 with the Bootstrap example.
 
+Resolve the active instruction chain, including overrides, nested files,
+fallback names, and instruction-size limits. Before inspecting implementation,
+runtime, logs, processes, or tests, state the exact governing documents read
+completely and a provisional Spec Basis separating specified expectation,
+protected behavior, established flow, and evidence still needed.
+
 ## Repair contract
 
 Use Evolve mode only for workflow, specification routing, governance docs, and
@@ -60,7 +66,15 @@ Make the smallest coherent changes needed so that:
 15. QA maps pinned clauses to action-state-result chains and does not weaken
     expectations merely to obtain a green result;
 16. day-to-day and setup prompts repeat the same routing without creating a
-    weaker competing doctrine.
+    weaker competing doctrine;
+17. the specification gate runs before any project-specific answer, diagnosis,
+    hypothesis, source inspection, runtime interpretation, recommendation, or
+    non-reading task tool, not merely before implementation;
+18. startup, resume, clear, and context compaction require a fresh reading pass
+    when the active environment reports those lifecycle events;
+19. the exact documents-read receipt is visible before implementation evidence;
+20. the gate is installed in the active, non-shadowed instruction chain and
+    stays within its configured size limit.
 
 Remove or repair wording that permits code-first product decisions,
 before-or-alongside specification updates, spec-only escalation before evidence
@@ -77,6 +91,10 @@ Verify contradictory wording, duplicate gates, Markdown fences, local links,
 whitespace, preserved existing instructions, exact project-only scope, and the
 absence of product implementation changes. Run the repository's lightweight
 docs checks and `git diff --check`, then follow its checkpoint policy.
+
+Do not install or modify a Codex lifecycle hook unless the user explicitly
+included the optional adapter in the repair scope. If one already exists,
+inspect its coexistence and report stale or contradictory restart wording.
 
 Report changed paths, the compact and full governance locations, unresolved
 contract conflicts, verification, and checkpoint state.

@@ -28,3 +28,10 @@ and the project starter pack is under [`../qa/web/`](../qa/web/).
 
 For the six copy-paste setup prompts—three project-local and three global—use
 the repository-root [`README.md`](../README.md).
+
+## Optional Codex lifecycle enforcement
+
+[`../integrations/codex-lifecycle/`](../integrations/codex-lifecycle/) contains
+an optional Codex-only adapter that restores the active reading gate after
+startup, resume, clear, context compaction, and worker start. It does not
+install or couple the three governance layers.

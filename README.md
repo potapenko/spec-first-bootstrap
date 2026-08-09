@@ -87,6 +87,20 @@ Follow prompts/setup-global-browser-qa.md from that repository. Install only the
 Global setup installs reusable guidance. It does not automatically add specs,
 agent files, or QA folders to every existing repository.
 
+## Optional Codex lifecycle enforcement
+
+Codex users can optionally reinforce any already-installed instruction layers
+after startup, resume, clear, context compaction, and subagent start. This is an
+environment adapter, not a dependency of the three layers above.
+
+For one trusted project, use
+[`prompts/setup-project-codex-lifecycle.md`](prompts/setup-project-codex-lifecycle.md).
+For the active user's Codex home, use
+[`prompts/setup-global-codex-lifecycle.md`](prompts/setup-global-codex-lifecycle.md).
+
+The adapter preserves existing hooks, uses event-specific root and worker
+context, and requires explicit scope and hook trust verification.
+
 ## What the three layers do
 
 - **Specifications** keep intended product behavior explicit before code is
@@ -113,11 +127,19 @@ specifications, and does not change product implementation during discovery.
 - optional browser-QA files;
 - detailed governance sources read by installer agents under
   `docs/agent-governance/`.
+- an optional Codex lifecycle adapter with hook templates and fixture tests.
 
 More detailed working prompts are listed in
 [`prompts/README.md`](prompts/README.md). The specification workflow is in
 [`docs/spec-first-workflow.md`](docs/spec-first-workflow.md), and the optional
 browser-QA pack is in [`qa/web/`](qa/web/).
+
+Run the Bootstrap's lightweight structural checks with:
+
+```sh
+python3 scripts/validate_bootstrap.py
+python3 -m unittest discover -s integrations/codex-lifecycle/tests -v
+```
 
 This Bootstrap was extracted from several months of work on four internal
 projects behind [`playphrase.me`](https://playphrase.me).

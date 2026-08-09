@@ -16,16 +16,22 @@
 
 ## Provisional Spec Basis
 
+- Documents read completely:
+- Registry selection path:
+- Governing revisions and clause IDs:
 - Authoritative specs and clauses:
-- Expected behavior:
-- Invariants and protected boundaries:
+- Specified expectation:
+- Protected behavior and boundaries:
+- Established operational flow:
 - Apparent gaps or conflicts:
-- Evidence required:
+- Evidence still needed:
+- Governing specification absent: yes | no
 - Implementation authorized: yes | no
 
 ## Final Reconciled Spec Basis
 
 - Contract revision or epoch:
+- Complete governing documents:
 - Resolved intended behavior:
 - Evidence inspected and its role:
 - Discrepancy dispositions:

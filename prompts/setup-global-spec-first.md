@@ -13,13 +13,13 @@ Do not install persistent-goal agent architecture or browser QA in this step.
 1. Detect the active agent environment and its supported user-level
    instruction entry point. It may be Codex, Claude Code, or another compatible
    agent. Do not assume another user's path or silently target both systems.
-2. Resolve the exact global configuration directory and instruction file from
-   the active environment.
-3. Read the existing global instruction file completely if it exists.
-4. Before writing outside the current project, state the exact target paths.
+2. Resolve the exact global configuration directory and active instruction
+   entry point, including override precedence and configured instruction-size
+   limits. Read the active file completely if it exists.
+3. Before writing outside the current project, state the exact target paths.
    If filesystem permission is required, request only the narrow permission
    needed for those paths.
-5. Stop if the supported global instruction mechanism or target scope is
+4. Stop if the supported global instruction mechanism or target scope is
    ambiguous.
 
 Do not expose credentials, tokens, environment values, or unrelated global
@@ -46,6 +46,9 @@ Read completely:
    storage, Git, and release rules out of the global layer.
 5. Keep the full document conditionally loaded so ordinary workers receive
    only their finite product contract and evidence packet.
+6. Do not install or change the optional Codex lifecycle adapter unless the
+   user explicitly requested it. Preserve an existing adapter and reconcile its
+   compact restart wording with the installed product gate.
 
 Use `apply_patch` for edits.
 
@@ -55,7 +58,9 @@ Verify that the full document matches the canonical source, the compact gate
 appears once, existing global instructions remain intact, instruction-size
 limits are respected, Markdown and whitespace pass, no project repository
 changed, and no persistent-goal agent or browser-QA layer was installed or
-modified.
+modified. Also verify that no Codex hook or application configuration changed
+without explicit adapter scope and that an override does not shadow the merged
+gate.
 
 Report the detected agent environment, exact global paths, merge decision,
 permission used, verification, and residuals. Do not create a Git commit for

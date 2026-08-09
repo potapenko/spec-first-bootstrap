@@ -21,9 +21,10 @@ Read completely from the bootstrap repository:
 - the Project: persistent-goal agents section in
   `docs/agent-governance/agents-sections.md`.
 
-Read the target project's existing instruction hierarchy, coordination rules,
-worktree state, and any current goal state before editing. Preserve unrelated
-content.
+Resolve and read the target project's active instruction hierarchy, including
+overrides, nested files, fallback names, and instruction-size limits. Read its
+coordination rules, worktree state, and any current goal state before editing.
+Preserve unrelated content.
 
 ## Install
 
@@ -41,6 +42,9 @@ content.
    Apply the root contract's role-based model policy using models actually
    supported by the active agent environment; do not hardcode another
    platform's model names.
+6. Do not install or modify the optional Codex lifecycle adapter unless the
+   user explicitly requested it. Preserve an existing adapter and keep its
+   worker-start wording aligned with finite packet authority.
 
 Use `apply_patch` for edits.
 
@@ -55,6 +59,9 @@ The resulting project must preserve these rules:
 - ordinary work remains single-agent when no persistent goal is active;
 - workers receive finite packets with authority, scope, owners, forbidden
   actions, checks, stopping conditions, and a terminal receipt;
+- product packets carry an exact pinned Spec Basis, complete governing
+  documents, specified expectation, protected behavior, assigned evidence, and
+  contract epoch when product-truth governance applies;
 - model strength follows risk and judgment needs, with quality ahead of token
   savings;
 - only independent ownership is parallelized;
@@ -71,6 +78,10 @@ Verify exact project-only scope, one merged gate, complete canonical document,
 preserved existing instructions, valid Markdown, no product-code change, no
 goal-state change, no model/configuration change, and no installation or
 modification of the specification or browser-QA layers.
+
+Also verify that the merged gate is active rather than shadowed, stays within
+the configured instruction-size limit, and that no lifecycle hook changed
+without explicit adapter scope.
 
 Follow the project's checkpoint policy and report changed paths, coexistence
 with any already installed layers, verification, and exact residuals.

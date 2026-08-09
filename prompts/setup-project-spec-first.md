@@ -22,9 +22,18 @@ From the bootstrap repository, read completely:
 - `prompts/brownfield-discovery.md`;
 - `prompts/generate-first-specs.md`.
 
-In the target project, read every applicable instruction file, onboarding
-document, existing spec registry, active contract, QA guide, release rule, and
-worktree status before editing. Preserve unrelated changes.
+In the target project, resolve and read the complete active instruction chain,
+including `AGENTS.override.md`, nested instruction files, configured fallback
+names, and instruction-size limits. Then read every applicable onboarding
+document, spec registry, active contract, directly linked plan, runbook,
+operator handoff, accepted baseline, design contract, QA guide, release rule,
+and worktree status before editing. Preserve unrelated changes.
+
+Before inspecting target implementation sources or runtime evidence, state the
+exact governing documents read completely and a provisional Spec Basis that
+separates specified expectation, protected behavior, established flow, and
+evidence still needed. If no governing specification exists, record the gap and
+use Discover before consulting implementation evidence.
 
 ## Install the project layer
 
@@ -41,6 +50,10 @@ worktree status before editing. Preserve unrelated changes.
    artifacts in this step.
 6. Keep project-specific framework, safety, build, test, Git, database,
    storage, and release rules intact.
+7. Do not install the optional Codex lifecycle adapter unless the user
+   explicitly requested that adapter. If it is already installed, preserve it
+   and keep its compact restart gate consistent with the strengthened product
+   gate.
 
 Use `apply_patch` for edits.
 
@@ -70,10 +83,15 @@ Verify that:
 - only the target project changed;
 - existing instructions and unrelated work remain intact;
 - the compact gate appears once and routes to an existing full document;
+- the gate is present in the instruction file Codex or the detected agent
+  actually loads, is not shadowed by an override, and remains inside the
+  configured instruction-size limit;
 - Markdown, local links, and whitespace pass;
 - no product implementation changed;
 - no product behavior was invented merely to populate a template;
 - no persistent-goal agent or browser-QA layer was installed or modified;
+- no Codex hook or agent application configuration was installed or modified
+  without explicit adapter scope;
 - any unresolved product decision is described with its evidence and impact.
 
 Follow the target repository's checkpoint policy. Report installed paths,

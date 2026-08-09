@@ -1,0 +1,34 @@
+{
+  "description": "Reload this project's mandatory guidance after Codex lifecycle events.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "^(startup|resume|clear|compact)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$(git rev-parse --show-toplevel)/.codex/hooks/lifecycle_restart.py\"",
+            "commandWindows": "py -3 \"__PROJECT_ROOT_WINDOWS__\\.codex\\hooks\\lifecycle_restart.py\"",
+            "timeout": 10,
+            "statusMessage": "Reloading mandatory guidance",
+            "additionalContextLimit": 1200
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$(git rev-parse --show-toplevel)/.codex/hooks/lifecycle_restart.py\"",
+            "commandWindows": "py -3 \"__PROJECT_ROOT_WINDOWS__\\.codex\\hooks\\lifecycle_restart.py\"",
+            "timeout": 10,
+            "statusMessage": "Loading worker governance",
+            "additionalContextLimit": 1200
+          }
+        ]
+      }
+    ]
+  }
+}

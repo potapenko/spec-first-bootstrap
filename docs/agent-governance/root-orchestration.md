@@ -166,12 +166,19 @@ Before every spawn, `/root` must verify that:
 
 1. the packet has one concrete and finite outcome;
 2. the packet is dependency-ready;
-3. the worker can act without inventing missing authority;
-4. writable paths and owners are explicit;
-5. concurrent packets do not overlap in ownership;
-6. completion and stopping conditions are measurable;
-7. the worker will produce unique evidence or implementation;
-8. delegation preserves or improves quality and context isolation.
+3. for product work, `/root` has completed the applicable pre-decision
+   specification-discovery gate and the packet contains the exact Spec Basis
+   instead of asking the worker to infer it from chat, source, logs, or a broad
+   goal;
+4. every directly relevant linked plan, registry, runbook, operator handoff,
+   accepted reusable baseline, and QA workflow has been read and either pinned
+   into the product packet or explicitly dispositioned as inapplicable;
+5. the worker can act without inventing missing authority;
+6. writable paths and owners are explicit;
+7. concurrent packets do not overlap in ownership;
+8. completion and stopping conditions are measurable;
+9. the worker will produce unique evidence or implementation;
+10. delegation preserves or improves quality and context isolation.
 
 Do not spawn an agent merely because capacity is available.
 
@@ -184,11 +191,15 @@ Every worker packet must contain:
 - packet identifier;
 - one finite objective;
 - why the packet is ready now;
-- the accepted change authority and bounded change envelope when behavior or
-  another protected contract is involved;
-- governing clauses, requirements, instructions, and their revision or epoch
-  when the project provides them;
-- protected adjacent domains and the permitted semantic delta;
+- for product work, a `spec_basis` section naming the specification index,
+  complete governing documents read, directly relevant linked documents,
+  contract revisions and clauses, specified expectation, protected behavior,
+  established operational flow, and evidence assigned to the worker;
+- the accepted change mode and Contract Change Envelope when product behavior
+  or another protected contract is involved;
+- governing clauses, requirements, instructions, and their pinned revision or
+  epoch when the project provides them;
+- protected adjacent domains and the permitted specification delta;
 - exact authority sources and their precedence;
 - accepted upstream decisions and dependencies;
 - required existing owners, models, services, or abstractions to reuse;
@@ -215,6 +226,11 @@ exact dependency. It does not silently expand its packet.
 
 Workers must:
 
+- for product work, read the packet's exact Spec Basis and every governing
+  document it names before source inspection, runtime interpretation,
+  implementation, or verification; if a named document is unavailable, stop
+  with that exact dependency instead of reconstructing intent from chat or
+  code;
 - stay inside their packet;
 - preserve unrelated work;
 - use accepted authority and existing canonical owners;
@@ -344,6 +360,10 @@ packet_id:
 status: done | blocked | failed
 
 outcome:
+spec_basis_read:
+specified_expectation:
+observed_evidence:
+discrepancy_classification:
 authority_used:
 changed_paths:
 reused_owners:
@@ -358,6 +378,9 @@ runtime_or_visual_handoff:
 A `done` receipt means:
 
 - the finite outcome exists;
+- for product work, the receipt proves the pinned Spec Basis was used before
+  source, runtime, or implementation conclusions and distinguishes specified
+  expectation from observed evidence;
 - assigned scope was respected;
 - required checks completed;
 - deviations are explicit;
@@ -375,7 +398,7 @@ For a long-running or multi-packet goal, maintain one restart-safe registry.
 The registry should contain only the coordination state needed to resume:
 
 ```text
-packet | owner | authority revision | dependencies | writable scope | status | receipt | residual
+packet | owner | contract epoch | dependencies | writable scope | status | receipt | residual
 ```
 
 Recommended states:
@@ -391,8 +414,8 @@ Rules:
 - `accepted` work is terminal unless new evidence invalidates it;
 - a blocked packet resumes only from its exact residual;
 - stale `running` rows are reconciled before new dispatch;
-- when the project versions semantic authority, an accepted change advances
-  the affected revision or epoch, and packets pinned to the prior value are
+- when a project versions semantic authority, an accepted semantic contract
+  change advances the affected epoch, and packets pinned to the prior epoch are
   revalidated or retired;
 - chat history and the live agent list do not replace the registry;
 - workers do not create competing registries;
@@ -438,6 +461,8 @@ On resume or context compaction, `/root` first re-reads:
 - the persistent goal;
 - the governing plan or runbook;
 - the single registry;
+- the specification index, exact governing clauses, current contract epochs,
+  accepted Contract Deltas, and unresolved discrepancies for product work;
 - only the action-specific instructions needed for the next packet.
 
 Then `/root`:

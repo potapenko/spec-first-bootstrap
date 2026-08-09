@@ -48,7 +48,8 @@ cleanup. If impact is uncertain, the gate applies.
 
 ## Change Mode And Envelope
 
-Classify every covered task before implementation:
+Classify every covered task before project-specific decision work or
+implementation evidence:
 
 - **Restore**: bring implementation back to an established contract.
 - **Reconcile**: recover or faithfully transfer one existing product truth
@@ -80,33 +81,54 @@ The user's request opens only the product domain and behavior it actually
 names. A writable source path does not open every product contract implemented
 by that file.
 
-## Required Start Order
+## Mandatory Pre-Decision Start Order
 
-Before implementation for a covered task:
+For a covered task, complete this gate before any project-specific answer,
+diagnosis, hypothesis, investigation, recommendation, interpretation, decision,
+plan, source inspection, non-reading task tool, implementation, runtime action,
+or verification:
 
-1. Read every applicable global and project instruction layer.
-2. Read `docs/specs/README.md`, the authority index when one exists, and the
-   smallest active contract set that governs the task.
+1. Re-read every applicable global and project instruction layer.
+2. Start at `docs/specs/README.md` and the active authority index. Select the
+   exact domain and read the complete directly applicable governing set,
+   including linked contracts, plans, registries, runbooks, operator handoffs,
+   accepted reusable baselines, design contracts, QA workflows, and release
+   evidence required to decide the question.
 3. Classify the change mode and establish the Contract Change Envelope.
-4. State a provisional Spec Basis.
-5. Inspect the smallest complete applicable source, design, QA, runtime,
+4. State the exact documents read completely and a provisional Spec Basis that
+   separates specified expectation, protected behavior, established operational
+   flow, apparent gaps, and evidence still needed.
+5. If bounded discovery finds no governing specification, record the absence
+   explicitly and use Discover. Do not promote the first source file, test,
+   process, command, or runtime observation into intended behavior.
+6. Only then inspect the smallest complete applicable source, design, QA, runtime,
    history, upstream, and release evidence set.
-6. Classify every material discrepancy.
-7. Accept only a legitimately authorized Contract Delta and update the spec
+7. Classify every material discrepancy.
+8. Accept only a legitimately authorized Contract Delta and update the spec
    before implementation when meaning changes.
-8. State the final reconciled Spec Basis with a pinned revision or epoch.
-9. Only then implement and verify the authorized slice.
+9. State the final reconciled Spec Basis with a pinned revision or epoch.
+10. Only then implement and verify the authorized slice.
+
+Until steps 1-5 are complete, do not open implementation sources, process logs
+or runtime evidence, form or test a failure hypothesis, recommend a repair,
+infer product intent, or call a non-reading task tool. There is no exception for
+urgency, apparent simplicity, debugging, runtime recovery, read-only
+investigation, or a request for one command.
 
 Use this provisional form:
 
 ```text
 Provisional Spec Basis
 - Task and change mode:
+- Documents read completely:
+- Registry selection path:
+- Governing revisions and clauses:
 - Authoritative specs and clauses:
-- Expected behavior:
-- Invariants and protected domains:
+- Specified expectation:
+- Protected behavior and domains:
+- Established operational flow:
 - Apparent gaps or conflicts:
-- Required evidence:
+- Evidence still needed:
 - Allowed spec impact:
 - Implementation authorized: yes / no
 ```

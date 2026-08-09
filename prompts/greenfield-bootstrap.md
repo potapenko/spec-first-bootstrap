@@ -13,10 +13,12 @@ Do not start implementing product features yet.
 
 First:
 
-1. establish a Discover-mode Contract Change Envelope;
-2. decide the minimal structure needed;
-3. identify initial product domains without inferring behavior from a framework
+1. read the complete applicable instruction and product-authority set;
+2. state the exact documents read and a Discover-mode provisional Spec Basis;
+3. establish a Discover-mode Contract Change Envelope;
+4. decide the minimal structure needed;
+5. identify initial product domains without inferring behavior from a framework
    scaffold;
-4. establish authority and stability fields in the registry;
-5. generate an initial spec backlog;
-6. recommend which first spec should be written before code.
+6. establish authority and stability fields in the registry;
+7. generate an initial spec backlog;
+8. recommend which first spec should be written before code.

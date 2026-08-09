@@ -12,6 +12,11 @@ smallest complete applicable source, design, QA, runtime, history, and release
 evidence set. Treat current implementation as evidence, not automatic product
 intent.
 
+Before that evidence inspection, name the complete directly applicable
+governing set and state a provisional Spec Basis. If bounded discovery finds no
+governing specification, record the absence explicitly instead of treating the
+first source or test as product authority.
+
 Do not mark a contract Active merely because implementation exists. Record
 authority (Draft/Active/Superseded/Historical) separately from stability
 (Evolving/Accepted/Released/Deprecated).

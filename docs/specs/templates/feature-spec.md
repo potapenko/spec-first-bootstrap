@@ -66,6 +66,15 @@ needed to reconcile and implement this contract.
 - evidence item one
 - evidence item two
 
+## Required linked documents
+
+List the complete plans, registries, runbooks, operator handoffs, accepted
+reusable baselines, design contracts, QA workflows, or release records that
+must be read before deciding work in this domain.
+
+- linked document one
+- linked document two
+
 ## Verification mapping
 
 List the tests, QA cases, or validation artifacts that represent this behavior.

@@ -20,8 +20,10 @@ Preserve and interoperate with either layer when it is already present.
    configure multiple agent products.
 2. Resolve and state the exact global configuration directory and files before
    writing outside the current project.
-3. Read the existing global instruction file and applicable goal state without
-   changing either goal state or unrelated instructions.
+3. Resolve the active global instruction entry point, including override
+   precedence and configured instruction-size limits. Read it and the
+   applicable goal state without changing either goal state or unrelated
+   instructions.
 4. Request only the narrow filesystem permission required for the stated
    global paths.
 5. Stop if the global instruction mechanism or scope is ambiguous.
@@ -53,6 +55,9 @@ Read completely:
    custom profiles, providers, or agent application configuration.
    Apply the root contract's role-based policy using models actually supported
    by the detected environment; do not hardcode another platform's model names.
+7. Do not install or modify the optional Codex lifecycle adapter unless the
+   user explicitly requested it. Preserve an existing adapter and keep its
+   worker-start wording aligned with finite packet authority.
 
 Use `apply_patch` for edits.
 
@@ -61,7 +66,10 @@ Use `apply_patch` for edits.
 The installed architecture must preserve coordinator-only `/root`, finite
 worker packets, risk-based model selection, independent review, ownership-safe
 parallelism, terminal receipts, one durable registry, explicit pause/resume,
-context-compaction recovery, and truthful completion.
+context-compaction recovery, and truthful completion. When product-truth
+governance applies, product packets and receipts must carry the pinned Spec
+Basis, complete governing documents, specified expectation, observed evidence,
+discrepancy classification, and contract epoch.
 
 ## Verification
 
@@ -69,6 +77,9 @@ Verify canonical document identity, one merged gate, preserved existing global
 instructions, conditional loading, configured instruction-size limits, no
 goal/config/model change, no project-repository change, and no installation or
 modification of the specification or browser-QA layers.
+
+Also verify that an override does not shadow the gate and that no lifecycle
+hook changed without explicit adapter scope.
 
 Report the detected environment, exact paths, coexistence with any already
 installed layers, permission used, verification, and residuals.
