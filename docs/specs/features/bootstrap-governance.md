@@ -3,7 +3,7 @@
 - Contract ID: `bootstrap.governance`
 - Domain ID: `bootstrap.governance`
 - Authority: Active
-- Stability: Evolving
+- Stability: Accepted
 - Governs: Bootstrap governance, setup prompts, templates, and layer composition
 - Contract revision or epoch: `bootstrap.governance@2`
 - Release baseline: `ba891245af7ffa6ffa5463f85af8045b3f6bc75c`

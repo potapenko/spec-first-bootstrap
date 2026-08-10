@@ -3,6 +3,7 @@
 - Change ID: `bootstrap.delta.2026-08-10.outcome-resource-proportionality`
 - Change mode: Evolve
 - Authorized by: explicit user request on 2026-08-10
+- Accepted by: explicit user confirmation on 2026-08-10
 - Domain and clause IDs: `bootstrap.governance`
 - Previous behavior: persistent-goal governance prioritized correctness,
   architecture, context preservation, and independent review, but did not make
