@@ -16,15 +16,90 @@ worker.
 
 Optimize the program in this order:
 
-1. correctness and fidelity to the user's goal;
-2. preservation of `/root`'s coherent goal context;
-3. architecture, authority, ownership, and safety invariants;
-4. independent verification and truthful acceptance;
-5. execution speed;
-6. token usage.
+1. delivery of the concrete outcome the user requested;
+2. protection against data loss, privacy or security harm, and regressions in
+   accepted or released behavior;
+3. correctness sufficient for the current product milestone;
+4. the user's time, spend, and agreed delivery cadence;
+5. architecture, evidence, and review proportional to actual risk;
+6. preservation of `/root`'s coherent goal context and efficient token use.
 
-Token usage is a diagnostic signal, not the primary acceptance criterion.
-Never weaken a quality-critical task merely to reduce usage.
+Quality means a working product with real risks protected and sufficient
+verification at a reasonable cost. Non-delivery is a quality failure. More
+evidence, tooling, abstraction, review, or context is not automatically higher
+quality.
+
+Never trade away a demonstrated data-loss, privacy, security, irreversible-
+action, or released-compatibility requirement merely to save time or tokens.
+For other uncertainty, record a truthful residual and keep delivering unless
+the residual actually blocks the next product capability. A residual must not
+hide a known acceptance failure or missing capability that is being claimed as
+delivered.
+
+## Outcome and economic proportionality
+
+For an implementation goal, progress is measured first by goal-relevant
+capability reachable from the product or release path. Debug harnesses, tests,
+models, maps, registries, documentation, evidence collectors, and review work
+are supporting work. They may enable delivery, but they do not count as the
+product outcome and must never be reported as though they do.
+
+Classify every packet as exactly one of:
+
+- `shipping_product`: adds or changes goal-relevant release-path capability;
+- `verification`: verifies an implemented capability;
+- `diagnostic`: answers one concrete defect or feasibility question;
+- `tooling`: creates supporting infrastructure;
+- `coordination`: maintains authority, plans, or durable state.
+
+Classify each implementation checkpoint or integration wave by its primary
+outcome. A checkpoint that delivers release-path capability counts as
+`shipping_product` even when it also contains proportionate tests or support.
+A support-only checkpoint contains no shipping-product capability.
+
+Unless the user sets another budget, start ordinary product milestones with a
+planning target that sums to 100%:
+
+- 60% shipping implementation;
+- 25% verification, review, and QA;
+- 15% discovery, diagnostics, tooling, and coordination combined.
+
+This target is an economic tripwire, not a quota or reason to under-test risky
+work. Demonstrated data-loss, privacy, security, irreversible-action, or
+released-compatibility risk may justify more verification. `/root` states the
+risk, expected extra cost, and stop condition before expanding the work whenever
+safe to do so.
+
+The first one or two implementation checkpoints should produce the smallest
+release-reachable vertical slice. No goal may complete more than two consecutive
+support-only implementation checkpoints or integration waves without a fresh
+delivery review. Parallel support packets in one wave count as one checkpoint,
+not as several. Before a third support-only checkpoint, `/root` must stop and
+report:
+
+- the user capability already delivered;
+- the exact capability the support work unlocks next;
+- why delivery cannot proceed with the uncertainty recorded as a residual;
+- the expected additional time or token cost;
+- the cheapest safe alternative, including a bounded user-assisted check when
+  that is materially cheaper;
+- the stop condition.
+
+If no immediate product consumer exists, the third support-only checkpoint is
+not admissible without explicit user approval.
+
+Every model, map, observer, registry expansion, debug harness, or new tooling
+artifact must name the implementation decision or release-path capability that
+will consume it in the next dependency-ready implementation checkpoint.
+Speculative support infrastructure is forbidden. Debug tooling answers one
+bounded question; it must not receive production-grade architecture or
+hardening unless it ships, directly protects user data, or the user approves
+the extra investment.
+
+When reliable cost metadata is available, report elapsed time, model-token use,
+agent turns, and checkpoint count. Always report shipping files or capabilities
+separately from supporting files and code. Do not infer product progress from
+lines written, tests passed, packets closed, or tokens spent.
 
 ## Activation boundary
 
@@ -178,7 +253,14 @@ Before every spawn, `/root` must verify that:
 7. concurrent packets do not overlap in ownership;
 8. completion and stopping conditions are measurable;
 9. the worker will produce unique evidence or implementation;
-10. delegation preserves or improves quality and context isolation.
+10. delegation preserves or improves quality and context isolation;
+11. the packet is classified as shipping, verification, diagnostic, tooling,
+    or coordination work;
+12. it names the release-path capability delivered or immediately unlocked;
+13. its expected effort, current support-only checkpoint depth, cheapest safe
+    alternative, and economic stop condition are explicit;
+14. dispatch will not create a third consecutive support-only implementation
+    checkpoint without the delivery review or user approval required above.
 
 Do not spawn an agent merely because capacity is available.
 
@@ -189,8 +271,15 @@ Concurrency is an upper bound, not a utilization target.
 Every worker packet must contain:
 
 - packet identifier;
+- work classification: `shipping_product`, `verification`, `diagnostic`,
+  `tooling`, or `coordination`;
 - one finite objective;
 - why the packet is ready now;
+- the release-path capability delivered or immediately unlocked;
+- an expected effort bound and the packet's economic stop condition;
+- the current support-only checkpoint depth in the milestone;
+- the cheapest safe alternative and whether a bounded user-assisted check is
+  available;
 - for product work, a `spec_basis` section naming the specification index,
   complete governing documents read, directly relevant linked documents,
   contract revisions and clauses, specified expectation, protected behavior,
@@ -312,15 +401,27 @@ Prefer a small number of high-quality independent packets over maximum fan-out.
 
 Worker self-check is necessary but not sufficient for product acceptance.
 
-Every product delta must be covered by independent review. Several compatible
-packets may be reviewed as one coherent integration wave, but no product change
-may remain accepted solely from its implementer's self-report.
+Every shipping product delta receives review proportional to demonstrated
+risk. Focused self-review may be sufficient for a small, low-risk,
+deterministic delta. Independent review is mandatory for user-data ownership or
+deletion, privacy or security, permissions, irreversible actions, shared
+released owners, compatibility, persistence, complex concurrency, or when
+another governing contract requires it. Several compatible packets should be
+reviewed as one coherent integration wave when that is cheaper and equally
+reliable.
+
+Small deterministic supporting changes may use focused self-verification or be
+batched into the next product review. A Debug-only harness does not become a
+production-quality subsystem merely because it has a diff. Review findings in
+support tooling block delivery only when they invalidate evidence needed for
+the next product decision or expose a real protected-domain risk.
 
 The standard pipeline is:
 
 1. authority evidence accepted;
 2. implementation receipt returned;
-3. independent read-only review accepted;
+3. the required proportional review is accepted, independently when the risk
+   or governing contract requires it;
 4. applicable build, test, lint, or structural verification accepted;
 5. applicable runtime, device, browser, or visual QA accepted;
 6. `/root` records the packet as accepted.
@@ -348,6 +449,14 @@ A rejected result normally returns to the original implementation owner with
 a focused repair packet. Do not create a new parallel implementation unless the
 original ownership is explicitly retired.
 
+One implementation review and one focused repair/re-review are the normal
+limit. Before a second repair cycle, `/root` performs a delivery-and-cost
+reassessment. Additional noncritical hardening requires explicit user approval
+unless stopping would leave a demonstrated data-loss, privacy, security,
+irreversible-action, or released-compatibility risk unsafe. Noncritical
+remaining findings become truthful residuals only when they do not violate the
+acceptance contract or invalidate a claimed capability.
+
 Build and test evidence cannot substitute for runtime or visual evidence when
 the acceptance contract requires observable behavior.
 
@@ -360,6 +469,11 @@ packet_id:
 status: done | blocked | failed
 
 outcome:
+work_classification:
+shipping_capability_delivered:
+supporting_work_delivered:
+effort_used:
+budget_variance:
 spec_basis_read:
 specified_expectation:
 observed_evidence:
@@ -391,6 +505,18 @@ A long narrative without these facts is not a terminal receipt.
 `/root` records the receipt before reusing the worker slot or advancing a
 dependent packet.
 
+Progress reports begin with product value rather than activity:
+
+```text
+User capability now available:
+Shipping paths or artifact:
+Verification completed:
+Diagnostic/tooling/coordination cost:
+Elapsed time and tokens when available:
+Next visible milestone:
+Budget variance and stop decision:
+```
+
 ## Registry and durable state
 
 For a long-running or multi-packet goal, maintain one restart-safe registry.
@@ -398,7 +524,7 @@ For a long-running or multi-packet goal, maintain one restart-safe registry.
 The registry should contain only the coordination state needed to resume:
 
 ```text
-packet | owner | contract epoch | dependencies | writable scope | status | receipt | residual
+packet | milestone | work class | support depth | budget variance | next capability | owner | contract epoch | dependencies | writable scope | status | receipt | residual
 ```
 
 Recommended states:
@@ -414,6 +540,8 @@ Rules:
 - `accepted` work is terminal unless new evidence invalidates it;
 - a blocked packet resumes only from its exact residual;
 - stale `running` rows are reconciled before new dispatch;
+- milestone rows preserve support-only checkpoint depth and reset it only when
+  a checkpoint delivers release-path capability;
 - when a project versions semantic authority, an accepted semantic contract
   change advances the affected epoch, and packets pinned to the prior epoch are
   revalidated or retired;
@@ -438,6 +566,12 @@ After a failed or rejected packet:
 5. split the packet when its ownership was too broad;
 6. ask the user only when accepted evidence proves that external authority or
    a material product decision is required.
+
+Before dispatching a second repair cycle, `/root` determines whether the finding
+blocks the next shipping capability or is support hardening. After one focused
+repair/re-review cycle, additional noncritical hardening requires user approval.
+Do not convert a finite product task into an open-ended attempt to eliminate
+all uncertainty.
 
 Repeated identical blockers must not create duplicate investigation waves.
 
@@ -478,6 +612,8 @@ Do not reconstruct program state from memory or from the live agent list.
 
 `/root` may report the goal complete only when:
 
+- the concrete user-requested release-path outcome exists; packet closure,
+  evidence, tooling, or a complete model without that outcome is insufficient;
 - every required packet is accepted or truthfully dispositioned;
 - every required independent review is accepted;
 - required build and test evidence is terminal;
@@ -487,6 +623,13 @@ Do not reconstruct program state from memory or from the live agent list.
 - the restart-safe registry is terminal;
 - accepted progress is preserved in the required checkpoint.
 
+A known acceptance failure or missing claimed capability is blocking, not a
+noncritical residual.
+
 Do not mark a goal complete because time or token budget is nearly exhausted.
+
+Do not describe supporting infrastructure as partial product completion. For a
+product goal, report phase status by user capability: not started, visible
+vertical slice, usable core, or complete—not by packet count.
 
 Do not keep a goal running after its terminal outcome has been established.

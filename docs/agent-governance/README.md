@@ -20,8 +20,8 @@ two, or all three in either scope.
 
 - `product-truth-governance.md` is the full specification and product-evidence
   contract.
-- `root-orchestration.md` is the full coordinator-only `/root` contract for
-  persistent goals.
+- `root-orchestration.md` is the full outcome-first, economically proportional,
+  coordinator-only `/root` contract for persistent goals.
 - `web-qa-governance.md` is the full optional browser-QA contract.
 - `agents-sections.md` contains compact routing blocks to merge into a project
   or global instruction file.
@@ -36,6 +36,9 @@ two, or all three in either scope.
   file.
 - Keep full governance documents conditionally loaded. Ordinary workers receive
   only the finite rules and evidence required by their task.
+- Install the compact outcome/resource gate with the persistent-goal layer so
+  ordinary implementation and orchestrated goals share the same release-path
+  progress measure and economic stop conditions.
 - Preserve project-specific product, framework, safety, build, test, database,
   storage, Git, and release rules.
 - Do not copy project-specific rules into global configuration.

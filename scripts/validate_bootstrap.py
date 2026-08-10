@@ -17,6 +17,8 @@ REQUIRED_TEXT = {
         "Mandatory pre-action specification gate",
         "Lifecycle restart gate",
         "exact documents read completely",
+        "Outcome and resource proportionality",
+        "60/25/15 planning target",
     ),
     "docs/spec-first-workflow.md": (
         "Mandatory Pre-Decision Start Order",
@@ -26,14 +28,46 @@ REQUIRED_TEXT = {
     "docs/agent-governance/product-truth-governance.md": (
         "Pre-decision specification discovery",
         "Restart and context compaction",
+        "concrete user capability reachable from the product",
+    ),
+    "docs/agent-governance/root-orchestration.md": (
+        "Outcome and economic proportionality",
+        "60% shipping implementation",
+        "support-only implementation checkpoints",
+        "receives review proportional to demonstrated",
+        "budget variance",
     ),
     "docs/agent-governance/agents-sections.md": (
         "Project: Codex lifecycle restart adapter",
         "Global: Codex lifecycle restart adapter",
+        "Project: outcome and resource proportionality",
+        "Global: outcome and resource proportionality",
     ),
     "docs/specs/index.md": (
-        "bootstrap.governance@1",
+        "bootstrap.governance@2",
         "bootstrap.codex-lifecycle@1",
+    ),
+    "prompts/setup-project-agents.md": (
+        "Project: outcome and resource proportionality",
+        "risk-proportional review",
+        "support-only implementation checkpoint",
+    ),
+    "prompts/setup-global-agents.md": (
+        "Global: outcome and resource proportionality",
+        "default 60/25/15 planning",
+        "risk-proportional review",
+    ),
+}
+
+FORBIDDEN_TEXT = {
+    "docs/agent-governance/root-orchestration.md": (
+        "Every product delta must be covered by independent review",
+        "Sol with high reasoning",
+        "Terra with medium reasoning",
+        "Ultra as the default",
+    ),
+    "prompts/setup-project-agents.md": (
+        "product changes receive independent review",
     ),
 }
 
@@ -44,6 +78,14 @@ def check_required_text(errors: list[str]) -> None:
         for value in required_values:
             if value not in text:
                 errors.append(f"{relative_path}: missing required text: {value}")
+
+
+def check_forbidden_text(errors: list[str]) -> None:
+    for relative_path, forbidden_values in FORBIDDEN_TEXT.items():
+        text = (ROOT / relative_path).read_text(encoding="utf-8")
+        for value in forbidden_values:
+            if value in text:
+                errors.append(f"{relative_path}: forbidden text present: {value}")
 
 
 def check_local_markdown_links(errors: list[str]) -> None:
@@ -102,6 +144,7 @@ def check_hook_templates(errors: list[str]) -> None:
 def main() -> int:
     errors: list[str] = []
     check_required_text(errors)
+    check_forbidden_text(errors)
     check_local_markdown_links(errors)
     check_markdown_fences(errors)
     check_instruction_size(errors)

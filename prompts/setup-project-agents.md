@@ -18,6 +18,8 @@ interoperate with either layer when it is already present.
 Read completely from the bootstrap repository:
 
 - `docs/agent-governance/root-orchestration.md`;
+- the Project: outcome and resource proportionality section in
+  `docs/agent-governance/agents-sections.md`;
 - the Project: persistent-goal agents section in
   `docs/agent-governance/agents-sections.md`.
 
@@ -30,8 +32,9 @@ Preserve unrelated content.
 
 1. Install the full root contract as
    `docs/agent/root-orchestration.md`.
-2. Merge the compact Project: persistent-goal agents section into the existing
-   project-root instruction file. Never replace the complete file.
+2. Merge the compact Project: outcome and resource proportionality and Project:
+   persistent-goal agents sections into the existing project-root instruction
+   file. Never replace the complete file.
 3. Reconcile an equivalent existing coordination section instead of appending
    a conflicting duplicate.
 4. Do not add, remove, or rewrite specification, product-truth, browser-QA, or
@@ -57,27 +60,38 @@ The resulting project must preserve these rules:
 - no small-task exception permits `/root` to implement, inspect broadly,
   build, test, run, browse, or perform visual QA itself;
 - ordinary work remains single-agent when no persistent goal is active;
-- workers receive finite packets with authority, scope, owners, forbidden
-  actions, checks, stopping conditions, and a terminal receipt;
+- ordinary implementation and persistent goals measure progress by concrete
+  release-path capability and separate it from supporting work;
+- the first one or two implementation checkpoints target a smallest
+  release-reachable vertical slice;
+- workers receive classified finite packets with authority, scope, owners,
+  forbidden actions, release-path consumer, effort bound, economic stop,
+  checks, stopping conditions, and a terminal receipt;
 - product packets carry an exact pinned Spec Basis, complete governing
   documents, specified expectation, protected behavior, assigned evidence, and
   contract epoch when product-truth governance applies;
 - model strength follows risk and judgment needs, with quality ahead of token
   savings;
 - only independent ownership is parallelized;
-- product changes receive independent review;
+- shipping changes receive risk-proportional review, with
+  independent review mandatory for the named high-risk classes or when another
+  governing contract requires it;
+- a third consecutive support-only implementation checkpoint, second
+  repair/re-review cycle, or material diagnostic/tooling expansion triggers a
+  delivery-and-cost reassessment and the required user-approval gate;
 - one restart-safe registry carries packet state, applicable authority
-  revision, receipts, and residuals;
+  revision, work classification, support depth, budget variance, next
+  capability, receipts, and residuals;
 - a paused or blocked goal stays idle until explicitly resumed;
 - context compaction resumes from governing documents and durable state rather
   than chat memory.
 
 ## Verification
 
-Verify exact project-only scope, one merged gate, complete canonical document,
-preserved existing instructions, valid Markdown, no product-code change, no
-goal-state change, no model/configuration change, and no installation or
-modification of the specification or browser-QA layers.
+Verify exact project-only scope, one merged copy of each compact section,
+complete canonical document, preserved existing instructions, valid Markdown,
+no product-code change, no goal-state change, no model/configuration change,
+and no installation or modification of the specification or browser-QA layers.
 
 Also verify that the merged gate is active rather than shadowed, stays within
 the configured instruction-size limit, and that no lifecycle hook changed

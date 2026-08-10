@@ -945,6 +945,12 @@ intent.
 
 The protocol is risk-proportionate.
 
+For implementation work, concrete user capability reachable from the product
+or release path is the primary progress measure. Specifications, evidence,
+models, maps, diagnostics, tooling, review, and QA are supporting work. They may
+be required, but they must be reported separately and must not be represented
+as delivered product functionality.
+
 A small isolated behavior change may express its envelope and final basis in a
 short progress update and use focused source and QA evidence.
 
@@ -954,8 +960,17 @@ revisions, independent review, and applicable runtime or visual QA.
 
 Do not create a large audit project for a bounded question.
 
-Do not skip evidence or review merely to save tokens. Quality, product
-continuity, and truthful acceptance have priority over token usage.
+Every support artifact names the next product decision or release-path
+capability that will consume it. Do not create speculative product models,
+evidence systems, diagnostics, or verification infrastructure without that
+consumer.
+
+Do not skip evidence or review required by demonstrated risk or the acceptance
+contract merely to save tokens. Conversely, do not expand support work merely
+to eliminate all uncertainty. Record a truthful residual when it does not
+violate the acceptance contract or invalidate a claimed capability. Quality
+means a working product, protection of real risks, and sufficient verification
+at a reasonable cost; non-delivery is a quality failure.
 
 ## Minimum project artifacts
 
@@ -1007,6 +1022,8 @@ pinned packet.
 
 A product task is complete only when:
 
+- the concrete user-requested product or release-path outcome exists when the
+  task includes implementation;
 - the authorized product outcome is explicit;
 - the final reconciled contract basis is current;
 - every semantic specification change has a legitimate change basis;
@@ -1019,6 +1036,9 @@ A product task is complete only when:
 - release baseline changes are recorded when a release occurred;
 - no stale-epoch packet is being treated as accepted;
 - remaining residuals are explicit and truthfully classified.
+
+A known acceptance failure or missing capability that is being claimed as
+delivered is blocking, not a noncritical residual.
 
 Do not report completion merely because the code compiles, tests pass, the
 specification was edited, or the current context is nearly exhausted.

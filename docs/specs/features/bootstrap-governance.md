@@ -3,9 +3,9 @@
 - Contract ID: `bootstrap.governance`
 - Domain ID: `bootstrap.governance`
 - Authority: Active
-- Stability: Accepted
+- Stability: Evolving
 - Governs: Bootstrap governance, setup prompts, templates, and layer composition
-- Contract revision or epoch: `bootstrap.governance@1`
+- Contract revision or epoch: `bootstrap.governance@2`
 - Release baseline: `ba891245af7ffa6ffa5463f85af8045b3f6bc75c`
 
 ## Goal
@@ -18,6 +18,7 @@ layers.
 
 - specification-first product governance;
 - persistent-goal coordinator-and-workers governance;
+- outcome and resource proportionality for implementation work;
 - optional browser QA;
 - setup and repair prompts;
 - neutral specification and verification templates;
@@ -50,6 +51,19 @@ layers.
   absence and uses Discover instead of inferring intent from code or runtime.
 - Restart, resume, clear, and context-compaction recovery re-establishes
   authority from durable documents rather than chat memory.
+- Installed agent governance measures progress first by concrete capability
+  reachable from the product or release path. Supporting work is reported
+  separately and never represented as delivered product functionality.
+- Ordinary implementation work and persistent goals aim to produce a smallest
+  release-reachable vertical slice in the first one or two implementation
+  checkpoints.
+- Persistent-goal packets and checkpoints classify shipping, verification,
+  diagnostic, tooling, and coordination work. Support-only checkpoints have a
+  bounded depth and an explicit delivery-and-cost reassessment before further
+  expansion.
+- Review, verification, diagnostics, and tooling are proportional to
+  demonstrated risk. High-risk boundaries retain stronger independent review
+  and safety requirements.
 
 ## Invariants
 
@@ -63,6 +77,13 @@ layers.
 - Environment-specific model names are not copied into portable governance.
 - Planning-only, discovery-only, and installation-only requests do not
   authorize product implementation.
+- A support artifact names the next implementation decision or release-path
+  capability that consumes it. Speculative support infrastructure is forbidden.
+- A residual may record bounded uncertainty or noncritical hardening, but may
+  not hide a known failure of the acceptance contract or an undelivered
+  capability being claimed as complete.
+- Delivery budgets are planning controls rather than permission to skip
+  verification required by demonstrated risk.
 
 ## Edge cases and failure policy
 
@@ -75,6 +96,11 @@ layers.
 - If the merged instruction chain exceeds the supported size limit, reduce
   duplication or split conditional guidance rather than allowing silent
   truncation.
+- If work would create a third consecutive support-only implementation
+  checkpoint, a second repair/re-review cycle, or material diagnostic/tooling
+  expansion, stop for a delivery-and-cost reassessment. Continue only with the
+  required user approval unless stopping would leave a demonstrated data-loss,
+  privacy, security, irreversible-action, or released-compatibility risk unsafe.
 
 ## Route / state / data implications
 
@@ -82,6 +108,9 @@ layers.
 - Full governance remains conditionally loaded from stable documented paths.
 - Semantic contract changes advance the affected revision or epoch.
 - Long-running product packets pin the governing clauses and epoch.
+- Restart-safe goal state records the current milestone, work classification,
+  support-only checkpoint depth, budget variance, and next release-path
+  capability.
 
 ## Evidence mapping
 
@@ -98,6 +127,8 @@ layers.
 - JSON validation for hook templates;
 - lifecycle adapter fixture tests;
 - consistency search for pre-decision and restart gates;
+- consistency checks for outcome-first progress, proportional review, economic
+  stop conditions, and portable model-neutral wording;
 - `git diff --check` and changed-scope review.
 
 ## Unknowns requiring confirmation

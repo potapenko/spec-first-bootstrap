@@ -6,6 +6,42 @@ It is not the source of truth for detailed product behavior. Product behavior
 belongs in `docs/specs/`; portable installer doctrine belongs in
 `docs/agent-governance/`.
 
+## Outcome and resource proportionality
+
+This applies to every implementation task, including ordinary single-agent work
+and finite workers inside an orchestrated goal.
+
+Measure progress first by the concrete capability requested by the user and
+reachable from the product or release path. Tests, diagnostics, Debug harnesses,
+models, maps, evidence, documentation, registries, and review are supporting
+work. Report them separately and never represent them as delivered product
+functionality.
+
+Start an ordinary milestone with a 60/25/15 planning target: 60% shipping
+implementation, 25% verification/review/QA, and 15% discovery/diagnostics/
+tooling/coordination. This is a tripwire, not a quota or permission to skip work
+required by demonstrated risk.
+
+Aim for the smallest release-reachable vertical slice in the first one or two
+implementation checkpoints. Every support artifact names the next
+dependency-ready implementation decision or capability that will consume it.
+Speculative support infrastructure and production-grade hardening of temporary
+Debug tooling are forbidden.
+
+A third consecutive support-only implementation checkpoint, a second
+repair/re-review cycle, or material diagnostic/tooling expansion is an economic
+stop. Before continuing, report capability delivered, capability being
+unlocked, expected additional time or token cost, why a truthful residual is
+insufficient, the cheapest safe alternative, and the stop condition. Continue
+only with explicit user approval unless stopping would leave a demonstrated
+data-loss, privacy, security, irreversible-action, or released-compatibility
+risk unsafe.
+
+A residual must not hide a known acceptance failure or missing capability that
+is being claimed as delivered. Progress updates separate shipping capability
+and files from verification, diagnostics/tooling/coordination cost, elapsed
+effort, budget variance, and the next user-visible milestone.
+
 ## Product Truth Gate
 
 Follow `docs/spec-first-workflow.md` for the compact workflow. For product-truth

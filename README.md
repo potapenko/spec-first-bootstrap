@@ -21,9 +21,11 @@ Follow prompts/setup-project-spec-first.md from that repository. Keep the setup 
 
 ### 2. Add agent teamwork
 
-Use this when the project will have long-running work handled by a coordinator
-and multiple focused agents. It does not require the specification or browser-
-QA layers.
+Use this when the project needs outcome-first implementation economics or will
+have long-running work handled by a coordinator and multiple focused agents.
+It makes release-path capability the progress measure for ordinary work too,
+and bounds preparation, diagnostics, tooling, and repair cycles. It does not
+require the specification or browser-QA layers.
 
 ```text
 Use https://github.com/potapenko/spec-first-bootstrap as the reference and set up coordinated multi-agent work for long-running goals in this project.
@@ -107,9 +109,10 @@ context, and requires explicit scope and hook trust verification.
   changed. The agent still reconciles specs with source, design, runtime
   behavior, QA, and released behavior instead of treating Markdown as an
   infallible substitute for understanding the product.
-- **Agents** keep the main agent focused on coordination and
-  context continuity while bounded workers implement, review, build, test, and
-  perform runtime QA.
+- **Agents** measure implementation progress by release-path capability, bound
+  preparation and repair work, and keep the main agent focused on coordination
+  and context continuity while bounded workers implement, review, build, test,
+  and perform runtime QA.
 - **Browser QA** adds optional real-browser cases and run reports for web UI
   projects. It remains separate from product specifications and implementation.
 

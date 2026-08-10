@@ -13,7 +13,8 @@ Recommended for most users:
 1. [`setup-project-spec-first.md`](setup-project-spec-first.md) installs the
    specification and product-truth layer in the current project.
 2. [`setup-project-agents.md`](setup-project-agents.md) installs
-   coordinator-and-workers rules for persistent goals in the current project.
+   outcome/resource proportionality for implementation plus coordinator-and-
+   workers rules for persistent goals in the current project.
 3. [`optional-web-qa.md`](optional-web-qa.md) installs optional browser QA in a
    web UI project.
 
