@@ -5,6 +5,42 @@ file. Never replace an existing instruction file or append an equivalent
 duplicate. Full governance documents remain outside automatically loaded
 instructions and are read only when their boundary applies.
 
+## Project: task framing and scope control
+
+~~~markdown
+## Task framing and scope control
+
+When the user introduces a new feature, initiative, or other task that requires
+material scope judgment, do not begin implementation or another state-changing
+task action immediately. Perform only the bounded, non-mutating instruction,
+specification, and evidence reading needed to make the work credible, then
+present a proposed execution plan and wait for explicit user approval.
+
+The plan states the intended outcome, in-scope work, out-of-scope work,
+execution steps, verification, and any unresolved decisions. Planning-only,
+investigation-only, and review-only requests do not authorize implementation.
+Do not delegate execution work before the plan is approved unless the user
+explicitly requested that delegation as part of planning.
+
+Immediate execution is allowed when the user explicitly directs the agent to
+execute now or without a plan, when the user has already approved the plan, or
+when the task is plainly bounded, low-risk, and requires no material scope
+choice. A generic imperative to build a non-trivial feature is not by itself an
+immediate-execution waiver. Immediate execution does not bypass any applicable
+safety, specification, approval, or environment gate.
+
+Once approved, the plan is the execution boundary. Make equivalent technical
+choices and perform directly necessary supporting edits and verification
+without repeated approval, but do not add adjacent features, refactors,
+cleanup, tooling, or other helpful extras that are not required by the approved
+outcome.
+
+If execution reveals a material dependency outside the approved boundary, stop
+the affected slice and return the exact dependency, the minimum proposed scope
+addition, expected cost, and risk. Wait for user approval before crossing that
+boundary. Continue independent in-scope work when safe.
+~~~
+
 ## Project: product specifications
 
 ~~~markdown
@@ -180,6 +216,42 @@ basis before implementation. A spec edit cannot create its own authority.
 Workers without product-authority, reconciliation, or contract-review
 responsibility receive only the finite pinned clauses, evidence paths,
 protected boundaries, and acceptance conditions required by their task.
+~~~
+
+## Global: task framing and scope control
+
+~~~markdown
+## Task framing and scope control
+
+When the user introduces a new feature, initiative, or other task that requires
+material scope judgment, do not begin implementation or another state-changing
+task action immediately. Perform only the bounded, non-mutating instruction,
+specification, and evidence reading needed to make the work credible, then
+present a proposed execution plan and wait for explicit user approval.
+
+The plan states the intended outcome, in-scope work, out-of-scope work,
+execution steps, verification, and any unresolved decisions. Planning-only,
+investigation-only, and review-only requests do not authorize implementation.
+Do not delegate execution work before the plan is approved unless the user
+explicitly requested that delegation as part of planning.
+
+Immediate execution is allowed when the user explicitly directs the agent to
+execute now or without a plan, when the user has already approved the plan, or
+when the task is plainly bounded, low-risk, and requires no material scope
+choice. A generic imperative to build a non-trivial feature is not by itself an
+immediate-execution waiver. Immediate execution does not bypass any applicable
+safety, specification, approval, or environment gate.
+
+Once approved, the plan is the execution boundary. Make equivalent technical
+choices and perform directly necessary supporting edits and verification
+without repeated approval, but do not add adjacent features, refactors,
+cleanup, tooling, or other helpful extras that are not required by the approved
+outcome.
+
+If execution reveals a material dependency outside the approved boundary, stop
+the affected slice and return the exact dependency, the minimum proposed scope
+addition, expected cost, and risk. Wait for user approval before crossing that
+boundary. Continue independent in-scope work when safe.
 ~~~
 
 ## Project: Codex lifecycle restart adapter

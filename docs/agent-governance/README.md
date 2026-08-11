@@ -6,7 +6,8 @@ point is the repository-root `README.md`.
 The six setup prompts expose three independent layers:
 
 1. product specifications and product-truth governance;
-2. persistent-goal multi-agent coordination;
+2. plan-first scope-controlled agent work, including persistent-goal
+   multi-agent coordination;
 3. optional browser QA.
 
 Each layer can be installed in one project or, by explicit advanced request,
@@ -23,8 +24,9 @@ two, or all three in either scope.
 - `root-orchestration.md` is the full outcome-first, economically proportional,
   coordinator-only `/root` contract for persistent goals.
 - `web-qa-governance.md` is the full optional browser-QA contract.
-- `agents-sections.md` contains compact routing blocks to merge into a project
-  or global instruction file.
+- `agents-sections.md` contains compact task-framing, scope-control, routing,
+  and proportionality blocks to merge into a project or global instruction
+  file.
 
 ## Installation invariants
 
@@ -36,7 +38,10 @@ two, or all three in either scope.
   file.
 - Keep full governance documents conditionally loaded. Ordinary workers receive
   only the finite rules and evidence required by their task.
-- Install the compact outcome/resource gate with the persistent-goal layer so
+- Install the compact task-framing and scope-control gate with the agent layer
+  so new or materially ambiguous work pauses at an approved execution plan and
+  stays inside it.
+- Install the compact outcome/resource gate with the agent-work layer so
   ordinary implementation and orchestrated goals share the same release-path
   progress measure and economic stop conditions.
 - Preserve project-specific product, framework, safety, build, test, database,

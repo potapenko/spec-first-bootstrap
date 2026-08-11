@@ -1,15 +1,16 @@
-# Set Up Persistent-Goal Agent Work Globally
+# Set Up Agent Work Governance Globally
 
 Use https://github.com/potapenko/spec-first-bootstrap as the canonical source.
 
-Install the coordinator-and-workers architecture in the current user's global
-agent configuration so it is available across future projects.
+Install plan-first task framing, strict execution-scope control, implementation
+economics, and the coordinator-and-workers architecture in the current user's
+global agent configuration so it is available across future projects.
 
 This is an advanced global configuration task. Change no project repository.
 Do not create, resume, pause, block, or complete a persistent goal during
 installation.
 
-Install only the persistent-goal agent layer. Do not install specification-
+Install only the agent-work layer described here. Do not install specification-
 first governance or browser-QA guidance as a prerequisite or dependency.
 Preserve and interoperate with either layer when it is already present.
 
@@ -36,6 +37,8 @@ settings.
 Read completely:
 
 - `docs/agent-governance/README.md`;
+- the Global: task framing and scope control section in
+  `docs/agent-governance/agents-sections.md`;
 - `docs/agent-governance/root-orchestration.md`;
 - the Global: outcome and resource proportionality section in
   `docs/agent-governance/agents-sections.md`;
@@ -44,21 +47,23 @@ Read completely:
 
 ## Install
 
-1. Install the full root contract beside the active user-level instruction
+1. Merge the compact Global: task framing and scope control section into the
+   existing global instruction file.
+2. Install the full root contract beside the active user-level instruction
    entry point as `root-orchestration.md`.
-2. Merge the compact global outcome and resource proportionality and
+3. Merge the compact global outcome and resource proportionality and
    persistent-goal sections into the existing global instruction file. Never
    replace the complete file.
-3. Reconcile equivalent existing sections instead of creating duplicates.
-4. Keep the full root document conditionally loaded.
-5. Do not add, remove, or rewrite product-truth, specification, browser-QA, or
+4. Reconcile equivalent existing sections instead of creating duplicates.
+5. Keep the full root document conditionally loaded.
+6. Do not add, remove, or rewrite product-truth, specification, browser-QA, or
    other unrelated global layers. If they already exist, preserve them and
    keep the agent layer compatible with their established authority paths.
-6. Do not change model defaults, reasoning defaults, concurrency limits,
+7. Do not change model defaults, reasoning defaults, concurrency limits,
    custom profiles, providers, or agent application configuration.
    Apply the root contract's role-based policy using models actually supported
    by the detected environment; do not hardcode another platform's model names.
-7. Do not install or modify the optional Codex lifecycle adapter unless the
+8. Do not install or modify the optional Codex lifecycle adapter unless the
    user explicitly requested it. Preserve an existing adapter and keep its
    worker-start wording aligned with finite packet authority.
 
@@ -66,14 +71,18 @@ Use `apply_patch` for edits.
 
 ## Required result
 
-The installed architecture must preserve outcome-first progress for ordinary
-implementation and persistent goals, a smallest early release-path vertical
-slice, classified finite worker packets, default 60/25/15 planning, bounded
-support-only checkpoints, economic repair/diagnostic stops, coordinator-only
-`/root`, risk-based model selection, risk-proportional review with independent
-review for named high-risk classes, ownership-safe parallelism, product-value-
-first terminal receipts and progress reports, one durable economic registry,
-explicit pause/resume, context-compaction recovery, and truthful completion.
+The installed architecture must require a visible approved execution plan for
+new or materially ambiguous tasks, preserve explicit bounded immediate-
+execution exceptions, treat the approved plan as the execution boundary, and
+return material additions as minimal proposed amendments. It must also preserve
+outcome-first progress for ordinary implementation and persistent goals, a
+smallest early release-path vertical slice, classified finite worker packets,
+default 60/25/15 planning, bounded support-only checkpoints, economic repair/
+diagnostic stops, coordinator-only `/root`, risk-based model selection,
+risk-proportional review with independent review for named high-risk classes,
+ownership-safe parallelism, product-value-first terminal receipts and progress
+reports, one durable economic registry, explicit pause/resume, context-
+compaction recovery, and truthful completion.
 When product-truth governance applies, product packets and receipts must carry
 the pinned Spec Basis, complete governing documents, specified expectation,
 observed evidence, discrepancy classification, and contract epoch.
@@ -87,7 +96,9 @@ change, and no installation or modification of the specification or browser-QA
 layers.
 
 Also verify that an override does not shadow the gate and that no lifecycle
-hook changed without explicit adapter scope.
+hook changed without explicit adapter scope. Verify that planning does not
+mutate task state, every immediate-execution exception is explicit and bounded,
+and the approved-plan boundary rejects unapproved adjacent work.
 
 Report the detected environment, exact paths, coexistence with any already
 installed layers, permission used, verification, and residuals.

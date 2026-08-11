@@ -1,15 +1,16 @@
-# Set Up Persistent-Goal Agent Work In This Project
+# Set Up Agent Work Governance In This Project
 
 Use https://github.com/potapenko/spec-first-bootstrap as the canonical source.
 
-Set up the coordinator-and-workers architecture inside the current project
-only. Do not modify the user's global Codex, Claude, or other agent
+Set up plan-first task framing, strict execution-scope control, implementation
+economics, and the coordinator-and-workers architecture inside the current
+project only. Do not modify the user's global Codex, Claude, or other agent
 configuration.
 
 This is an instruction and documentation setup task. Do not create, resume,
 pause, block, or complete a persistent goal. Do not change product code.
 
-Install only the persistent-goal agent layer. Do not install specification-
+Install only the agent-work layer described here. Do not install specification-
 first governance or browser QA as a prerequisite or dependency. Preserve and
 interoperate with either layer when it is already present.
 
@@ -17,6 +18,8 @@ interoperate with either layer when it is already present.
 
 Read completely from the bootstrap repository:
 
+- the Project: task framing and scope control section in
+  `docs/agent-governance/agents-sections.md`;
 - `docs/agent-governance/root-orchestration.md`;
 - the Project: outcome and resource proportionality section in
   `docs/agent-governance/agents-sections.md`;
@@ -30,22 +33,24 @@ Preserve unrelated content.
 
 ## Install
 
-1. Install the full root contract as
+1. Merge the compact Project: task framing and scope control section into the
+   existing project-root instruction file.
+2. Install the full root contract as
    `docs/agent/root-orchestration.md`.
-2. Merge the compact Project: outcome and resource proportionality and Project:
+3. Merge the compact Project: outcome and resource proportionality and Project:
    persistent-goal agents sections into the existing project-root instruction
    file. Never replace the complete file.
-3. Reconcile an equivalent existing coordination section instead of appending
+4. Reconcile equivalent existing sections instead of appending
    a conflicting duplicate.
-4. Do not add, remove, or rewrite specification, product-truth, browser-QA, or
+5. Do not add, remove, or rewrite specification, product-truth, browser-QA, or
    other unrelated workflow layers. If they already exist, preserve them and
    keep the agent layer compatible with their established authority paths.
-5. Do not change model defaults, reasoning defaults, concurrency limits,
+6. Do not change model defaults, reasoning defaults, concurrency limits,
    custom agent profiles, provider settings, or application configuration.
    Apply the root contract's role-based model policy using models actually
    supported by the active agent environment; do not hardcode another
    platform's model names.
-6. Do not install or modify the optional Codex lifecycle adapter unless the
+7. Do not install or modify the optional Codex lifecycle adapter unless the
    user explicitly requested it. Preserve an existing adapter and keep its
    worker-start wording aligned with finite packet authority.
 
@@ -55,6 +60,14 @@ Use `apply_patch` for edits.
 
 The resulting project must preserve these rules:
 
+- new features, initiatives, and materially ambiguous tasks present a bounded
+  execution plan and wait for explicit user approval before implementation;
+- the plan names the outcome, in-scope and out-of-scope work, steps,
+  verification, and unresolved decisions;
+- explicit immediate-execution direction, an approved plan, and plainly
+  bounded low-risk work without material scope judgment may proceed directly;
+- the approved plan remains the execution boundary, and material additions are
+  returned as minimal proposed amendments rather than performed silently;
 - `/root` is coordinator-only when a running persistent goal is being
   advanced;
 - no small-task exception permits `/root` to implement, inspect broadly,
@@ -95,7 +108,9 @@ and no installation or modification of the specification or browser-QA layers.
 
 Also verify that the merged gate is active rather than shadowed, stays within
 the configured instruction-size limit, and that no lifecycle hook changed
-without explicit adapter scope.
+without explicit adapter scope. Verify that planning does not mutate task
+state, every immediate-execution exception is explicit and bounded, and the
+approved-plan boundary rejects unapproved adjacent work.
 
 Follow the project's checkpoint policy and report changed paths, coexistence
 with any already installed layers, verification, and exact residuals.

@@ -11,6 +11,11 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 MARKDOWN_LINK = re.compile(r"(?<!!)\[[^\]]+\]\(([^)]+)\)")
+TASK_SCOPE_SECTION = re.compile(
+    r"## (Project|Global): task framing and scope control\s+"
+    r"~~~markdown\n(.*?)\n~~~",
+    re.DOTALL,
+)
 
 REQUIRED_TEXT = {
     "AGENTS.md": (
@@ -19,6 +24,10 @@ REQUIRED_TEXT = {
         "exact documents read completely",
         "Outcome and resource proportionality",
         "60/25/15 planning target",
+        "Task framing and scope control",
+        "proposed execution plan",
+        "plan is the execution boundary",
+        "minimum proposed scope",
     ),
     "docs/spec-first-workflow.md": (
         "Mandatory Pre-Decision Start Order",
@@ -42,18 +51,27 @@ REQUIRED_TEXT = {
         "Global: Codex lifecycle restart adapter",
         "Project: outcome and resource proportionality",
         "Global: outcome and resource proportionality",
+        "Project: task framing and scope control",
+        "Global: task framing and scope control",
+        "immediate-execution waiver",
     ),
     "docs/specs/index.md": (
-        "bootstrap.governance@2",
+        "bootstrap.governance@3",
         "bootstrap.codex-lifecycle@1",
     ),
     "prompts/setup-project-agents.md": (
         "Project: outcome and resource proportionality",
+        "Project: task framing and scope control",
+        "explicit user approval",
+        "approved plan remains the execution boundary",
         "risk-proportional review",
         "support-only implementation checkpoint",
     ),
     "prompts/setup-global-agents.md": (
         "Global: outcome and resource proportionality",
+        "Global: task framing and scope control",
+        "visible approved execution plan",
+        "approved plan as the execution boundary",
         "default 60/25/15 planning",
         "risk-proportional review",
     ),
@@ -118,6 +136,34 @@ def check_markdown_fences(errors: list[str]) -> None:
                 )
 
 
+def check_task_scope_sections(errors: list[str]) -> None:
+    sections_path = ROOT / "docs/agent-governance/agents-sections.md"
+    sections_text = sections_path.read_text(encoding="utf-8")
+    matches = TASK_SCOPE_SECTION.findall(sections_text)
+    sections = {scope: payload for scope, payload in matches}
+
+    if len(matches) != 2 or {scope for scope, _ in matches} != {"Project", "Global"}:
+        errors.append(
+            "docs/agent-governance/agents-sections.md: expected exactly one "
+            "Project and one Global task-scope section"
+        )
+        return
+
+    if sections["Project"] != sections["Global"]:
+        errors.append(
+            "docs/agent-governance/agents-sections.md: Project and Global "
+            "task-scope payloads differ"
+        )
+
+    project_agents = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
+    installed_count = project_agents.count(sections["Project"])
+    if installed_count != 1:
+        errors.append(
+            "AGENTS.md: canonical Project task-scope payload must be installed "
+            f"exactly once, found {installed_count}"
+        )
+
+
 def check_instruction_size(errors: list[str]) -> None:
     agent_bytes = (ROOT / "AGENTS.md").stat().st_size
     if agent_bytes > 32 * 1024:
@@ -147,6 +193,7 @@ def main() -> int:
     check_forbidden_text(errors)
     check_local_markdown_links(errors)
     check_markdown_fences(errors)
+    check_task_scope_sections(errors)
     check_instruction_size(errors)
     check_hook_templates(errors)
 

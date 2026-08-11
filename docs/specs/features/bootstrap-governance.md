@@ -5,7 +5,7 @@
 - Authority: Active
 - Stability: Accepted
 - Governs: Bootstrap governance, setup prompts, templates, and layer composition
-- Contract revision or epoch: `bootstrap.governance@2`
+- Contract revision or epoch: `bootstrap.governance@3`
 - Release baseline: `ba891245af7ffa6ffa5463f85af8045b3f6bc75c`
 
 ## Goal
@@ -17,6 +17,7 @@ layers.
 ## Scope
 
 - specification-first product governance;
+- plan-first task framing and approved execution-scope control;
 - persistent-goal coordinator-and-workers governance;
 - outcome and resource proportionality for implementation work;
 - optional browser QA;
@@ -33,8 +34,21 @@ layers.
 
 ## User-visible behavior
 
-- The specification, persistent-goal agent, and browser-QA layers are
+- The specification, agent-work, and browser-QA layers are
   independently selectable.
+- A new feature, initiative, or materially ambiguous task begins with a visible
+  execution plan and explicit user approval before implementation or other
+  state-changing task action.
+- A bounded, obvious, low-risk task may proceed immediately when it requires no
+  material scope judgment. Explicit user direction to execute immediately, or
+  approval of an existing plan, also authorizes immediate execution.
+- An approved plan becomes the execution boundary. Agents may make equivalent
+  implementation choices and perform the verification required by that plan,
+  but they do not add adjacent features, cleanup, refactors, tooling, or other
+  helpful extras outside it.
+- A newly discovered material dependency outside the approved boundary is
+  returned as a minimal proposed plan amendment for user approval. Independent
+  in-scope work may continue when safe.
 - Project setup changes only the named repository. Global setup changes only
   the explicitly selected user-level agent configuration.
 - Installers resolve the active instruction chain, including overrides and
@@ -72,11 +86,22 @@ layers.
   intended behavior before the Spec Basis.
 - Existing project-specific safety, framework, build, test, database, storage,
   Git, release, and operator rules are preserved.
-- Product-truth, persistent-goal agents, and browser QA remain independently
+- Product-truth, agent-work, and browser QA remain independently
   installable.
 - Environment-specific model names are not copied into portable governance.
 - Planning-only, discovery-only, and installation-only requests do not
   authorize product implementation.
+- Preparing a plan permits only the bounded, non-mutating instruction,
+  specification, and evidence reading needed to make the plan credible. It
+  does not authorize edits, state-changing runtime actions, external writes,
+  or execution delegation.
+- Silence, a generic request to create a non-trivial feature, or an agent's
+  belief that extra work would be beneficial does not approve a plan or expand
+  its scope.
+- Necessary supporting edits and verification named in the approved plan, or
+  unavoidable to complete its stated steps, remain in scope only when they do
+  not change user-visible behavior or a protected adjacent contract beyond the
+  approved plan.
 - A support artifact names the next implementation decision or release-path
   capability that consumes it. Speculative support infrastructure is forbidden.
 - A residual may record bounded uncertainty or noncritical hardening, but may
@@ -89,6 +114,12 @@ layers.
 
 - If the active instruction entry point or scope is ambiguous, stop before
   writing.
+- If material scope judgment is required before an execution plan can be
+  stated, ask the user the smallest necessary question instead of beginning
+  implementation.
+- If execution exposes a material dependency outside the approved plan, stop
+  the affected slice, state the dependency, minimum scope addition, cost, and
+  risk, and wait for approval before crossing that boundary.
 - If an override shadows the proposed instruction file, update the active
   chain or return the exact blocker instead of claiming installation success.
 - If Active contracts conflict without precedence, stop only the affected
@@ -105,6 +136,8 @@ layers.
 ## Route / state / data implications
 
 - Compact gates live in the active project or global instruction chain.
+- The accepted execution plan is the active task-scope envelope until the user
+  approves an amendment or replaces the task.
 - Full governance remains conditionally loaded from stable documented paths.
 - Semantic contract changes advance the affected revision or epoch.
 - Long-running product packets pin the governing clauses and epoch.
@@ -129,6 +162,8 @@ layers.
 - consistency search for pre-decision and restart gates;
 - consistency checks for outcome-first progress, proportional review, economic
   stop conditions, and portable model-neutral wording;
+- consistency checks for plan-first task framing, explicit immediate-execution
+  exceptions, and approved-scope enforcement on project and global surfaces;
 - `git diff --check` and changed-scope review.
 
 ## Unknowns requiring confirmation

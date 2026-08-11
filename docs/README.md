@@ -11,11 +11,12 @@ two, or all three.
 - [`specs/`](specs/) explains the product-specification structure and provides
   reusable templates.
 
-## Persistent-goal agent work
+## Agent work governance
 
 [`agent-governance/`](agent-governance/) contains the installer-facing
-governance sources for coordinator-and-workers architecture. Start with its
-README before opening the individual contracts.
+sources for plan-first task framing, approved-scope execution, implementation
+economics, and coordinator-and-workers architecture. Start with its README
+before opening the individual contracts.
 
 ## Optional browser QA
 
