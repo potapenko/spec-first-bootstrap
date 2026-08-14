@@ -103,10 +103,19 @@ lines written, tests passed, packets closed, or tokens spent.
 
 ## Activation boundary
 
-This contract applies when both conditions are true:
+This contract applies when all conditions are true:
 
 1. a persistent goal is running; and
-2. the current request directly or indirectly advances that goal.
+2. the current request directly or indirectly advances that goal; and
+3. the user has not explicitly required the current chat to complete that goal
+   without subagents, workers, or delegation.
+
+When condition 3 is false, the primary agent works as a normal single agent for
+that goal and must not spawn workers. It may inspect, implement, build, test,
+launch, and perform other in-scope goal actions itself. This single-agent
+exception lasts only while the explicit no-delegation instruction is active and
+does not weaken any specification, safety, approval, destructive-action,
+framework, or product-authority boundary.
 
 Work advances a goal when it does any of the following:
 
@@ -388,7 +397,8 @@ Rules:
 - one writable owner per file or product owner at a time;
 - shared integration paths belong to one designated integrator;
 - read-only packets may overlap when their outputs are distinct;
-- write-heavy packets require disjoint paths or isolated worktrees;
+- write-heavy packets require disjoint paths; isolated worktrees may be used
+  only when the user explicitly requested or authorized them;
 - runtime lanes that share focus, devices, or external state must be
   serialized;
 - do not create duplicate agents to answer the same unresolved question;

@@ -21,13 +21,15 @@ Follow prompts/setup-project-spec-first.md from that repository. Keep the setup 
 
 ### 2. Add agent work governance
 
-Use this when the project should plan new or materially ambiguous work before
-execution, keep implementation inside the approved scope, use outcome-first
-implementation economics, or handle long-running work through a coordinator
-and focused agents. It does not require the specification or browser-QA layers.
+Use this when the project should keep work on the operator-selected branch,
+plan implementation-bearing or materially ambiguous work before execution,
+keep implementation inside the approved scope, use outcome-first economics, or
+handle long-running work through a coordinator and focused agents. An explicit
+no-delegation instruction keeps a persistent goal in the current chat as
+single-agent work. The layer does not require specifications or browser QA.
 
 ```text
-Use https://github.com/potapenko/spec-first-bootstrap as the reference and set up plan-first, scope-controlled agent work and coordinated multi-agent work for long-running goals in this project.
+Use https://github.com/potapenko/spec-first-bootstrap as the reference and set up current-branch, plan-first, scope-controlled agent work and coordinated multi-agent work for long-running goals in this project.
 
 Follow prompts/setup-project-agents.md from that repository. Install only the agent-work layer. Keep the setup inside this project. Do not create or resume a goal, change agent application settings, or change product code during setup.
 ```
@@ -72,7 +74,7 @@ Follow prompts/setup-global-spec-first.md from that repository. Install only the
 ### 2. Add agent work governance globally
 
 ```text
-Use https://github.com/potapenko/spec-first-bootstrap as the reference and set up plan-first, scope-controlled agent work and coordinated multi-agent work for long-running goals globally for all my projects.
+Use https://github.com/potapenko/spec-first-bootstrap as the reference and set up current-branch, plan-first, scope-controlled agent work and coordinated multi-agent work for long-running goals globally for all my projects.
 
 Follow prompts/setup-global-agents.md from that repository. Install only the agent-work layer. Do not install specification governance or browser-QA guidance. Detect the active agent environment, show me the exact global paths before writing, preserve all existing global instructions, and do not create or resume a goal or modify any project repository.
 ```
@@ -108,10 +110,12 @@ context, and requires explicit scope and hook trust verification.
   changed. The agent still reconciles specs with source, design, runtime
   behavior, QA, and released behavior instead of treating Markdown as an
   infallible substitute for understanding the product.
-- **Agents** plan new or materially ambiguous work before implementation, stay
-  inside the approved execution boundary, measure progress by release-path
-  capability, bound preparation and repair work, and keep the main agent
-  focused on coordination and context continuity during persistent goals.
+- **Agents** stay on the operator-selected branch, let questions and read-only
+  investigations proceed directly, plan the first implementation-bearing
+  request and later materially ambiguous work, stay inside the approved
+  execution boundary, and measure progress by release-path capability. During
+  persistent goals the main agent coordinates by default, or works alone when
+  the user explicitly forbids delegation.
 - **Browser QA** adds optional real-browser cases and run reports for web UI
   projects. It remains separate from product specifications and implementation.
 

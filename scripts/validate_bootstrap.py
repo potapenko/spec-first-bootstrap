@@ -16,6 +16,11 @@ TASK_SCOPE_SECTION = re.compile(
     r"~~~markdown\n(.*?)\n~~~",
     re.DOTALL,
 )
+CURRENT_BRANCH_SECTION = re.compile(
+    r"## (Project|Global): current branch only\s+"
+    r"~~~markdown\n(.*?)\n~~~",
+    re.DOTALL,
+)
 
 REQUIRED_TEXT = {
     "AGENTS.md": (
@@ -25,9 +30,13 @@ REQUIRED_TEXT = {
         "Outcome and resource proportionality",
         "60/25/15 planning target",
         "Task framing and scope control",
-        "proposed execution plan",
+        "first implementation-bearing request",
+        "Git-history inspection",
+        "Do not propose a plan to perform this planning work",
         "plan is the execution boundary",
         "minimum proposed scope",
+        "Current branch only",
+        "commit, or push is not permission to create a branch",
     ),
     "docs/spec-first-workflow.md": (
         "Mandatory Pre-Decision Start Order",
@@ -45,6 +54,8 @@ REQUIRED_TEXT = {
         "support-only implementation checkpoints",
         "receives review proportional to demonstrated",
         "budget variance",
+        "primary agent works as a normal single agent",
+        "without subagents, workers, or delegation",
     ),
     "docs/agent-governance/agents-sections.md": (
         "Project: Codex lifecycle restart adapter",
@@ -53,25 +64,33 @@ REQUIRED_TEXT = {
         "Global: outcome and resource proportionality",
         "Project: task framing and scope control",
         "Global: task framing and scope control",
+        "Project: current branch only",
+        "Global: current branch only",
+        "first implementation-bearing request",
+        "single-agent exception",
         "immediate-execution waiver",
     ),
     "docs/specs/index.md": (
-        "bootstrap.governance@3",
+        "bootstrap.governance@4",
         "bootstrap.codex-lifecycle@1",
     ),
     "prompts/setup-project-agents.md": (
         "Project: outcome and resource proportionality",
         "Project: task framing and scope control",
+        "Project: current branch only",
         "explicit user approval",
         "approved plan remains the execution boundary",
+        "single-agent exception",
         "risk-proportional review",
         "support-only implementation checkpoint",
     ),
     "prompts/setup-global-agents.md": (
         "Global: outcome and resource proportionality",
         "Global: task framing and scope control",
+        "Global: current branch only",
         "visible approved execution plan",
         "approved plan as the execution boundary",
+        "single-agent exception",
         "default 60/25/15 planning",
         "risk-proportional review",
     ),
@@ -83,6 +102,14 @@ FORBIDDEN_TEXT = {
         "Sol with high reasoning",
         "Terra with medium reasoning",
         "Ultra as the default",
+        "Computer Use Discovery And Startup",
+        "Screenshot Capture Boundary",
+        "@oai/sky",
+    ),
+    "docs/agent-governance/agents-sections.md": (
+        "Computer Use Discovery And Startup",
+        "Screenshot Capture Boundary",
+        "@oai/sky",
     ),
     "prompts/setup-project-agents.md": (
         "product changes receive independent review",
@@ -164,6 +191,34 @@ def check_task_scope_sections(errors: list[str]) -> None:
         )
 
 
+def check_current_branch_sections(errors: list[str]) -> None:
+    sections_path = ROOT / "docs/agent-governance/agents-sections.md"
+    sections_text = sections_path.read_text(encoding="utf-8")
+    matches = CURRENT_BRANCH_SECTION.findall(sections_text)
+    sections = {scope: payload for scope, payload in matches}
+
+    if len(matches) != 2 or {scope for scope, _ in matches} != {"Project", "Global"}:
+        errors.append(
+            "docs/agent-governance/agents-sections.md: expected exactly one "
+            "Project and one Global current-branch section"
+        )
+        return
+
+    if sections["Project"] != sections["Global"]:
+        errors.append(
+            "docs/agent-governance/agents-sections.md: Project and Global "
+            "current-branch payloads differ"
+        )
+
+    project_agents = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
+    installed_count = project_agents.count(sections["Project"])
+    if installed_count != 1:
+        errors.append(
+            "AGENTS.md: canonical Project current-branch payload must be "
+            f"installed exactly once, found {installed_count}"
+        )
+
+
 def check_instruction_size(errors: list[str]) -> None:
     agent_bytes = (ROOT / "AGENTS.md").stat().st_size
     if agent_bytes > 32 * 1024:
@@ -194,6 +249,7 @@ def main() -> int:
     check_local_markdown_links(errors)
     check_markdown_fences(errors)
     check_task_scope_sections(errors)
+    check_current_branch_sections(errors)
     check_instruction_size(errors)
     check_hook_templates(errors)
 

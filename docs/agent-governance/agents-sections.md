@@ -5,16 +5,73 @@ file. Never replace an existing instruction file or append an equivalent
 duplicate. Full governance documents remain outside automatically loaded
 instructions and are read only when their boundary applies.
 
+## Project: current branch only
+
+~~~markdown
+## Current branch only
+
+Agents must work only in the Git branch that is checked out when the task begins.
+
+Do not create, switch, rename, or publish another branch, and do not create a Git
+worktree, unless the user explicitly asks for it. General approval to begin work,
+commit, or push is not permission to create a branch.
+
+A dirty or diverged working tree is a blocker to report, not a reason to create
+another branch.
+
+Work is not complete or accepted while its changes exist only in another branch
+or worktree. Task changes must be integrated into the operator-selected current
+branch.
+~~~
+
 ## Project: task framing and scope control
 
 ~~~markdown
 ## Task framing and scope control
 
-When the user introduces a new feature, initiative, or other task that requires
-material scope judgment, do not begin implementation or another state-changing
-task action immediately. Perform only the bounded, non-mutating instruction,
-specification, and evidence reading needed to make the work credible, then
-present a proposed execution plan and wait for explicit user approval.
+### New-chat first implementation request gate
+
+This gate applies only to the first implementation-bearing request in a new
+chat: a request that asks to modify code, task artifacts, or external state.
+
+Questions, explanations, read-only investigations, reviews, diagnoses, status
+checks, and Git-history inspection do not require a plan or user approval.
+Perform them directly and return the evidence-backed answer.
+
+If a read-only request reveals a possible change, report the findings without
+automatically turning the request into an implementation task. Propose an
+implementation plan only when the user has asked for a change.
+
+For a request that includes implementation, complete the planning phase before
+asking the user to approve implementation.
+
+The planning phase includes all bounded, non-mutating work needed to make the
+implementation plan concrete and evidence-based: reading applicable
+instructions, specifications, source, tests, documentation, logs,
+configuration, and Git history; tracing ownership and dependencies; running
+safe read-only checks; and diagnosing or reproducing the reported problem when
+needed.
+
+Do not propose a plan to perform this planning work. Perform it first. The plan
+presented to the user must report the established findings and describe the
+actual implementation: intended outcome, exact scope, relevant owners or files,
+required changes, protected behavior, verification, out-of-scope work, and only
+those decisions that genuinely cannot be resolved without the user.
+
+Before the user approves that implementation plan, do not modify code or task
+artifacts, mutate external state, or delegate implementation work.
+
+The gate does not repeat for every user message. Clarifications, answers to the
+agent's questions, additions within the proposed or approved scope, objections,
+status questions, and ordinary follow-up requests in the same chat are not a
+new-chat first request. A resume, lifecycle restart, context compaction, or
+automatic continuation of the same chat also does not reactivate the gate.
+
+After the first implementation plan has been approved, continue within its
+boundary without asking for a new plan on every message. For a later task in the
+same chat, require a new plan only when it introduces a new feature, initiative,
+or other material scope judgment. A plainly bounded, low-risk follow-up that
+requires no material scope choice may be executed without another plan.
 
 The plan states the intended outcome, in-scope work, out-of-scope work,
 execution steps, verification, and any unresolved decisions. Planning-only,
@@ -22,12 +79,12 @@ investigation-only, and review-only requests do not authorize implementation.
 Do not delegate execution work before the plan is approved unless the user
 explicitly requested that delegation as part of planning.
 
-Immediate execution is allowed when the user explicitly directs the agent to
-execute now or without a plan, when the user has already approved the plan, or
-when the task is plainly bounded, low-risk, and requires no material scope
-choice. A generic imperative to build a non-trivial feature is not by itself an
-immediate-execution waiver. Immediate execution does not bypass any applicable
-safety, specification, approval, or environment gate.
+After the new-chat first implementation gate has been satisfied, immediate
+execution is allowed when the user has approved the governing plan or when a
+subsequent task or follow-up is plainly bounded, low-risk, and requires no
+material scope choice. A generic imperative to build a non-trivial feature is
+not by itself an immediate-execution waiver. Immediate execution does not bypass
+any applicable safety, specification, approval, or environment gate.
 
 Once approved, the plan is the execution boundary. Make equivalent technical
 choices and perform directly necessary supporting edits and verification
@@ -138,7 +195,18 @@ effort, budget variance, and the next user-visible milestone.
 
 When a persistent goal is running and the current request advances that goal,
 the primary agent acts as `/root`: a context-preserving, coordinator-only
-agent. Before goal action, `/root` must read
+agent, unless the user explicitly requires the current chat to complete the
+goal without subagents, workers, or delegation.
+
+Under that explicit single-agent exception, the primary agent works as a normal
+single agent for the goal and must not spawn workers. It may inspect, implement,
+build, test, launch, and perform other in-scope goal actions itself. The
+exception lasts only while the explicit no-delegation instruction is active and
+does not weaken specification, safety, approval, destructive-action, framework,
+or product-authority boundaries.
+
+Without that explicit exception, `/root` remains coordinator-only. Before goal
+action, `/root` must read
 `docs/agent/root-orchestration.md` completely.
 
 That orchestration remains outcome-first and economically proportional. It
@@ -146,8 +214,8 @@ classifies work, tracks support-only checkpoint depth and budget variance, and
 requires a delivery-and-cost reassessment before preparation or repair expands
 beyond the compact proportionality gate above.
 
-There is no direct-execution exception for small, urgent, mechanical, or
-supposedly faster work. `/root` delegates finite implementation,
+There is no coordinator direct-execution exception merely for small, urgent,
+mechanical, or supposedly faster work. `/root` delegates finite implementation,
 investigation, review, build, test, runtime, browser, device, and visual
 packets; workers receive only their bounded packet and do not read the full
 root manual unless assigned the coordinator role.
@@ -223,11 +291,49 @@ protected boundaries, and acceptance conditions required by their task.
 ~~~markdown
 ## Task framing and scope control
 
-When the user introduces a new feature, initiative, or other task that requires
-material scope judgment, do not begin implementation or another state-changing
-task action immediately. Perform only the bounded, non-mutating instruction,
-specification, and evidence reading needed to make the work credible, then
-present a proposed execution plan and wait for explicit user approval.
+### New-chat first implementation request gate
+
+This gate applies only to the first implementation-bearing request in a new
+chat: a request that asks to modify code, task artifacts, or external state.
+
+Questions, explanations, read-only investigations, reviews, diagnoses, status
+checks, and Git-history inspection do not require a plan or user approval.
+Perform them directly and return the evidence-backed answer.
+
+If a read-only request reveals a possible change, report the findings without
+automatically turning the request into an implementation task. Propose an
+implementation plan only when the user has asked for a change.
+
+For a request that includes implementation, complete the planning phase before
+asking the user to approve implementation.
+
+The planning phase includes all bounded, non-mutating work needed to make the
+implementation plan concrete and evidence-based: reading applicable
+instructions, specifications, source, tests, documentation, logs,
+configuration, and Git history; tracing ownership and dependencies; running
+safe read-only checks; and diagnosing or reproducing the reported problem when
+needed.
+
+Do not propose a plan to perform this planning work. Perform it first. The plan
+presented to the user must report the established findings and describe the
+actual implementation: intended outcome, exact scope, relevant owners or files,
+required changes, protected behavior, verification, out-of-scope work, and only
+those decisions that genuinely cannot be resolved without the user.
+
+Before the user approves that implementation plan, do not modify code or task
+artifacts, mutate external state, or delegate implementation work.
+
+The gate does not repeat for every user message. Clarifications, answers to the
+agent's questions, additions within the proposed or approved scope, objections,
+status questions, and ordinary follow-up requests in the same chat are not a
+new-chat first request. A resume, lifecycle restart, context compaction, or
+automatic continuation of the same chat also does not reactivate the gate.
+
+After the first implementation plan has been approved, continue within its
+boundary without asking for a new plan on every message. For a later task in the
+same chat, require a new plan only when it introduces a new feature, initiative,
+or other material scope judgment. A plainly bounded, low-risk follow-up that
+requires no material scope choice may be executed without another plan.
 
 The plan states the intended outcome, in-scope work, out-of-scope work,
 execution steps, verification, and any unresolved decisions. Planning-only,
@@ -235,12 +341,12 @@ investigation-only, and review-only requests do not authorize implementation.
 Do not delegate execution work before the plan is approved unless the user
 explicitly requested that delegation as part of planning.
 
-Immediate execution is allowed when the user explicitly directs the agent to
-execute now or without a plan, when the user has already approved the plan, or
-when the task is plainly bounded, low-risk, and requires no material scope
-choice. A generic imperative to build a non-trivial feature is not by itself an
-immediate-execution waiver. Immediate execution does not bypass any applicable
-safety, specification, approval, or environment gate.
+After the new-chat first implementation gate has been satisfied, immediate
+execution is allowed when the user has approved the governing plan or when a
+subsequent task or follow-up is plainly bounded, low-risk, and requires no
+material scope choice. A generic imperative to build a non-trivial feature is
+not by itself an immediate-execution waiver. Immediate execution does not bypass
+any applicable safety, specification, approval, or environment gate.
 
 Once approved, the plan is the execution boundary. Make equivalent technical
 choices and perform directly necessary supporting edits and verification
@@ -252,6 +358,25 @@ If execution reveals a material dependency outside the approved boundary, stop
 the affected slice and return the exact dependency, the minimum proposed scope
 addition, expected cost, and risk. Wait for user approval before crossing that
 boundary. Continue independent in-scope work when safe.
+~~~
+
+## Global: current branch only
+
+~~~markdown
+## Current branch only
+
+Agents must work only in the Git branch that is checked out when the task begins.
+
+Do not create, switch, rename, or publish another branch, and do not create a Git
+worktree, unless the user explicitly asks for it. General approval to begin work,
+commit, or push is not permission to create a branch.
+
+A dirty or diverged working tree is a blocker to report, not a reason to create
+another branch.
+
+Work is not complete or accepted while its changes exist only in another branch
+or worktree. Task changes must be integrated into the operator-selected current
+branch.
 ~~~
 
 ## Project: Codex lifecycle restart adapter
@@ -347,7 +472,18 @@ effort, budget variance, and the next user-visible milestone.
 
 When a persistent goal is running and the current request advances that goal,
 the primary agent acts as `/root`: a context-preserving, coordinator-only
-agent. Before goal action, `/root` must read the sibling
+agent, unless the user explicitly requires the current chat to complete the
+goal without subagents, workers, or delegation.
+
+Under that explicit single-agent exception, the primary agent works as a normal
+single agent for the goal and must not spawn workers. It may inspect, implement,
+build, test, launch, and perform other in-scope goal actions itself. The
+exception lasts only while the explicit no-delegation instruction is active and
+does not weaken specification, safety, approval, destructive-action, framework,
+or product-authority boundaries.
+
+Without that explicit exception, `/root` remains coordinator-only. Before goal
+action, `/root` must read the sibling
 `root-orchestration.md` in the active user-level agent configuration directory
 and follow it completely.
 
@@ -356,8 +492,8 @@ classifies work, tracks support-only checkpoint depth and budget variance, and
 requires a delivery-and-cost reassessment before preparation or repair expands
 beyond the compact proportionality gate above.
 
-There is no direct-execution exception for small, urgent, mechanical, or
-supposedly faster work. Spawned workers receive finite packets and do not read
+There is no coordinator direct-execution exception merely for small, urgent,
+mechanical, or supposedly faster work. Spawned workers receive finite packets and do not read
 the full root manual unless assigned the coordinator role.
 
 A paused or blocked goal remains idle until explicitly resumed. A separate

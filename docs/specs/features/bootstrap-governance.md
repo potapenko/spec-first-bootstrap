@@ -5,7 +5,7 @@
 - Authority: Active
 - Stability: Accepted
 - Governs: Bootstrap governance, setup prompts, templates, and layer composition
-- Contract revision or epoch: `bootstrap.governance@3`
+- Contract revision or epoch: `bootstrap.governance@4`
 - Release baseline: `ba891245af7ffa6ffa5463f85af8045b3f6bc75c`
 
 ## Goal
@@ -18,6 +18,7 @@ layers.
 
 - specification-first product governance;
 - plan-first task framing and approved execution-scope control;
+- current-branch and worktree scope control;
 - persistent-goal coordinator-and-workers governance;
 - outcome and resource proportionality for implementation work;
 - optional browser QA;
@@ -36,12 +37,19 @@ layers.
 
 - The specification, agent-work, and browser-QA layers are
   independently selectable.
-- A new feature, initiative, or materially ambiguous task begins with a visible
-  execution plan and explicit user approval before implementation or other
-  state-changing task action.
-- A bounded, obvious, low-risk task may proceed immediately when it requires no
-  material scope judgment. Explicit user direction to execute immediately, or
-  approval of an existing plan, also authorizes immediate execution.
+- The first implementation-bearing request in a new chat begins with a visible,
+  evidence-based execution plan and explicit user approval before implementation
+  or another state-changing task action.
+- Questions, explanations, read-only investigations, reviews, diagnoses, status
+  checks, and Git-history inspection proceed without an implementation plan or
+  approval. A possible change found during read-only work is reported without
+  silently turning the task into implementation.
+- Planning performs the bounded non-mutating investigation required to make the
+  implementation plan concrete. It does not ask the user to approve a plan for
+  performing that planning work.
+- The first-request gate runs once per chat. Later new initiatives or tasks that
+  require material scope judgment receive a new plan; plainly bounded low-risk
+  follow-ups without material scope choice may proceed directly.
 - An approved plan becomes the execution boundary. Agents may make equivalent
   implementation choices and perform the verification required by that plan,
   but they do not add adjacent features, cleanup, refactors, tooling, or other
@@ -49,6 +57,20 @@ layers.
 - A newly discovered material dependency outside the approved boundary is
   returned as a minimal proposed plan amendment for user approval. Independent
   in-scope work may continue when safe.
+- Agents work only in the Git branch selected when the task begins. They do not
+  create, switch, rename, or publish another branch or create a worktree unless
+  the user explicitly requests it; commit or push permission alone does not
+  authorize branch creation.
+- A dirty or diverged worktree is reported as a blocker rather than bypassed by
+  moving work to another branch or worktree. Work is not complete while its
+  changes exist only outside the operator-selected branch.
+- A persistent goal remains coordinator-and-workers work by default. When the
+  user explicitly requires the current chat to complete that goal without
+  subagents, workers, or delegation, the primary agent instead works as a
+  normal single agent and may perform all in-scope goal actions itself.
+- The explicit single-agent exception lasts only while the no-delegation
+  instruction is active and never weakens specification, safety, approval,
+  destructive-action, framework, or product-authority boundaries.
 - Project setup changes only the named repository. Global setup changes only
   the explicitly selected user-level agent configuration.
 - Installers resolve the active instruction chain, including overrides and
@@ -95,9 +117,13 @@ layers.
   specification, and evidence reading needed to make the plan credible. It
   does not authorize edits, state-changing runtime actions, external writes,
   or execution delegation.
+- Read-only work never consumes the first implementation-request gate and never
+  authorizes implementation merely because it discovers a possible change.
 - Silence, a generic request to create a non-trivial feature, or an agent's
   belief that extra work would be beneficial does not approve a plan or expand
   its scope.
+- General approval to implement, commit, or push is not permission to create,
+  switch, rename, or publish a branch or create a worktree.
 - Necessary supporting edits and verification named in the approved plan, or
   unavoidable to complete its stated steps, remain in scope only when they do
   not change user-visible behavior or a protected adjacent contract beyond the
@@ -114,6 +140,8 @@ layers.
 
 - If the active instruction entry point or scope is ambiguous, stop before
   writing.
+- If the selected branch is dirty or diverged before implementation, report the
+  exact state and stop instead of creating or switching branches to bypass it.
 - If material scope judgment is required before an execution plan can be
   stated, ask the user the smallest necessary question instead of beginning
   implementation.
@@ -136,6 +164,8 @@ layers.
 ## Route / state / data implications
 
 - Compact gates live in the active project or global instruction chain.
+- The operator-selected branch is the task's Git integration boundary until the
+  user explicitly selects another branch or worktree.
 - The accepted execution plan is the active task-scope envelope until the user
   approves an amendment or replaces the task.
 - Full governance remains conditionally loaded from stable documented paths.
@@ -163,7 +193,9 @@ layers.
 - consistency checks for outcome-first progress, proportional review, economic
   stop conditions, and portable model-neutral wording;
 - consistency checks for plan-first task framing, explicit immediate-execution
-  exceptions, and approved-scope enforcement on project and global surfaces;
+  boundaries, read-only handling, current-branch enforcement, the explicit
+  single-agent exception, and approved-scope enforcement on project and global
+  surfaces;
 - `git diff --check` and changed-scope review.
 
 ## Unknowns requiring confirmation

@@ -14,9 +14,10 @@ two, or all three.
 ## Agent work governance
 
 [`agent-governance/`](agent-governance/) contains the installer-facing
-sources for plan-first task framing, approved-scope execution, implementation
-economics, and coordinator-and-workers architecture. Start with its README
-before opening the individual contracts.
+sources for current-branch discipline, implementation-request planning,
+approved-scope execution, implementation economics, coordinator-and-workers
+architecture, and the explicit no-delegation single-agent exception. Start with
+its README before opening the individual contracts.
 
 ## Optional browser QA
 

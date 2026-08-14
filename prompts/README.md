@@ -12,9 +12,10 @@ Recommended for most users:
 
 1. [`setup-project-spec-first.md`](setup-project-spec-first.md) installs the
    specification and product-truth layer in the current project.
-2. [`setup-project-agents.md`](setup-project-agents.md) installs plan-first task
-   framing, approved-scope control, outcome/resource proportionality, and
-   coordinator-and-workers rules for persistent goals in the current project.
+2. [`setup-project-agents.md`](setup-project-agents.md) installs current-branch
+   discipline, implementation-request planning, approved-scope control,
+   outcome/resource proportionality, coordinator-and-workers rules for
+   persistent goals, and the explicit no-delegation single-agent exception.
 3. [`optional-web-qa.md`](optional-web-qa.md) installs optional browser QA in a
    web UI project.
 
@@ -27,8 +28,8 @@ or all three. When all three are wanted, the listed order is recommended.
 Advanced global setup:
 
 1. [`setup-global-spec-first.md`](setup-global-spec-first.md)
-2. [`setup-global-agents.md`](setup-global-agents.md) installs the same
-   plan-first and scope-controlled agent layer in the active user-level
+2. [`setup-global-agents.md`](setup-global-agents.md) installs the same current-
+   branch, plan-first, scope-controlled agent layer in the active user-level
    instruction chain.
 3. [`setup-global-browser-qa.md`](setup-global-browser-qa.md)
 

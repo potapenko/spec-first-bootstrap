@@ -2,10 +2,10 @@
 
 Use https://github.com/potapenko/spec-first-bootstrap as the canonical source.
 
-Set up plan-first task framing, strict execution-scope control, implementation
-economics, and the coordinator-and-workers architecture inside the current
-project only. Do not modify the user's global Codex, Claude, or other agent
-configuration.
+Set up current-branch discipline, plan-first task framing, strict execution-
+scope control, implementation economics, and the coordinator-and-workers
+architecture inside the current project only. Do not modify the user's global
+Codex, Claude, or other agent configuration.
 
 This is an instruction and documentation setup task. Do not create, resume,
 pause, block, or complete a persistent goal. Do not change product code.
@@ -18,6 +18,8 @@ interoperate with either layer when it is already present.
 
 Read completely from the bootstrap repository:
 
+- the Project: current branch only section in
+  `docs/agent-governance/agents-sections.md`;
 - the Project: task framing and scope control section in
   `docs/agent-governance/agents-sections.md`;
 - `docs/agent-governance/root-orchestration.md`;
@@ -33,8 +35,8 @@ Preserve unrelated content.
 
 ## Install
 
-1. Merge the compact Project: task framing and scope control section into the
-   existing project-root instruction file.
+1. Merge the compact Project: current branch only and Project: task framing and
+   scope control sections into the existing project-root instruction file.
 2. Install the full root contract as
    `docs/agent/root-orchestration.md`.
 3. Merge the compact Project: outcome and resource proportionality and Project:
@@ -60,18 +62,36 @@ Use `apply_patch` for edits.
 
 The resulting project must preserve these rules:
 
-- new features, initiatives, and materially ambiguous tasks present a bounded
-  execution plan and wait for explicit user approval before implementation;
+- the first implementation-bearing request presents a bounded execution plan
+  and waits for explicit user approval before implementation; later new
+  features, initiatives, and tasks with material scope judgment do the same;
+- questions, explanations, read-only investigations, reviews, diagnoses, status
+  checks, and Git-history inspection proceed directly and do not consume the
+  first implementation-request gate;
+- planning performs the bounded non-mutating investigation needed to produce a
+  concrete implementation plan instead of asking approval for a plan whose
+  output would merely be another plan;
 - the plan names the outcome, in-scope and out-of-scope work, steps,
   verification, and unresolved decisions;
-- explicit immediate-execution direction, an approved plan, and plainly
-  bounded low-risk work without material scope judgment may proceed directly;
+- after the first implementation-request gate is satisfied, an approved plan
+  and plainly bounded low-risk follow-up work without material scope judgment
+  may proceed directly;
 - the approved plan remains the execution boundary, and material additions are
   returned as minimal proposed amendments rather than performed silently;
+- agents stay in the branch selected when the task begins and do not create,
+  switch, rename, or publish another branch or create a worktree without an
+  explicit user request; commit or push permission alone is insufficient;
+- dirty or diverged worktree state is reported as a blocker rather than bypassed
+  through another branch or worktree;
 - `/root` is coordinator-only when a running persistent goal is being
   advanced;
-- no small-task exception permits `/root` to implement, inspect broadly,
-  build, test, run, browse, or perform visual QA itself;
+- when the user explicitly requires the current chat to complete a persistent
+  goal without subagents, workers, or delegation, the primary agent works as a
+  normal single agent and performs in-scope goal work itself without weakening
+  any other governing boundary;
+- absent that explicit no-delegation instruction, no small-task exception
+  permits `/root` to implement, inspect broadly, build, test, run, browse, or
+  perform visual QA itself;
 - ordinary work remains single-agent when no persistent goal is active;
 - ordinary implementation and persistent goals measure progress by concrete
   release-path capability and separate it from supporting work;
@@ -108,9 +128,11 @@ and no installation or modification of the specification or browser-QA layers.
 
 Also verify that the merged gate is active rather than shadowed, stays within
 the configured instruction-size limit, and that no lifecycle hook changed
-without explicit adapter scope. Verify that planning does not mutate task
-state, every immediate-execution exception is explicit and bounded, and the
-approved-plan boundary rejects unapproved adjacent work.
+without explicit adapter scope. Verify that read-only work does not require an
+implementation plan, planning does not mutate task state, the current-branch
+boundary is active, the single-agent exception requires an explicit no-
+delegation instruction, and the approved-plan boundary rejects unapproved
+adjacent work.
 
 Follow the project's checkpoint policy and report changed paths, coexistence
 with any already installed layers, verification, and exact residuals.
