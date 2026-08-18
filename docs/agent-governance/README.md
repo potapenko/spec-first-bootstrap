@@ -45,8 +45,9 @@ two, or all three in either scope.
   work pause at an approved execution plan and stay inside it, while questions
   and read-only work proceed directly.
 - Install the current-branch gate with the agent layer so branch or worktree
-  changes require an explicit user request and dirty or diverged state is not
-  bypassed by moving work elsewhere.
+  changes require an explicit user request, required plans declare the
+  task-owned write set, only overlapping existing changes block editing, and
+  non-overlapping changes stay untouched and outside task commits.
 - Install the compact outcome/resource gate with the agent-work layer so
   ordinary implementation and orchestrated goals share the same release-path
   progress measure and economic stop conditions.

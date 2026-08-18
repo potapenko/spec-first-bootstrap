@@ -5,7 +5,7 @@
 - Authority: Active
 - Stability: Accepted
 - Governs: Bootstrap governance, setup prompts, templates, and layer composition
-- Contract revision or epoch: `bootstrap.governance@4`
+- Contract revision or epoch: `bootstrap.governance@5`
 - Release baseline: `ba891245af7ffa6ffa5463f85af8045b3f6bc75c`
 
 ## Goal
@@ -61,9 +61,13 @@ layers.
   create, switch, rename, or publish another branch or create a worktree unless
   the user explicitly requests it; commit or push permission alone does not
   authorize branch creation.
-- A dirty or diverged worktree is reported as a blocker rather than bypassed by
-  moving work to another branch or worktree. Work is not complete while its
-  changes exist only outside the operator-selected branch.
+- Before editing, agents declare the task-owned write set in the plan when one
+  is required. Existing changes block implementation only where they overlap
+  the planned edits. Non-overlapping changes remain untouched and are
+  excluded from staging and commits.
+- Worktree state is never bypassed by moving work to another branch or
+  worktree. Work is not complete while its changes exist only outside the
+  operator-selected branch.
 - A persistent goal remains coordinator-and-workers work by default. When the
   user explicitly requires the current chat to complete that goal without
   subagents, workers, or delegation, the primary agent instead works as a
@@ -124,6 +128,11 @@ layers.
   its scope.
 - General approval to implement, commit, or push is not permission to create,
   switch, rename, or publish a branch or create a worktree.
+- Repository-wide dirty state is not an implementation eligibility gate.
+  Existing staged, unstaged, or untracked changes block only when their paths
+  overlap the task-owned write set.
+- Non-overlapping existing changes are preserved and excluded from task staging
+  and commits.
 - Necessary supporting edits and verification named in the approved plan, or
   unavoidable to complete its stated steps, remain in scope only when they do
   not change user-visible behavior or a protected adjacent contract beyond the
@@ -140,8 +149,11 @@ layers.
 
 - If the active instruction entry point or scope is ambiguous, stop before
   writing.
-- If the selected branch is dirty or diverged before implementation, report the
-  exact state and stop instead of creating or switching branches to bypass it.
+- If an existing change overlaps the task-owned write set, report the exact
+  paths and stop before editing them. Do not create or switch branches or
+  worktrees to bypass the conflict.
+- If existing changes do not overlap the task-owned write set, continue while
+  leaving them untouched and excluding them from staging and commits.
 - If material scope judgment is required before an execution plan can be
   stated, ask the user the smallest necessary question instead of beginning
   implementation.
@@ -166,6 +178,8 @@ layers.
 - Compact gates live in the active project or global instruction chain.
 - The operator-selected branch is the task's Git integration boundary until the
   user explicitly selects another branch or worktree.
+- The task-owned write set is the file-level ownership boundary used for
+  pre-edit conflict checks and scoped staging.
 - The accepted execution plan is the active task-scope envelope until the user
   approves an amendment or replaces the task.
 - Full governance remains conditionally loaded from stable documented paths.
@@ -193,7 +207,8 @@ layers.
 - consistency checks for outcome-first progress, proportional review, economic
   stop conditions, and portable model-neutral wording;
 - consistency checks for plan-first task framing, explicit immediate-execution
-  boundaries, read-only handling, current-branch enforcement, the explicit
+  boundaries, read-only handling, current-branch enforcement, task-owned
+  write-set conflict handling, unrelated-change preservation, the explicit
   single-agent exception, and approved-scope enforcement on project and global
   surfaces;
 - `git diff --check` and changed-scope review.

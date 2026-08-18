@@ -79,7 +79,10 @@ branch, require a visible approved execution plan for the first implementation-
 bearing request and later tasks with material scope judgment, let questions and
 read-only work proceed directly, perform planning before presenting the plan,
 treat the approved plan as the execution boundary, and return material additions
-as minimal proposed amendments. It must also preserve an explicit single-agent
+as minimal proposed amendments. A required plan must declare the
+task-owned write set before editing; existing changes block only where their paths overlap that
+set, while non-overlapping changes remain untouched and are
+excluded from staging and commits. It must also preserve an explicit single-agent
 exception when the user requires a persistent goal to proceed without subagents,
 workers, or delegation, while retaining coordinator-only `/root` otherwise and
 without weakening other governing boundaries. It must also preserve
@@ -108,9 +111,11 @@ layers.
 Also verify that an override does not shadow the gate and that no lifecycle
 hook changed without explicit adapter scope. Verify that read-only work does not
 require an implementation plan, planning does not mutate task state, the
-current-branch boundary is active, the single-agent exception requires an
-explicit no-delegation instruction, and the approved-plan boundary rejects
-unapproved adjacent work.
+current-branch boundary is active, required plans declare the task-owned write
+set, only overlapping changes block editing, non-overlapping changes stay
+outside staging and commits, the single-agent exception requires an explicit
+no-delegation instruction, and the approved-plan boundary rejects unapproved
+adjacent work.
 
 Report the detected environment, exact paths, coexistence with any already
 installed layers, permission used, verification, and residuals.

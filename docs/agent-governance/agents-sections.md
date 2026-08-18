@@ -16,8 +16,10 @@ Do not create, switch, rename, or publish another branch, and do not create a Gi
 worktree, unless the user explicitly asks for it. General approval to begin work,
 commit, or push is not permission to create a branch.
 
-A dirty or diverged working tree is a blocker to report, not a reason to create
-another branch.
+Before editing, declare the task-owned write set in the plan when one is
+required. Existing changes are blockers only where they overlap the planned
+edits. Leave all non-overlapping changes untouched and exclude them from staging
+and commits.
 
 Work is not complete or accepted while its changes exist only in another branch
 or worktree. Task changes must be integrated into the operator-selected current
@@ -371,8 +373,10 @@ Do not create, switch, rename, or publish another branch, and do not create a Gi
 worktree, unless the user explicitly asks for it. General approval to begin work,
 commit, or push is not permission to create a branch.
 
-A dirty or diverged working tree is a blocker to report, not a reason to create
-another branch.
+Before editing, declare the task-owned write set in the plan when one is
+required. Existing changes are blockers only where they overlap the planned
+edits. Leave all non-overlapping changes untouched and exclude them from staging
+and commits.
 
 Work is not complete or accepted while its changes exist only in another branch
 or worktree. Task changes must be integrated into the operator-selected current

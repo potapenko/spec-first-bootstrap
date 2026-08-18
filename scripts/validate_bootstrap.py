@@ -37,6 +37,9 @@ REQUIRED_TEXT = {
         "minimum proposed scope",
         "Current branch only",
         "commit, or push is not permission to create a branch",
+        "task-owned write set",
+        "Existing changes are blockers only where they overlap",
+        "exclude them from staging",
     ),
     "docs/spec-first-workflow.md": (
         "Mandatory Pre-Decision Start Order",
@@ -69,10 +72,25 @@ REQUIRED_TEXT = {
         "first implementation-bearing request",
         "single-agent exception",
         "immediate-execution waiver",
+        "task-owned write set",
+        "Existing changes are blockers only where they overlap",
+        "exclude them from staging",
+    ),
+    "docs/agent-governance/README.md": (
+        "task-owned write set",
+        "only overlapping existing changes block editing",
+        "outside task commits",
     ),
     "docs/specs/index.md": (
-        "bootstrap.governance@4",
+        "bootstrap.governance@5",
         "bootstrap.codex-lifecycle@1",
+        "2026-08-18-task-owned-worktree-state.md",
+    ),
+    "docs/specs/features/bootstrap-governance.md": (
+        "bootstrap.governance@5",
+        "task-owned write set",
+        "block implementation only where they overlap",
+        "excluded from staging and commits",
     ),
     "prompts/setup-project-agents.md": (
         "Project: outcome and resource proportionality",
@@ -83,6 +101,9 @@ REQUIRED_TEXT = {
         "single-agent exception",
         "risk-proportional review",
         "support-only implementation checkpoint",
+        "task-owned write set",
+        "changes block only where their paths overlap",
+        "excluded from staging and commits",
     ),
     "prompts/setup-global-agents.md": (
         "Global: outcome and resource proportionality",
@@ -93,10 +114,16 @@ REQUIRED_TEXT = {
         "single-agent exception",
         "default 60/25/15 planning",
         "risk-proportional review",
+        "task-owned write set",
+        "changes block only where their paths overlap",
+        "excluded from staging and commits",
     ),
 }
 
 FORBIDDEN_TEXT = {
+    "AGENTS.md": (
+        "A dirty or diverged working tree is a blocker",
+    ),
     "docs/agent-governance/root-orchestration.md": (
         "Every product delta must be covered by independent review",
         "Sol with high reasoning",
@@ -110,9 +137,15 @@ FORBIDDEN_TEXT = {
         "Computer Use Discovery And Startup",
         "Screenshot Capture Boundary",
         "@oai/sky",
+        "A dirty or diverged working tree is a blocker",
+    ),
+    "docs/specs/features/bootstrap-governance.md": (
+        "A dirty or diverged worktree is reported as a blocker",
+        "If the selected branch is dirty or diverged before implementation",
     ),
     "prompts/setup-project-agents.md": (
         "product changes receive independent review",
+        "dirty or diverged worktree state is reported as a blocker",
     ),
 }
 

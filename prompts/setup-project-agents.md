@@ -81,7 +81,10 @@ The resulting project must preserve these rules:
 - agents stay in the branch selected when the task begins and do not create,
   switch, rename, or publish another branch or create a worktree without an
   explicit user request; commit or push permission alone is insufficient;
-- dirty or diverged worktree state is reported as a blocker rather than bypassed
+- before editing, a required plan declares the task-owned write set; existing
+  changes block only where their paths overlap that set;
+- non-overlapping existing changes remain untouched and are
+  excluded from staging and commits; worktree conflicts are not bypassed
   through another branch or worktree;
 - `/root` is coordinator-only when a running persistent goal is being
   advanced;
@@ -130,9 +133,10 @@ Also verify that the merged gate is active rather than shadowed, stays within
 the configured instruction-size limit, and that no lifecycle hook changed
 without explicit adapter scope. Verify that read-only work does not require an
 implementation plan, planning does not mutate task state, the current-branch
-boundary is active, the single-agent exception requires an explicit no-
-delegation instruction, and the approved-plan boundary rejects unapproved
-adjacent work.
+boundary is active, required plans declare the task-owned write set, only
+overlapping changes block editing, non-overlapping changes stay outside staging
+and commits, the single-agent exception requires an explicit no-delegation
+instruction, and the approved-plan boundary rejects unapproved adjacent work.
 
 Follow the project's checkpoint policy and report changed paths, coexistence
 with any already installed layers, verification, and exact residuals.
