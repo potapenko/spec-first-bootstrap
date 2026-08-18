@@ -19,6 +19,14 @@ PROJECTS = {
         "target": "/Users/eugenepotapenko/Projects/potapenko-github/codex-switch",
         "specific": ("four commits ahead", "never push foreign local commits"),
     },
+    "phrases-extractor.md": {
+        "target": "/Users/eugenepotapenko/Projects/playphrase.me/phrases-extractor",
+        "specific": ("18 Markdown documents", "never push foreign local commits"),
+    },
+    "playphraseme-site.md": {
+        "target": "/Users/eugenepotapenko/Projects/playphrase.me/playphraseme-site",
+        "specific": ("90 Markdown documents", "no configured upstream"),
+    },
 }
 SHARED_GUARDS = (
     "checkpoint 0",

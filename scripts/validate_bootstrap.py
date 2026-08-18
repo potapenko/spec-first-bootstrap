@@ -103,6 +103,18 @@ REQUIRED_TEXT = {
         "3 documents or 12,000 source words",
         "Do not create JSON",
     ),
+    "prompts/project-migrations/phrases-extractor.md": (
+        "18 Markdown documents",
+        "23,180 words",
+        "never push foreign local commits",
+        "Do not create JSON",
+    ),
+    "prompts/project-migrations/playphraseme-site.md": (
+        "90 Markdown documents",
+        "138,717 words",
+        "no configured upstream",
+        "Do not create JSON",
+    ),
     "prompts/setup-project-spec-first.md": (
         "scripts/check_spec_markdown.py",
         "scripts/spec_migration.py",

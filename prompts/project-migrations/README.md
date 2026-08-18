@@ -12,6 +12,10 @@ project prompt. Do not run several project migrations in one task.
   package whose `tz-v5` meaning and accepted addenda must remain unchanged.
 - [CodexSwitch](codex-switch.md) — small corpus missing a Markdown root; current
   Git-ahead state requires a push-safety preflight.
+- [Phrases Extractor](phrases-extractor.md) — downstream Clojure pipeline with
+  a routed `docs/` contract set but no `docs/specs` root.
+- [Playphrase.me Site](playphraseme-site.md) — large site corpus with market,
+  operational, QA, and product documents requiring explicit separation.
 
 ## Operating boundary
 
