@@ -5,7 +5,9 @@
 - Authority: Active
 - Stability: Accepted
 - Governs: Bootstrap governance, setup prompts, templates, and layer composition
-- Contract revision or epoch: `bootstrap.governance@5`
+- Contract revision or epoch: `bootstrap.governance@6`
+- Clauses: `BOOTSTRAP.INSTALL`, `BOOTSTRAP.ROUTING`, `BOOTSTRAP.SCOPE`,
+  `BOOTSTRAP.RESTART`, `BOOTSTRAP.PROPORTIONALITY`
 - Release baseline: `ba891245af7ffa6ffa5463f85af8045b3f6bc75c`
 
 ## Goal
@@ -81,16 +83,31 @@ layers.
   size limits, before editing it.
 - Installers merge one compact routing gate and keep full governance outside
   automatically loaded instructions.
+- Specification and governance documentation uses hierarchical route manifests.
+  A node may be a contract leaf, a routing branch, or both. Router summaries
+  are non-normative and only select the next node.
+- Agents traverse from the root route, select task-relevant node IDs, resolve
+  explicit cross-domain dependencies, and read the smallest complete contract
+  closure instead of every sibling document.
+- A Route Receipt records the selection path, manifests, clause IDs, revisions,
+  dependencies, excluded siblings, and resolved context size before the Spec
+  Basis is formed.
+- Contracts and route manifests carry enforceable context budgets. Oversized
+  nodes are split by independently selectable responsibility rather than
+  silently raising the budget.
 - Product work uses a mandatory pre-decision specification gate before any
   project-specific conclusion, source inspection, runtime interpretation, or
   non-reading task action.
-- The pre-decision receipt names every governing document read completely and
-  separates specified expectation, protected behavior, established flow, and
-  evidence still needed.
+- The pre-decision receipt names every selected contract read completely and
+  separates routing provenance, specified expectation, protected behavior,
+  established flow, and evidence still needed.
 - If bounded discovery finds no governing specification, the agent records the
   absence and uses Discover instead of inferring intent from code or runtime.
 - Restart, resume, clear, and context-compaction recovery re-establishes
   authority from durable documents rather than chat memory.
+- Recovery restores the latest Route Receipt and pinned contract closure,
+  checks route and contract revisions for drift, and does not reload unselected
+  sibling contracts merely because context was compacted.
 - Installed agent governance measures progress first by concrete capability
   reachable from the product or release path. Supporting work is reported
   separately and never represented as delivered product functionality.
@@ -108,6 +125,10 @@ layers.
 ## Invariants
 
 - A specification edit never authorizes itself.
+- A router summary never defines intended behavior and cannot substitute for a
+  selected contract clause.
+- Complete applicable authority means the explicit selected contract closure,
+  not every document below the specification root.
 - Current code, tests, logs, runtime, screenshots, or chat memory never define
   intended behavior before the Spec Basis.
 - Existing project-specific safety, framework, build, test, database, storage,
@@ -183,6 +204,8 @@ layers.
 - The accepted execution plan is the active task-scope envelope until the user
   approves an amendment or replaces the task.
 - Full governance remains conditionally loaded from stable documented paths.
+- Route manifests and receipts are non-normative state; normative behavior
+  remains in versioned contract leaves with stable clause IDs.
 - Semantic contract changes advance the affected revision or epoch.
 - Long-running product packets pin the governing clauses and epoch.
 - Restart-safe goal state records the current milestone, work classification,
@@ -201,6 +224,9 @@ layers.
 ## Verification mapping
 
 - local Markdown-link validation;
+- route JSON, node, dependency, clause, cycle, and context-budget validation;
+- resolver receipts for representative governance and lifecycle profiles;
+- unit fixtures for leaf, branch, hybrid, dependency, ambiguity, and failure cases;
 - JSON validation for hook templates;
 - lifecycle adapter fixture tests;
 - consistency search for pre-decision and restart gates;

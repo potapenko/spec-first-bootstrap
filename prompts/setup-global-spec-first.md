@@ -27,26 +27,31 @@ configuration while inspecting the setup.
 
 ## Canonical source
 
-Read completely:
+Resolve and read:
 
 - `docs/agent-governance/README.md`;
-- `docs/agent-governance/product-truth-governance.md`;
+- `docs/agent-governance/product-truth-governance.md` and the applicable
+  closure from `docs/agent-governance/product-truth/route.json`;
 - the Global: product specifications section in
   `docs/agent-governance/agents-sections.md`.
 
 ## Install
 
-1. Install the full product-truth document beside the active user-level
-   instruction entry point as `product-truth-governance.md`.
-2. Merge the compact global product-specification section into the existing
+1. Install the compact product-truth router beside the active user-level
+   instruction entry point as `product-truth-governance.md`, with its route
+   manifest and leaves in a sibling `product-truth/` directory.
+2. Install `scripts/spec_route.py` beside the routed package using a stable path
+   appropriate to the detected agent environment, and adapt the router's
+   example command to that path.
+3. Merge the compact global product-specification section into the existing
    global instruction file. Never replace the complete file.
-3. Reconcile or replace only an older equivalent section; do not append a
+4. Reconcile or replace only an older equivalent section; do not append a
    contradictory duplicate.
-4. Keep project-specific framework, product, safety, build, test, database,
+5. Keep project-specific framework, product, safety, build, test, database,
    storage, Git, and release rules out of the global layer.
-5. Keep the full document conditionally loaded so ordinary workers receive
-   only their finite product contract and evidence packet.
-6. Do not install or change the optional Codex lifecycle adapter unless the
+6. Keep governance leaves conditionally routed so ordinary workers receive
+   only their finite Route Receipt, product contract closure, and evidence packet.
+7. Do not install or change the optional Codex lifecycle adapter unless the
    user explicitly requested it. Preserve an existing adapter and reconcile its
    compact restart wording with the installed product gate.
 
@@ -54,7 +59,8 @@ Use `apply_patch` for edits.
 
 ## Verification
 
-Verify that the full document matches the canonical source, the compact gate
+Verify that the routed governance package matches the canonical source, the
+resolver validates it and emits a representative receipt, the compact gate
 appears once, existing global instructions remain intact, instruction-size
 limits are respected, Markdown and whitespace pass, no project repository
 changed, and no persistent-goal agent or browser-QA layer was installed or

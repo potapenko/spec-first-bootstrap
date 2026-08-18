@@ -108,22 +108,23 @@ boundary. Continue independent in-scope work when safe.
 For work that investigates, defines, changes, implements, or verifies product
 behavior, UX, state, data contracts, compatibility, or product QA, the primary
 single agent or coordinating `/root` must read
-`docs/agent/product-truth-governance.md` before product action.
+`docs/agent/product-truth-governance.md`, select the applicable profile from its
+route manifest, and read the resolved governance closure before product action.
 
 Before any project-specific answer, diagnosis, hypothesis, investigation,
 recommendation, decision, plan, source inspection, non-reading task tool,
 runtime action, implementation, or verification:
 
 1. re-read every applicable instruction layer;
-2. start at the specification README and index;
-3. read the complete governing set routed by that index, including every
-   directly relevant plan, registry, runbook, operator handoff, accepted
-   reusable baseline, design contract, QA workflow, and release record;
-4. classify the change mode and establish the initial Contract Change Envelope;
-5. state the exact documents read completely and a provisional Spec Basis that
-   separates specified expectation, protected behavior, established flow, and
-   evidence still needed;
-6. explicitly record a missing governing specification and use Discover before
+2. start at the repository specification `route.json`;
+3. traverse matching branches, select the smallest governing node IDs, resolve
+   explicit dependencies, and read every contract in that closure completely;
+4. record a Route Receipt with manifests, clauses, revisions, dependencies,
+   excluded siblings, and resolved context size;
+5. classify the change mode, establish the Contract Change Envelope, and state
+   a provisional Spec Basis separating specified expectation, protected
+   behavior, established flow, and evidence still needed;
+6. explicitly record a missing or ambiguous route and use Discover before
    consulting implementation evidence.
 
 Until that gate is complete, do not inspect implementation sources, interpret
@@ -148,6 +149,10 @@ Ask the user only after evidence reconciliation leaves a material product fork,
 a protected cross-domain or compatibility change, or missing external
 authority. A semantic contract change advances its revision or epoch; affected
 stale worker packets must be revalidated or retired.
+
+Router summaries are non-normative. A node may be a leaf, branch, or both, and
+complete authority means the selected contract closure rather than every
+document under the specification root.
 ~~~
 
 ## Project: outcome and resource proportionality
@@ -253,22 +258,23 @@ For work that investigates, defines, changes, implements, or verifies product
 behavior, UX, state, data contracts, compatibility, or product QA, the primary
 single agent or coordinating `/root` must read the sibling
 `product-truth-governance.md` in the active user-level agent configuration
-directory before product action.
+directory, select the applicable routed profile, and read its resolved contract
+closure before product action.
 
 Before any project-specific answer, diagnosis, hypothesis, investigation,
 recommendation, decision, plan, source inspection, non-reading task tool,
 runtime action, implementation, or verification:
 
 1. re-read every applicable instruction layer;
-2. start at the repository specification README and index;
-3. read the complete governing set routed by that index, including every
-   directly relevant plan, registry, runbook, operator handoff, accepted
-   reusable baseline, design contract, QA workflow, and release record;
-4. classify the change mode and establish the initial Contract Change Envelope;
-5. state the exact documents read completely and a provisional Spec Basis that
-   separates specified expectation, protected behavior, established flow, and
-   evidence still needed;
-6. explicitly record a missing governing specification and use Discover before
+2. start at the repository specification `route.json`;
+3. traverse matching branches, select the smallest governing node IDs, resolve
+   explicit dependencies, and read every contract in that closure completely;
+4. record a Route Receipt with manifests, clauses, revisions, dependencies,
+   excluded siblings, and resolved context size;
+5. classify the change mode, establish the Contract Change Envelope, and state
+   a provisional Spec Basis separating specified expectation, protected
+   behavior, established flow, and evidence still needed;
+6. explicitly record a missing or ambiguous route and use Discover before
    consulting implementation evidence.
 
 Until that gate is complete, do not inspect implementation sources, interpret
@@ -284,8 +290,9 @@ release evidence set, classify discrepancies, and state the final reconciled
 basis before implementation. A spec edit cannot create its own authority.
 
 Workers without product-authority, reconciliation, or contract-review
-responsibility receive only the finite pinned clauses, evidence paths,
-protected boundaries, and acceptance conditions required by their task.
+responsibility receive only the finite Route Receipt, pinned contract closure,
+evidence paths, protected boundaries, and acceptance conditions required by
+their task. Router summaries cannot create product intent.
 ~~~
 
 ## Global: task framing and scope control
@@ -390,20 +397,20 @@ branch.
 
 When a trusted Codex lifecycle hook reports startup, resume, clear, context
 compaction, or a worker start, take no task action until the applicable
-instruction hierarchy and every action-specific governing document have been
-re-read.
+instruction hierarchy and current routed authority have been re-established.
 
 For a root or single-agent session, re-establish current goal state, governing
 plan or runbook, registry, Contract Change Envelope, specification index,
-governing clauses, contract epoch, accepted deltas, unresolved discrepancies,
-and next-action QA instructions as applicable. For a worker, read the finite
-packet and only the complete governing documents it names; do not reconstruct
-authority from the root conversation or read the root manual unless assigned
-the coordinator role.
+latest Route Receipt, selected manifests and contract closure, contract epoch,
+accepted deltas, unresolved discrepancies, and next-action QA instructions.
+Rerun route resolution to detect revision drift and do not load unselected
+siblings merely because context was compacted. A worker reads its finite packet
+and pinned routed closure; it does not reconstruct authority from the root
+conversation or read the root manual unless assigned the coordinator role.
 
-State the exact documents re-read in the next progress update. Chat summaries,
-memory, worker lists, old receipts, builds, tests, screenshots, and raw
-configuration never replace current governing documents.
+State the route and contracts re-read in the next progress update. Chat
+summaries, memory, worker lists, old receipts, builds, tests, screenshots, and
+raw configuration never replace current contracts.
 ~~~
 
 ## Global: Codex lifecycle restart adapter
@@ -413,20 +420,21 @@ configuration never replace current governing documents.
 
 When a trusted Codex lifecycle hook reports startup, resume, clear, context
 compaction, or a worker start, take no task action until the applicable global
-and project instruction hierarchy and every action-specific governing document
-have been re-read.
+and project instruction hierarchy and current routed authority have been
+re-established.
 
 For a root or single-agent session, re-establish current goal state, governing
 plan or runbook, registry, Contract Change Envelope, specification index,
-governing clauses, contract epoch, accepted deltas, unresolved discrepancies,
-and next-action QA instructions as applicable. For a worker, read the finite
-packet and only the complete governing documents it names; do not reconstruct
-authority from the root conversation or read the root manual unless assigned
-the coordinator role.
+latest Route Receipt, selected manifests and contract closure, contract epoch,
+accepted deltas, unresolved discrepancies, and next-action QA instructions.
+Rerun route resolution to detect revision drift and do not load unselected
+siblings merely because context was compacted. A worker reads its finite packet
+and pinned routed closure; it does not reconstruct authority from the root
+conversation or read the root manual unless assigned the coordinator role.
 
-State the exact documents re-read in the next progress update. Chat summaries,
-memory, worker lists, old receipts, builds, tests, screenshots, and raw
-configuration never replace current governing documents.
+State the route and contracts re-read in the next progress update. Chat
+summaries, memory, worker lists, old receipts, builds, tests, screenshots, and
+raw configuration never replace current contracts.
 ~~~
 
 ## Global: outcome and resource proportionality

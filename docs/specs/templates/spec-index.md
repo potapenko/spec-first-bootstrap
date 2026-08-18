@@ -1,11 +1,12 @@
 # Spec Index
 
-Use this file as the authority and stability registry for product contracts.
+Use this file as an optional human-readable view. The canonical routing and
+authority registry is `route.json`; keep this view consistent with it.
 
 ## Selection and precedence
 
-1. Read the smallest complete active contract set that governs the task and
-   every directly linked document required to decide it.
+1. Start at `route.json`, select the smallest applicable nodes, and resolve
+   their explicit contract dependency closure.
 2. Draft, Superseded, and Historical contracts are evidence only.
 3. A more specific contract wins only when this index or the contracts state
    explicit precedence.
@@ -27,13 +28,13 @@ Stability values: Evolving, Accepted, Released, Deprecated.
 Record cross-domain contracts, upstream product contracts, and the target
 contract that resolves each dependency.
 
-## Required reading graph
+## Resolved closure support
 
-Route each domain to the complete plans, registries, runbooks, operator
-handoffs, accepted reusable baselines, design contracts, QA workflows, and
-release records that must be read with its governing contract.
+Represent normative dependencies in `route.json` by node and clause ID. Use
+this table only for human explanation of plans, runbooks, handoffs, baselines,
+design contracts, QA workflows, and release records in the resolved closure.
 
-| Domain | Complete governing set |
+| Domain | Routed supporting leaves |
 | --- | --- |
 | <domain-id> | <direct links> |
 

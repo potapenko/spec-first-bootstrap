@@ -55,6 +55,8 @@ Use `apply_patch` for edits.
 - parse the resulting hook configuration;
 - run the lifecycle fixture tests before copying and test the installed script;
 - verify `startup`, `resume`, `clear`, `compact`, and `SubagentStart` routing;
+- verify root context restores the Route Receipt and detects revision drift
+  without requiring unselected sibling contracts;
 - verify the compact restart gate is active, not shadowed, and inside the
   configured instruction-size limit;
 - verify only one matching adapter covers the selected scope;

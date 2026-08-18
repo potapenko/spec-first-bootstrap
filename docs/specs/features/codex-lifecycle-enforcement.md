@@ -5,7 +5,9 @@
 - Authority: Active
 - Stability: Evolving
 - Governs: Optional Codex lifecycle hook adapter
-- Contract revision or epoch: `bootstrap.codex-lifecycle@1`
+- Contract revision or epoch: `bootstrap.codex-lifecycle@2`
+- Clauses: `CODEX.LIFECYCLE.ROOT`, `CODEX.LIFECYCLE.WORKER`,
+  `CODEX.LIFECYCLE.COMPACTION`, `CODEX.LIFECYCLE.INSTALL`
 - Release baseline: None
 
 ## Goal
@@ -33,12 +35,17 @@ agent re-establishes governing authority before continuing work.
 - `SessionStart` injects a root/single-agent pre-action checklist appropriate
   to its lifecycle source.
 - `SubagentStart` injects a worker-specific checklist that requires the finite
-  packet and only the governing documents named by that packet.
+  packet, Route Receipt, and only the routed contracts named by that packet.
 - Worker context does not instruct ordinary workers to read the complete root
-  manual or the complete product-governance document unless their role requires
-  it.
+  manual or unselected product-governance leaves unless their role requires it.
 - A compacted root session receives the restart context before the immediate
   continuation model request.
+- Root recovery restores the current Route Receipt and selected contract
+  closure, reruns resolution to detect revision drift, and traverses from the
+  root only when the task changed or the receipt is missing or ambiguous.
+- Worker recovery uses the finite packet's routed node IDs, clauses, and pinned
+  revisions. It does not load unrelated siblings or the complete governance
+  tree.
 - Existing hook sources are preserved. Equivalent hooks are reconciled rather
   than duplicated.
 - Setup reports the trust-review step required by Codex after adding or
@@ -52,6 +59,8 @@ agent re-establishes governing authority before continuing work.
   without an explicit user decision.
 - Hook output is concise, contains no secrets, and stays below its configured
   additional-context limit.
+- Hook output reminds the agent to verify route revisions but does not inject
+  complete route manifests or contracts itself.
 - Event-specific output uses the matching Codex hook event name.
 
 ## Edge cases and failure policy
@@ -86,6 +95,8 @@ agent re-establishes governing authority before continuing work.
 - malformed-input fallback;
 - JSON parsing of both templates;
 - checks for event-specific root and worker context.
+- checks that compaction restores Route Receipt/closure authority, requests
+  revision-drift validation, and excludes unrelated sibling contracts.
 
 ## Unknowns requiring confirmation
 

@@ -10,10 +10,10 @@ Use Discover mode. Record that reliable specs are missing or incomplete and
 establish a bounded Contract Change Envelope before inspecting source.
 Do not change implementation code during this discovery pass.
 
-Before source or runtime evidence, state the exact instruction, registry,
-contract, plan, runbook, design, QA, and release documents read completely and
-the provisional Spec Basis. If none govern the domain, record that absence
-explicitly; do not infer intent from the first implementation artifact found.
+Before source or runtime evidence, state the Route Receipt, selected contracts,
+linked plan/runbook/design/QA/release leaves, and provisional Spec Basis. If no
+node governs the domain, record that absence explicitly; do not infer intent
+from the first implementation artifact found.
 
 Analyze the smallest complete applicable evidence set:
 
@@ -26,10 +26,10 @@ Analyze the smallest complete applicable evidence set:
 
 Produce:
 
-1. a product-domain map;
+1. a hierarchical product-domain route with leaf, branch, or hybrid nodes;
 2. observed behavior separated from intended behavior;
 3. a spec backlog;
-4. authority and stability classifications;
+4. authority, stability, clause IDs, revisions, dependencies, and context budgets;
 5. the top product areas that need first-pass specs;
 6. unknowns, conflicts, and assumptions requiring confirmation;
 7. legacy-released behavior that must be protected until reconciled.

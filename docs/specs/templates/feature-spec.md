@@ -7,6 +7,8 @@
 - Governs: <behavioral surface>
 - Contract revision or epoch: <revision>
 - Release baseline: None | <release identifier>
+- Stable clause IDs: <DOMAIN.CLAUSE identifiers registered in route.json>
+- Context budget words: <maximum before this contract must be split>
 
 ## Goal
 
@@ -74,6 +76,9 @@ must be read before deciding work in this domain.
 
 - linked document one
 - linked document two
+
+Register normative cross-domain dependencies in `route.json` with exact node
+and clause IDs. Do not rely on this prose list as the only dependency edge.
 
 ## Verification mapping
 

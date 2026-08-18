@@ -254,9 +254,9 @@ Before every spawn, `/root` must verify that:
    specification-discovery gate and the packet contains the exact Spec Basis
    instead of asking the worker to infer it from chat, source, logs, or a broad
    goal;
-4. every directly relevant linked plan, registry, runbook, operator handoff,
-   accepted reusable baseline, and QA workflow has been read and either pinned
-   into the product packet or explicitly dispositioned as inapplicable;
+4. the selected route closure includes every directly relevant plan, registry,
+   runbook, operator handoff, accepted reusable baseline, and QA workflow, with
+   unselected siblings explicitly excluded or dispositioned as inapplicable;
 5. the worker can act without inventing missing authority;
 6. writable paths and owners are explicit;
 7. concurrent packets do not overlap in ownership;
@@ -289,9 +289,9 @@ Every worker packet must contain:
 - the current support-only checkpoint depth in the milestone;
 - the cheapest safe alternative and whether a bounded user-assisted check is
   available;
-- for product work, a `spec_basis` section naming the specification index,
-  complete governing documents read, directly relevant linked documents,
-  contract revisions and clauses, specified expectation, protected behavior,
+- for product work, a `spec_basis` section containing the Route Receipt,
+  selected manifests, complete contract closure, revisions and clauses,
+  explicitly excluded siblings, specified expectation, protected behavior,
   established operational flow, and evidence assigned to the worker;
 - the accepted change mode and Contract Change Envelope when product behavior
   or another protected contract is involved;
@@ -324,11 +324,11 @@ exact dependency. It does not silently expand its packet.
 
 Workers must:
 
-- for product work, read the packet's exact Spec Basis and every governing
-  document it names before source inspection, runtime interpretation,
-  implementation, or verification; if a named document is unavailable, stop
-  with that exact dependency instead of reconstructing intent from chat or
-  code;
+- for product work, read the packet's exact Spec Basis and every contract in
+  its pinned routed closure before source inspection, runtime interpretation,
+  implementation, or verification; if a routed contract is unavailable or its
+  revision drifted, stop with that exact dependency instead of reconstructing
+  intent from chat or code;
 - stay inside their packet;
 - preserve unrelated work;
 - use accepted authority and existing canonical owners;
@@ -600,18 +600,21 @@ When the user pauses a goal:
 On resume or context compaction, `/root` first re-reads:
 
 - applicable global and project instructions;
-- the applicable product-truth or specification-governance document when that
-  layer is installed and the goal contains product work;
+- the compact product-truth router and applicable routed governance leaves when
+  that layer is installed and the goal contains product work;
 - the persistent goal;
 - the governing plan or runbook;
 - the single registry;
-- the specification index, exact governing clauses, current contract epochs,
-  accepted Contract Deltas, and unresolved discrepancies for product work;
+- the latest Route Receipt, selected manifests, pinned contract closure,
+  current epochs, accepted Contract Deltas, and unresolved discrepancies for
+  product work;
 - only the action-specific instructions needed for the next packet.
 
 Then `/root`:
 
 - confirms goal state;
+- reruns route resolution and revalidates or retires work affected by revision
+  drift without loading unselected sibling contracts;
 - reconciles stale running work;
 - confirms real worker capacity;
 - dispatches only dependency-ready packets.

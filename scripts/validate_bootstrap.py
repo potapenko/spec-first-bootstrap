@@ -8,6 +8,8 @@ import re
 import sys
 from pathlib import Path
 
+from spec_route import RouteError, count_words, load_graph
+
 
 ROOT = Path(__file__).resolve().parents[1]
 MARKDOWN_LINK = re.compile(r"(?<!!)\[[^\]]+\]\(([^)]+)\)")
@@ -26,7 +28,9 @@ REQUIRED_TEXT = {
     "AGENTS.md": (
         "Mandatory pre-action specification gate",
         "Lifecycle restart gate",
-        "exact documents read completely",
+        "Route Receipt",
+        "selected contract",
+        "unselected siblings",
         "Outcome and resource proportionality",
         "60/25/15 planning target",
         "Task framing and scope control",
@@ -42,14 +46,15 @@ REQUIRED_TEXT = {
         "exclude them from staging",
     ),
     "docs/spec-first-workflow.md": (
-        "Mandatory Pre-Decision Start Order",
-        "Documents read completely",
-        "Evidence still needed",
+        "Mandatory pre-decision order",
+        "Hierarchical routing",
+        "Route Receipt",
+        "smallest complete selected contract closure",
     ),
     "docs/agent-governance/product-truth-governance.md": (
-        "Pre-decision specification discovery",
-        "Restart and context compaction",
-        "concrete user capability reachable from the product",
+        "product-truth/route.json",
+        "Completeness means the smallest complete selected contract closure",
+        "context compaction",
     ),
     "docs/agent-governance/root-orchestration.md": (
         "Outcome and economic proportionality",
@@ -75,6 +80,7 @@ REQUIRED_TEXT = {
         "task-owned write set",
         "Existing changes are blockers only where they overlap",
         "exclude them from staging",
+        "Route Receipt",
     ),
     "docs/agent-governance/README.md": (
         "task-owned write set",
@@ -82,12 +88,14 @@ REQUIRED_TEXT = {
         "outside task commits",
     ),
     "docs/specs/index.md": (
-        "bootstrap.governance@5",
-        "bootstrap.codex-lifecycle@1",
+        "bootstrap.governance@6",
+        "bootstrap.codex-lifecycle@2",
         "2026-08-18-task-owned-worktree-state.md",
+        "2026-08-18-hierarchical-spec-routing.md",
     ),
     "docs/specs/features/bootstrap-governance.md": (
-        "bootstrap.governance@5",
+        "bootstrap.governance@6",
+        "Route Receipt",
         "task-owned write set",
         "block implementation only where they overlap",
         "excluded from staging and commits",
@@ -104,6 +112,7 @@ REQUIRED_TEXT = {
         "task-owned write set",
         "changes block only where their paths overlap",
         "excluded from staging and commits",
+        "Route Receipt",
     ),
     "prompts/setup-global-agents.md": (
         "Global: outcome and resource proportionality",
@@ -117,6 +126,7 @@ REQUIRED_TEXT = {
         "task-owned write set",
         "changes block only where their paths overlap",
         "excluded from staging and commits",
+        "Route Receipt",
     ),
 }
 
@@ -275,6 +285,73 @@ def check_hook_templates(errors: list[str]) -> None:
             errors.append(f"{path.relative_to(ROOT)}: missing lifecycle event")
 
 
+def check_spec_routes(errors: list[str]) -> None:
+    route_paths = (
+        ROOT / "docs/specs/route.json",
+        ROOT / "docs/agent-governance/product-truth/route.json",
+    )
+    graphs = {}
+    for path in route_paths:
+        try:
+            graphs[path] = load_graph(path)
+        except (OSError, RouteError) as error:
+            errors.append(f"{path.relative_to(ROOT)}: {error}")
+
+    template = ROOT / "docs/specs/templates/route.json"
+    try:
+        payload = json.loads(template.read_text(encoding="utf-8"))
+        if payload.get("schema_version") != 1:
+            errors.append("docs/specs/templates/route.json: schema_version must be 1")
+    except (OSError, json.JSONDecodeError) as error:
+        errors.append(f"docs/specs/templates/route.json: invalid JSON: {error}")
+
+    governance_path = ROOT / "docs/agent-governance/product-truth/route.json"
+    governance = graphs.get(governance_path)
+    if governance:
+        for profile, budget in (("product-question", 1800), ("evolve", 3000)):
+            try:
+                selected = governance.select([], [profile])
+                closure = governance.resolve(selected)
+                words = sum(
+                    count_words(node.contract.path.read_text(encoding="utf-8"))
+                    for node in closure
+                    if node.contract
+                )
+                if words > budget:
+                    errors.append(
+                        f"{profile} governance closure exceeds {budget}-word "
+                        f"regression budget: {words}"
+                    )
+            except (OSError, RouteError) as error:
+                errors.append(f"{profile} profile cannot resolve: {error}")
+
+        registered = {
+            node.contract.path.resolve()
+            for node in governance.nodes.values()
+            if node.contract
+        }
+        leaf_dir = ROOT / "docs/agent-governance/product-truth"
+        for path in leaf_dir.glob("*.md"):
+            if path.resolve() not in registered:
+                errors.append(
+                    f"{path.relative_to(ROOT)}: governance leaf is not registered"
+                )
+
+    bootstrap_path = ROOT / "docs/specs/route.json"
+    bootstrap = graphs.get(bootstrap_path)
+    if bootstrap:
+        registered = {
+            node.contract.path.resolve()
+            for node in bootstrap.nodes.values()
+            if node.contract
+        }
+        for path in (ROOT / "docs/specs/features").glob("*.md"):
+            if path.resolve() not in registered:
+                errors.append(
+                    f"{path.relative_to(ROOT)}: Bootstrap contract is not registered"
+                )
+
+
 def main() -> int:
     errors: list[str] = []
     check_required_text(errors)
@@ -285,6 +362,7 @@ def main() -> int:
     check_current_branch_sections(errors)
     check_instruction_size(errors)
     check_hook_templates(errors)
+    check_spec_routes(errors)
 
     if errors:
         for error in errors:

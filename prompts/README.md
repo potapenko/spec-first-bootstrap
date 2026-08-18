@@ -69,3 +69,7 @@ and include trust and fixture-test verification.
   specification-first product work.
 - [`repair-spec-first-workflow.md`](repair-spec-first-workflow.md): repair a
   project whose specification workflow has drifted.
+
+The specification prompts install and maintain hierarchical `route.json`
+manifests. Agents select node IDs semantically, resolve dependencies
+mechanically, and read only the complete selected contract closure.

@@ -2,21 +2,21 @@ Before any project-specific product answer, diagnosis, hypothesis,
 investigation, recommendation, decision, plan, source inspection, non-reading
 task tool, runtime action, implementation, or verification:
 
-1. read every applicable global and project instruction file;
-2. read the installed product-truth governance document;
-3. start at the spec README and registry, then read completely the exact
-   governing clauses and every directly linked plan, registry, runbook,
-   operator handoff, accepted reusable baseline, design contract, QA workflow,
-   and release record needed to decide the task;
-4. classify the task as Restore, Reconcile, Evolve, Discover, or
+1. read applicable global and project instructions;
+2. read the installed compact product-truth router and select the task profile;
+3. start at `docs/specs/route.json`;
+4. traverse matching branches using their non-normative `summary`, `read_when`,
+   and `do_not_read_when` fields;
+5. select the smallest governing node IDs and resolve explicit dependencies;
+6. read every contract in that closure completely, without loading unselected
+   sibling branches;
+7. record a Route Receipt with manifests, nodes, clauses, revisions,
+   dependencies, supporting resources, exclusions, and resolved context words;
+8. classify the task as Restore, Reconcile, Evolve, Discover, or
    Behavior-neutral;
-5. establish a Contract Change Envelope with authorized and protected domains,
-   evidence requirements, allowed spec delta, and contract revision;
-6. state the exact documents read and a provisional Spec Basis separating
-   specified expectation, protected behavior, established flow, and evidence
-   still needed;
-7. if no governing specification exists, record that fact and use Discover
-   before consulting implementation evidence.
+9. establish the Contract Change Envelope and provisional Spec Basis;
+10. record a missing or ambiguous route and use Discover before implementation
+    evidence.
 
 Only after that gate, inspect the smallest complete applicable source, design,
 QA, runtime, history, upstream, and release evidence set. Until then do not
@@ -30,16 +30,20 @@ authority blocker.
 
 Only after reconciliation:
 
-1. accept any legitimate Contract Delta and update the contract first when
-   meaning changes;
-2. state the final pinned Spec Basis;
-3. implement only the authorized slice;
-4. update QA action-state-result mappings;
-5. run project verification and applicable runtime or visual checks;
-6. preserve the result under the project's checkpoint policy.
+1. accept any legitimate Contract Delta and update the selected contract first
+   when meaning changes;
+2. advance affected route/contract revisions;
+3. state the final pinned Spec Basis;
+4. implement only the authorized slice;
+5. update QA action-state-result mappings;
+6. run project verification and applicable runtime or visual checks;
+7. preserve the result under the project's checkpoint policy.
 
-A specification edit needs external authority; it cannot authorize itself.
+A router summary and a specification edit cannot authorize product behavior.
 Planning-only and investigation-only requests do not authorize implementation.
-Do not rely on ad-hoc chat memory as product authority.
-After startup, resume, clear, or context compaction, repeat the applicable
-reading gate before continuing the decision chain.
+
+After startup, resume, clear, or context compaction, restore the latest Route
+Receipt, rerun resolution to detect revision drift, reread the selected closure,
+and traverse from the root only when the task changed or the prior route is
+missing or ambiguous. Do not reload unselected siblings merely because context
+was compacted.

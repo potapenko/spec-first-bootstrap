@@ -131,9 +131,11 @@ effort, budget variance, and the next user-visible milestone.
 
 ## Product Truth Gate
 
-Follow `docs/spec-first-workflow.md` for the compact workflow. For product-truth
-or installer-governance changes, also read
-`docs/agent-governance/product-truth-governance.md`.
+Follow `docs/spec-first-workflow.md` for the compact workflow. For covered
+product work, start at the compact router
+`docs/agent-governance/product-truth-governance.md`, select the applicable
+profile from `docs/agent-governance/product-truth/route.json`, and read its
+resolved contract closure.
 
 The gate applies to every product feature, behavioral bug or investigation,
 product-behavior plan, UX/state/data-contract change, migration, product QA
@@ -146,33 +148,32 @@ recommendation, interpretation, decision, plan, source inspection, non-reading
 task tool, implementation, runtime action, or verification:
 
 1. Re-read every applicable global and project instruction layer.
-2. Read `docs/specs/README.md`, `docs/specs/index.md`, and the complete directly
-   applicable governing set routed by the index, including linked plans,
-   registries, runbooks, operator handoffs, accepted reusable baselines, design
-   contracts, and QA workflows.
-3. Classify work as Restore, Reconcile, Evolve, Discover, or Behavior-neutral.
-4. Establish a Contract Change Envelope with authorized and protected domains,
-   evidence requirements, allowed spec delta, release baseline, and contract
-   revision.
-5. State the exact documents read completely and provide a provisional Spec
-   Basis that separates specified expectation, protected behavior, established
-   flow, and evidence still needed.
-6. If no governing specification exists after bounded discovery, record that
-   absence explicitly and use Discover mode before consulting other evidence.
-7. Only after that basis exists, inspect the smallest complete applicable
-   source, design, QA, runtime,
-   history, upstream, and release evidence set.
-8. Classify every material discrepancy.
-9. Accept only a legitimate Contract Delta and update the spec first when
-   meaning changes.
-10. State the final reconciled Spec Basis with a pinned revision or epoch.
-11. Only then implement and verify the authorized slice.
+2. Start at `docs/specs/route.json`. Traverse only matching branches using
+   their non-normative summaries and selection conditions.
+3. Select the smallest governing node IDs and resolve their explicit dependency
+   closure. Read every contract in that closure completely; do not load sibling
+   branches merely because they share a parent.
+4. Record a Route Receipt with the traversal path, manifests, selected clauses,
+   revisions, dependencies, excluded siblings, and resolved context size.
+5. Classify work as Restore, Reconcile, Evolve, Discover, or Behavior-neutral
+   and establish the Contract Change Envelope.
+6. State a provisional Spec Basis separating specified expectation, protected
+   behavior, established flow, and evidence still needed. Record a missing or
+   ambiguous route explicitly and use Discover before implementation evidence.
+7. Only then inspect the smallest complete applicable source, design, QA,
+   runtime, history, upstream, and release evidence set.
+8. Classify discrepancies, accept only a legitimate Contract Delta, pin the
+   final reconciled basis, and only then implement and verify.
 
 Until steps 1-6 are complete, do not inspect implementation sources, interpret
 runtime evidence, form a failure hypothesis, recommend a repair, infer product
 or operational intent, or call a non-reading task tool. This has no exception
 for urgency, apparent simplicity, debugging, read-only investigation, or “just
 one command.”
+
+Router summaries are navigation only and never define intended behavior. A
+node may be a leaf, branch, or both. Completeness means the selected contract
+closure, not every document under the specification root.
 
 The specification system is canonical intended behavior but is not infallible
 or self-authorizing. Spec-first is not spec-only. Current code, stale tests,
@@ -188,15 +189,17 @@ changing product implementation.
 
 When a lifecycle hook reports startup, resume, clear, context compaction, or a
 worker start, take no task action until the applicable instruction hierarchy
-and every action-specific governing document have been re-read. Re-establish
-the current goal state, Contract Change Envelope, spec index, governing clauses,
-contract epoch, accepted deltas, unresolved discrepancies, and next-action QA
-instructions as applicable.
+and current routed authority have been re-established. Re-read the current
+goal, envelope, latest Route Receipt, selected route manifests, pinned contract
+closure, epochs, deltas, discrepancies, and only the next-action QA evidence.
+Rerun route resolution to detect revision drift. Traverse from the root again
+only when the task changed or the receipt is missing or ambiguous; do not reload
+unselected siblings merely because context was compacted.
 
-State the exact documents re-read in the next progress update. Chat summaries,
-memory, worker lists, previous receipts, green builds, tests, screenshots, and
-raw configuration do not replace the current governing documents. Workers use
-their pinned packet and do not reconstruct authority from the root conversation.
+State the route and contracts re-read in the next progress update. Chat
+summaries, memory, worker lists, previous receipts, green builds, tests,
+screenshots, and raw configuration do not replace current contracts. Workers
+use their pinned packet and routed closure rather than the root conversation.
 
 ## When a spec is required
 

@@ -109,7 +109,9 @@ context, and requires explicit scope and hook trust verification.
 - **Specifications** keep intended product behavior explicit before code is
   changed. The agent still reconciles specs with source, design, runtime
   behavior, QA, and released behavior instead of treating Markdown as an
-  infallible substitute for understanding the product.
+  infallible substitute for understanding the product. Hierarchical route
+  manifests select the smallest complete contract closure and record a Route
+  Receipt instead of loading every sibling document.
 - **Agents** stay on the operator-selected branch, let questions and read-only
   investigations proceed directly, plan the first implementation-bearing
   request and later materially ambiguous work, stay inside the approved
@@ -128,6 +130,8 @@ specifications, and does not change product implementation during discovery.
 
 - a minimal project `AGENTS.md` example;
 - the canonical specification-first workflow;
+- hierarchical spec routing, dependency closure, context budgets, and a route
+  resolver/validator;
 - reusable product-spec templates and a Favorites example;
 - project and global setup prompts;
 - optional browser-QA files;
@@ -144,6 +148,8 @@ Run the Bootstrap's lightweight structural checks with:
 
 ```sh
 python3 scripts/validate_bootstrap.py
+python3 scripts/spec_route.py validate docs/specs/route.json
+python3 -m unittest discover -s scripts/tests -v
 python3 -m unittest discover -s integrations/codex-lifecycle/tests -v
 ```
 

@@ -11,13 +11,15 @@ product implementation.
 
 ## Read first
 
-From the bootstrap repository, read completely:
+From the bootstrap repository, resolve and read the applicable routed closure:
 
 - `docs/spec-first-workflow.md`;
-- `docs/agent-governance/product-truth-governance.md`;
+- `docs/agent-governance/product-truth-governance.md` and
+  `docs/agent-governance/product-truth/route.json` using the `evolve` profile;
 - the Project: product specifications section in
   `docs/agent-governance/agents-sections.md`;
-- `docs/specs/README.md` and `docs/specs/templates/`;
+- `docs/specs/README.md`, `docs/specs/routing.md`, and the route, contract,
+  receipt, and envelope templates;
 - `prompts/greenfield-bootstrap.md`;
 - `prompts/brownfield-discovery.md`;
 - `prompts/generate-first-specs.md`.
@@ -30,7 +32,7 @@ operator handoff, accepted baseline, design contract, QA guide, release rule,
 and worktree status before editing. Preserve unrelated changes.
 
 Before inspecting target implementation sources or runtime evidence, state the
-exact governing documents read completely and a provisional Spec Basis that
+Route Receipt, selected contracts read completely, and a provisional Spec Basis that
 separates specified expectation, protected behavior, established flow, and
 evidence still needed. If no governing specification exists, record the gap and
 use Discover before consulting implementation evidence.
@@ -39,11 +41,13 @@ use Discover before consulting implementation evidence.
 
 1. Merge the compact project product-truth section into the repository's
    existing root agent instruction file. Never replace the whole file.
-2. Install the full governance document as
-   `docs/agent/product-truth-governance.md`.
+2. Install the compact governance router as
+   `docs/agent/product-truth-governance.md` and its routed leaves and manifest
+   under `docs/agent/product-truth/`.
 3. Add or reconcile `docs/spec-first-workflow.md`.
-4. Add or reconcile the project's `docs/specs/README.md`, spec index, and
-   neutral templates. Extend an existing mature spec system instead of
+4. Add or reconcile the project's `docs/specs/README.md`, root `route.json`,
+   human-readable index, routing guide, neutral templates, and
+   `scripts/spec_route.py`. Extend an existing mature spec system instead of
    creating a competing one.
 5. Add only specification-related follow-up prompts. Do not install or copy
    persistent-goal agent architecture, browser-QA prompts, or browser-QA
@@ -82,7 +86,8 @@ Verify that:
 
 - only the target project changed;
 - existing instructions and unrelated work remain intact;
-- the compact gate appears once and routes to an existing full document;
+- the compact gate appears once and routes to an existing manifest and leaves;
+- route validation and one representative closure resolution pass;
 - the gate is present in the instruction file Codex or the detected agent
   actually loads, is not shadowed by an override, and remains inside the
   configured instruction-size limit;

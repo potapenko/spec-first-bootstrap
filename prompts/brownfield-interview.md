@@ -8,8 +8,8 @@ This is an existing project with incomplete or unreliable documentation.
 Use Discover mode. First record which product areas lack reliable active specs
 and establish a Contract Change Envelope with implementation unauthorized.
 
-Before source or runtime evidence, name every governing document read
-completely and state a provisional Spec Basis separating specified expectation,
+Before source or runtime evidence, state the Route Receipt, contracts read
+completely, and a provisional Spec Basis separating specified expectation,
 protected behavior, established flow, and evidence still needed.
 
 Inspect the smallest complete applicable source, design, QA, runtime, history,

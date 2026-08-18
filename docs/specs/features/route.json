@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "node_id": "bootstrap.contracts",
+  "revision": "bootstrap.contracts.route@1",
+  "summary": "Routes Bootstrap work to governance or Codex lifecycle contracts.",
+  "read_when": [
+    "working on observable Bootstrap behavior"
+  ],
+  "do_not_read_when": [
+    "working only with non-authoritative examples"
+  ],
+  "context_budget_words": 600,
+  "requires": [],
+  "precedence": [],
+  "children": [
+    {
+      "node_id": "bootstrap.governance",
+      "summary": "Portable setup, product-truth routing, prompts, templates, scope, and workflow invariants.",
+      "read_when": [
+        "changing setup scope, governance, routes, prompts, templates, layer composition, or validation"
+      ],
+      "do_not_read_when": [
+        "changing only Codex hook mechanics without altering portable governance"
+      ],
+      "contract": {
+        "path": "bootstrap-governance.md",
+        "revision": "bootstrap.governance@6",
+        "clauses": [
+          "BOOTSTRAP.INSTALL",
+          "BOOTSTRAP.ROUTING",
+          "BOOTSTRAP.SCOPE",
+          "BOOTSTRAP.RESTART",
+          "BOOTSTRAP.PROPORTIONALITY"
+        ],
+        "context_budget_words": 1900,
+        "authority": "Active",
+        "stability": "Accepted",
+        "baseline": "ba891245af7ffa6ffa5463f85af8045b3f6bc75c"
+      },
+      "resources": [
+        {
+          "path": "../routing.md",
+          "role": "governance",
+          "revision": "bootstrap.routing@1",
+          "context_budget_words": 700
+        }
+      ],
+      "requires": [],
+      "precedence": []
+    },
+    {
+      "node_id": "bootstrap.codex-lifecycle",
+      "summary": "Optional Codex lifecycle hook mechanics and routed restart context.",
+      "read_when": [
+        "changing lifecycle prompts, hook templates, restart context, or fixture tests"
+      ],
+      "do_not_read_when": [
+        "changing portable governance without Codex-specific adapter behavior"
+      ],
+      "contract": {
+        "path": "codex-lifecycle-enforcement.md",
+        "revision": "bootstrap.codex-lifecycle@2",
+        "clauses": [
+          "CODEX.LIFECYCLE.ROOT",
+          "CODEX.LIFECYCLE.WORKER",
+          "CODEX.LIFECYCLE.COMPACTION",
+          "CODEX.LIFECYCLE.INSTALL"
+        ],
+        "context_budget_words": 800,
+        "authority": "Active",
+        "stability": "Evolving",
+        "baseline": "None"
+      },
+      "resources": [
+        {
+          "path": "../../../integrations/codex-lifecycle/README.md",
+          "role": "runbook",
+          "revision": "codex-lifecycle.runbook@2",
+          "context_budget_words": 700
+        },
+        {
+          "path": "../../../integrations/codex-lifecycle/lifecycle_restart.py",
+          "role": "implementation",
+          "revision": "codex-lifecycle.script@2",
+          "context_budget_words": 700
+        },
+        {
+          "path": "../../../integrations/codex-lifecycle/tests/test_lifecycle_restart.py",
+          "role": "qa",
+          "revision": "codex-lifecycle.qa@2",
+          "context_budget_words": 400
+        }
+      ],
+      "requires": [],
+      "precedence": []
+    }
+  ]
+}

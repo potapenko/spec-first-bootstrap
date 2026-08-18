@@ -12,12 +12,25 @@
 - Forbidden specification delta:
 - Material decisions requiring the user:
 - Current contract revision or epoch:
+- Root route and route revision:
+- Selected node IDs and clause IDs:
 - Required review and QA:
+
+## Route Receipt
+
+- Selection path:
+- Routing manifests read completely:
+- Resolved contract closure and revisions:
+- Supporting resources, roles, and revisions:
+- Cross-domain dependencies:
+- Explicitly excluded sibling nodes:
+- Resolved context words:
+- Revision drift or ambiguity:
 
 ## Provisional Spec Basis
 
-- Documents read completely:
-- Registry selection path:
+- Selected contracts read completely:
+- Route Receipt:
 - Governing revisions and clause IDs:
 - Authoritative specs and clauses:
 - Specified expectation:
@@ -31,7 +44,7 @@
 ## Final Reconciled Spec Basis
 
 - Contract revision or epoch:
-- Complete governing documents:
+- Complete routed contract closure:
 - Resolved intended behavior:
 - Evidence inspected and its role:
 - Discrepancy dispositions:
