@@ -1,5 +1,9 @@
 # Product Truth Routing And Spec Basis
 - Node type: leaf
+- Status: Active
+- Read when: selecting product contracts or establishing a provisional or final Spec Basis.
+- Do not read when: work is proven non-product and behavior-neutral.
+- Maximum size: 100 physical lines.
 - Contract: `governance.product-truth.routing@1`
 - Clauses: `PT.ROUTE.TRAVERSE`, `PT.ROUTE.CLOSURE`, `PT.ROUTE.RECEIPT`,
   `PT.BASIS.PROVISIONAL`, `PT.BASIS.FINAL`

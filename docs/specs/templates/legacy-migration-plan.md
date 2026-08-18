@@ -3,12 +3,14 @@
 - Node type: root | branch | hybrid
 - Migration ID:
 - Status: planned | in_progress | blocked | complete
+- Read when: starting, resuming, reviewing, or completing this migration.
+- Do not read when: the task is outside this migration.
 - Change mode: Reconcile | Discover
 - Approved by:
 - Source specification root:
 - Maximum sources per batch:
 - Maximum source words per batch:
-- Maximum node size: 100 physical lines.
+- Maximum size: 100 physical lines.
 
 ## Contract Change Envelope
 

@@ -9,11 +9,17 @@ import sys
 from collections import deque
 from pathlib import Path
 from typing import Iterable
+from urllib.parse import unquote
 
 NODE_TYPE = re.compile(
     r"(?m)^- Node type: (root|branch|leaf|hybrid)\s*$"
 )
+STATUS = re.compile(r"(?m)^- Status: \S.*$")
+READ_WHEN = re.compile(r"(?m)^- Read when: \S.*$")
+DO_NOT_READ_WHEN = re.compile(r"(?m)^- Do not read when: \S.*$")
+MAXIMUM_SIZE = re.compile(r"(?m)^- Maximum size: (\d+) physical lines\.\s*$")
 MARKDOWN_LINK = re.compile(r"(?<!!)\[[^\]]+\]\(([^)]+)\)")
+HEADING = re.compile(r"^(#{1,6})\s+(.+?)\s*#*\s*$")
 
 
 class CheckError(ValueError):
@@ -29,24 +35,93 @@ def node_type(text: str) -> str | None:
     return match.group(1) if match else None
 
 
-def local_markdown_targets(source: Path, text: str) -> list[Path]:
-    targets: list[Path] = []
+def local_markdown_targets(source: Path, text: str) -> list[tuple[Path, str]]:
+    targets: list[tuple[Path, str]] = []
     for raw in MARKDOWN_LINK.findall(text):
-        if "<" in raw or ">" in raw:
-            continue
         value = raw.strip()
         if value.startswith("<") and value.endswith(">"):
             value = value[1:-1]
-        if not value or value.startswith(("http://", "https://", "mailto:", "#")):
+        if not value or value.startswith(("http://", "https://", "mailto:")):
             continue
-        value = value.split("#", 1)[0].split("?", 1)[0]
-        if not value:
-            continue
-        target = Path(value)
+        path_value, separator, fragment = value.partition("#")
+        path_value = path_value.split("?", 1)[0]
+        target = Path(unquote(path_value)) if path_value else source
         if not target.is_absolute():
             target = source.parent / target
-        targets.append(target.resolve())
+        targets.append((target.resolve(), unquote(fragment) if separator else ""))
     return targets
+
+
+def heading_anchors(text: str) -> set[str]:
+    """Return the GitHub-style anchors needed for local heading validation."""
+    anchors: set[str] = set()
+    counts: dict[str, int] = {}
+    for line in text.splitlines():
+        match = HEADING.match(line)
+        if not match:
+            continue
+        title = re.sub(r"[`*_~]", "", match.group(2)).strip().lower()
+        title = re.sub(r"[^\w\- ]", "", title, flags=re.UNICODE)
+        base = re.sub(r"\s+", "-", title)
+        occurrence = counts.get(base, 0)
+        counts[base] = occurrence + 1
+        anchors.add(base if occurrence == 0 else f"{base}-{occurrence}")
+    return anchors
+
+
+def dependency_section_text(text: str) -> str:
+    """Return content below level-two Dependency headings only."""
+    selected: list[str] = []
+    active = False
+    for line in text.splitlines():
+        heading = HEADING.match(line)
+        if heading and len(heading.group(1)) <= 2:
+            active = bool(
+                len(heading.group(1)) == 2
+                and re.match(r"dependenc(?:y|ies)\b", heading.group(2), re.IGNORECASE)
+            )
+            continue
+        if active:
+            selected.append(line)
+    return "\n".join(selected)
+
+
+def dependency_cycle(
+    declared: set[Path], texts: dict[Path, str]
+) -> list[Path] | None:
+    graph: dict[Path, list[Path]] = {}
+    for source in declared:
+        targets = local_markdown_targets(
+            source, dependency_section_text(texts[source])
+        )
+        graph[source] = [target for target, _ in targets if target in declared]
+
+    visiting: set[Path] = set()
+    visited: set[Path] = set()
+    stack: list[Path] = []
+
+    def visit(source: Path) -> list[Path] | None:
+        if source in visiting:
+            index = stack.index(source)
+            return stack[index:] + [source]
+        if source in visited:
+            return None
+        visiting.add(source)
+        stack.append(source)
+        for target in graph[source]:
+            found = visit(target)
+            if found:
+                return found
+        stack.pop()
+        visiting.remove(source)
+        visited.add(source)
+        return None
+
+    for source in sorted(declared):
+        found = visit(source)
+        if found:
+            return found
+    return None
 
 
 def markdown_nodes(scan_roots: Iterable[Path]) -> set[Path]:
@@ -79,6 +154,7 @@ def validate(
         raise CheckError("max_lines must be positive")
 
     declared = markdown_nodes(scans)
+    texts = {path: path.read_text(encoding="utf-8") for path in declared}
     errors: list[str] = []
     reachable: set[Path] = set()
     links_checked = 0
@@ -89,6 +165,36 @@ def validate(
             if scan.is_dir():
                 for path in scan.rglob("*.json"):
                     errors.append(f"JSON is forbidden in Markdown node tree: {path}")
+
+    for path in sorted(declared):
+        text = texts[path]
+        for label, pattern in (
+            ("Status", STATUS),
+            ("Read when", READ_WHEN),
+            ("Do not read when", DO_NOT_READ_WHEN),
+        ):
+            if not pattern.search(text):
+                errors.append(f"{path}: missing required node metadata: {label}")
+        declared_maximum = MAXIMUM_SIZE.search(text)
+        if not declared_maximum:
+            errors.append(f"{path}: missing required node metadata: Maximum size")
+        else:
+            declared_limit = int(declared_maximum.group(1))
+            if declared_limit > max_lines:
+                errors.append(
+                    f"{path}: declared maximum {declared_limit} exceeds configured maximum {max_lines}"
+                )
+            count = physical_lines(text)
+            if count > declared_limit:
+                errors.append(
+                    f"{path}: {count} lines exceeds declared maximum {declared_limit}"
+                )
+
+    cycle = dependency_cycle(declared, texts)
+    if cycle:
+        errors.append(
+            "dependency cycle: " + " -> ".join(str(path) for path in cycle)
+        )
 
     while queue:
         source = queue.popleft()
@@ -105,15 +211,17 @@ def validate(
             continue
 
         reachable.add(source)
-        count = physical_lines(text)
-        if count > max_lines:
-            errors.append(f"{source}: {count} lines exceeds maximum {max_lines}")
-
-        for target in local_markdown_targets(source, text):
+        for target, fragment in local_markdown_targets(source, text):
             links_checked += 1
             if not target.exists():
                 errors.append(f"{source}: broken link to {target}")
                 continue
+            if fragment and target.suffix.lower() == ".md":
+                target_text = target.read_text(encoding="utf-8")
+                if fragment not in heading_anchors(target_text):
+                    errors.append(
+                        f"{source}: broken heading anchor #{fragment} in {target}"
+                    )
             if target.suffix.lower() == ".md":
                 target_text = target.read_text(encoding="utf-8")
                 if node_type(target_text):

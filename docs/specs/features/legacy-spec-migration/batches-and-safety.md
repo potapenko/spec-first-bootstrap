@@ -1,6 +1,7 @@
 # Semantic Batches and Safety
 
 - Node type: leaf
+- Status: Active
 - Contract: `bootstrap.legacy-spec-migration.batch@1`
 - Clauses: `BOOTSTRAP.MIGRATION.BATCH`, `BOOTSTRAP.MIGRATION.SAFETY`
 - Read when: selecting, reading, classifying, or splitting one migration batch.

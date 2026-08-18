@@ -1,11 +1,14 @@
 # Product Truth Core Contract
 - Node type: leaf
+- Status: Active
+- Read when: any covered product task needs the canonical authority and truth-layer rules.
+- Do not read when: work is proven mechanical, infrastructure-only, or behavior-neutral.
+- Maximum size: 100 physical lines.
 - Contract: `governance.product-truth.core@1`
 - Clauses: `PT.CORE.AUTHORITY`, `PT.CORE.LAYERS`, `PT.CORE.DOMAINS`,
   `PT.CORE.STABILITY`, `PT.CORE.RELEASE`, `PT.CORE.ARTIFACTS`
 
 ## PT.CORE.AUTHORITY — Canonical but not self-authorizing
-
 The specification system is the canonical statement of intended product
 behavior. Canonical does not mean infallible: a specification can be missing,
 stale, ambiguous, contradictory, or incorrectly transcribed.
@@ -22,7 +25,6 @@ ports, transfers, or migrations. Proven mechanical, infrastructure-only, and
 behavior-neutral work may remain outside it.
 
 ## PT.CORE.LAYERS — Product truth system
-
 The product truth system has distinct layers:
 
 | Layer | Question answered |
@@ -89,7 +91,6 @@ design, and QA remain protected evidence until reconciled. A request to change
 one released behavior does not authorize unrelated breaking changes.
 
 ## PT.CORE.ARTIFACTS — Minimum product package
-
 A mature project provides a Markdown specification root and authority index, Active
 contracts, domain and precedence mapping, applicable design/product-model
 contracts, evidence and ownership maps for complex domains, QA or acceptance

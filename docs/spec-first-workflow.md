@@ -1,6 +1,7 @@
 # Strict Markdown-First Spec Workflow
 
 - Node type: root
+- Status: Active
 - Read when: performing product work in a project using this Bootstrap.
 - Do not read when: the task is proven non-product and behavior-neutral.
 - Maximum size: 100 physical lines.

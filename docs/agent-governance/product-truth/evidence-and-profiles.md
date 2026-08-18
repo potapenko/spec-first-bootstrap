@@ -1,5 +1,9 @@
 # Product Truth Evidence And Profiles
 - Node type: leaf
+- Status: Active
+- Read when: reconciling source, design, QA, runtime, history, transfer, defect, or brownfield evidence.
+- Do not read when: no implementation or product evidence is needed for the bounded task.
+- Maximum size: 100 physical lines.
 - Contract: `governance.product-truth.evidence@1`
 - Clauses: `PT.EVIDENCE.SET`, `PT.EVIDENCE.DISCREPANCY`, `PT.PROFILE.DEFECT`,
   `PT.PROFILE.TRANSFER`, `PT.PROFILE.BROWNFIELD`

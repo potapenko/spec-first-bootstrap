@@ -1,6 +1,7 @@
 # Task Framing and Work Scope
 
 - Node type: leaf
+- Status: Active
 - Contract: `bootstrap.governance.task-scope@1`
 - Clause: `BOOTSTRAP.SCOPE`
 - Read when: planning or executing an implementation-bearing request.

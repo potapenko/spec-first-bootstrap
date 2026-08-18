@@ -1,6 +1,7 @@
 # Markdown-First Routing Contract
 
 - Node type: leaf
+- Status: Active
 - Contract: `bootstrap.governance.markdown-routing@1`
 - Clause: `BOOTSTRAP.ROUTING`
 - Read when: installing, traversing, authoring, or validating specification nodes.

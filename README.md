@@ -109,9 +109,9 @@ context, and requires explicit scope and hook trust verification.
 - **Specifications** keep intended product behavior explicit before code is
   changed. The agent still reconciles specs with source, design, runtime
   behavior, QA, and released behavior instead of treating Markdown as an
-  infallible substitute for understanding the product. Hierarchical route
-  manifests select the smallest complete contract closure and record a Route
-  Receipt instead of loading every sibling document.
+  infallible substitute for understanding the product. An ordinary Markdown
+  tree selects the smallest complete linked contract set and records the
+  traversal path instead of loading every sibling document.
 - **Agents** stay on the operator-selected branch, let questions and read-only
   investigations proceed directly, plan the first implementation-bearing
   request and later materially ambiguous work, stay inside the approved
@@ -134,7 +134,7 @@ mechanically, processes one bounded semantic batch at a time, and preserves
 existing files by default.
 
 ```text
-Use https://github.com/potapenko/spec-first-bootstrap as the reference and migrate this project's existing specification library to hierarchical routing.
+Use https://github.com/potapenko/spec-first-bootstrap as the reference and migrate this project's existing specification library to the Markdown-first specification tree.
 
 Follow prompts/migrate-legacy-spec-library.md from that repository. Do not read the corpus wholesale, change product implementation, or delete, move, merge, split, or rewrite legacy documents unless a later batch explicitly authorizes it.
 ```

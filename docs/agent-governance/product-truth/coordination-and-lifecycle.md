@@ -1,5 +1,9 @@
 # Product Truth Coordination And Lifecycle
 - Node type: leaf
+- Status: Active
+- Read when: coordinating workers, pinning revisions, or recovering after a lifecycle event.
+- Do not read when: a bounded single-agent task has no coordination or restart concern.
+- Maximum size: 100 physical lines.
 - Contract: `governance.product-truth.coordination@1`
 - Clauses: `PT.PACKET.CONTEXT`, `PT.PACKET.ROLES`, `PT.EPOCH.PIN`,
   `PT.LIFECYCLE.RESTORE`, `PT.RECEIPT.DISCREPANCY`

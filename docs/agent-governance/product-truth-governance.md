@@ -1,6 +1,7 @@
 # Product Truth Governance
 
 - Node type: root
+- Status: Active
 - Read when: work investigates, defines, changes, implements, reviews, or verifies product behavior.
 - Do not read when: work is proven mechanical, infrastructure-only, or behavior-neutral.
 - Maximum size: 100 physical lines.

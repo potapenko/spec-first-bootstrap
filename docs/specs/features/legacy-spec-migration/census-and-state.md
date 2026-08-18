@@ -1,6 +1,7 @@
 # Census and Markdown Migration State
 
 - Node type: leaf
+- Status: Active
 - Contract: `bootstrap.legacy-spec-migration.census@1`
 - Clause: `BOOTSTRAP.MIGRATION.INVENTORY`
 - Read when: starting or measuring a legacy-library migration.

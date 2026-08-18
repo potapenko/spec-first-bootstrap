@@ -1,6 +1,7 @@
 # Migration Resume and Completion
 
 - Node type: leaf
+- Status: Active
 - Contract: `bootstrap.legacy-spec-migration.resume@1`
 - Clauses: `BOOTSTRAP.MIGRATION.RESUME`, `BOOTSTRAP.MIGRATION.COMPLETE`
 - Read when: resuming, reviewing, or completing a legacy migration.

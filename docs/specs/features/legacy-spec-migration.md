@@ -1,6 +1,7 @@
 # Legacy Specification Library Migration
 
 - Node type: hybrid
+- Status: Active
 - Contract ID: `bootstrap.legacy-spec-migration`
 - Domain ID: `bootstrap.legacy-spec-migration`
 - Authority: Active

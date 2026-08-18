@@ -1,6 +1,7 @@
 # Restart and Delivery Proportionality
 
 - Node type: leaf
+- Status: Active
 - Contract: `bootstrap.governance.restart-delivery@1`
 - Clauses: `BOOTSTRAP.RESTART`, `BOOTSTRAP.PROPORTIONALITY`
 - Read when: recovering after lifecycle events or planning implementation support work.

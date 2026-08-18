@@ -1,6 +1,7 @@
 # Installation and Layer Composition
 
 - Node type: leaf
+- Status: Active
 - Contract: `bootstrap.governance.installation@1`
 - Clause: `BOOTSTRAP.INSTALL`
 - Read when: installing or repairing Bootstrap layers in a project or user configuration.

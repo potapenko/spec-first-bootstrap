@@ -1,6 +1,7 @@
 # Optional Codex Lifecycle Enforcement
 
 - Node type: leaf
+- Status: Active
 - Contract ID: `bootstrap.codex-lifecycle`
 - Domain ID: `bootstrap.codex-lifecycle`
 - Authority: Active

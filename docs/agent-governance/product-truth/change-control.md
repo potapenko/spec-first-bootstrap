@@ -1,5 +1,9 @@
 # Product Truth Change Control
 - Node type: leaf
+- Status: Active
+- Read when: planning product implementation, changing a contract, or protecting adjacent domains.
+- Do not read when: work is proven behavior-neutral and changes no product contract.
+- Maximum size: 100 physical lines.
 - Contract: `governance.product-truth.change@1`
 - Clauses: `PT.CHANGE.MODE`, `PT.CHANGE.ENVELOPE`, `PT.CHANGE.AUTHORITY`,
   `PT.CHANGE.DELTA`, `PT.CHANGE.SCOPE`

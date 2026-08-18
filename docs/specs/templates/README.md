@@ -1,6 +1,7 @@
 # Specification Templates
 
 - Node type: branch
+- Status: Active
 - Read when: authoring or installing Markdown-first specification nodes.
 - Do not read when: reading product authority for an ordinary task.
 - Maximum size: 100 physical lines.

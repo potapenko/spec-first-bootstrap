@@ -1,5 +1,9 @@
 # Product Truth Delivery And Acceptance
 - Node type: leaf
+- Status: Active
+- Read when: product implementation, design, QA, proportionality, or completion is in scope.
+- Do not read when: work stops at bounded discovery with no delivery decision.
+- Maximum size: 100 physical lines.
 - Contract: `governance.product-truth.delivery@1`
 - Clauses: `PT.DELIVERY.ORDER`, `PT.DELIVERY.DESIGN`, `PT.DELIVERY.QA`,
   `PT.DELIVERY.PROPORTIONALITY`, `PT.DELIVERY.COMPLETE`

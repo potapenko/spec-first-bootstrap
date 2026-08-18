@@ -1,6 +1,7 @@
 # Bootstrap Governance and Installation
 
 - Node type: hybrid
+- Status: Active
 - Contract ID: `bootstrap.governance`
 - Domain ID: `bootstrap.governance`
 - Authority: Active
