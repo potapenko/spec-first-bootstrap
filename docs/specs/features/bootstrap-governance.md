@@ -1,244 +1,54 @@
-# Bootstrap Governance And Installation
+# Bootstrap Governance and Installation
 
+- Node type: hybrid
 - Contract ID: `bootstrap.governance`
 - Domain ID: `bootstrap.governance`
 - Authority: Active
 - Stability: Accepted
-- Governs: Bootstrap governance, setup prompts, templates, and layer composition
-- Contract revision or epoch: `bootstrap.governance@6`
+- Contract revision: `bootstrap.governance@7`
 - Clauses: `BOOTSTRAP.INSTALL`, `BOOTSTRAP.ROUTING`, `BOOTSTRAP.SCOPE`,
   `BOOTSTRAP.RESTART`, `BOOTSTRAP.PROPORTIONALITY`
-- Release baseline: `ba891245af7ffa6ffa5463f85af8045b3f6bc75c`
+- Read when: changing portable Bootstrap setup, governance, prompts, templates, or workflow.
+- Do not read when: changing only optional adapter mechanics.
+- Maximum size: 100 physical lines.
 
 ## Goal
 
-Install strict, portable AI-agent workflow guidance without replacing existing
-project authority, inventing product behavior, or silently installing unrelated
-layers.
+Install strict portable agent workflow without replacing project authority,
+inventing product behavior, or silently installing unrelated layers.
 
-## Scope
+## Choose the governing child
 
-- specification-first product governance;
-- plan-first task framing and approved execution-scope control;
-- current-branch and worktree scope control;
-- persistent-goal coordinator-and-workers governance;
-- outcome and resource proportionality for implementation work;
-- optional browser QA;
-- setup and repair prompts;
-- neutral specification and verification templates;
-- optional environment-specific enforcement adapters.
+- [Installation and layer composition](bootstrap-governance/installation.md) —
+  project/global scope, independent layers, and preservation rules.
+- [Task framing and work scope](bootstrap-governance/task-and-scope.md) —
+  planning gate, approved boundary, current branch, and task-owned files.
+- [Markdown-first routing](bootstrap-governance/markdown-routing.md) —
+  root/branch/leaf traversal, Markdown links, dependencies, and node limits.
+- [Restart and delivery proportionality](bootstrap-governance/restart-and-delivery.md)
+  — context recovery, release-path priority, and support-work limits.
 
-## Non-goals
+## Shared invariants
 
-- changing target-project product behavior during workflow installation;
-- changing model, reasoning, concurrency, provider, or application defaults;
-- making one workflow layer a hidden prerequisite of another;
-- treating an environment-specific adapter as portable product authority.
+A specification edit never authorizes itself. Current source, tests, logs,
+runtime, screenshots, or chat memory never silently define intended behavior.
 
-## User-visible behavior
+Existing project-specific safety, framework, build, database, storage, Git,
+release, and operator rules remain protected. Product-truth, agent-work, browser
+QA, and optional adapters remain independently installable.
 
-- The specification, agent-work, and browser-QA layers are
-  independently selectable.
-- The first implementation-bearing request in a new chat begins with a visible,
-  evidence-based execution plan and explicit user approval before implementation
-  or another state-changing task action.
-- Questions, explanations, read-only investigations, reviews, diagnoses, status
-  checks, and Git-history inspection proceed without an implementation plan or
-  approval. A possible change found during read-only work is reported without
-  silently turning the task into implementation.
-- Planning performs the bounded non-mutating investigation required to make the
-  implementation plan concrete. It does not ask the user to approve a plan for
-  performing that planning work.
-- The first-request gate runs once per chat. Later new initiatives or tasks that
-  require material scope judgment receive a new plan; plainly bounded low-risk
-  follow-ups without material scope choice may proceed directly.
-- An approved plan becomes the execution boundary. Agents may make equivalent
-  implementation choices and perform the verification required by that plan,
-  but they do not add adjacent features, cleanup, refactors, tooling, or other
-  helpful extras outside it.
-- A newly discovered material dependency outside the approved boundary is
-  returned as a minimal proposed plan amendment for user approval. Independent
-  in-scope work may continue when safe.
-- Agents work only in the Git branch selected when the task begins. They do not
-  create, switch, rename, or publish another branch or create a worktree unless
-  the user explicitly requests it; commit or push permission alone does not
-  authorize branch creation.
-- Before editing, agents declare the task-owned write set in the plan when one
-  is required. Existing changes block implementation only where they overlap
-  the planned edits. Non-overlapping changes remain untouched and are
-  excluded from staging and commits.
-- Worktree state is never bypassed by moving work to another branch or
-  worktree. Work is not complete while its changes exist only outside the
-  operator-selected branch.
-- A persistent goal remains coordinator-and-workers work by default. When the
-  user explicitly requires the current chat to complete that goal without
-  subagents, workers, or delegation, the primary agent instead works as a
-  normal single agent and may perform all in-scope goal actions itself.
-- The explicit single-agent exception lasts only while the no-delegation
-  instruction is active and never weakens specification, safety, approval,
-  destructive-action, framework, or product-authority boundaries.
-- Project setup changes only the named repository. Global setup changes only
-  the explicitly selected user-level agent configuration.
-- Installers resolve the active instruction chain, including overrides and
-  size limits, before editing it.
-- Installers merge one compact routing gate and keep full governance outside
-  automatically loaded instructions.
-- Specification and governance documentation uses hierarchical route manifests.
-  A node may be a contract leaf, a routing branch, or both. Router summaries
-  are non-normative and only select the next node.
-- Agents traverse from the root route, select task-relevant node IDs, resolve
-  explicit cross-domain dependencies, and read the smallest complete contract
-  closure instead of every sibling document.
-- A Route Receipt records the selection path, manifests, clause IDs, revisions,
-  dependencies, excluded siblings, and resolved context size before the Spec
-  Basis is formed.
-- Contracts and route manifests carry enforceable context budgets. Oversized
-  nodes are split by independently selectable responsibility rather than
-  silently raising the budget.
-- Product work uses a mandatory pre-decision specification gate before any
-  project-specific conclusion, source inspection, runtime interpretation, or
-  non-reading task action.
-- The pre-decision receipt names every selected contract read completely and
-  separates routing provenance, specified expectation, protected behavior,
-  established flow, and evidence still needed.
-- If bounded discovery finds no governing specification, the agent records the
-  absence and uses Discover instead of inferring intent from code or runtime.
-- Restart, resume, clear, and context-compaction recovery re-establishes
-  authority from durable documents rather than chat memory.
-- Recovery restores the latest Route Receipt and pinned contract closure,
-  checks route and contract revisions for drift, and does not reload unselected
-  sibling contracts merely because context was compacted.
-- Installed agent governance measures progress first by concrete capability
-  reachable from the product or release path. Supporting work is reported
-  separately and never represented as delivered product functionality.
-- Ordinary implementation work and persistent goals aim to produce a smallest
-  release-reachable vertical slice in the first one or two implementation
-  checkpoints.
-- Persistent-goal packets and checkpoints classify shipping, verification,
-  diagnostic, tooling, and coordination work. Support-only checkpoints have a
-  bounded depth and an explicit delivery-and-cost reassessment before further
-  expansion.
-- Review, verification, diagnostics, and tooling are proportional to
-  demonstrated risk. High-risk boundaries retain stronger independent review
-  and safety requirements.
+Planning-only, discovery-only, and installation-only work does not authorize
+product implementation. Environment-specific model or application defaults are
+not copied into portable governance.
 
-## Invariants
+## Failure policy
 
-- A specification edit never authorizes itself.
-- A router summary never defines intended behavior and cannot substitute for a
-  selected contract clause.
-- Complete applicable authority means the explicit selected contract closure,
-  not every document below the specification root.
-- Current code, tests, logs, runtime, screenshots, or chat memory never define
-  intended behavior before the Spec Basis.
-- Existing project-specific safety, framework, build, test, database, storage,
-  Git, release, and operator rules are preserved.
-- Product-truth, agent-work, and browser QA remain independently
-  installable.
-- Environment-specific model names are not copied into portable governance.
-- Planning-only, discovery-only, and installation-only requests do not
-  authorize product implementation.
-- Preparing a plan permits only the bounded, non-mutating instruction,
-  specification, and evidence reading needed to make the plan credible. It
-  does not authorize edits, state-changing runtime actions, external writes,
-  or execution delegation.
-- Read-only work never consumes the first implementation-request gate and never
-  authorizes implementation merely because it discovers a possible change.
-- Silence, a generic request to create a non-trivial feature, or an agent's
-  belief that extra work would be beneficial does not approve a plan or expand
-  its scope.
-- General approval to implement, commit, or push is not permission to create,
-  switch, rename, or publish a branch or create a worktree.
-- Repository-wide dirty state is not an implementation eligibility gate.
-  Existing staged, unstaged, or untracked changes block only when their paths
-  overlap the task-owned write set.
-- Non-overlapping existing changes are preserved and excluded from task staging
-  and commits.
-- Necessary supporting edits and verification named in the approved plan, or
-  unavoidable to complete its stated steps, remain in scope only when they do
-  not change user-visible behavior or a protected adjacent contract beyond the
-  approved plan.
-- A support artifact names the next implementation decision or release-path
-  capability that consumes it. Speculative support infrastructure is forbidden.
-- A residual may record bounded uncertainty or noncritical hardening, but may
-  not hide a known failure of the acceptance contract or an undelivered
-  capability being claimed as complete.
-- Delivery budgets are planning controls rather than permission to skip
-  verification required by demonstrated risk.
+Stop before writing when the active instruction entrypoint is ambiguous, an
+existing change overlaps task-owned paths, or a required semantic change lies
+outside the approved envelope. Preserve independent completed work.
 
-## Edge cases and failure policy
+## Evidence and verification
 
-- If the active instruction entry point or scope is ambiguous, stop before
-  writing.
-- If an existing change overlaps the task-owned write set, report the exact
-  paths and stop before editing them. Do not create or switch branches or
-  worktrees to bypass the conflict.
-- If existing changes do not overlap the task-owned write set, continue while
-  leaving them untouched and excluding them from staging and commits.
-- If material scope judgment is required before an execution plan can be
-  stated, ask the user the smallest necessary question instead of beginning
-  implementation.
-- If execution exposes a material dependency outside the approved plan, stop
-  the affected slice, state the dependency, minimum scope addition, cost, and
-  risk, and wait for approval before crossing that boundary.
-- If an override shadows the proposed instruction file, update the active
-  chain or return the exact blocker instead of claiming installation success.
-- If Active contracts conflict without precedence, stop only the affected
-  slice.
-- If the merged instruction chain exceeds the supported size limit, reduce
-  duplication or split conditional guidance rather than allowing silent
-  truncation.
-- If work would create a third consecutive support-only implementation
-  checkpoint, a second repair/re-review cycle, or material diagnostic/tooling
-  expansion, stop for a delivery-and-cost reassessment. Continue only with the
-  required user approval unless stopping would leave a demonstrated data-loss,
-  privacy, security, irreversible-action, or released-compatibility risk unsafe.
-
-## Route / state / data implications
-
-- Compact gates live in the active project or global instruction chain.
-- The operator-selected branch is the task's Git integration boundary until the
-  user explicitly selects another branch or worktree.
-- The task-owned write set is the file-level ownership boundary used for
-  pre-edit conflict checks and scoped staging.
-- The accepted execution plan is the active task-scope envelope until the user
-  approves an amendment or replaces the task.
-- Full governance remains conditionally loaded from stable documented paths.
-- Route manifests and receipts are non-normative state; normative behavior
-  remains in versioned contract leaves with stable clause IDs.
-- Semantic contract changes advance the affected revision or epoch.
-- Long-running product packets pin the governing clauses and epoch.
-- Restart-safe goal state records the current milestone, work classification,
-  support-only checkpoint depth, budget variance, and next release-path
-  capability.
-
-## Evidence mapping
-
-- `docs/spec-first-workflow.md`
-- `docs/agent-governance/product-truth-governance.md`
-- `docs/agent-governance/root-orchestration.md`
-- `docs/agent-governance/agents-sections.md`
-- `prompts/`
-- `docs/specs/templates/`
-
-## Verification mapping
-
-- local Markdown-link validation;
-- route JSON, node, dependency, clause, cycle, and context-budget validation;
-- resolver receipts for representative governance and lifecycle profiles;
-- unit fixtures for leaf, branch, hybrid, dependency, ambiguity, and failure cases;
-- JSON validation for hook templates;
-- lifecycle adapter fixture tests;
-- consistency search for pre-decision and restart gates;
-- consistency checks for outcome-first progress, proportional review, economic
-  stop conditions, and portable model-neutral wording;
-- consistency checks for plan-first task framing, explicit immediate-execution
-  boundaries, read-only handling, current-branch enforcement, task-owned
-  write-set conflict handling, unrelated-change preservation, the explicit
-  single-agent exception, and approved-scope enforcement on project and global
-  surfaces;
-- `git diff --check` and changed-scope review.
-
-## Unknowns requiring confirmation
-
-None.
+Evidence lives in `docs/agent-governance/`, `prompts/`, templates, and
+installed-project fixtures. Verify Markdown traversal, node sizes, links,
+scope preservation, task gates, restart behavior, and changed-file boundaries.

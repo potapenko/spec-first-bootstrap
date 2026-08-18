@@ -1,30 +1,27 @@
 # Specification Templates
 
-These templates belong only to the optional specification-first layer. Copy
-or adapt the files a project actually needs; installing agent coordination or
-browser QA does not require this directory.
+- Node type: branch
+- Read when: authoring or installing Markdown-first specification nodes.
+- Do not read when: reading product authority for an ordinary task.
+- Maximum size: 100 physical lines.
 
-- [`feature-spec.md`](feature-spec.md) — product behavior and acceptance
-  contract for one feature.
-- [`route.json`](route.json) — machine-readable branch/leaf/hybrid routing,
-  authority, dependencies, revisions, and context budgets.
-- [`route-receipt.md`](route-receipt.md) — selected path and contract-closure
-  provenance for one task.
-- [`spec-index.md`](spec-index.md) — optional human-readable view of the routed
-  authority registry.
-- [`contract-change-envelope.md`](contract-change-envelope.md) — bounded
-  authority and protected-domain record for a change.
-- [`contract-delta.md`](contract-delta.md) — accepted semantic change record.
-- [`release-contract-baseline.md`](release-contract-baseline.md) — released
-  behavior and compatibility baseline.
-- [`legacy-migration-plan.md`](legacy-migration-plan.md) — durable scope,
-  batch limits, protected behavior, and resume state for a large legacy
-  specification migration.
+Copy or adapt only what the project needs.
 
-The route manifest is the machine-readable selection authority. The receipt
-and envelope carry selected nodes, clauses, revisions, excluded siblings,
-specified expectation, protected behavior, established flow, and evidence
-still needed.
+## Node templates
 
-Return to the [`specification documentation`](../README.md) or the main
-[`documentation index`](../../README.md).
+- [Branch node](branch-node.md) — short child descriptions and Markdown links.
+- [Feature node](feature-spec.md) — leaf or hybrid product contract.
+- [Human authority index](spec-index.md) — status and precedence overview.
+- [Traversal receipt](traversal-receipt.md) — selected Markdown path and
+  dependency provenance.
+
+## Change and release templates
+
+- [Contract Change Envelope](contract-change-envelope.md)
+- [Contract Delta](contract-delta.md)
+- [Release Contract Baseline](release-contract-baseline.md)
+- [Legacy Migration Plan](legacy-migration-plan.md)
+
+Every copied node must declare `Node type`, stay within 100 physical lines,
+and remain traversable through ordinary Markdown links. Templates are not
+product authority until a project adopts and fills them.

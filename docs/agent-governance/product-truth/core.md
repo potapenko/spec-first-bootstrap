@@ -1,5 +1,5 @@
 # Product Truth Core Contract
-
+- Node type: leaf
 - Contract: `governance.product-truth.core@1`
 - Clauses: `PT.CORE.AUTHORITY`, `PT.CORE.LAYERS`, `PT.CORE.DOMAINS`,
   `PT.CORE.STABILITY`, `PT.CORE.RELEASE`, `PT.CORE.ARTIFACTS`
@@ -88,12 +88,12 @@ legacy-released. Its observed behavior, applicable specifications, user-facing
 design, and QA remain protected evidence until reconciled. A request to change
 one released behavior does not authorize unrelated breaking changes.
 
-## PT.CORE.ARTIFACTS — Minimum routed product package
+## PT.CORE.ARTIFACTS — Minimum product package
 
-A mature project provides a specification route/authority registry, Active
+A mature project provides a Markdown specification root and authority index, Active
 contracts, domain and precedence mapping, applicable design/product-model
 contracts, evidence and ownership maps for complex domains, QA or acceptance
 scenario mappings, durable envelopes for long-running work, and release
 baselines for released behavior. These concepts may use project-specific paths
-but remain distinct. Compact instruction files route to them and do not
+but remain distinct. Compact instruction files link to them and do not
 duplicate the full contracts.

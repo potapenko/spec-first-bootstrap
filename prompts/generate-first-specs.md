@@ -1,44 +1,29 @@
 Generate first-pass product specs for the highest-priority named domains.
 
-Use this bootstrap repository as the reference:
+Use this Bootstrap as the reference:
 
 https://github.com/potapenko/spec-first-bootstrap
 
-Read `docs/spec-first-workflow.md` from that reference first. Use Discover or
-Reconcile mode as justified. Do not change product implementation.
+Read `docs/spec-first-workflow.md` first. Use Discover or Reconcile as justified
+and do not change product implementation.
 
-Read the project's root route and existing contracts first. Inspect the
-smallest complete applicable source, design, QA, runtime, history, and release
-evidence set. Treat current implementation as evidence, not automatic product
-intent.
+Start at the project's `docs/specs/README.md` and follow only relevant Markdown
+links. Before implementation evidence, record the traversal receipt and
+provisional Spec Basis. If no governing node exists, record the absence rather
+than treating the first source file or test as product authority.
 
-Before that evidence inspection, record the Route Receipt and provisional Spec
-Basis. If bounded discovery finds no governing node, record the absence instead
-of treating the first source or test as product authority.
+Inspect the smallest complete applicable source, design, QA, runtime, history,
+and release evidence set. Keep authority (Draft/Active/Superseded/Historical)
+separate from stability (Evolving/Accepted/Released/Deprecated).
 
-Do not mark a contract Active merely because implementation exists. Record
-authority (Draft/Active/Superseded/Historical) separately from stability
-(Evolving/Accepted/Released/Deprecated).
+Each contract node should include stable domain and clause IDs, goal, scope,
+non-goals, user-visible behavior, invariants, edge cases, state/data/route
+implications, verification, evidence, dependencies, revision, and unknowns.
 
-Each spec should include:
+Create short Markdown branch nodes when subdomains can be selected
+independently. Link branches, leaves, and dependencies with ordinary Markdown
+links. Every node must contain at most 100 physical lines; prefer 50–80. Do not
+create JSON manifests or generated routing state.
 
-- Goal
-- Stable contract and domain IDs
-- Scope
-- Non-goals
-- User-visible behavior
-- Invariants
-- Edge cases and failure policy
-- Route / state / data implications
-- Verification mapping
-- Evidence mapping
-- Unknowns requiring confirmation
-
-Register every contract in `route.json` with a stable node ID, selection
-conditions, clause IDs, revision, context budget, and explicit dependencies.
-Create a child route when one node has independently selectable subdomains.
-
-Keep the specs short, explicit, and product-level.
-
-Do not turn them into technical design docs.
-Do not fill a real product fork with agent preference.
+Keep the specs explicit and product-level. Do not turn them into technical
+design documents or fill a real product fork with agent preference.

@@ -133,9 +133,8 @@ effort, budget variance, and the next user-visible milestone.
 
 Follow `docs/spec-first-workflow.md` for the compact workflow. For covered
 product work, start at the compact router
-`docs/agent-governance/product-truth-governance.md`, select the applicable
-profile from `docs/agent-governance/product-truth/route.json`, and read its
-resolved contract closure.
+`docs/agent-governance/product-truth-governance.md`, follow only the
+applicable Markdown links, and read the selected governance nodes completely.
 
 The gate applies to every product feature, behavioral bug or investigation,
 product-behavior plan, UX/state/data-contract change, migration, product QA
@@ -148,18 +147,18 @@ recommendation, interpretation, decision, plan, source inspection, non-reading
 task tool, implementation, runtime action, or verification:
 
 1. Re-read every applicable global and project instruction layer.
-2. Start at `docs/specs/route.json`. Traverse only matching branches using
-   their non-normative summaries and selection conditions.
-3. Select the smallest governing node IDs and resolve their explicit dependency
-   closure. Read every contract in that closure completely; do not load sibling
-   branches merely because they share a parent.
-4. Record a Route Receipt with the traversal path, manifests, selected clauses,
+2. Start at `docs/specs/README.md`. Follow ordinary Markdown links through
+   only the matching branch summaries.
+3. Select the smallest governing Markdown nodes and follow their explicit
+   dependency links. Read each selected node completely; do not load siblings
+   merely because they share a parent.
+4. Record a traversal receipt with the Markdown path, selected clauses,
    revisions, dependencies, excluded siblings, and resolved context size.
 5. Classify work as Restore, Reconcile, Evolve, Discover, or Behavior-neutral
    and establish the Contract Change Envelope.
 6. State a provisional Spec Basis separating specified expectation, protected
    behavior, established flow, and evidence still needed. Record a missing or
-   ambiguous route explicitly and use Discover before implementation evidence.
+   ambiguous Markdown path explicitly and use Discover before implementation evidence.
 7. Only then inspect the smallest complete applicable source, design, QA,
    runtime, history, upstream, and release evidence set.
 8. Classify discrepancies, accept only a legitimate Contract Delta, pin the
@@ -171,9 +170,10 @@ or operational intent, or call a non-reading task tool. This has no exception
 for urgency, apparent simplicity, debugging, read-only investigation, or “just
 one command.”
 
-Router summaries are navigation only and never define intended behavior. A
-node may be a leaf, branch, or both. Completeness means the selected contract
-closure, not every document under the specification root.
+Branch summaries are navigation only and never define intended behavior. A
+Markdown node may be a leaf, branch, or both. Every node is limited to 100
+physical lines, with 50–80 preferred. Completeness means the selected path and
+explicit dependencies, not every document under the specification root.
 
 The specification system is canonical intended behavior but is not infallible
 or self-authorizing. Spec-first is not spec-only. Current code, stale tests,
@@ -189,17 +189,17 @@ changing product implementation.
 
 When a lifecycle hook reports startup, resume, clear, context compaction, or a
 worker start, take no task action until the applicable instruction hierarchy
-and current routed authority have been re-established. Re-read the current
-goal, envelope, latest Route Receipt, selected route manifests, pinned contract
+and current linked authority have been re-established. Re-read the current
+goal, envelope, latest traversal receipt, selected Markdown nodes, pinned contract
 closure, epochs, deltas, discrepancies, and only the next-action QA evidence.
-Rerun route resolution to detect revision drift. Traverse from the root again
+Reopen the recorded path to detect revision drift. Traverse from the root again
 only when the task changed or the receipt is missing or ambiguous; do not reload
 unselected siblings merely because context was compacted.
 
-State the route and contracts re-read in the next progress update. Chat
+State the Markdown path and contracts re-read in the next progress update. Chat
 summaries, memory, worker lists, previous receipts, green builds, tests,
 screenshots, and raw configuration do not replace current contracts. Workers
-use their pinned packet and routed closure rather than the root conversation.
+use their pinned packet and linked closure rather than the root conversation.
 
 ## When a spec is required
 

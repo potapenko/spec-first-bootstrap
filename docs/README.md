@@ -8,8 +8,8 @@ two, or all three.
 
 - [`spec-first-workflow.md`](spec-first-workflow.md) defines the compact
   specification-first workflow.
-- [`specs/`](specs/) explains hierarchical route manifests, contract closures,
-  Route Receipts, and reusable templates.
+- [`specs/`](specs/) is a Markdown-only root/branch/leaf tree with ordinary
+  links, bounded nodes, traversal receipts, and reusable templates.
 
 ## Agent work governance
 

@@ -1,18 +1,28 @@
-# Legacy Specification Migration Routing
+# Legacy Migration Routing
 
-- Revision: `bootstrap.legacy-spec-migration.routing@1`
+- Node type: leaf
+- Status: Active
+- Revision: `bootstrap.legacy-migration-routing@2`
+- Read when: planning or resuming migration of a large existing spec library.
+- Do not read when: authoring a new small Markdown-first tree.
+- Maximum size: 100 physical lines.
 
-Do not begin a large migration by reading every legacy specification. Generate
-a mechanical inventory first, then use its compact status to select one bounded
-product-domain batch. Inventory metadata may cluster candidates, but only
-semantic review can classify a document as a contract, supporting resource,
-historical record, superseded source, or duplicate.
+Do not begin by reading every legacy document. Perform a mechanical census
+without emitting bodies, then create a Markdown migration root whose children
+are bounded batch nodes.
 
-Add routes incrementally around documents in their existing locations. Moving,
-splitting, merging, or rewriting source documents is a later explicit step, not
-the default routing operation. Track every source path until it has one terminal
-disposition, and keep deferred documents visible.
+Each batch node links to at most the current coherent domain set. Read one batch
+completely, split its documents into Markdown nodes no larger than 100 lines,
+write a compact Markdown receipt, and then select the next batch.
 
-Resume from the migration plan, compact coverage status, and current batch
-receipt. Do not reload completed batches or the full inventory into the agent
-conversation. Validate source hashes and route revisions before continuing.
+Durable migration state is Markdown:
+
+- `migration/README.md` — status and links to batch nodes;
+- `migration/batches/<batch>.md` — bounded source links and disposition;
+- `migration/receipts/<batch>.md` — hashes, changes, checks, and next link.
+
+Technical tools may rescan paths, hashes, links, and line counts. They must not
+create a required JSON registry or become an authority layer.
+
+Resume from the migration root, current batch, and latest receipt. Do not reload
+completed batches or the complete corpus.

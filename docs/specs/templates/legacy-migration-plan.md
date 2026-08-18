@@ -1,15 +1,14 @@
-# Legacy Specification Migration Plan
+# Legacy Specification Migration
 
+- Node type: root | branch | hybrid
 - Migration ID:
 - Status: planned | in_progress | blocked | complete
 - Change mode: Reconcile | Discover
 - Approved by:
 - Source specification root:
-- Migration state root:
-- Inventory revision or digest:
-- Root route revision:
-- Maximum documents per batch: 25
-- Maximum source words per batch: 12000
+- Maximum sources per batch:
+- Maximum source words per batch:
+- Maximum node size: 100 physical lines.
 
 ## Contract Change Envelope
 
@@ -19,7 +18,6 @@
 - Product implementation authorization: forbidden
 - Allowed specification delta:
 - Forbidden specification delta:
-- Stability or release baseline:
 - Evidence required:
 - Material decisions requiring the user:
 
@@ -27,48 +25,31 @@
 
 - Total documents:
 - Total words:
-- Existing routed documents:
-- Existing unregistered documents:
+- Existing Markdown nodes:
+- Unmigrated documents:
 - Known authority conflicts:
-- Legacy-released behavior requiring protection:
 
-## Migration strategy
+## Batches
 
-- Initial domain and batch order:
-- Documents that must stay in place:
-- Optional normalization deferred until after routing:
-- Route and context-budget verification:
+- [Current batch](<migration-root>/batches/<batch>.md) — <domain and status>.
+- [Completed batches](<migration-root>/README.md) — <compact linked history>.
+
+## Strategy
+
+- Initial domain order:
+- Documents that stay in place:
+- Permitted structural splits:
+- Link and 100-line verification:
 - Checkpoint policy:
 
-## Durable state
+## Resume
 
-- Inventory: `inventory.json`
-- Batch mappings: `batches/`
-- Batch receipts: `receipts/`
-- Compact status command:
-- Drift verification command:
+Read this migration root, the current linked batch, its latest receipt, and only
+that batch's authority. Do not reload completed batches or the corpus.
 
-## Current batch
+## Completion
 
-- Batch ID:
-- Selected domain:
-- Source documents and words:
-- Governing routed closure:
-- Dependencies:
-- Expected dispositions:
-- Stop conditions:
-
-## Completion contract
-
-- Every inventory path has one terminal disposition.
-- Deferred, unclassified, duplicate-mapped, and hash-drift counts are zero.
-- Duplicate and superseded documents name canonical paths.
-- Every routed contract and representative task closure validates.
-- No document was moved, deleted, or semantically rewritten without explicit
-  approved scope and provenance verification.
-- Product implementation did not change.
-
-## Next action
-
-- Next batch or decision:
-- Exact files and authority required:
+Every source has one terminal Markdown disposition; every Active contract is
+reachable from the root; every node is at most 100 physical lines; links and
+dependencies resolve; drift and conflicts are explicit; product implementation
+did not change.

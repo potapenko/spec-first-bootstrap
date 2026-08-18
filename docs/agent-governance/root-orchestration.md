@@ -289,8 +289,8 @@ Every worker packet must contain:
 - the current support-only checkpoint depth in the milestone;
 - the cheapest safe alternative and whether a bounded user-assisted check is
   available;
-- for product work, a `spec_basis` section containing the Route Receipt,
-  selected manifests, complete contract closure, revisions and clauses,
+- for product work, a `spec_basis` section containing the Markdown traversal
+  receipt, selected nodes, complete contract closure, revisions and clauses,
   explicitly excluded siblings, specified expectation, protected behavior,
   established operational flow, and evidence assigned to the worker;
 - the accepted change mode and Contract Change Envelope when product behavior
@@ -325,8 +325,8 @@ exact dependency. It does not silently expand its packet.
 Workers must:
 
 - for product work, read the packet's exact Spec Basis and every contract in
-  its pinned routed closure before source inspection, runtime interpretation,
-  implementation, or verification; if a routed contract is unavailable or its
+  its pinned Markdown closure before source inspection, runtime interpretation,
+  implementation, or verification; if a linked contract is unavailable or its
   revision drifted, stop with that exact dependency instead of reconstructing
   intent from chat or code;
 - stay inside their packet;
@@ -605,7 +605,7 @@ On resume or context compaction, `/root` first re-reads:
 - the persistent goal;
 - the governing plan or runbook;
 - the single registry;
-- the latest Route Receipt, selected manifests, pinned contract closure,
+- the latest Markdown traversal receipt, selected nodes, pinned contract closure,
   current epochs, accepted Contract Deltas, and unresolved discrepancies for
   product work;
 - only the action-specific instructions needed for the next packet.
@@ -613,7 +613,7 @@ On resume or context compaction, `/root` first re-reads:
 Then `/root`:
 
 - confirms goal state;
-- reruns route resolution and revalidates or retires work affected by revision
+- reopens the recorded Markdown path and revalidates or retires work affected by revision
   drift without loading unselected sibling contracts;
 - reconciles stale running work;
 - confirms real worker capacity;

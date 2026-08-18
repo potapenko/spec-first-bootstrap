@@ -1,73 +1,47 @@
-# Product Truth Governance Router
+# Product Truth Governance
 
-This is the compact compatibility entry point for product-truth governance.
-Normative clauses live in the routed contract leaves under
-[`product-truth/`](product-truth/); this file is navigation, not a product
-contract.
+- Node type: root
+- Read when: work investigates, defines, changes, implements, reviews, or verifies product behavior.
+- Do not read when: work is proven mechanical, infrastructure-only, or behavior-neutral.
+- Maximum size: 100 physical lines.
 
-## Activation
+This Markdown file is the governance entrypoint. Follow only the links matching
+the current task; do not preload every leaf.
 
-Use this router for work that investigates, defines, changes, implements,
-reviews, or verifies product behavior, UX, state, routes, public data,
-permissions, persistence, compatibility, behavioral defects, QA, release
-behavior, transfers, ports, or migrations.
+## Always begin with
 
-Proven mechanical, infrastructure-only, and behavior-neutral work does not
-need the product-truth tree.
+1. [Core authority and truth layers](product-truth/core.md)
+2. [Markdown traversal and Spec Basis](product-truth/routing-and-basis.md)
 
-## Start here
+## Then choose only what applies
 
-1. Read [`product-truth/route.json`](product-truth/route.json).
-2. Select the applicable task profile or node IDs.
-3. Resolve the explicit dependency closure with the installed route resolver.
-   In this Bootstrap repository the command is:
+- [Change control](product-truth/change-control.md) — planning implementation,
+  changing a specification, or protecting adjacent domains.
+- [Evidence and profiles](product-truth/evidence-and-profiles.md) — inspecting
+  source, design, QA, runtime, history, transfers, defects, or brownfield work.
+- [Delivery and acceptance](product-truth/delivery-and-acceptance.md) —
+  implementation, design, QA, proportionality, or completion.
+- [Coordination and lifecycle](product-truth/coordination-and-lifecycle.md) —
+  worker packets, epochs, restart, or context compaction.
 
-   ```sh
-   python3 scripts/spec_route.py resolve \
-     docs/agent-governance/product-truth/route.json \
-     --profile <product-question|restore|reconcile|evolve|discover|product-worker|restart>
-   ```
+## Common paths
 
-4. Read every contract in the resulting closure completely.
-5. Record the Route Receipt and provisional Spec Basis before implementation
-   source, runtime evidence, diagnosis, recommendation, or non-reading action.
+- Product question: core → routing → evidence.
+- Restore/Reconcile/Evolve: core → routing → change → evidence → delivery.
+- Discover: core → routing → evidence.
+- Product worker: coordination plus the pinned product nodes in its packet.
+- Restart: routing → coordination, then the previously selected product path.
 
-Installers adapt the resolver path to the active project or user-level
-configuration. If the resolver is genuinely unavailable, follow the same
-`children` and `requires` fields manually and report that validation residual.
-Do not read every sibling leaf as a substitute for routing.
+## Invariants
 
-## Universal invariants
+The specification tree is canonical intended behavior but is not infallible or
+self-authorizing. Current code, tests, runtime, screenshots, history, and chat
+memory do not silently create intent.
 
-- The specification system is canonical intended behavior but is not
-  infallible or self-authorizing.
-- Current code, tests, runtime, screenshots, history, and chat memory do not
-  silently create product intent.
-- Completeness means the smallest complete selected contract closure, not all
-  documents in the tree.
-- Router summaries are non-normative and cannot replace contract clauses.
-- Semantic changes require legitimate external authority and advance affected
-  revisions or epochs.
-- Protected adjacent domains remain outside the change envelope.
-- Evidence reconciliation, implementation, and QA use the pinned routed basis.
-- After context compaction, restore the latest Route Receipt and selected
-  closure, check revision drift, and do not reload unselected siblings.
+Completeness means the selected Markdown path plus explicit dependency links,
+not every sibling. Branch summaries are navigation only. Semantic changes need
+legitimate authority and advance affected revisions.
 
-## Contract leaves
-
-- [`core.md`](product-truth/core.md) — authority, truth layers, domains,
-  stability, and release baselines.
-- [`routing-and-basis.md`](product-truth/routing-and-basis.md) — traversal,
-  closure, Route Receipt, and provisional/final Spec Basis.
-- [`change-control.md`](product-truth/change-control.md) — modes, envelope,
-  semantic authority, deltas, and protected scope.
-- [`evidence-and-profiles.md`](product-truth/evidence-and-profiles.md) —
-  reconciliation, discrepancy classes, defects, transfers, and brownfield work.
-- [`delivery-and-acceptance.md`](product-truth/delivery-and-acceptance.md) —
-  implementation order, design, QA, proportionality, and completion.
-- [`coordination-and-lifecycle.md`](product-truth/coordination-and-lifecycle.md)
-  — worker packets, epochs, restart, compaction, and receipts.
-
-The route manifest is the machine-readable authority for selection,
-dependencies, revisions, and context budgets. Stable clause IDs, not headings
-or line numbers, identify the governing slice.
+After compaction, reopen only the recorded path and required next evidence.
+Every governance node follows the same 100-physical-line maximum as product
+nodes.

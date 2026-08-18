@@ -70,12 +70,15 @@ and include trust and fixture-test verification.
 - [`repair-spec-first-workflow.md`](repair-spec-first-workflow.md): repair a
   project whose specification workflow has drifted.
 - [`migrate-legacy-spec-library.md`](migrate-legacy-spec-library.md): convert a
-  large existing specification corpus to hierarchical routing through
+  large existing specification corpus to a linked Markdown tree through
   mechanical inventory and bounded, restartable semantic batches.
 
-The specification prompts install and maintain hierarchical `route.json`
-manifests. Agents select node IDs semantically, resolve dependencies
-mechanically, and read only the complete selected contract closure.
+The specification prompts install and maintain a Markdown-only tree. Agents
+start at `docs/specs/README.md`, choose links from short branch summaries, and
+read only the selected nodes and their explicit Markdown dependencies. Every
+node has at most 100 physical lines; 50–80 is the preferred range. Validators
+may check links, reachability, and size, but no machine routing registry is part
+of the specification system.
 
 Use migration rather than brownfield discovery when the project already has a
 substantial specification library whose authority must be preserved. Repair

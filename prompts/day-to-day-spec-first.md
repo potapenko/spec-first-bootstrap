@@ -1,49 +1,31 @@
-Before any project-specific product answer, diagnosis, hypothesis,
-investigation, recommendation, decision, plan, source inspection, non-reading
-task tool, runtime action, implementation, or verification:
+Before any project-specific product answer, diagnosis, investigation, plan,
+source inspection, runtime action, implementation, or verification:
 
 1. read applicable global and project instructions;
-2. read the installed compact product-truth router and select the task profile;
-3. start at `docs/specs/route.json`;
-4. traverse matching branches using their non-normative `summary`, `read_when`,
-   and `do_not_read_when` fields;
-5. select the smallest governing node IDs and resolve explicit dependencies;
-6. read every contract in that closure completely, without loading unselected
-   sibling branches;
-7. record a Route Receipt with manifests, nodes, clauses, revisions,
-   dependencies, supporting resources, exclusions, and resolved context words;
-8. classify the task as Restore, Reconcile, Evolve, Discover, or
-   Behavior-neutral;
-9. establish the Contract Change Envelope and provisional Spec Basis;
-10. record a missing or ambiguous route and use Discover before implementation
-    evidence.
+2. read the compact product-truth governance root and follow only applicable
+   Markdown links;
+3. start at `docs/specs/README.md`;
+4. choose the smallest matching branch from its summary and follow ordinary
+   Markdown links until the governing node or nodes are reached;
+5. follow explicit Markdown dependency links and read the selected nodes fully;
+6. record a traversal receipt with paths, clauses, revisions, dependencies,
+   excluded siblings, and resolved context size;
+7. classify the task as Restore, Reconcile, Evolve, Discover, or
+   Behavior-neutral and state the Contract Change Envelope and provisional
+   Spec Basis.
 
-Only after that gate, inspect the smallest complete applicable source, design,
-QA, runtime, history, upstream, and release evidence set. Until then do not
-open implementation sources, interpret logs or runtime, form a failure
-hypothesis, recommend a repair, or call a non-reading task tool. There is no
-debugging, read-only-investigation, urgency, or one-command exception.
+Every specification node must contain at most 100 physical lines; prefer
+50–80. A node may be a root, branch, leaf, or hybrid. Branch summaries navigate
+only and cannot authorize product behavior. JSON manifests and generated
+routing registries are not part of the specification system.
 
-Classify discrepancies as implementation defect, specification defect or
-omission, stale evidence, authorized evolution, real product fork, or external
-authority blocker.
+Only after this gate, inspect the smallest complete applicable source, design,
+QA, runtime, history, upstream, and release evidence set. Classify material
+discrepancies, accept only a legitimate Contract Delta, pin the final Spec
+Basis, implement the authorized slice, update QA, and follow the repository's
+checkpoint policy.
 
-Only after reconciliation:
-
-1. accept any legitimate Contract Delta and update the selected contract first
-   when meaning changes;
-2. advance affected route/contract revisions;
-3. state the final pinned Spec Basis;
-4. implement only the authorized slice;
-5. update QA action-state-result mappings;
-6. run project verification and applicable runtime or visual checks;
-7. preserve the result under the project's checkpoint policy.
-
-A router summary and a specification edit cannot authorize product behavior.
-Planning-only and investigation-only requests do not authorize implementation.
-
-After startup, resume, clear, or context compaction, restore the latest Route
-Receipt, rerun resolution to detect revision drift, reread the selected closure,
-and traverse from the root only when the task changed or the prior route is
-missing or ambiguous. Do not reload unselected siblings merely because context
-was compacted.
+After startup, resume, clear, or context compaction, reopen the recorded
+Markdown path, detect node or contract revision drift, and reread only the
+selected nodes and next-action evidence. Traverse from the root again only
+when the task changed or the prior path is missing or ambiguous.

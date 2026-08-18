@@ -1,103 +1,52 @@
 # Optional Codex Lifecycle Enforcement
 
+- Node type: leaf
 - Contract ID: `bootstrap.codex-lifecycle`
 - Domain ID: `bootstrap.codex-lifecycle`
 - Authority: Active
 - Stability: Evolving
-- Governs: Optional Codex lifecycle hook adapter
-- Contract revision or epoch: `bootstrap.codex-lifecycle@2`
+- Contract revision: `bootstrap.codex-lifecycle@3`
 - Clauses: `CODEX.LIFECYCLE.ROOT`, `CODEX.LIFECYCLE.WORKER`,
   `CODEX.LIFECYCLE.COMPACTION`, `CODEX.LIFECYCLE.INSTALL`
-- Release baseline: None
+- Read when: changing the optional Codex lifecycle adapter.
+- Do not read when: changing portable Markdown routing without adapter mechanics.
+- Maximum size: 100 physical lines.
 
-## Goal
+## Goal and scope
 
-Reinforce the active instruction hierarchy after Codex lifecycle events so an
-agent re-establishes governing authority before continuing work.
+Reinforce the active instruction hierarchy after startup, resume, clear,
+compaction, and worker-start events. Cover project/global templates,
+installation, trust, deduplication, and fixtures.
 
-## Scope
+The adapter does not install other governance layers, inject full specs or
+conversations, change model/application defaults, or prove that files were read.
 
-- `SessionStart` sources `startup`, `resume`, `clear`, and `compact`;
-- `SubagentStart`;
-- project-local and global hook templates;
-- installation, trust, deduplication, and fixture-test guidance.
+## Required behavior
 
-## Non-goals
+- Root events inject a concise checklist to restore instructions, objective,
+  envelope, latest Markdown traversal path, selected nodes, and next evidence.
+- Worker events require the finite packet and only its linked contract nodes.
+- Compaction restores context before the immediate continuation request.
+- Root traversal restarts at the Markdown root only when the task changed or
+  the prior path is missing or ambiguous.
+- Existing hooks are preserved and equivalent hooks are reconciled.
+- Setup reports any required trust-review step.
 
-- installing specification, persistent-goal, or browser-QA governance;
-- injecting complete specifications or conversations into hook output;
-- changing Codex model, reasoning, provider, permission, or concurrency
-  settings;
-- claiming that hook output mechanically proves every required file was read.
+## Invariants and failure policy
 
-## User-visible behavior
+The adapter is optional and Codex-specific. It reinforces `AGENTS.md` and
+never replaces it. Global and project hooks are not both installed for one
+scope without explicit choice. Output stays concise and contains no secrets.
 
-- `SessionStart` injects a root/single-agent pre-action checklist appropriate
-  to its lifecycle source.
-- `SubagentStart` injects a worker-specific checklist that requires the finite
-  packet, Route Receipt, and only the routed contracts named by that packet.
-- Worker context does not instruct ordinary workers to read the complete root
-  manual or unselected product-governance leaves unless their role requires it.
-- A compacted root session receives the restart context before the immediate
-  continuation model request.
-- Root recovery restores the current Route Receipt and selected contract
-  closure, reruns resolution to detect revision drift, and traverses from the
-  root only when the task changed or the receipt is missing or ambiguous.
-- Worker recovery uses the finite packet's routed node IDs, clauses, and pinned
-  revisions. It does not load unrelated siblings or the complete governance
-  tree.
-- Existing hook sources are preserved. Equivalent hooks are reconciled rather
-  than duplicated.
-- Setup reports the trust-review step required by Codex after adding or
-  changing a non-managed hook definition.
+Malformed input produces a conservative root response. Unsupported events fall
+back to root context. Setup stops when the active Codex home or trusted project
+root cannot be resolved.
 
-## Invariants
+## Evidence and verification
 
-- The adapter is optional and Codex-specific.
-- The adapter reinforces active `AGENTS.md` authority; it does not replace it.
-- Global and project hooks are not both installed for the same requested scope
-  without an explicit user decision.
-- Hook output is concise, contains no secrets, and stays below its configured
-  additional-context limit.
-- Hook output reminds the agent to verify route revisions but does not inject
-  complete route manifests or contracts itself.
-- Event-specific output uses the matching Codex hook event name.
+Evidence: Codex hook documentation, lifecycle integration README, templates,
+implementation script, and fixtures.
 
-## Edge cases and failure policy
-
-- Malformed or missing input produces a valid conservative `SessionStart`
-  response.
-- Unsupported event names fall back to `SessionStart` context.
-- If the active Codex home or trusted project root cannot be resolved, setup
-  stops before writing.
-- If a matching hook already exists in another active source, setup reports the
-  overlap and avoids duplicate installation.
-
-## Route / state / data implications
-
-- Global adapters use the resolved active Codex home, not a copied username.
-- Project adapters resolve scripts from the Git root.
-- Hook definitions may live in `hooks.json` or inline config, but setup uses one
-  representation per layer.
-
-## Evidence mapping
-
-- OpenAI Codex hooks documentation;
-- `integrations/codex-lifecycle/README.md`;
-- hook JSON templates;
-- `integrations/codex-lifecycle/lifecycle_restart.py`;
-- fixture tests.
-
-## Verification mapping
-
-- fixture coverage for all four `SessionStart` sources;
-- `SubagentStart` fixture coverage;
-- malformed-input fallback;
-- JSON parsing of both templates;
-- checks for event-specific root and worker context.
-- checks that compaction restores Route Receipt/closure authority, requests
-  revision-drift validation, and excludes unrelated sibling contracts.
-
-## Unknowns requiring confirmation
-
-None.
+Verify all four root sources, worker startup, malformed input, template parsing,
+event-specific context, Markdown-path restoration, sibling exclusion, and
+absence of mandatory JSON routing state.

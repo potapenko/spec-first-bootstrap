@@ -1,5 +1,5 @@
 # Product Truth Delivery And Acceptance
-
+- Node type: leaf
 - Contract: `governance.product-truth.delivery@1`
 - Clauses: `PT.DELIVERY.ORDER`, `PT.DELIVERY.DESIGN`, `PT.DELIVERY.QA`,
   `PT.DELIVERY.PROPORTIONALITY`, `PT.DELIVERY.COMPLETE`
@@ -60,7 +60,7 @@ acceptance failure or missing claimed capability.
 A product task is complete only when:
 
 - the requested release-path outcome exists when implementation was requested;
-- the final routed contract basis and semantic revisions are current;
+- the final selected contract basis and semantic revisions are current;
 - every semantic edit has legitimate authority;
 - implementation matches the pinned clauses;
 - protected adjacent domains are preserved or dispositioned;

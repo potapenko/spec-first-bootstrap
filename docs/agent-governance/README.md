@@ -20,9 +20,8 @@ two, or all three in either scope.
 
 ## Files
 
-- `product-truth-governance.md` is the compact compatibility router;
-  `product-truth/route.json` selects the smallest complete product-governance
-  contract closure under `product-truth/`.
+- `product-truth-governance.md` is the compact Markdown root; its ordinary
+  links select the smallest complete governance path under `product-truth/`.
 - `root-orchestration.md` is the full outcome-first, economically proportional,
   coordinator-only-by-default `/root` contract for persistent goals, with the
   explicit user-required no-delegation activation exception.
@@ -39,8 +38,8 @@ two, or all three in either scope.
   entry point; do not assume another user's path.
 - Read and merge existing instructions. Never replace the complete instruction
   file.
-- Keep governance leaves conditionally routed. Ordinary workers receive only
-  the finite Route Receipt, contract clauses, and evidence required by their
+- Keep governance leaves conditionally linked. Ordinary workers receive only
+  the finite traversal receipt, contract clauses, and evidence required by their
   task rather than a complete governance monolith.
 - Install the compact task-framing and scope-control gate with the agent layer
   so the first implementation-bearing request and later materially ambiguous

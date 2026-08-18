@@ -1,5 +1,5 @@
 # Product Truth Routing And Spec Basis
-
+- Node type: leaf
 - Contract: `governance.product-truth.routing@1`
 - Clauses: `PT.ROUTE.TRAVERSE`, `PT.ROUTE.CLOSURE`, `PT.ROUTE.RECEIPT`,
   `PT.BASIS.PROVISIONAL`, `PT.BASIS.FINAL`
@@ -11,20 +11,20 @@ recommendation, source inspection, runtime interpretation, non-reading task
 tool, implementation, or verification:
 
 1. re-read applicable instruction layers;
-2. start at the project specification root route;
+2. start at the project specification root Markdown node;
 3. use each branch's `summary`, `read_when`, and `do_not_read_when` to descend;
 4. select the smallest nodes that govern the named task;
 5. resolve their explicit dependency closure;
 6. read every selected contract completely;
-7. state the Route Receipt and provisional Spec Basis;
+7. state the Markdown traversal receipt and provisional Spec Basis;
 8. only then inspect implementation evidence.
 
-A router is non-normative navigation metadata. Its summary cannot replace a
-contract or create product intent. A node may have a local contract, child
-route, or both; branch and leaf are roles rather than different document types.
+A branch summary is non-normative navigation text. It cannot replace a
+contract or create product intent. A Markdown node may be a branch, leaf, or
+both.
 
-When no route matches, record the missing contract and use Discover. When two
-Active routes conflict without precedence, stop only the affected slice.
+When no Markdown path matches, record the missing contract and use Discover.
+When two Active nodes conflict without precedence, stop only the affected slice.
 
 ## PT.ROUTE.CLOSURE — Smallest complete contract set
 
@@ -39,26 +39,26 @@ every document in a directory or every sibling domain. The closure contains:
 
 Do not load sibling nodes merely because they share a parent or source owner.
 Do not omit an explicit dependency to save context. If source or runtime
-evidence reveals an unregistered cross-domain dependency, return to the route,
+evidence reveals an unregistered cross-domain dependency, return to the tree,
 expand the closure, and record the discrepancy before acting.
 
-Task-to-domain selection requires product judgment. After node IDs are
-selected, dependency expansion and revision checking should be mechanical.
+Task-to-domain selection requires product judgment. Dependency links and
+revision checking may be verified mechanically after the path is selected.
 
 ## PT.ROUTE.RECEIPT — Auditable context provenance
 
 Before evidence inspection, record:
 
-- task and root manifest;
-- selected node IDs and traversal path;
-- routing manifests read;
+- task and root Markdown node;
+- selected node paths and traversal order;
+- branch nodes read;
 - complete contract closure, clause IDs, and revisions;
 - cross-domain dependencies;
 - explicitly excluded sibling nodes;
 - supporting resources and resolved context size;
 - ambiguity or revision drift.
 
-The receipt proves routing provenance. It does not replace the contracts. For
+The receipt proves traversal provenance. It does not replace the contracts. For
 long-running work it is durable; for bounded work it may appear in the first
 progress update or Contract Change Envelope.
 
@@ -67,7 +67,7 @@ progress update or Contract Change Envelope.
 The provisional basis states:
 
 - change mode and current envelope;
-- Route Receipt;
+- Markdown traversal receipt;
 - specified expectation;
 - protected behavior and domains;
 - established operational flow from governing documents;
@@ -83,7 +83,7 @@ an evidence-reconciliation trigger, not automatically a user decision.
 After inspecting the smallest complete applicable evidence set, classify every
 material discrepancy and state:
 
-- pinned contract and route revisions;
+- pinned node and contract revisions;
 - resolved intended behavior;
 - evidence inspected and its role;
 - discrepancy dispositions;

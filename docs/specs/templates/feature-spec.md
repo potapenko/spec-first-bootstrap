@@ -1,96 +1,55 @@
-# <Feature name>
+# <Feature or responsibility>
 
-- Contract ID: <stable identifier>
-- Domain ID: <stable product-domain identifier>
-- Authority: Draft | Active | Superseded | Historical
+- Node type: leaf | hybrid
+- Contract ID: <stable-id>
+- Domain ID: <stable-domain>
+- Status: Draft | Active | Superseded | Historical
 - Stability: Evolving | Accepted | Released | Deprecated
-- Governs: <behavioral surface>
-- Contract revision or epoch: <revision>
-- Release baseline: None | <release identifier>
-- Stable clause IDs: <DOMAIN.CLAUSE identifiers registered in route.json>
-- Context budget words: <maximum before this contract must be split>
+- Contract revision: <revision-or-epoch>
+- Read when: <task-selection condition>
+- Do not read when: <sibling or excluded condition>
+- Maximum size: 100 physical lines.
 
-## Goal
+## Goal and scope
 
-Describe the product goal in one or two short paragraphs.
-
-## Scope
-
-List what this spec covers.
-
-- item one
-- item two
-- item three
+Describe the product outcome and the bounded responsibility of this node.
 
 ## Non-goals
 
-List what this spec intentionally does not define.
-
-- item one
-- item two
+- <explicit exclusion>
+- <protected adjacent behavior>
 
 ## User-visible behavior
 
-Describe the expected behavior as a set of product rules.
-Write these so the implementation can be checked against them later.
+- <stable clause ID>: <required behavior>
+- <stable clause ID>: <required behavior>
 
-- rule one
-- rule two
-- rule three
+## Invariants and failure policy
 
-## Invariants
+- <invariant>
+- <edge case or recovery behavior>
 
-List the rules that must not regress even if implementation changes.
+## Route, state, and data implications
 
-- invariant one
-- invariant two
+- <product-significant implication>
 
-## Edge cases and failure policy
+## Children
 
-Describe how the system behaves under imperfect input or unusual situations.
+For a hybrid only:
 
-- edge case one
-- edge case two
+- [<Child responsibility>](<relative-path.md>) — <when to read it>.
 
-## Route / state / data implications
+## Dependencies
 
-Capture any product-level contract that affects routes, state, identifiers,
-persistence, permissions, compatibility, or data exchange.
-
-- implication one
-- implication two
-
-## Evidence mapping
-
-Point to the source, design, QA, runtime, history, upstream, or release evidence
-needed to reconcile and implement this contract.
-
-- evidence item one
-- evidence item two
-
-## Required linked documents
-
-List the complete plans, registries, runbooks, operator handoffs, accepted
-reusable baselines, design contracts, QA workflows, or release records that
-must be read before deciding work in this domain.
-
-- linked document one
-- linked document two
-
-Register normative cross-domain dependencies in `route.json` with exact node
-and clause IDs. Do not rely on this prose list as the only dependency edge.
+- [<Required contract>](<relative-path.md>) — <exact required meaning>.
 
 ## Verification mapping
 
-List the tests, QA cases, or validation artifacts that represent this behavior.
+- <scenario or QA evidence>
 
-- test or case one
-- test or case two
+## Unknowns
 
-## Unknowns requiring confirmation
+- <real unresolved product decision>
 
-List real unresolved product forks or missing external authority. Do not fill
-these with agent preference.
-
-- unknown one
-- unknown two
+Split by responsibility before this node exceeds 100 physical lines. Product
+rules belong in selected contract nodes, never in branch summaries.

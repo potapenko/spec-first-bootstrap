@@ -12,7 +12,7 @@
 - QA and design impact:
 - Specification paths changed:
 - Independent review:
-- New contract revision or epoch:
+- New node and contract revision or epoch:
 
 ## Discrepancy disposition
 

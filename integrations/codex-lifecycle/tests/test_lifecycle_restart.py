@@ -24,7 +24,7 @@ class LifecycleRestartTests(unittest.TestCase):
                 hook = output["hookSpecificOutput"]
                 self.assertEqual(hook["hookEventName"], "SessionStart")
                 self.assertIn("Contract Change Envelope", hook["additionalContext"])
-                self.assertIn("Route Receipt", hook["additionalContext"])
+                self.assertIn("Markdown traversal receipt", hook["additionalContext"])
                 self.assertIn("revision", hook["additionalContext"])
                 self.assertIn("unselected siblings", hook["additionalContext"])
                 self.assertNotIn("finite worker packet", hook["additionalContext"])
@@ -36,6 +36,7 @@ class LifecycleRestartTests(unittest.TestCase):
         hook = output["hookSpecificOutput"]
         self.assertEqual(hook["hookEventName"], "SubagentStart")
         self.assertIn("finite worker packet", hook["additionalContext"])
+        self.assertIn("Markdown traversal receipt", hook["additionalContext"])
         self.assertIn("pinned closure", hook["additionalContext"])
         self.assertIn("unselected sibling", hook["additionalContext"])
         self.assertIn("Own exactly the assigned finite scope", hook["additionalContext"])

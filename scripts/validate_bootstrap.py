@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run lightweight structural checks for the documentation-first Bootstrap."""
+"""Run lightweight structural checks for the Markdown-first Bootstrap."""
 
 from __future__ import annotations
 
@@ -8,7 +8,7 @@ import re
 import sys
 from pathlib import Path
 
-from spec_route import RouteError, count_words, load_graph
+from check_spec_markdown import CheckError, validate
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -28,161 +28,90 @@ REQUIRED_TEXT = {
     "AGENTS.md": (
         "Mandatory pre-action specification gate",
         "Lifecycle restart gate",
-        "Route Receipt",
-        "selected contract",
-        "unselected siblings",
+        "traversal receipt",
+        "Every node is limited to 100",
         "Outcome and resource proportionality",
         "60/25/15 planning target",
         "Task framing and scope control",
         "first implementation-bearing request",
-        "Git-history inspection",
-        "Do not propose a plan to perform this planning work",
-        "plan is the execution boundary",
-        "minimum proposed scope",
         "Current branch only",
-        "commit, or push is not permission to create a branch",
         "task-owned write set",
-        "Existing changes are blockers only where they overlap",
-        "exclude them from staging",
     ),
     "docs/spec-first-workflow.md": (
-        "Mandatory pre-decision order",
-        "Hierarchical routing",
-        "Route Receipt",
-        "smallest complete selected contract closure",
+        "Strict Markdown-First Spec Workflow",
+        "docs/specs/README.md",
+        "Every node is at most 100",
+        "Technical checkers are optional",
     ),
     "docs/agent-governance/product-truth-governance.md": (
-        "product-truth/route.json",
-        "Completeness means the smallest complete selected contract closure",
-        "context compaction",
-    ),
-    "docs/agent-governance/root-orchestration.md": (
-        "Outcome and economic proportionality",
-        "60% shipping implementation",
-        "support-only implementation checkpoints",
-        "receives review proportional to demonstrated",
-        "budget variance",
-        "primary agent works as a normal single agent",
-        "without subagents, workers, or delegation",
+        "Node type: root",
+        "Markdown traversal and Spec Basis",
+        "selected Markdown path plus explicit dependency links",
     ),
     "docs/agent-governance/agents-sections.md": (
-        "Project: Codex lifecycle restart adapter",
-        "Global: Codex lifecycle restart adapter",
-        "Project: outcome and resource proportionality",
-        "Global: outcome and resource proportionality",
-        "Project: task framing and scope control",
-        "Global: task framing and scope control",
+        "Project: product specifications",
+        "Global: product specifications",
+        "Markdown traversal receipt",
+        "at most 100 physical lines",
         "Project: current branch only",
         "Global: current branch only",
-        "first implementation-bearing request",
-        "single-agent exception",
-        "immediate-execution waiver",
-        "task-owned write set",
-        "Existing changes are blockers only where they overlap",
-        "exclude them from staging",
-        "Route Receipt",
-    ),
-    "docs/agent-governance/README.md": (
-        "task-owned write set",
-        "only overlapping existing changes block editing",
-        "outside task commits",
     ),
     "docs/specs/index.md": (
-        "bootstrap.governance@6",
-        "bootstrap.legacy-spec-migration@1",
-        "bootstrap.codex-lifecycle@2",
-        "2026-08-18-task-owned-worktree-state.md",
-        "2026-08-18-hierarchical-spec-routing.md",
-        "2026-08-18-legacy-spec-migration.md",
+        "bootstrap.governance@7",
+        "bootstrap.legacy-spec-migration@2",
+        "bootstrap.codex-lifecycle@3",
+        "2026-08-18-markdown-first-routing.md",
     ),
     "docs/specs/features/bootstrap-governance.md": (
-        "bootstrap.governance@6",
-        "Route Receipt",
-        "task-owned write set",
-        "block implementation only where they overlap",
-        "excluded from staging and commits",
+        "bootstrap.governance@7",
+        "bootstrap-governance/markdown-routing.md",
+        "100 physical lines",
     ),
     "docs/specs/features/legacy-spec-migration.md": (
-        "bootstrap.legacy-spec-migration@1",
-        "BOOTSTRAP.MIGRATION.INVENTORY",
-        "BOOTSTRAP.MIGRATION.BATCH",
-        "BOOTSTRAP.MIGRATION.RESUME",
-        "every inventoried document",
+        "bootstrap.legacy-spec-migration@2",
+        "legacy-spec-migration/batches-and-safety.md",
+        "Census and Markdown state",
     ),
     "prompts/migrate-legacy-spec-library.md": (
         "Never place the complete inventory or corpus bodies in the conversation",
-        "25 documents and 12,000 source words",
-        "spec_migration.py inventory",
-        "--require-complete",
-        "Do not delete, move, merge, split, or rewrite",
+        "3 documents or 12,000 source words",
+        "spec_migration.py census",
+        "Do not create JSON inventory",
+        "at most 100 physical lines",
     ),
     "prompts/setup-project-spec-first.md": (
+        "scripts/check_spec_markdown.py",
         "scripts/spec_migration.py",
         "migrate-legacy-spec-library.md",
-        "migration inventory tool can produce compact status",
+        "100 physical lines",
     ),
     "prompts/repair-spec-first-workflow.md": (
         "Workflow repair and corpus migration are separate scopes",
-        "scripts/spec_migration.py",
-        "migrate-legacy-spec-library.md",
-    ),
-    "prompts/setup-project-agents.md": (
-        "Project: outcome and resource proportionality",
-        "Project: task framing and scope control",
-        "Project: current branch only",
-        "explicit user approval",
-        "approved plan remains the execution boundary",
-        "single-agent exception",
-        "risk-proportional review",
-        "support-only implementation checkpoint",
-        "task-owned write set",
-        "changes block only where their paths overlap",
-        "excluded from staging and commits",
-        "Route Receipt",
-    ),
-    "prompts/setup-global-agents.md": (
-        "Global: outcome and resource proportionality",
-        "Global: task framing and scope control",
-        "Global: current branch only",
-        "visible approved execution plan",
-        "approved plan as the execution boundary",
-        "single-agent exception",
-        "default 60/25/15 planning",
-        "risk-proportional review",
-        "task-owned write set",
-        "changes block only where their paths overlap",
-        "excluded from staging and commits",
-        "Route Receipt",
+        "scripts/check_spec_markdown.py",
+        "JSON manifests",
     ),
 }
 
-FORBIDDEN_TEXT = {
-    "AGENTS.md": (
-        "A dirty or diverged working tree is a blocker",
-    ),
-    "docs/agent-governance/root-orchestration.md": (
-        "Every product delta must be covered by independent review",
-        "Sol with high reasoning",
-        "Terra with medium reasoning",
-        "Ultra as the default",
-        "Computer Use Discovery And Startup",
-        "Screenshot Capture Boundary",
-        "@oai/sky",
-    ),
-    "docs/agent-governance/agents-sections.md": (
-        "Computer Use Discovery And Startup",
-        "Screenshot Capture Boundary",
-        "@oai/sky",
-        "A dirty or diverged working tree is a blocker",
-    ),
-    "docs/specs/features/bootstrap-governance.md": (
-        "A dirty or diverged worktree is reported as a blocker",
-        "If the selected branch is dirty or diverged before implementation",
-    ),
-    "prompts/setup-project-agents.md": (
-        "product changes receive independent review",
-        "dirty or diverged worktree state is reported as a blocker",
-    ),
+FORBIDDEN_PATHS = (
+    "docs/specs/route.json",
+    "docs/specs/features/route.json",
+    "docs/specs/templates/route.json",
+    "docs/specs/templates/route-receipt.md",
+    "docs/agent-governance/product-truth/route.json",
+    "scripts/spec_route.py",
+    "scripts/tests/test_spec_route.py",
+)
+
+STALE_MARKERS = (
+    "route.json",
+    "spec_route.py",
+    "inventory.json",
+    "--mapping-dir",
+)
+
+HISTORICAL_JSON_DELTAS = {
+    ROOT / "docs/specs/deltas/2026-08-18-hierarchical-spec-routing.md",
+    ROOT / "docs/specs/deltas/2026-08-18-legacy-spec-migration.md",
 }
 
 
@@ -194,18 +123,28 @@ def check_required_text(errors: list[str]) -> None:
                 errors.append(f"{relative_path}: missing required text: {value}")
 
 
-def check_forbidden_text(errors: list[str]) -> None:
-    for relative_path, forbidden_values in FORBIDDEN_TEXT.items():
-        text = (ROOT / relative_path).read_text(encoding="utf-8")
-        for value in forbidden_values:
-            if value in text:
-                errors.append(f"{relative_path}: forbidden text present: {value}")
+def check_forbidden_artifacts(errors: list[str]) -> None:
+    for relative in FORBIDDEN_PATHS:
+        if (ROOT / relative).exists():
+            errors.append(f"obsolete JSON-routing artifact remains: {relative}")
+
+    for path in sorted(ROOT.rglob("*.md")):
+        if path in HISTORICAL_JSON_DELTAS:
+            continue
+        text = path.read_text(encoding="utf-8")
+        for marker in STALE_MARKERS:
+            if marker in text:
+                errors.append(
+                    f"{path.relative_to(ROOT)}: stale routing marker: {marker}"
+                )
 
 
 def check_local_markdown_links(errors: list[str]) -> None:
     for path in sorted(ROOT.rglob("*.md")):
         text = path.read_text(encoding="utf-8")
         for raw_target in MARKDOWN_LINK.findall(text):
+            if "<" in raw_target or ">" in raw_target:
+                continue
             target = raw_target.strip()
             if target.startswith("<") and target.endswith(">"):
                 target = target[1:-1]
@@ -225,75 +164,34 @@ def check_markdown_fences(errors: list[str]) -> None:
     for path in sorted(ROOT.rglob("*.md")):
         lines = path.read_text(encoding="utf-8").splitlines()
         for marker in ("```", "~~~"):
-            count = sum(line.startswith(marker) for line in lines)
-            if count % 2:
-                errors.append(
-                    f"{path.relative_to(ROOT)}: unbalanced {marker} fences"
-                )
+            if sum(line.startswith(marker) for line in lines) % 2:
+                errors.append(f"{path.relative_to(ROOT)}: unbalanced {marker} fences")
 
 
-def check_task_scope_sections(errors: list[str]) -> None:
-    sections_path = ROOT / "docs/agent-governance/agents-sections.md"
-    sections_text = sections_path.read_text(encoding="utf-8")
-    matches = TASK_SCOPE_SECTION.findall(sections_text)
+def check_mirrored_section(
+    errors: list[str], pattern: re.Pattern[str], label: str
+) -> None:
+    text = (ROOT / "docs/agent-governance/agents-sections.md").read_text(
+        encoding="utf-8"
+    )
+    matches = pattern.findall(text)
     sections = {scope: payload for scope, payload in matches}
-
-    if len(matches) != 2 or {scope for scope, _ in matches} != {"Project", "Global"}:
-        errors.append(
-            "docs/agent-governance/agents-sections.md: expected exactly one "
-            "Project and one Global task-scope section"
-        )
+    if len(matches) != 2 or set(sections) != {"Project", "Global"}:
+        errors.append(f"agents-sections.md: expected Project and Global {label}")
         return
-
     if sections["Project"] != sections["Global"]:
-        errors.append(
-            "docs/agent-governance/agents-sections.md: Project and Global "
-            "task-scope payloads differ"
-        )
-
-    project_agents = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
-    installed_count = project_agents.count(sections["Project"])
-    if installed_count != 1:
-        errors.append(
-            "AGENTS.md: canonical Project task-scope payload must be installed "
-            f"exactly once, found {installed_count}"
-        )
-
-
-def check_current_branch_sections(errors: list[str]) -> None:
-    sections_path = ROOT / "docs/agent-governance/agents-sections.md"
-    sections_text = sections_path.read_text(encoding="utf-8")
-    matches = CURRENT_BRANCH_SECTION.findall(sections_text)
-    sections = {scope: payload for scope, payload in matches}
-
-    if len(matches) != 2 or {scope for scope, _ in matches} != {"Project", "Global"}:
-        errors.append(
-            "docs/agent-governance/agents-sections.md: expected exactly one "
-            "Project and one Global current-branch section"
-        )
-        return
-
-    if sections["Project"] != sections["Global"]:
-        errors.append(
-            "docs/agent-governance/agents-sections.md: Project and Global "
-            "current-branch payloads differ"
-        )
-
-    project_agents = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
-    installed_count = project_agents.count(sections["Project"])
-    if installed_count != 1:
-        errors.append(
-            "AGENTS.md: canonical Project current-branch payload must be "
-            f"installed exactly once, found {installed_count}"
-        )
+        errors.append(f"agents-sections.md: Project and Global {label} differ")
+    installed = (ROOT / "AGENTS.md").read_text(encoding="utf-8").count(
+        sections["Project"]
+    )
+    if installed != 1:
+        errors.append(f"AGENTS.md: canonical {label} must appear once, found {installed}")
 
 
 def check_instruction_size(errors: list[str]) -> None:
-    agent_bytes = (ROOT / "AGENTS.md").stat().st_size
-    if agent_bytes > 32 * 1024:
-        errors.append(
-            f"AGENTS.md: {agent_bytes} bytes exceeds Codex's default 32 KiB chain limit"
-        )
+    size = (ROOT / "AGENTS.md").stat().st_size
+    if size > 32 * 1024:
+        errors.append(f"AGENTS.md: {size} bytes exceeds default 32 KiB chain limit")
 
 
 def check_hook_templates(errors: list[str]) -> None:
@@ -305,126 +203,45 @@ def check_hook_templates(errors: list[str]) -> None:
         except (json.JSONDecodeError, OSError) as error:
             errors.append(f"{path.relative_to(ROOT)}: invalid JSON: {error}")
             continue
-
         hooks = payload.get("hooks", {})
         if "SessionStart" not in hooks or "SubagentStart" not in hooks:
             errors.append(f"{path.relative_to(ROOT)}: missing lifecycle event")
 
 
-def check_spec_routes(errors: list[str]) -> None:
-    route_paths = (
-        ROOT / "docs/specs/route.json",
-        ROOT / "docs/agent-governance/product-truth/route.json",
+def check_markdown_trees(errors: list[str]) -> None:
+    roots = (
+        ROOT / "docs/specs/README.md",
+        ROOT / "docs/agent-governance/product-truth-governance.md",
+        ROOT / "docs/spec-first-workflow.md",
     )
-    graphs = {}
-    for path in route_paths:
-        try:
-            graphs[path] = load_graph(path)
-        except (OSError, RouteError) as error:
-            errors.append(f"{path.relative_to(ROOT)}: {error}")
-
-    template = ROOT / "docs/specs/templates/route.json"
+    scans = (
+        ROOT / "docs/specs",
+        ROOT / "docs/agent-governance/product-truth-governance.md",
+        ROOT / "docs/agent-governance/product-truth",
+        ROOT / "docs/spec-first-workflow.md",
+    )
     try:
-        payload = json.loads(template.read_text(encoding="utf-8"))
-        if payload.get("schema_version") != 1:
-            errors.append("docs/specs/templates/route.json: schema_version must be 1")
-    except (OSError, json.JSONDecodeError) as error:
-        errors.append(f"docs/specs/templates/route.json: invalid JSON: {error}")
-
-    governance_path = ROOT / "docs/agent-governance/product-truth/route.json"
-    governance = graphs.get(governance_path)
-    if governance:
-        for profile, budget in (("product-question", 1800), ("evolve", 3000)):
-            try:
-                selected = governance.select([], [profile])
-                closure = governance.resolve(selected)
-                words = sum(
-                    count_words(node.contract.path.read_text(encoding="utf-8"))
-                    for node in closure
-                    if node.contract
-                )
-                if words > budget:
-                    errors.append(
-                        f"{profile} governance closure exceeds {budget}-word "
-                        f"regression budget: {words}"
-                    )
-            except (OSError, RouteError) as error:
-                errors.append(f"{profile} profile cannot resolve: {error}")
-
-        registered = {
-            node.contract.path.resolve()
-            for node in governance.nodes.values()
-            if node.contract
-        }
-        leaf_dir = ROOT / "docs/agent-governance/product-truth"
-        for path in leaf_dir.glob("*.md"):
-            if path.resolve() not in registered:
-                errors.append(
-                    f"{path.relative_to(ROOT)}: governance leaf is not registered"
-                )
-
-    bootstrap_path = ROOT / "docs/specs/route.json"
-    bootstrap = graphs.get(bootstrap_path)
-    if bootstrap:
-        for profile, budget in (
-            ("bootstrap-governance", 2000),
-            ("legacy-spec-migration", 3600),
-        ):
-            try:
-                selected = bootstrap.select([], [profile])
-                closure = bootstrap.resolve(selected)
-                contract_words = sum(
-                    count_words(node.contract.path.read_text(encoding="utf-8"))
-                    for node in closure
-                    if node.contract
-                )
-                resources = {
-                    resource.path: resource
-                    for node in closure
-                    for resource in node.resources
-                }
-                resource_words = sum(
-                    count_words(path.read_text(encoding="utf-8"))
-                    for path in resources
-                )
-                words = contract_words + resource_words
-                if words > budget:
-                    errors.append(
-                        f"{profile} Bootstrap closure exceeds {budget}-word "
-                        f"regression budget: {words}"
-                    )
-            except (OSError, RouteError) as error:
-                errors.append(f"{profile} Bootstrap profile cannot resolve: {error}")
-
-        registered = {
-            node.contract.path.resolve()
-            for node in bootstrap.nodes.values()
-            if node.contract
-        }
-        for path in (ROOT / "docs/specs/features").glob("*.md"):
-            if path.resolve() not in registered:
-                errors.append(
-                    f"{path.relative_to(ROOT)}: Bootstrap contract is not registered"
-                )
+        validate(roots, scans, max_lines=100, forbid_json=True)
+    except (CheckError, OSError, UnicodeError) as error:
+        errors.append(str(error))
 
 
 def main() -> int:
     errors: list[str] = []
     check_required_text(errors)
-    check_forbidden_text(errors)
+    check_forbidden_artifacts(errors)
     check_local_markdown_links(errors)
     check_markdown_fences(errors)
-    check_task_scope_sections(errors)
-    check_current_branch_sections(errors)
+    check_mirrored_section(errors, TASK_SCOPE_SECTION, "task-scope section")
+    check_mirrored_section(errors, CURRENT_BRANCH_SECTION, "current-branch section")
     check_instruction_size(errors)
     check_hook_templates(errors)
-    check_spec_routes(errors)
+    check_markdown_trees(errors)
 
     if errors:
         for error in errors:
             print(error, file=sys.stderr)
         return 1
-
     print("bootstrap validation passed")
     return 0
 

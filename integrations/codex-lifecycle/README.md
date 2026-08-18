@@ -30,18 +30,18 @@ matching `SessionStart` hook after root compaction before the immediate model
 continuation, so this adapter does not add a duplicate `PostCompact` handler.
 
 `SubagentStart` receives different context. It requires the finite worker
-packet, Route Receipt, and pinned contract closure. It does not tell an ordinary
+packet, Markdown traversal receipt, and pinned contract closure. It does not tell an ordinary
 worker to read unselected sibling contracts, the full root manual, or every
 product-truth leaf unless the packet assigns an authority role requiring them.
 
-After root compaction, the adapter instructs Codex to rerun route resolution,
-detect manifest or contract revision drift, and reread the selected closure.
-Traversal restarts from the root only when the task changed or the prior route
+After root compaction, the adapter instructs Codex to reopen the recorded
+Markdown path, detect node or contract revision drift, and reread the selected
+closure. Traversal restarts from the root only when the task changed or the prior path
 is missing or ambiguous.
 
 The hook reinforces `AGENTS.md`; it does not replace the instruction hierarchy
 and cannot by itself prove that the model completed the reading pass. The
-visible documents-read and Spec Basis receipt provides that accountability.
+visible documents-read and Spec Basis receipt provide that accountability.
 
 ## Installation invariants
 

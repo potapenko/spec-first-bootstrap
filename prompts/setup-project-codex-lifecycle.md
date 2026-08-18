@@ -52,7 +52,7 @@ Use `apply_patch` for edits.
 - parse the resulting hook configuration;
 - run the lifecycle fixture tests;
 - verify `startup`, `resume`, `clear`, `compact`, and `SubagentStart` routing;
-- verify root context restores the Route Receipt and detects revision drift
+- verify root context restores the Markdown traversal receipt and detects revision drift
   without requiring unselected sibling contracts;
 - verify the compact restart gate is active and not shadowed;
 - verify only one matching adapter covers the selected scope;

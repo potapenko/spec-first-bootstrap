@@ -103,7 +103,7 @@ The resulting project must preserve these rules:
 - workers receive classified finite packets with authority, scope, owners,
   forbidden actions, release-path consumer, effort bound, economic stop,
   checks, stopping conditions, and a terminal receipt;
-- product packets carry a Route Receipt, exact pinned contract closure,
+- product packets carry a Markdown traversal receipt, exact pinned contract closure,
   specified expectation, protected behavior, assigned evidence, and contract
   epoch when product-truth governance applies;
 - model strength follows risk and judgment needs, with quality ahead of token
@@ -119,7 +119,7 @@ The resulting project must preserve these rules:
   revision, work classification, support depth, budget variance, next
   capability, receipts, and residuals;
 - a paused or blocked goal stays idle until explicitly resumed;
-- context compaction resumes from the Route Receipt, selected closure, and
+- context compaction resumes from the traversal receipt, selected closure, and
   durable state rather than chat memory or every sibling document.
 
 ## Verification

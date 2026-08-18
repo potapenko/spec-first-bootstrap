@@ -143,10 +143,10 @@ Follow prompts/migrate-legacy-spec-library.md from that repository. Do not read 
 
 - a minimal project `AGENTS.md` example;
 - the canonical specification-first workflow;
-- hierarchical spec routing, dependency closure, context budgets, and a route
-  resolver/validator;
-- a restartable large-library migration prompt with deterministic inventory,
-  batch coverage, and source-drift verification;
+- Markdown-first root/branch/leaf routing with ordinary links and a hard
+  100-line node limit;
+- a restartable large-library migration prompt with Markdown batch state,
+  compact mechanical census, and source-drift verification;
 - reusable product-spec templates and a Favorites example;
 - project and global setup prompts;
 - optional browser-QA files;
@@ -163,7 +163,10 @@ Run the Bootstrap's lightweight structural checks with:
 
 ```sh
 python3 scripts/validate_bootstrap.py
-python3 scripts/spec_route.py validate docs/specs/route.json
+python3 scripts/check_spec_markdown.py \
+  --root docs/specs/README.md --scan docs/specs \
+  --root docs/agent-governance/product-truth-governance.md \
+  --scan docs/agent-governance/product-truth
 python3 -m unittest discover -s scripts/tests -v
 python3 -m unittest discover -s integrations/codex-lifecycle/tests -v
 ```

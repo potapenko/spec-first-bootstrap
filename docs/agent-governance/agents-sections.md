@@ -108,18 +108,19 @@ boundary. Continue independent in-scope work when safe.
 For work that investigates, defines, changes, implements, or verifies product
 behavior, UX, state, data contracts, compatibility, or product QA, the primary
 single agent or coordinating `/root` must read
-`docs/agent/product-truth-governance.md`, select the applicable profile from its
-route manifest, and read the resolved governance closure before product action.
+`docs/agent/product-truth-governance.md`, follow only applicable Markdown
+links, and read the selected governance nodes before product action.
 
 Before any project-specific answer, diagnosis, hypothesis, investigation,
 recommendation, decision, plan, source inspection, non-reading task tool,
 runtime action, implementation, or verification:
 
 1. re-read every applicable instruction layer;
-2. start at the repository specification `route.json`;
-3. traverse matching branches, select the smallest governing node IDs, resolve
-   explicit dependencies, and read every contract in that closure completely;
-4. record a Route Receipt with manifests, clauses, revisions, dependencies,
+2. start at `docs/specs/README.md`;
+3. follow matching branch summaries and ordinary Markdown links, select the
+   smallest governing nodes, follow explicit dependencies, and read the
+   selected closure completely;
+4. record a Markdown traversal receipt with paths, clauses, revisions, dependencies,
    excluded siblings, and resolved context size;
 5. classify the change mode, establish the Contract Change Envelope, and state
    a provisional Spec Basis separating specified expectation, protected
@@ -131,6 +132,11 @@ Until that gate is complete, do not inspect implementation sources, interpret
 runtime evidence, form a failure hypothesis, recommend a repair, infer product
 intent, or call a non-reading task tool. There is no urgency, debugging,
 read-only-investigation, or one-command exception.
+
+Every specification node is Markdown and has at most 100 physical lines;
+50–80 is preferred. A node may be a root, branch, leaf, or hybrid. Branch
+summaries navigate only. JSON manifests and generated routing registries are
+not part of the specification system.
 
 The specification system is the canonical statement of intended behavior and
 the project's primary product artifact, but no specification is infallible or
@@ -258,18 +264,19 @@ For work that investigates, defines, changes, implements, or verifies product
 behavior, UX, state, data contracts, compatibility, or product QA, the primary
 single agent or coordinating `/root` must read the sibling
 `product-truth-governance.md` in the active user-level agent configuration
-directory, select the applicable routed profile, and read its resolved contract
-closure before product action.
+directory, follow only applicable Markdown links, and read the selected
+governance nodes before product action.
 
 Before any project-specific answer, diagnosis, hypothesis, investigation,
 recommendation, decision, plan, source inspection, non-reading task tool,
 runtime action, implementation, or verification:
 
 1. re-read every applicable instruction layer;
-2. start at the repository specification `route.json`;
-3. traverse matching branches, select the smallest governing node IDs, resolve
-   explicit dependencies, and read every contract in that closure completely;
-4. record a Route Receipt with manifests, clauses, revisions, dependencies,
+2. start at `docs/specs/README.md`;
+3. follow matching branch summaries and ordinary Markdown links, select the
+   smallest governing nodes, follow explicit dependencies, and read the
+   selected closure completely;
+4. record a Markdown traversal receipt with paths, clauses, revisions, dependencies,
    excluded siblings, and resolved context size;
 5. classify the change mode, establish the Contract Change Envelope, and state
    a provisional Spec Basis separating specified expectation, protected
@@ -282,6 +289,11 @@ runtime evidence, form a failure hypothesis, recommend a repair, infer product
 intent, or call a non-reading task tool. There is no urgency, debugging,
 read-only-investigation, or one-command exception.
 
+Every specification node is Markdown and has at most 100 physical lines;
+50–80 is preferred. A node may be a root, branch, leaf, or hybrid. Branch
+summaries navigate only. JSON manifests and generated routing registries are
+not part of the specification system.
+
 The specification system is canonical intended behavior and the primary
 product artifact, but no specification is infallible or self-authorizing.
 Establish a bounded change mode and envelope, state a provisional basis,
@@ -290,9 +302,9 @@ release evidence set, classify discrepancies, and state the final reconciled
 basis before implementation. A spec edit cannot create its own authority.
 
 Workers without product-authority, reconciliation, or contract-review
-responsibility receive only the finite Route Receipt, pinned contract closure,
+responsibility receive only the finite traversal receipt, pinned contract closure,
 evidence paths, protected boundaries, and acceptance conditions required by
-their task. Router summaries cannot create product intent.
+their task. Branch summaries cannot create product intent.
 ~~~
 
 ## Global: task framing and scope control
@@ -397,15 +409,15 @@ branch.
 
 When a trusted Codex lifecycle hook reports startup, resume, clear, context
 compaction, or a worker start, take no task action until the applicable
-instruction hierarchy and current routed authority have been re-established.
+instruction hierarchy and current linked authority have been re-established.
 
 For a root or single-agent session, re-establish current goal state, governing
 plan or runbook, registry, Contract Change Envelope, specification index,
-latest Route Receipt, selected manifests and contract closure, contract epoch,
+latest Markdown traversal receipt, selected nodes and contract closure, contract epoch,
 accepted deltas, unresolved discrepancies, and next-action QA instructions.
-Rerun route resolution to detect revision drift and do not load unselected
+Reopen the recorded Markdown path to detect revision drift and do not load unselected
 siblings merely because context was compacted. A worker reads its finite packet
-and pinned routed closure; it does not reconstruct authority from the root
+and pinned Markdown closure; it does not reconstruct authority from the root
 conversation or read the root manual unless assigned the coordinator role.
 
 State the route and contracts re-read in the next progress update. Chat
@@ -420,16 +432,16 @@ raw configuration never replace current contracts.
 
 When a trusted Codex lifecycle hook reports startup, resume, clear, context
 compaction, or a worker start, take no task action until the applicable global
-and project instruction hierarchy and current routed authority have been
+and project instruction hierarchy and current linked authority have been
 re-established.
 
 For a root or single-agent session, re-establish current goal state, governing
 plan or runbook, registry, Contract Change Envelope, specification index,
-latest Route Receipt, selected manifests and contract closure, contract epoch,
+latest Markdown traversal receipt, selected nodes and contract closure, contract epoch,
 accepted deltas, unresolved discrepancies, and next-action QA instructions.
-Rerun route resolution to detect revision drift and do not load unselected
+Reopen the recorded Markdown path to detect revision drift and do not load unselected
 siblings merely because context was compacted. A worker reads its finite packet
-and pinned routed closure; it does not reconstruct authority from the root
+and pinned Markdown closure; it does not reconstruct authority from the root
 conversation or read the root manual unless assigned the coordinator role.
 
 State the route and contracts re-read in the next progress update. Chat

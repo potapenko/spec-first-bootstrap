@@ -1,5 +1,5 @@
 # Product Truth Evidence And Profiles
-
+- Node type: leaf
 - Contract: `governance.product-truth.evidence@1`
 - Clauses: `PT.EVIDENCE.SET`, `PT.EVIDENCE.DISCREPANCY`, `PT.PROFILE.DEFECT`,
   `PT.PROFILE.TRANSFER`, `PT.PROFILE.BROWNFIELD`
@@ -37,7 +37,7 @@ green result.
 
 For a behavioral defect:
 
-1. establish expected behavior from the routed Active contract and accepted or
+1. establish expected behavior from the selected Active contract and accepted or
    released baseline;
 2. reproduce or otherwise establish actual behavior when feasible;
 3. inspect the owning source and relevant QA;
@@ -65,11 +65,11 @@ call a partial state/component transfer faithful.
 ## PT.PROFILE.BROWNFIELD — Missing or unreliable contracts
 
 Brownfield discovery is the narrow exception to a complete-contract gate.
-First record that the route or contract is absent or unreliable. Then inspect
+First record that the Markdown path or contract is absent or unreliable. Then inspect
 source, design, routes, state, QA, runtime, history, and released behavior as
 evidence without changing implementation.
 
-Produce a routed domain map, observed behavior separated from intended
+Produce a linked domain map, observed behavior separated from intended
 behavior, first-pass contracts, evidence/ownership mappings, a prioritized
 backlog, contradictions, unknowns, and legacy-released behavior requiring
 protection. Draft contracts are not implementation authority merely because

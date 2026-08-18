@@ -1,5 +1,5 @@
 # Product Truth Change Control
-
+- Node type: leaf
 - Contract: `governance.product-truth.change@1`
 - Clauses: `PT.CHANGE.MODE`, `PT.CHANGE.ENVELOPE`, `PT.CHANGE.AUTHORITY`,
   `PT.CHANGE.DELTA`, `PT.CHANGE.SCOPE`
@@ -30,7 +30,7 @@ Before implementation, establish a Contract Change Envelope containing:
 - required evidence;
 - allowed and forbidden specification delta;
 - material decisions requiring the user;
-- current route and contract revisions;
+- current Markdown path and contract revisions;
 - required review and QA;
 - task-owned paths when a plan is required.
 
@@ -70,7 +70,7 @@ Every semantic change records a compact Contract Delta:
 - design and QA impact;
 - changed specification paths;
 - required review;
-- new route and contract revision or epoch.
+- new node and contract revision or epoch.
 
 Editorial clarification may leave the semantic epoch unchanged after review.
 Reconciliation and evolution advance affected revisions. Protected or breaking

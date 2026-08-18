@@ -97,7 +97,7 @@ compaction recovery, and truthful completion.
 When the explicit single-agent exception is inactive, `/root` remains
 coordinator-only.
 When product-truth governance applies, product packets and receipts must carry
-the Route Receipt, pinned contract closure, specified expectation, observed
+the Markdown traversal receipt, pinned contract closure, specified expectation, observed
 evidence, discrepancy classification, and contract epoch.
 
 ## Verification
