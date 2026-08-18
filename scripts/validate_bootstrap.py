@@ -79,6 +79,30 @@ REQUIRED_TEXT = {
         "Do not create JSON inventory",
         "at most 100 physical lines",
     ),
+    "prompts/project-migrations/README.md": (
+        "HoldType Swift",
+        "SwiftUI Semantic Audit",
+        "CodexSwitch",
+        "checkpoint 0",
+    ),
+    "prompts/project-migrations/holdtype-swift.md": (
+        "54 Markdown documents",
+        "146,123 words",
+        "3 documents or 12,000 source words",
+        "Do not create JSON",
+    ),
+    "prompts/project-migrations/swiftui-semantic-audit.md": (
+        "contract epoch `tz-v5`",
+        "REALISTIC-FIXTURES-001",
+        "3 documents or 12,000 source words",
+        "Do not create JSON",
+    ),
+    "prompts/project-migrations/codex-switch.md": (
+        "four commits ahead",
+        "never push foreign local commits",
+        "3 documents or 12,000 source words",
+        "Do not create JSON",
+    ),
     "prompts/setup-project-spec-first.md": (
         "scripts/check_spec_markdown.py",
         "scripts/spec_migration.py",

@@ -139,6 +139,11 @@ Use https://github.com/potapenko/spec-first-bootstrap as the reference and migra
 Follow prompts/migrate-legacy-spec-library.md from that repository. Do not read the corpus wholesale, change product implementation, or delete, move, merge, split, or rewrite legacy documents unless a later batch explicitly authorizes it.
 ```
 
+Ready-to-paste launch prompts for selected large Swift projects are indexed in
+[`prompts/project-migrations/README.md`](prompts/project-migrations/README.md).
+Each starts in a fresh task, repeats the census, and stops for checkpoint-0
+approval before changing the target repository.
+
 ## What is included
 
 - a minimal project `AGENTS.md` example;
