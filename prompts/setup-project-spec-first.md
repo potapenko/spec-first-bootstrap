@@ -22,7 +22,9 @@ From the bootstrap repository, resolve and read the applicable routed closure:
   receipt, and envelope templates;
 - `prompts/greenfield-bootstrap.md`;
 - `prompts/brownfield-discovery.md`;
-- `prompts/generate-first-specs.md`.
+- `prompts/generate-first-specs.md`;
+- `prompts/migrate-legacy-spec-library.md` when the target already has a large
+  specification corpus.
 
 In the target project, resolve and read the complete active instruction chain,
 including `AGENTS.override.md`, nested instruction files, configured fallback
@@ -47,8 +49,9 @@ use Discover before consulting implementation evidence.
 3. Add or reconcile `docs/spec-first-workflow.md`.
 4. Add or reconcile the project's `docs/specs/README.md`, root `route.json`,
    human-readable index, routing guide, neutral templates, and
-   `scripts/spec_route.py`. Extend an existing mature spec system instead of
-   creating a competing one.
+   `scripts/spec_route.py`. Also install `scripts/spec_migration.py` and the
+   legacy migration plan template so an existing mature spec system can be
+   converted without creating a competing one or loading its whole corpus.
 5. Add only specification-related follow-up prompts. Do not install or copy
    persistent-goal agent architecture, browser-QA prompts, or browser-QA
    artifacts in this step.
@@ -76,6 +79,12 @@ For an existing project, use explicit brownfield Discover mode:
 5. write first-pass project specs with unknowns and conflicts visible;
 6. do not change product implementation.
 
+If the existing project already has a substantial specification library, do
+not treat it as missing documentation and do not read it wholesale during
+setup. Install the migration prompt and tools, perform only a bounded census,
+and leave corpus conversion to a separately approved run of
+`prompts/migrate-legacy-spec-library.md`.
+
 The specification system is canonical intended behavior but is not infallible
 or self-authorizing. Source and runtime evidence may reveal a missing or stale
 spec; current code must not silently become product intent.
@@ -94,6 +103,8 @@ Verify that:
 - Markdown, local links, and whitespace pass;
 - no product implementation changed;
 - no product behavior was invented merely to populate a template;
+- the migration inventory tool can produce compact status without emitting
+  corpus bodies;
 - no persistent-goal agent or browser-QA layer was installed or modified;
 - no Codex hook or agent application configuration was installed or modified
   without explicit adapter scope;

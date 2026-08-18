@@ -16,7 +16,8 @@ Read completely:
 3. the spec README, root route, Route Receipt if present, and the smallest
    active and historical contract closure needed to audit authority and precedence;
 4. existing day-to-day, greenfield, brownfield, implementation, and repair
-   prompts;
+   prompts; if a large legacy spec corpus exists, read the dedicated migration
+   prompt without reading that corpus wholesale;
 5. from the Bootstrap:
    - `docs/spec-first-workflow.md`;
    - `docs/agent-governance/product-truth-governance.md` and the applicable
@@ -90,6 +91,12 @@ public release.
 Do not invent or rewrite product decisions merely to make documentation
 consistent. Ask the user only when a material product fork genuinely remains
 after the evidence pass.
+
+Workflow repair and corpus migration are separate scopes. Repair may install or
+reconcile `scripts/spec_migration.py`, the migration-plan template, and
+`prompts/migrate-legacy-spec-library.md`, but it must not classify, move, or
+rewrite the legacy corpus unless the user separately approves the evidence-based
+migration plan. Report the migration prompt as the next action when applicable.
 
 ## Verification
 

@@ -126,12 +126,27 @@ layer is selected for an existing project, the setup agent preserves current
 instructions, studies the product as evidence, creates first-pass
 specifications, and does not change product implementation during discovery.
 
+### Migrate an existing specification library
+
+Use the dedicated migration workflow when a project already has a large flat
+or inconsistently structured spec corpus. It inventories documents
+mechanically, processes one bounded semantic batch at a time, and preserves
+existing files by default.
+
+```text
+Use https://github.com/potapenko/spec-first-bootstrap as the reference and migrate this project's existing specification library to hierarchical routing.
+
+Follow prompts/migrate-legacy-spec-library.md from that repository. Do not read the corpus wholesale, change product implementation, or delete, move, merge, split, or rewrite legacy documents unless a later batch explicitly authorizes it.
+```
+
 ## What is included
 
 - a minimal project `AGENTS.md` example;
 - the canonical specification-first workflow;
 - hierarchical spec routing, dependency closure, context budgets, and a route
   resolver/validator;
+- a restartable large-library migration prompt with deterministic inventory,
+  batch coverage, and source-drift verification;
 - reusable product-spec templates and a Favorites example;
 - project and global setup prompts;
 - optional browser-QA files;

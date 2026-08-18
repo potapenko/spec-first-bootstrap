@@ -89,9 +89,11 @@ REQUIRED_TEXT = {
     ),
     "docs/specs/index.md": (
         "bootstrap.governance@6",
+        "bootstrap.legacy-spec-migration@1",
         "bootstrap.codex-lifecycle@2",
         "2026-08-18-task-owned-worktree-state.md",
         "2026-08-18-hierarchical-spec-routing.md",
+        "2026-08-18-legacy-spec-migration.md",
     ),
     "docs/specs/features/bootstrap-governance.md": (
         "bootstrap.governance@6",
@@ -99,6 +101,30 @@ REQUIRED_TEXT = {
         "task-owned write set",
         "block implementation only where they overlap",
         "excluded from staging and commits",
+    ),
+    "docs/specs/features/legacy-spec-migration.md": (
+        "bootstrap.legacy-spec-migration@1",
+        "BOOTSTRAP.MIGRATION.INVENTORY",
+        "BOOTSTRAP.MIGRATION.BATCH",
+        "BOOTSTRAP.MIGRATION.RESUME",
+        "every inventoried document",
+    ),
+    "prompts/migrate-legacy-spec-library.md": (
+        "Never place the complete inventory or corpus bodies in the conversation",
+        "25 documents and 12,000 source words",
+        "spec_migration.py inventory",
+        "--require-complete",
+        "Do not delete, move, merge, split, or rewrite",
+    ),
+    "prompts/setup-project-spec-first.md": (
+        "scripts/spec_migration.py",
+        "migrate-legacy-spec-library.md",
+        "migration inventory tool can produce compact status",
+    ),
+    "prompts/repair-spec-first-workflow.md": (
+        "Workflow repair and corpus migration are separate scopes",
+        "scripts/spec_migration.py",
+        "migrate-legacy-spec-library.md",
     ),
     "prompts/setup-project-agents.md": (
         "Project: outcome and resource proportionality",
@@ -340,6 +366,36 @@ def check_spec_routes(errors: list[str]) -> None:
     bootstrap_path = ROOT / "docs/specs/route.json"
     bootstrap = graphs.get(bootstrap_path)
     if bootstrap:
+        for profile, budget in (
+            ("bootstrap-governance", 2000),
+            ("legacy-spec-migration", 3600),
+        ):
+            try:
+                selected = bootstrap.select([], [profile])
+                closure = bootstrap.resolve(selected)
+                contract_words = sum(
+                    count_words(node.contract.path.read_text(encoding="utf-8"))
+                    for node in closure
+                    if node.contract
+                )
+                resources = {
+                    resource.path: resource
+                    for node in closure
+                    for resource in node.resources
+                }
+                resource_words = sum(
+                    count_words(path.read_text(encoding="utf-8"))
+                    for path in resources
+                )
+                words = contract_words + resource_words
+                if words > budget:
+                    errors.append(
+                        f"{profile} Bootstrap closure exceeds {budget}-word "
+                        f"regression budget: {words}"
+                    )
+            except (OSError, RouteError) as error:
+                errors.append(f"{profile} Bootstrap profile cannot resolve: {error}")
+
         registered = {
             node.contract.path.resolve()
             for node in bootstrap.nodes.values()

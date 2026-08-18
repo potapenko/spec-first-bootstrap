@@ -69,7 +69,14 @@ and include trust and fixture-test verification.
   specification-first product work.
 - [`repair-spec-first-workflow.md`](repair-spec-first-workflow.md): repair a
   project whose specification workflow has drifted.
+- [`migrate-legacy-spec-library.md`](migrate-legacy-spec-library.md): convert a
+  large existing specification corpus to hierarchical routing through
+  mechanical inventory and bounded, restartable semantic batches.
 
 The specification prompts install and maintain hierarchical `route.json`
 manifests. Agents select node IDs semantically, resolve dependencies
 mechanically, and read only the complete selected contract closure.
+
+Use migration rather than brownfield discovery when the project already has a
+substantial specification library whose authority must be preserved. Repair
+fixes the workflow itself; it does not silently migrate the corpus.

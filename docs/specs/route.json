@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "node_id": "bootstrap.specs",
-  "revision": "bootstrap.specs.route@1",
+  "revision": "bootstrap.specs.route@2",
   "summary": "Root router for observable Bootstrap installation and enforcement contracts.",
   "read_when": [
     "changing, diagnosing, reviewing, or verifying Bootstrap behavior"
@@ -14,6 +14,9 @@
     "bootstrap-governance": [
       "bootstrap.governance"
     ],
+    "legacy-spec-migration": [
+      "bootstrap.legacy-spec-migration"
+    ],
     "codex-lifecycle": [
       "bootstrap.codex-lifecycle"
     ]
@@ -23,7 +26,7 @@
   "children": [
     {
       "node_id": "bootstrap.contracts",
-      "summary": "Bootstrap governance and optional Codex lifecycle behavior.",
+      "summary": "Bootstrap governance, legacy specification migration, and optional Codex lifecycle behavior.",
       "read_when": [
         "the task changes Bootstrap setup, governance, prompts, adapters, or verification"
       ],

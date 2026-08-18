@@ -17,6 +17,9 @@ browser QA does not require this directory.
 - [`contract-delta.md`](contract-delta.md) — accepted semantic change record.
 - [`release-contract-baseline.md`](release-contract-baseline.md) — released
   behavior and compatibility baseline.
+- [`legacy-migration-plan.md`](legacy-migration-plan.md) — durable scope,
+  batch limits, protected behavior, and resume state for a large legacy
+  specification migration.
 
 The route manifest is the machine-readable selection authority. The receipt
 and envelope carry selected nodes, clauses, revisions, excluded siblings,

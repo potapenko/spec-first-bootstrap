@@ -62,6 +62,8 @@ The full gate is defined in `docs/spec-first-workflow.md`.
   release reconciliation
 - hierarchical route manifests whose summaries are non-normative
 - explicit cross-domain dependencies and per-node context budgets
+- durable inventory and bounded-batch state for migrating a large legacy spec
+  corpus without loading it wholesale
 
 In this bootstrap repository, [`route.json`](route.json) is the routing and
 authority registry; [`index.md`](index.md) is its human-readable view. Contracts
@@ -137,8 +139,10 @@ docs/specs/
   index.md
   route.json
   routing.md
+  legacy-migration-routing.md
   templates/
     feature-spec.md
+    legacy-migration-plan.md
     spec-index.md
     route.json
     route-receipt.md
@@ -148,8 +152,17 @@ docs/specs/
   features/
     route.json
     bootstrap-governance.md
+    legacy-spec-migration.md
     codex-lifecycle-enforcement.md
 ```
+
+## Migrating a large existing library
+
+Use `prompts/migrate-legacy-spec-library.md` when reliable specification
+documents already exist but lack hierarchical routing. The migration tool
+records metadata and coverage mechanically; agents read and reconcile only one
+bounded domain batch at a time. Existing documents stay in place unless a
+separate approved batch authorizes normalization.
 
 ## Spec philosophy
 

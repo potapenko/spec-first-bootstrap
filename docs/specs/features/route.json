@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "node_id": "bootstrap.contracts",
-  "revision": "bootstrap.contracts.route@1",
-  "summary": "Routes Bootstrap work to governance or Codex lifecycle contracts.",
+  "revision": "bootstrap.contracts.route@2",
+  "summary": "Routes Bootstrap work to governance, legacy specification migration, or Codex lifecycle contracts.",
   "read_when": [
     "working on observable Bootstrap behavior"
   ],
@@ -46,6 +46,56 @@
         }
       ],
       "requires": [],
+      "precedence": []
+    },
+    {
+      "node_id": "bootstrap.legacy-spec-migration",
+      "summary": "Bounded, restartable conversion of large legacy specification libraries to hierarchical routing.",
+      "read_when": [
+        "migrating an existing flat or inconsistently structured specification corpus"
+      ],
+      "do_not_read_when": [
+        "setting up a new project or repairing governance without migrating legacy specifications"
+      ],
+      "contract": {
+        "path": "legacy-spec-migration.md",
+        "revision": "bootstrap.legacy-spec-migration@1",
+        "clauses": [
+          "BOOTSTRAP.MIGRATION.INVENTORY",
+          "BOOTSTRAP.MIGRATION.BATCH",
+          "BOOTSTRAP.MIGRATION.SAFETY",
+          "BOOTSTRAP.MIGRATION.RESUME",
+          "BOOTSTRAP.MIGRATION.COMPLETE"
+        ],
+        "context_budget_words": 1000,
+        "authority": "Active",
+        "stability": "Accepted",
+        "baseline": "None"
+      },
+      "resources": [
+        {
+          "path": "../legacy-migration-routing.md",
+          "role": "governance",
+          "revision": "bootstrap.legacy-spec-migration.routing@1",
+          "context_budget_words": 900
+        },
+        {
+          "path": "../../../prompts/migrate-legacy-spec-library.md",
+          "role": "runbook",
+          "revision": "bootstrap.legacy-spec-migration.prompt@1",
+          "context_budget_words": 1800
+        }
+      ],
+      "requires": [
+        {
+          "node_id": "bootstrap.governance",
+          "clauses": [
+            "BOOTSTRAP.ROUTING",
+            "BOOTSTRAP.SCOPE"
+          ],
+          "reason": "legacy migration preserves the accepted routing and target-project scope rules"
+        }
+      ],
       "precedence": []
     },
     {

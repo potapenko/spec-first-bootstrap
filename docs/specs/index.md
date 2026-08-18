@@ -20,6 +20,7 @@ Templates and examples are reference material, not Active contracts.
 | Contract | Domain | Authority | Stability | Revision | Read when | Precedence | Baseline |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [`features/bootstrap-governance.md`](features/bootstrap-governance.md) | `bootstrap.governance` | Active | Accepted | `bootstrap.governance@6` | Changing setup scope, governance, routing, prompts, templates, layer composition, task-scope control, Git work boundaries, or outcome/resource proportionality | Governs all portable Bootstrap installation surfaces | `ba891245af7ffa6ffa5463f85af8045b3f6bc75c` |
+| [`features/legacy-spec-migration.md`](features/legacy-spec-migration.md) | `bootstrap.legacy-spec-migration` | Active | Accepted | `bootstrap.legacy-spec-migration@1` | Migrating a large existing flat or inconsistently structured specification library | Depends on `BOOTSTRAP.ROUTING` and `BOOTSTRAP.SCOPE`; more specific for corpus migration | None |
 | [`features/codex-lifecycle-enforcement.md`](features/codex-lifecycle-enforcement.md) | `bootstrap.codex-lifecycle` | Active | Evolving | `bootstrap.codex-lifecycle@2` | Changing the optional Codex lifecycle adapter, routed restart context, prompts, or tests | More specific than `bootstrap.governance` only for Codex hook mechanics | None |
 
 ## Resolved closure support
@@ -27,6 +28,7 @@ Templates and examples are reference material, not Active contracts.
 | Domain | Routed supporting leaves |
 | --- | --- |
 | `bootstrap.governance` | Route profile `bootstrap-governance`; routed product-truth profile matching the task; affected setup/work prompt and template leaves |
+| `bootstrap.legacy-spec-migration` | Route profile `legacy-spec-migration`; migration prompt, routing guide, inventory and batch coverage artifacts |
 | `bootstrap.codex-lifecycle` | Route profile `codex-lifecycle`; lifecycle README, hook templates, script, fixture tests, and applicable setup prompt |
 
 ## Shared dependencies
@@ -46,6 +48,7 @@ Templates and examples are reference material, not Active contracts.
 - [`deltas/2026-08-14-universal-work-guards.md`](deltas/2026-08-14-universal-work-guards.md)
 - [`deltas/2026-08-18-task-owned-worktree-state.md`](deltas/2026-08-18-task-owned-worktree-state.md)
 - [`deltas/2026-08-18-hierarchical-spec-routing.md`](deltas/2026-08-18-hierarchical-spec-routing.md)
+- [`deltas/2026-08-18-legacy-spec-migration.md`](deltas/2026-08-18-legacy-spec-migration.md)
 
 ## Unknown precedence
 
