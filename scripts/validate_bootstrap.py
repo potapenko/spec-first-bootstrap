@@ -36,6 +36,7 @@ REQUIRED_TEXT = {
         "first implementation-bearing request",
         "Current branch only",
         "task-owned write set",
+        "Commit and push task-owned changes from the currently checked-out branch.",
     ),
     "docs/spec-first-workflow.md": (
         "Strict Markdown-First Spec Workflow",
@@ -55,17 +56,24 @@ REQUIRED_TEXT = {
         "at most 100 physical lines",
         "Project: current branch only",
         "Global: current branch only",
+        "Configure remote tracking for that branch automatically when needed.",
     ),
     "docs/specs/index.md": (
-        "bootstrap.governance@7",
+        "bootstrap.governance@8",
         "bootstrap.legacy-spec-migration@2",
         "bootstrap.codex-lifecycle@3",
         "2026-08-18-markdown-first-routing.md",
+        "2026-08-19-current-branch-checkpoint-policy.md",
     ),
     "docs/specs/features/bootstrap-governance.md": (
-        "bootstrap.governance@7",
+        "bootstrap.governance@8",
         "bootstrap-governance/markdown-routing.md",
         "100 physical lines",
+    ),
+    "docs/specs/features/bootstrap-governance/task-and-scope.md": (
+        "bootstrap.governance.task-scope@2",
+        "Commit and push task-owned changes from the currently checked-out branch.",
+        "Configure remote tracking for that branch automatically when needed.",
     ),
     "docs/specs/features/legacy-spec-migration.md": (
         "bootstrap.legacy-spec-migration@2",
@@ -98,21 +106,21 @@ REQUIRED_TEXT = {
         "Do not create JSON",
     ),
     "prompts/project-migrations/codex-switch.md": (
-        "four commits ahead",
-        "never push foreign local commits",
+        "5 Markdown documents",
+        "5,446 words",
         "3 documents or 12,000 source words",
         "Do not create JSON",
     ),
     "prompts/project-migrations/phrases-extractor.md": (
         "18 Markdown documents",
         "23,180 words",
-        "never push foreign local commits",
+        "currently checked-out branch",
         "Do not create JSON",
     ),
     "prompts/project-migrations/playphraseme-site.md": (
         "90 Markdown documents",
         "138,717 words",
-        "no configured upstream",
+        "currently checked-out branch",
         "Do not create JSON",
     ),
     "prompts/setup-project-spec-first.md": (

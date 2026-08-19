@@ -37,11 +37,6 @@ The planning snapshot for `docs/` was 18 Markdown documents, 23,180 words,
 Markdown node, JSON spec state, migration directory, or `docs/specs/README.md`.
 Repeat the mechanical census without printing document bodies.
 
-The current branch was four commits ahead of its upstream. Recheck this.
-Read-only planning may continue, but never push foreign local commits. If those
-commits are not accepted for the migration push, return the integration blocker
-before a write checkpoint.
-
 ## Protected authority
 
 Preserve the frozen phrase-document shape, `/<movie-id>/<phrase-id>.mp4`
@@ -53,11 +48,11 @@ normative contracts. Migration never authorizes direct database access.
 
 ## Checkpoint 0 — plan and stop
 
-Before writes, present current Git/upstream state, exact write set, the new
+Before writes, present the current branch, exact write set, the new
 root/branch structure, preserved legacy entrypoint, source dispositions, and a
 Markdown tree derived from actual meaning. Select one pilot batch of
 3 documents or 12,000 source words; one larger document may stand alone.
-Include verification and a safe commit/push path, then wait for explicit approval.
+Include verification. Wait for explicit approval.
 
 ## After approval
 
@@ -71,6 +66,6 @@ Every node must be at most 100 physical lines, preferably 50–80. Validate link
 reachability, coverage, drift, and no JSON routing state. Do not start another
 batch in the same checkpoint.
 
-Finish only under scoped commit/push discipline without publishing foreign
-commits. Report compact counts, node links, protected contracts, residuals, and
-the next batch.
+Finish with a scoped commit and push from the currently checked-out branch.
+Report compact counts, node links, protected contracts, residuals, and the next
+batch.

@@ -41,7 +41,7 @@ at most the largest 12 paths; never print document bodies or a full inventory.
 
 Before any write, present an evidence-based plan containing:
 
-- current Git/upstream state and exact task-owned paths;
+- current branch and exact task-owned paths;
 - proposed small root/branch structure and preserved legacy entrypoints;
 - bounded domain batches selected from registry meaning, not filenames alone;
 - one pilot batch, limited to 3 documents or 12,000 source words; one larger

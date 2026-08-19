@@ -17,15 +17,15 @@ PROJECTS = {
     },
     "codex-switch.md": {
         "target": "/Users/eugenepotapenko/Projects/potapenko-github/codex-switch",
-        "specific": ("four commits ahead", "never push foreign local commits"),
+        "specific": ("5 Markdown documents", "5,446 words"),
     },
     "phrases-extractor.md": {
         "target": "/Users/eugenepotapenko/Projects/playphrase.me/phrases-extractor",
-        "specific": ("18 Markdown documents", "never push foreign local commits"),
+        "specific": ("18 Markdown documents", "currently checked-out branch"),
     },
     "playphraseme-site.md": {
         "target": "/Users/eugenepotapenko/Projects/playphrase.me/playphraseme-site",
-        "specific": ("90 Markdown documents", "no configured upstream"),
+        "specific": ("90 Markdown documents", "currently checked-out branch"),
     },
 }
 SHARED_GUARDS = (
@@ -62,6 +62,21 @@ class ProjectMigrationPromptTests(unittest.TestCase):
     def test_prompt_directory_contains_only_the_index_and_named_projects(self) -> None:
         actual = {path.name for path in PROMPT_ROOT.glob("*.md")}
         self.assertEqual(actual, {"README.md", *PROJECTS})
+
+    def test_prompts_do_not_fix_branch_names_or_block_on_tracking(self) -> None:
+        forbidden = (
+            "configured upstream",
+            "upstream blocker",
+            "explicit safe upstream",
+            "git/upstream state",
+        )
+        for name in PROJECTS:
+            with self.subTest(prompt=name):
+                text = (PROMPT_ROOT / name).read_text(encoding="utf-8")
+                lowered = text.lower()
+                self.assertNotRegex(lowered, r"current\s+`[^`]+`")
+                for value in forbidden:
+                    self.assertNotIn(value, lowered)
 
 
 if __name__ == "__main__":

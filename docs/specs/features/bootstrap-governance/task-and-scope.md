@@ -2,7 +2,7 @@
 
 - Node type: leaf
 - Status: Active
-- Contract: `bootstrap.governance.task-scope@1`
+- Contract: `bootstrap.governance.task-scope@2`
 - Clause: `BOOTSTRAP.SCOPE`
 - Read when: planning or executing an implementation-bearing request.
 - Do not read when: answering a bounded read-only question with no proposed mutation.
@@ -34,6 +34,9 @@ continue safely.
 Use only the branch selected when the task begins. Do not create or switch a
 branch or worktree without explicit permission. Existing changes block only
 overlapping task-owned paths. Preserve and exclude every unrelated change.
+
+Commit and push task-owned changes from the currently checked-out branch.
+Configure remote tracking for that branch automatically when needed.
 
 Inspect worktree and staged diff, stage only exact task-owned files, and follow
 the target checkpoint commit/push contract.

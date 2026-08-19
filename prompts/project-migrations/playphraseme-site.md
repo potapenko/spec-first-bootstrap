@@ -37,11 +37,6 @@ and 64 documents over 100 lines. The existing `docs/specs/README.md` root was
 directory. Repeat the mechanical census without printing bodies or a complete
 inventory.
 
-The current `master` had an `origin` remote but no configured upstream.
-Recheck this. Read-only census and planning may continue, but do not invent a
-push target. Before writes, return the exact upstream blocker unless the user
-has established the safe checkpoint/push path.
-
 ## Protected authority
 
 Keep product contracts distinct from plans, runbooks, goal registries,
@@ -53,13 +48,13 @@ handoffs must remain restartable and reachable without becoming product intent.
 
 ## Checkpoint 0 — plan and stop
 
-Before writes, present Git/upstream state, exact write set, a root below 100
+Before writes, present the current branch, exact write set, a root below 100
 lines, domain branch structure, dependency links, source dispositions, and
 protected market/operational boundaries. Select one low-conflict pilot batch of
 3 documents or 12,000 source words; one larger document may stand alone. Do not
 choose an active goal registry or operator handoff as the pilot unless the user
-explicitly requests that domain. Include verification and the safe commit/push
-path, then wait for explicit approval.
+explicitly requests that domain. Include verification.
+Wait for explicit approval.
 
 ## After approval
 
@@ -73,6 +68,6 @@ Every node must be at most 100 physical lines, preferably 50–80. Validate link
 reachability, coverage, drift, and no JSON routing state. Do not start another
 batch in the same checkpoint.
 
-Finish only when scoped commit and push can use an explicit safe upstream.
+Finish with a scoped commit and push from the currently checked-out branch.
 Report compact counts, node links, protected authority, residuals, and the next
 batch; never return corpus bodies.

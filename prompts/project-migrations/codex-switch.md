@@ -14,8 +14,8 @@ implementation.
 
 ## Mandatory pre-action boundary
 
-1. Work only in the target repository and current `master`. Do not create a
-   branch or worktree.
+1. Work only in the target repository and current branch. Do not create a branch
+   or worktree.
 2. Re-read active global instructions and target `AGENTS.md`.
 3. Read `docs/specs/index.md` as the legacy entrypoint. A
    `docs/specs/README.md` root was absent in the planning snapshot; recheck it.
@@ -36,20 +36,13 @@ The planning snapshot was 5 Markdown documents, 5,446 words, 693 lines, with
 JSON spec state, or migration directory. Repeat the mechanical census without
 printing bodies.
 
-The repository was clean but `master` was four commits ahead of its upstream.
-Recheck this before planning. Read-only census may continue, but never push foreign local commits.
-If the ahead commits are not explicitly accepted for
-the migration push, identify the integration blocker before any write
-checkpoint and ask the user to disposition it.
-
 ## Checkpoint 0 — plan and stop
 
-Before writes, present current Git/upstream state, exact write set, the new
+Before writes, present the current branch, exact write set, the new
 `docs/specs/README.md` root, a compact branch/index structure, preserved
 contract meaning, and batches limited to 3 documents or 12,000 source words.
 Plan the two oversized contracts as independently selectable responsibilities,
-not arbitrary line chunks. Include verification and the safe commit/push path.
-Wait for explicit approval.
+not arbitrary line chunks. Include verification. Wait for explicit approval.
 
 ## After approval
 
@@ -63,6 +56,6 @@ record each source disposition. Every node must be at most 100 physical lines,
 preferably 50–80. Validate links, reachability, coverage, drift, and absence of
 JSON routing state. Do not start a second batch in the same checkpoint.
 
-Finish only when the target checkpoint can follow scoped commit and push
-discipline without publishing foreign commits. Report compact counts, node
-links, preserved behavior, residuals, and the next batch.
+Finish with a scoped commit and push from the currently checked-out branch.
+Report compact counts, node links, preserved behavior, residuals, and the next
+batch.

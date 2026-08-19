@@ -23,6 +23,9 @@ Work is not complete or accepted while its changes exist only in another branch
 or worktree. Task changes must be integrated into the operator-selected current
 branch.
 
+Commit and push task-owned changes from the currently checked-out branch.
+Configure remote tracking for that branch automatically when needed.
+
 ## Task framing and scope control
 
 ### New-chat first implementation request gate
