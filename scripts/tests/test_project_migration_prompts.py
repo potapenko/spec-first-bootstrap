@@ -21,11 +21,11 @@ PROJECTS = {
     },
     "phrases-extractor.md": {
         "target": "/Users/eugenepotapenko/Projects/playphrase.me/phrases-extractor",
-        "specific": ("18 Markdown documents", "currently checked-out branch"),
+        "specific": ("18 Markdown documents", "currently checked-out"),
     },
     "playphraseme-site.md": {
         "target": "/Users/eugenepotapenko/Projects/playphrase.me/playphraseme-site",
-        "specific": ("90 Markdown documents", "currently checked-out branch"),
+        "specific": ("90 Markdown documents", "currently checked-out"),
     },
 }
 SHARED_GUARDS = (
@@ -35,6 +35,11 @@ SHARED_GUARDS = (
     "do not create json",
     "at most 100 physical lines",
     "do not start",
+    "checkpoint commit",
+    "currently checked-out",
+    "only the files you changed",
+    "do not report the batch complete",
+    "until the commit succeeds",
 )
 
 
@@ -63,12 +68,15 @@ class ProjectMigrationPromptTests(unittest.TestCase):
         actual = {path.name for path in PROMPT_ROOT.glob("*.md")}
         self.assertEqual(actual, {"README.md", *PROJECTS})
 
-    def test_prompts_do_not_fix_branch_names_or_block_on_tracking(self) -> None:
+    def test_prompts_keep_checkpoint_commits_local(self) -> None:
         forbidden = (
             "configured upstream",
             "upstream blocker",
             "explicit safe upstream",
             "git/upstream state",
+            "commit and push",
+            "commit/push",
+            "remote tracking",
         )
         for name in PROJECTS:
             with self.subTest(prompt=name):

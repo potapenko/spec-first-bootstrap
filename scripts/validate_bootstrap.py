@@ -36,7 +36,8 @@ REQUIRED_TEXT = {
         "first implementation-bearing request",
         "Current branch only",
         "task-owned write set",
-        "Commit and push task-owned changes from the currently checked-out branch.",
+        "At the end of any task that changes files, create a checkpoint commit",
+        "Do not report the task as complete until the checkpoint commit succeeds.",
     ),
     "docs/spec-first-workflow.md": (
         "Strict Markdown-First Spec Workflow",
@@ -56,24 +57,26 @@ REQUIRED_TEXT = {
         "at most 100 physical lines",
         "Project: current branch only",
         "Global: current branch only",
-        "Configure remote tracking for that branch automatically when needed.",
+        "commit only the files you changed for that task",
     ),
     "docs/specs/index.md": (
-        "bootstrap.governance@8",
+        "bootstrap.governance@9",
         "bootstrap.legacy-spec-migration@2",
         "bootstrap.codex-lifecycle@3",
         "2026-08-18-markdown-first-routing.md",
         "2026-08-19-current-branch-checkpoint-policy.md",
+        "2026-08-19-local-checkpoint-commits.md",
     ),
     "docs/specs/features/bootstrap-governance.md": (
-        "bootstrap.governance@8",
+        "bootstrap.governance@9",
         "bootstrap-governance/markdown-routing.md",
         "100 physical lines",
     ),
     "docs/specs/features/bootstrap-governance/task-and-scope.md": (
-        "bootstrap.governance.task-scope@2",
-        "Commit and push task-owned changes from the currently checked-out branch.",
-        "Configure remote tracking for that branch automatically when needed.",
+        "bootstrap.governance.task-scope@3",
+        "At the end of any task that changes files, create a checkpoint commit",
+        "commit only the files you changed for that task",
+        "Do not report the task as complete until the checkpoint commit succeeds.",
     ),
     "docs/specs/features/legacy-spec-migration.md": (
         "bootstrap.legacy-spec-migration@2",
@@ -114,13 +117,13 @@ REQUIRED_TEXT = {
     "prompts/project-migrations/phrases-extractor.md": (
         "18 Markdown documents",
         "23,180 words",
-        "currently checked-out branch",
+        "currently checked-out",
         "Do not create JSON",
     ),
     "prompts/project-migrations/playphraseme-site.md": (
         "90 Markdown documents",
         "138,717 words",
-        "currently checked-out branch",
+        "currently checked-out",
         "Do not create JSON",
     ),
     "prompts/setup-project-spec-first.md": (
@@ -133,6 +136,30 @@ REQUIRED_TEXT = {
         "Workflow repair and corpus migration are separate scopes",
         "scripts/check_spec_markdown.py",
         "JSON manifests",
+    ),
+    "prompts/setup-project-agents.md": (
+        "at the end of any task that changes files",
+        "checkpoint commit",
+        "currently checked-out branch",
+        "the task is not complete until the commit succeeds",
+    ),
+    "prompts/setup-global-agents.md": (
+        "at the end of any task that changes files",
+        "checkpoint commit in the currently checked-out branch",
+        "the task is not complete until the commit succeeds",
+    ),
+}
+
+FORBIDDEN_CHECKPOINT_TEXT = {
+    "AGENTS.md": ("Commit and push task-owned changes", "remote tracking"),
+    "docs/agent-governance/agents-sections.md": (
+        "Commit and push task-owned changes",
+        "remote tracking",
+    ),
+    "docs/specs/features/bootstrap-governance/task-and-scope.md": (
+        "Commit and push task-owned changes",
+        "remote tracking",
+        "checkpoint commit/push",
     ),
 }
 
@@ -165,6 +192,16 @@ def check_required_text(errors: list[str]) -> None:
         for value in required_values:
             if value not in text:
                 errors.append(f"{relative_path}: missing required text: {value}")
+
+
+def check_checkpoint_text(errors: list[str]) -> None:
+    for relative_path, forbidden_values in FORBIDDEN_CHECKPOINT_TEXT.items():
+        text = (ROOT / relative_path).read_text(encoding="utf-8")
+        for value in forbidden_values:
+            if value in text:
+                errors.append(
+                    f"{relative_path}: forbidden checkpoint text remains: {value}"
+                )
 
 
 def check_forbidden_artifacts(errors: list[str]) -> None:
@@ -273,6 +310,7 @@ def check_markdown_trees(errors: list[str]) -> None:
 def main() -> int:
     errors: list[str] = []
     check_required_text(errors)
+    check_checkpoint_text(errors)
     check_forbidden_artifacts(errors)
     check_local_markdown_links(errors)
     check_markdown_fences(errors)

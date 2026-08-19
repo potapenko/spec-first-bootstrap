@@ -48,7 +48,7 @@ Before any write, present an evidence-based plan containing:
   document may form its own batch;
 - protected Active, Accepted, Released, legacy-released, historical, deferred,
   and iOS/macOS precedence rules;
-- verification, checkpoint commit/push path, exclusions, and real blockers.
+- verification, checkpoint commit, exclusions, and real blockers.
 
 Wait for explicit approval. Planning does not authorize conversion.
 
@@ -64,6 +64,8 @@ disposition. Resulting nodes must be at most 100 physical lines, preferably
 50–80. Validate links, reachability, coverage, source drift, and absence of JSON
 routing state. Do not start the second batch in the same checkpoint.
 
-Finish with the target repository's scoped commit and push discipline. Report
-compact counts, created links, protected meaning, residuals, and the next batch
-link; never return corpus bodies.
+At the end of the batch, create a checkpoint commit in the currently checked-out
+branch containing only the files you changed for this task. Unrelated changes do
+not block the checkpoint and remain untouched. Do not report the batch complete
+until the commit succeeds. Report compact counts, created links, protected
+meaning, residuals, and the next batch link; never return corpus bodies.

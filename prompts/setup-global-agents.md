@@ -86,7 +86,11 @@ excluded from staging and commits. It must also preserve an explicit single-agen
 exception when the user requires a persistent goal to proceed without subagents,
 workers, or delegation, while retaining coordinator-only `/root` otherwise and
 without weakening other governing boundaries. It must also preserve
-outcome-first progress for ordinary implementation and persistent goals, a
+the checkpoint directive: at the end of any task that changes files, the agent
+creates a checkpoint commit in the currently checked-out branch containing only
+the files it changed for that task. Unrelated working-tree changes do not block
+the checkpoint, and the task is not complete until the commit succeeds. It must
+also preserve outcome-first progress for ordinary implementation and persistent goals, a
 smallest early release-path vertical slice, classified finite worker packets,
 default 60/25/15 planning, bounded support-only checkpoints, economic repair/
 diagnostic stops, risk-based model selection,
@@ -113,9 +117,10 @@ hook changed without explicit adapter scope. Verify that read-only work does not
 require an implementation plan, planning does not mutate task state, the
 current-branch boundary is active, required plans declare the task-owned write
 set, only overlapping changes block editing, non-overlapping changes stay
-outside staging and commits, the single-agent exception requires an explicit
-no-delegation instruction, and the approved-plan boundary rejects unapproved
-adjacent work.
+outside staging and commits, work that changes files ends with a successful
+checkpoint commit containing only the agent's task files, the single-agent
+exception requires an explicit no-delegation instruction, and the approved-plan
+boundary rejects unapproved adjacent work.
 
 Report the detected environment, exact paths, coexistence with any already
 installed layers, permission used, verification, and residuals.

@@ -86,6 +86,10 @@ The resulting project must preserve these rules:
 - non-overlapping existing changes remain untouched and are
   excluded from staging and commits; worktree conflicts are not bypassed
   through another branch or worktree;
+- at the end of any task that changes files, the agent creates a checkpoint
+  commit in the currently checked-out branch containing only the files it
+  changed for that task; unrelated working-tree changes do not block the
+  checkpoint, and the task is not complete until the commit succeeds;
 - `/root` is coordinator-only when a running persistent goal is being
   advanced;
 - when the user explicitly requires the current chat to complete a persistent
@@ -135,8 +139,10 @@ without explicit adapter scope. Verify that read-only work does not require an
 implementation plan, planning does not mutate task state, the current-branch
 boundary is active, required plans declare the task-owned write set, only
 overlapping changes block editing, non-overlapping changes stay outside staging
-and commits, the single-agent exception requires an explicit no-delegation
-instruction, and the approved-plan boundary rejects unapproved adjacent work.
+and commits, work that changes files ends with a successful checkpoint commit
+containing only the agent's task files, the single-agent exception requires an
+explicit no-delegation instruction, and the approved-plan boundary rejects
+unapproved adjacent work.
 
 Follow the project's checkpoint policy and report changed paths, coexistence
 with any already installed layers, verification, and exact residuals.

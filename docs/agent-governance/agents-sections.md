@@ -25,8 +25,11 @@ Work is not complete or accepted while its changes exist only in another branch
 or worktree. Task changes must be integrated into the operator-selected current
 branch.
 
-Commit and push task-owned changes from the currently checked-out branch.
-Configure remote tracking for that branch automatically when needed.
+At the end of any task that changes files, create a checkpoint commit in the
+currently checked-out branch. The checkpoint is the saved state of the work you
+completed, so commit only the files you changed for that task. Unrelated changes
+elsewhere in the working tree do not block the checkpoint and remain untouched.
+Do not report the task as complete until the checkpoint commit succeeds.
 ~~~
 
 ## Project: task framing and scope control
@@ -404,8 +407,11 @@ Work is not complete or accepted while its changes exist only in another branch
 or worktree. Task changes must be integrated into the operator-selected current
 branch.
 
-Commit and push task-owned changes from the currently checked-out branch.
-Configure remote tracking for that branch automatically when needed.
+At the end of any task that changes files, create a checkpoint commit in the
+currently checked-out branch. The checkpoint is the saved state of the work you
+completed, so commit only the files you changed for that task. Unrelated changes
+elsewhere in the working tree do not block the checkpoint and remain untouched.
+Do not report the task as complete until the checkpoint commit succeeds.
 ~~~
 
 ## Project: Codex lifecycle restart adapter

@@ -50,8 +50,8 @@ Before writes, present current Git state, exact write set, proposed root and
 branch nodes, preserved precedence, and a registry-derived batch map. Keep each
 batch to 3 documents or 12,000 source words; one larger document may stand
 alone. Identify the first pilot batch and explain why its contract closure is
-complete without loading siblings. Include verification and checkpoint
-commit/push steps, then wait for explicit approval.
+complete without loading siblings. Include verification and the checkpoint
+commit, then wait for explicit approval.
 
 ## After approval
 
@@ -65,5 +65,8 @@ record every source disposition. Nodes must be at most 100 physical lines,
 preferably 50–80. Validate links, reachability, coverage, drift, and no JSON
 routing state. Do not start another batch in the same checkpoint.
 
-Finish under the repository's scoped commit/push policy. Report only compact
-counts, node links, preserved authority, residuals, and the next batch.
+At the end of the batch, create a checkpoint commit in the currently checked-out
+branch containing only the files you changed for this task. Unrelated changes do
+not block the checkpoint and remain untouched. Do not report the batch complete
+until the commit succeeds. Report only compact counts, node links, preserved
+authority, residuals, and the next batch.

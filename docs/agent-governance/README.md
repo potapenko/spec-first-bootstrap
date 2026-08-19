@@ -48,7 +48,9 @@ two, or all three in either scope.
 - Install the current-branch gate with the agent layer so branch or worktree
   changes require an explicit user request, required plans declare the
   task-owned write set, only overlapping existing changes block editing, and
-  non-overlapping changes stay untouched and outside task commits.
+  non-overlapping changes stay untouched and outside task commits. Work that
+  changes files ends with a checkpoint commit containing only the files changed
+  by the agent for that task.
 - Install the compact outcome/resource gate with the agent-work layer so
   ordinary implementation and orchestrated goals share the same release-path
   progress measure and economic stop conditions.
