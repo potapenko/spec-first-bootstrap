@@ -42,6 +42,12 @@ Do not report the task as complete until the checkpoint commit succeeds.
 This gate applies only to the first implementation-bearing request in a new
 chat: a request that asks to modify code, task artifacts, or external state.
 
+A request whose requested result is itself a plan is planning-only, including
+when the user asks to save that plan in a file for a future goal. Perform the
+bounded planning work and produce or save the requested plan directly. Do not
+first propose a meta-plan or ask for approval merely to create the plan. This
+does not authorize implementation of the work described by that plan.
+
 Questions, explanations, read-only investigations, reviews, diagnoses, status
 checks, and Git-history inspection do not require a plan or user approval.
 Perform them directly and return the evidence-backed answer.
@@ -66,8 +72,9 @@ actual implementation: intended outcome, exact scope, relevant owners or files,
 required changes, protected behavior, verification, out-of-scope work, and only
 those decisions that genuinely cannot be resolved without the user.
 
-Before the user approves that implementation plan, do not modify code or task
-artifacts, mutate external state, or delegate implementation work.
+Absent an applicable planning-deliverable or explicit immediate-execution
+exception, before the user approves that implementation plan, do not modify
+code or task artifacts, mutate external state, or delegate implementation work.
 
 The gate does not repeat for every user message. Clarifications, answers to the
 agent's questions, additions within the proposed or approved scope, objections,
@@ -87,12 +94,14 @@ investigation-only, and review-only requests do not authorize implementation.
 Do not delegate execution work before the plan is approved unless the user
 explicitly requested that delegation as part of planning.
 
-After the new-chat first implementation gate has been satisfied, immediate
-execution is allowed when the user has approved the governing plan or when a
-subsequent task or follow-up is plainly bounded, low-risk, and requires no
-material scope choice. A generic imperative to build a non-trivial feature is
-not by itself an immediate-execution waiver. Immediate execution does not bypass
-any applicable safety, specification, approval, or environment gate.
+Immediate execution is allowed when the user explicitly directs the agent to
+execute now or without a plan, including on the first implementation-bearing
+request; when the user has already approved the governing plan; or, after the
+new-chat gate has been satisfied, when a subsequent task or follow-up is plainly
+bounded, low-risk, and requires no material scope choice. A generic imperative
+to build a non-trivial feature is not by itself an immediate-execution waiver.
+Immediate execution does not bypass any applicable safety, specification,
+approval, destructive-action, or environment gate.
 
 Once approved, the plan is the execution boundary. Make equivalent technical
 choices and perform directly necessary supporting edits and verification
@@ -323,6 +332,12 @@ their task. Branch summaries cannot create product intent.
 This gate applies only to the first implementation-bearing request in a new
 chat: a request that asks to modify code, task artifacts, or external state.
 
+A request whose requested result is itself a plan is planning-only, including
+when the user asks to save that plan in a file for a future goal. Perform the
+bounded planning work and produce or save the requested plan directly. Do not
+first propose a meta-plan or ask for approval merely to create the plan. This
+does not authorize implementation of the work described by that plan.
+
 Questions, explanations, read-only investigations, reviews, diagnoses, status
 checks, and Git-history inspection do not require a plan or user approval.
 Perform them directly and return the evidence-backed answer.
@@ -347,8 +362,9 @@ actual implementation: intended outcome, exact scope, relevant owners or files,
 required changes, protected behavior, verification, out-of-scope work, and only
 those decisions that genuinely cannot be resolved without the user.
 
-Before the user approves that implementation plan, do not modify code or task
-artifacts, mutate external state, or delegate implementation work.
+Absent an applicable planning-deliverable or explicit immediate-execution
+exception, before the user approves that implementation plan, do not modify
+code or task artifacts, mutate external state, or delegate implementation work.
 
 The gate does not repeat for every user message. Clarifications, answers to the
 agent's questions, additions within the proposed or approved scope, objections,
@@ -368,12 +384,14 @@ investigation-only, and review-only requests do not authorize implementation.
 Do not delegate execution work before the plan is approved unless the user
 explicitly requested that delegation as part of planning.
 
-After the new-chat first implementation gate has been satisfied, immediate
-execution is allowed when the user has approved the governing plan or when a
-subsequent task or follow-up is plainly bounded, low-risk, and requires no
-material scope choice. A generic imperative to build a non-trivial feature is
-not by itself an immediate-execution waiver. Immediate execution does not bypass
-any applicable safety, specification, approval, or environment gate.
+Immediate execution is allowed when the user explicitly directs the agent to
+execute now or without a plan, including on the first implementation-bearing
+request; when the user has already approved the governing plan; or, after the
+new-chat gate has been satisfied, when a subsequent task or follow-up is plainly
+bounded, low-risk, and requires no material scope choice. A generic imperative
+to build a non-trivial feature is not by itself an immediate-execution waiver.
+Immediate execution does not bypass any applicable safety, specification,
+approval, destructive-action, or environment gate.
 
 Once approved, the plan is the execution boundary. Make equivalent technical
 choices and perform directly necessary supporting edits and verification

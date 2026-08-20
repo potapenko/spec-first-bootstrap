@@ -71,8 +71,14 @@ The resulting project must preserve these rules:
 - planning performs the bounded non-mutating investigation needed to produce a
   concrete implementation plan instead of asking approval for a plan whose
   output would merely be another plan;
+- when the requested result is itself a plan, including a plan saved in a file
+  for a future goal, the agent produces or saves it directly without first
+  proposing a meta-plan; this does not authorize the described implementation;
 - the plan names the outcome, in-scope and out-of-scope work, steps,
   verification, and unresolved decisions;
+- explicit direction to execute now or without a plan waives the planning-
+  approval gate even on the first implementation-bearing request, without
+  bypassing other applicable gates or expanding scope;
 - after the first implementation-request gate is satisfied, an approved plan
   and plainly bounded low-risk follow-up work without material scope judgment
   may proceed directly;
@@ -136,13 +142,15 @@ and no installation or modification of the specification or browser-QA layers.
 Also verify that the merged gate is active rather than shadowed, stays within
 the configured instruction-size limit, and that no lifecycle hook changed
 without explicit adapter scope. Verify that read-only work does not require an
-implementation plan, planning does not mutate task state, the current-branch
-boundary is active, required plans declare the task-owned write set, only
-overlapping changes block editing, non-overlapping changes stay outside staging
-and commits, work that changes files ends with a successful checkpoint commit
-containing only the agent's task files, the single-agent exception requires an
-explicit no-delegation instruction, and the approved-plan boundary rejects
-unapproved adjacent work.
+implementation plan, a requested plan artifact does not trigger a meta-plan,
+explicit execute-now or no-plan direction waives only planning approval,
+planning does not mutate task state, the current-branch boundary is active,
+required plans declare the task-owned write set, only overlapping changes block
+editing, non-overlapping changes stay outside staging and commits, work that
+changes files ends with a successful checkpoint commit containing only the
+agent's task files, the single-agent exception requires an explicit no-
+delegation instruction, and the approved-plan boundary rejects unapproved
+adjacent work.
 
 Follow the project's checkpoint policy and report changed paths, coexistence
 with any already installed layers, verification, and exact residuals.

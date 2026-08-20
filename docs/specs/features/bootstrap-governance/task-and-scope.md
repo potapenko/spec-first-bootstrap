@@ -2,7 +2,7 @@
 
 - Node type: leaf
 - Status: Active
-- Contract: `bootstrap.governance.task-scope@3`
+- Contract: `bootstrap.governance.task-scope@4`
 - Clause: `BOOTSTRAP.SCOPE`
 - Read when: planning or executing an implementation-bearing request.
 - Do not read when: answering a bounded read-only question with no proposed mutation.
@@ -10,13 +10,28 @@
 
 ## First implementation request
 
-Before the first implementation-bearing action in a chat, perform bounded
-read-only investigation and present an evidence-based implementation plan.
-Wait for explicit approval before editing or mutating external state.
+Unless a planning-deliverable or explicit-waiver exception below applies,
+before the first implementation-bearing action in a chat perform bounded
+read-only investigation, present an evidence-based implementation plan, and
+wait for explicit approval before editing or mutating external state.
 
 Questions, explanations, reviews, diagnoses, status checks, and Git-history
 inspection proceed directly. Findings do not silently turn read-only work into
 implementation.
+
+## Planning deliverables and explicit waiver
+
+A request whose requested result is itself a plan is planning-only, including
+when the user asks to save that plan in a file for a future goal. Perform the
+bounded investigation and produce or save the requested plan directly. Do not
+first propose a meta-plan or ask for approval merely to create the plan. This
+does not authorize implementation of the work described by that plan.
+
+When the user or operator explicitly directs the agent to execute now or
+without a plan, skip the planning-approval gate and begin the authorized task
+directly. A generic imperative is not such a waiver. The waiver does not bypass
+applicable specification, safety, authorization, destructive-action, or
+environment gates and does not expand the requested scope.
 
 ## Approved boundary
 

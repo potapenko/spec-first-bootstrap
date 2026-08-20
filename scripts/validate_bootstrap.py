@@ -34,6 +34,8 @@ REQUIRED_TEXT = {
         "60/25/15 planning target",
         "Task framing and scope control",
         "first implementation-bearing request",
+        "itself a plan is planning-only",
+        "execute now or without a plan",
         "Current branch only",
         "task-owned write set",
         "At the end of any task that changes files, create a checkpoint commit",
@@ -60,20 +62,23 @@ REQUIRED_TEXT = {
         "commit only the files you changed for that task",
     ),
     "docs/specs/index.md": (
-        "bootstrap.governance@9",
+        "bootstrap.governance@10",
         "bootstrap.legacy-spec-migration@2",
         "bootstrap.codex-lifecycle@3",
         "2026-08-18-markdown-first-routing.md",
         "2026-08-19-current-branch-checkpoint-policy.md",
         "2026-08-19-local-checkpoint-commits.md",
+        "2026-08-20-planning-deliverables-and-waiver.md",
     ),
     "docs/specs/features/bootstrap-governance.md": (
-        "bootstrap.governance@9",
+        "bootstrap.governance@10",
         "bootstrap-governance/markdown-routing.md",
         "100 physical lines",
     ),
     "docs/specs/features/bootstrap-governance/task-and-scope.md": (
-        "bootstrap.governance.task-scope@3",
+        "bootstrap.governance.task-scope@4",
+        "meta-plan or ask for approval",
+        "explicitly directs the agent to execute now",
         "At the end of any task that changes files, create a checkpoint commit",
         "commit only the files you changed for that task",
         "Do not report the task as complete until the checkpoint commit succeeds.",
@@ -142,11 +147,15 @@ REQUIRED_TEXT = {
         "checkpoint commit",
         "currently checked-out branch",
         "the task is not complete until the commit succeeds",
+        "requested plan artifact does not trigger a meta-plan",
+        "execute-now or no-plan direction",
     ),
     "prompts/setup-global-agents.md": (
         "at the end of any task that changes files",
         "checkpoint commit in the currently checked-out branch",
         "the task is not complete until the commit succeeds",
+        "produce or save a requested plan artifact directly",
+        "execute-now or no-plan direction",
     ),
 }
 
@@ -160,6 +169,15 @@ FORBIDDEN_CHECKPOINT_TEXT = {
         "Commit and push task-owned changes",
         "remote tracking",
         "checkpoint commit/push",
+    ),
+}
+
+FORBIDDEN_PLANNING_TEXT = {
+    "AGENTS.md": (
+        "After the new-chat first implementation gate has been satisfied, immediate",
+    ),
+    "docs/agent-governance/agents-sections.md": (
+        "After the new-chat first implementation gate has been satisfied, immediate",
     ),
 }
 
@@ -201,6 +219,16 @@ def check_checkpoint_text(errors: list[str]) -> None:
             if value in text:
                 errors.append(
                     f"{relative_path}: forbidden checkpoint text remains: {value}"
+                )
+
+
+def check_planning_text(errors: list[str]) -> None:
+    for relative_path, forbidden_values in FORBIDDEN_PLANNING_TEXT.items():
+        text = (ROOT / relative_path).read_text(encoding="utf-8")
+        for value in forbidden_values:
+            if value in text:
+                errors.append(
+                    f"{relative_path}: forbidden planning text remains: {value}"
                 )
 
 
@@ -311,6 +339,7 @@ def main() -> int:
     errors: list[str] = []
     check_required_text(errors)
     check_checkpoint_text(errors)
+    check_planning_text(errors)
     check_forbidden_artifacts(errors)
     check_local_markdown_links(errors)
     check_markdown_fences(errors)

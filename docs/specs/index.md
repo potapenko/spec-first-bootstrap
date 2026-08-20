@@ -13,7 +13,7 @@ human authority view, not a second routing system.
 
 | Contract | Authority | Stability | Revision | Read when |
 | --- | --- | --- | --- | --- |
-| [Bootstrap governance](features/bootstrap-governance.md) | Active | Accepted | `bootstrap.governance@9` | Setup, governance, Markdown routing, prompts, templates, scope, or proportionality |
+| [Bootstrap governance](features/bootstrap-governance.md) | Active | Accepted | `bootstrap.governance@10` | Setup, governance, Markdown routing, prompts, templates, scope, or proportionality |
 | [Legacy spec migration](features/legacy-spec-migration.md) | Active | Accepted | `bootstrap.legacy-spec-migration@2` | Migrating a large existing spec library |
 | [Codex lifecycle](features/codex-lifecycle-enforcement.md) | Active | Evolving | `bootstrap.codex-lifecycle@3` | Optional Codex lifecycle adapter |
 
@@ -37,6 +37,7 @@ human authority view, not a second routing system.
 - [Markdown-first correction](deltas/2026-08-18-markdown-first-routing.md)
 - [Current-branch checkpoint policy](deltas/2026-08-19-current-branch-checkpoint-policy.md)
 - [Local checkpoint commits](deltas/2026-08-19-local-checkpoint-commits.md)
+- [Planning deliverables and explicit waiver](deltas/2026-08-20-planning-deliverables-and-waiver.md)
 
 ## Unknown precedence
 
