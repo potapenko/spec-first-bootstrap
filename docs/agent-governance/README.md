@@ -49,8 +49,8 @@ two, or all three in either scope.
   changes require an explicit user request, required plans declare the
   task-owned write set, only overlapping existing changes block editing, and
   non-overlapping changes stay untouched and outside task commits. Work that
-  changes files ends with a checkpoint commit containing only the files changed
-  by the agent for that task.
+  changes files ends with a checkpoint commit and push after a safe upstream and
+  absence of unrelated local commits in the push have been verified.
 - Install the compact outcome/resource gate with the agent-work layer so
   ordinary implementation and orchestrated goals share the same release-path
   progress measure and economic stop conditions.

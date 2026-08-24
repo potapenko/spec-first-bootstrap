@@ -25,11 +25,13 @@ Work is not complete or accepted while its changes exist only in another branch
 or worktree. Task changes must be integrated into the operator-selected current
 branch.
 
-At the end of any task that changes files, create a checkpoint commit in the
-currently checked-out branch. The checkpoint is the saved state of the work you
-completed, so commit only the files you changed for that task. Unrelated changes
-elsewhere in the working tree do not block the checkpoint and remain untouched.
-Do not report the task as complete until the checkpoint commit succeeds.
+At the end of any task that changes files, create a checkpoint commit and push
+it from the currently checked-out branch. Before committing, verify that a safe,
+writable upstream exists and that the push will not publish unrelated local
+commits. If either condition cannot be established, do not create the checkpoint
+commit. Commit only the files you changed for the task, and leave unrelated
+working-tree changes untouched. Do not report the task as complete until both
+the checkpoint commit and push succeed.
 ~~~
 
 ## Project: task framing and scope control
@@ -425,11 +427,13 @@ Work is not complete or accepted while its changes exist only in another branch
 or worktree. Task changes must be integrated into the operator-selected current
 branch.
 
-At the end of any task that changes files, create a checkpoint commit in the
-currently checked-out branch. The checkpoint is the saved state of the work you
-completed, so commit only the files you changed for that task. Unrelated changes
-elsewhere in the working tree do not block the checkpoint and remain untouched.
-Do not report the task as complete until the checkpoint commit succeeds.
+At the end of any task that changes files, create a checkpoint commit and push
+it from the currently checked-out branch. Before committing, verify that a safe,
+writable upstream exists and that the push will not publish unrelated local
+commits. If either condition cannot be established, do not create the checkpoint
+commit. Commit only the files you changed for the task, and leave unrelated
+working-tree changes untouched. Do not report the task as complete until both
+the checkpoint commit and push succeed.
 ~~~
 
 ## Project: Codex lifecycle restart adapter

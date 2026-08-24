@@ -38,8 +38,8 @@ REQUIRED_TEXT = {
         "execute now or without a plan",
         "Current branch only",
         "task-owned write set",
-        "At the end of any task that changes files, create a checkpoint commit",
-        "Do not report the task as complete until the checkpoint commit succeeds.",
+        "At the end of any task that changes files, create a checkpoint commit and push",
+        "the checkpoint commit and push succeed.",
     ),
     "docs/spec-first-workflow.md": (
         "Strict Markdown-First Spec Workflow",
@@ -59,29 +59,31 @@ REQUIRED_TEXT = {
         "at most 100 physical lines",
         "Project: current branch only",
         "Global: current branch only",
-        "commit only the files you changed for that task",
+        "verify that a safe,",
+        "the checkpoint commit and push succeed.",
     ),
     "docs/specs/index.md": (
-        "bootstrap.governance@10",
+        "bootstrap.governance@11",
         "bootstrap.legacy-spec-migration@2",
         "bootstrap.codex-lifecycle@3",
         "2026-08-18-markdown-first-routing.md",
         "2026-08-19-current-branch-checkpoint-policy.md",
         "2026-08-19-local-checkpoint-commits.md",
         "2026-08-20-planning-deliverables-and-waiver.md",
+        "2026-08-24-checkpoint-commit-and-push.md",
     ),
     "docs/specs/features/bootstrap-governance.md": (
-        "bootstrap.governance@10",
+        "bootstrap.governance@11",
         "bootstrap-governance/markdown-routing.md",
         "100 physical lines",
     ),
     "docs/specs/features/bootstrap-governance/task-and-scope.md": (
-        "bootstrap.governance.task-scope@4",
+        "bootstrap.governance.task-scope@5",
         "meta-plan or ask for approval",
         "explicitly directs the agent to execute now",
-        "At the end of any task that changes files, create a checkpoint commit",
-        "commit only the files you changed for that task",
-        "Do not report the task as complete until the checkpoint commit succeeds.",
+        "create a checkpoint commit and push",
+        "push will not publish unrelated local",
+        "the checkpoint commit and push succeed.",
     ),
     "docs/specs/features/legacy-spec-migration.md": (
         "bootstrap.legacy-spec-migration@2",
@@ -143,32 +145,30 @@ REQUIRED_TEXT = {
         "JSON manifests",
     ),
     "prompts/setup-project-agents.md": (
-        "at the end of any task that changes files",
-        "checkpoint commit",
-        "currently checked-out branch",
-        "the task is not complete until the commit succeeds",
+        "before committing",
+        "checkpoint commit and pushes it",
+        "both commit and push succeed",
         "requested plan artifact does not trigger a meta-plan",
         "execute-now or no-plan direction",
     ),
     "prompts/setup-global-agents.md": (
-        "at the end of any task that changes files",
-        "checkpoint commit in the currently checked-out branch",
-        "the task is not complete until the commit succeeds",
+        "before committing",
+        "creates a task-owned checkpoint commit and pushes it",
+        "both commit and push succeed",
         "produce or save a requested plan artifact directly",
         "execute-now or no-plan direction",
     ),
 }
 
 FORBIDDEN_CHECKPOINT_TEXT = {
-    "AGENTS.md": ("Commit and push task-owned changes", "remote tracking"),
+    "AGENTS.md": (
+        "Do not report the task as complete until the checkpoint commit succeeds.",
+    ),
     "docs/agent-governance/agents-sections.md": (
-        "Commit and push task-owned changes",
-        "remote tracking",
+        "Do not report the task as complete until the checkpoint commit succeeds.",
     ),
     "docs/specs/features/bootstrap-governance/task-and-scope.md": (
-        "Commit and push task-owned changes",
-        "remote tracking",
-        "checkpoint commit/push",
+        "Do not report the task as complete until the checkpoint commit succeeds.",
     ),
 }
 

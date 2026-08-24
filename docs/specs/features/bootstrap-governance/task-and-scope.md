@@ -2,7 +2,7 @@
 
 - Node type: leaf
 - Status: Active
-- Contract: `bootstrap.governance.task-scope@4`
+- Contract: `bootstrap.governance.task-scope@5`
 - Clause: `BOOTSTRAP.SCOPE`
 - Read when: planning or executing an implementation-bearing request.
 - Do not read when: answering a bounded read-only question with no proposed mutation.
@@ -50,13 +50,16 @@ Use only the branch selected when the task begins. Do not create or switch a
 branch or worktree without explicit permission. Existing changes block only
 overlapping task-owned paths. Preserve and exclude every unrelated change.
 
-At the end of any task that changes files, create a checkpoint commit in the
-currently checked-out branch. The checkpoint is the saved state of the work you
-completed, so commit only the files you changed for that task. Unrelated changes
-elsewhere in the working tree do not block the checkpoint and remain untouched.
-Do not report the task as complete until the checkpoint commit succeeds.
+At the end of any task that changes files, create a checkpoint commit and push
+it from the currently checked-out branch. Before committing, verify that a safe,
+writable upstream exists and that the push will not publish unrelated local
+commits. If either condition cannot be established, do not create the checkpoint
+commit. Commit only the files you changed for the task, and leave unrelated
+working-tree changes untouched. Do not report the task as complete until both
+the checkpoint commit and push succeed.
 
 ## Invariants
 
 Writable paths never enlarge product authority. General permission to
-implement or commit is not permission to rewrite history or change branches.
+implement, commit, or push is not permission to rewrite history, force-push,
+change branches, or publish unrelated local commits.

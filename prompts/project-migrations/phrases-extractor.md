@@ -66,8 +66,8 @@ Every node must be at most 100 physical lines, preferably 50–80. Validate link
 reachability, coverage, drift, and no JSON routing state. Do not start another
 batch in the same checkpoint.
 
-At the end of the batch, create a checkpoint commit in the currently checked-out
-branch containing only the files you changed for this task. Unrelated changes do
-not block the checkpoint and remain untouched. Do not report the batch complete
-until the commit succeeds. Report compact counts, node links, protected contracts,
-residuals, and the next batch.
+Before committing, verify a safe, writable upstream and that no unrelated local
+commits would be pushed. Then create the task-owned checkpoint commit and push it
+from the currently checked-out branch. Do not report the batch complete until
+both commit and push succeed. Report compact counts, node links, protected
+contracts, residuals, and the next batch.

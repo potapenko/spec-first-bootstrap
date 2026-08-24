@@ -92,10 +92,10 @@ The resulting project must preserve these rules:
 - non-overlapping existing changes remain untouched and are
   excluded from staging and commits; worktree conflicts are not bypassed
   through another branch or worktree;
-- at the end of any task that changes files, the agent creates a checkpoint
-  commit in the currently checked-out branch containing only the files it
-  changed for that task; unrelated working-tree changes do not block the
-  checkpoint, and the task is not complete until the commit succeeds;
+- before committing, the agent verifies a safe, writable upstream and that the
+  push will not publish unrelated local commits; it then creates a task-owned
+  checkpoint commit and pushes it from the currently checked-out branch, and
+  the task is not complete until both commit and push succeed;
 - `/root` is coordinator-only when a running persistent goal is being
   advanced;
 - when the user explicitly requires the current chat to complete a persistent
@@ -147,8 +147,8 @@ explicit execute-now or no-plan direction waives only planning approval,
 planning does not mutate task state, the current-branch boundary is active,
 required plans declare the task-owned write set, only overlapping changes block
 editing, non-overlapping changes stay outside staging and commits, work that
-changes files ends with a successful checkpoint commit containing only the
-agent's task files, the single-agent exception requires an explicit no-
+changes files ends with a successful task-owned checkpoint commit and push after
+the safe-push preflight, the single-agent exception requires an explicit no-
 delegation instruction, and the approved-plan boundary rejects unapproved
 adjacent work.
 

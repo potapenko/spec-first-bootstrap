@@ -35,11 +35,12 @@ SHARED_GUARDS = (
     "do not create json",
     "at most 100 physical lines",
     "do not start",
-    "checkpoint commit",
+    "safe, writable upstream",
+    "unrelated local commits",
+    "checkpoint commit and push",
     "currently checked-out",
-    "only the files you changed",
     "do not report the batch complete",
-    "until the commit succeeds",
+    "both commit and push succeed",
 )
 
 
@@ -56,35 +57,26 @@ class ProjectMigrationPromptTests(unittest.TestCase):
             with self.subTest(prompt=name):
                 text = (PROMPT_ROOT / name).read_text(encoding="utf-8")
                 lowered = text.lower()
+                normalized = " ".join(lowered.split())
                 self.assertLessEqual(len(text.splitlines()), 100)
                 self.assertIn(expected["target"], text)
                 self.assertIn("spec-first-bootstrap", text)
                 for guard in SHARED_GUARDS:
-                    self.assertIn(guard, lowered)
+                    self.assertIn(guard, normalized)
                 for value in expected["specific"]:
-                    self.assertIn(value.lower(), lowered)
+                    self.assertIn(value.lower(), normalized)
 
     def test_prompt_directory_contains_only_the_index_and_named_projects(self) -> None:
         actual = {path.name for path in PROMPT_ROOT.glob("*.md")}
         self.assertEqual(actual, {"README.md", *PROJECTS})
 
-    def test_prompts_keep_checkpoint_commits_local(self) -> None:
-        forbidden = (
-            "configured upstream",
-            "upstream blocker",
-            "explicit safe upstream",
-            "git/upstream state",
-            "commit and push",
-            "commit/push",
-            "remote tracking",
-        )
+    def test_prompts_require_safe_checkpoint_pushes(self) -> None:
         for name in PROJECTS:
             with self.subTest(prompt=name):
                 text = (PROMPT_ROOT / name).read_text(encoding="utf-8")
                 lowered = text.lower()
                 self.assertNotRegex(lowered, r"current\s+`[^`]+`")
-                for value in forbidden:
-                    self.assertNotIn(value, lowered)
+                self.assertNotIn("until the commit succeeds", lowered)
 
 
 if __name__ == "__main__":
