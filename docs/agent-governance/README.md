@@ -44,13 +44,17 @@ two, or all three in either scope.
 - Install the compact task-framing and scope-control gate with the agent layer
   so the first implementation-bearing request and later materially ambiguous
   work pause at an approved execution plan and stay inside it, while questions
-  and read-only work proceed directly.
+  and read-only work proceed directly. Plans use fail-closed `bounded` authority
+  for exact paths and behavior, or `task-wide` authority when any repository
+  file needed for the approved outcome may change. Both modes protect accepted
+  behavior outside that outcome, including unrelated content in writable files.
 - Install the current-branch gate with the agent layer so branch or worktree
-  changes require an explicit user request, required plans declare the
-  task-owned write set, only overlapping existing changes block editing, and
-  non-overlapping changes stay untouched and outside task commits. Work that
-  changes files ends with a checkpoint commit and push after a safe upstream and
-  absence of unrelated local commits in the push have been verified.
+  changes require an explicit user request, required plans declare bounded or
+  task-wide write authority, only relevant overlapping existing changes block
+  editing, and all other changes stay untouched and outside task commits. Work
+  that changes files ends with a checkpoint commit and push after a safe
+  upstream and absence of unrelated local commits in the push have been
+  verified.
 - Install the compact outcome/resource gate with the agent-work layer so
   ordinary implementation and orchestrated goals share the same release-path
   progress measure and economic stop conditions.

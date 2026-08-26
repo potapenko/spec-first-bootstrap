@@ -114,8 +114,9 @@ context, and requires explicit scope and hook trust verification.
   traversal path instead of loading every sibling document.
 - **Agents** stay on the operator-selected branch, let questions and read-only
   investigations proceed directly, plan the first implementation-bearing
-  request and later materially ambiguous work, stay inside the approved
-  execution boundary, and measure progress by release-path capability. During
+  request and later materially ambiguous work, and use either exact `bounded`
+  authority or outcome-scoped `task-wide` authority. Both protect accepted
+  behavior outside the approved outcome, even inside a writable file. During
   persistent goals the main agent coordinates by default, or works alone when
   the user explicitly forbids delegation.
 - **Browser QA** adds optional real-browser cases and run reports for web UI

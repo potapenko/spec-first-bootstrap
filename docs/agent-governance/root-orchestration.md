@@ -258,7 +258,8 @@ Before every spawn, `/root` must verify that:
    runbook, operator handoff, accepted reusable baseline, and QA workflow, with
    unselected siblings explicitly excluded or dispositioned as inapplicable;
 5. the worker can act without inventing missing authority;
-6. writable paths and owners are explicit;
+6. the authority mode, writable ownership, and protected boundaries are
+   explicit;
 7. concurrent packets do not overlap in ownership;
 8. completion and stopping conditions are measurable;
 9. the worker will produce unique evidence or implementation;
@@ -301,7 +302,10 @@ Every worker packet must contain:
 - exact authority sources and their precedence;
 - accepted upstream decisions and dependencies;
 - required existing owners, models, services, or abstractions to reuse;
-- exact allowed paths and symbols;
+- authority mode: `bounded` or `task-wide`;
+- for `bounded`, exact allowed paths, operations, symbols, and behavior;
+- for `task-wide`, the exact approved outcome and any protected paths or
+  behavior; an exact write set is not required;
 - exact forbidden paths and actions;
 - required behavior and invariants;
 - explicitly forbidden inventions;
@@ -311,6 +315,19 @@ Every worker packet must contain:
 - terminal receipt format;
 - assigned model and reasoning effort;
 - whether nested delegation is allowed.
+
+`bounded` permits only the packet's named paths, operations, and behavior.
+`task-wide` permits any repository file reasonably necessary for the packet's
+approved outcome, but does not by itself authorize unrelated work, destructive
+action, external-state change, or work beyond that outcome. Explicit
+protections override either mode; an omitted mode means `bounded`.
+
+Path authority is not semantic authority. Permission to edit a file or change
+a parent or container does not open unrelated symbols, behavior, content,
+children, data, actions, or accepted layout. Existing accepted behavior outside
+the packet outcome remains protected in both modes, and every changed diff hunk
+must map to that outcome. A required protected change is returned as an exact
+dependency, not used as a workaround.
 
 Pass the smallest sufficient context. Prefer a fresh or narrowly forked worker
 context plus the packet over the complete `/root` conversation.
@@ -341,7 +358,7 @@ Workers must not:
 - redesign adjacent behavior;
 - perform opportunistic refactors;
 - create unrequested abstractions, models, services, dependencies, or state;
-- modify paths outside their writable scope;
+- modify paths or behavior outside their authority mode and approved outcome;
 - start the next packet;
 - reinterpret the entire goal;
 - ask the user questions that can be answered from assigned evidence;
@@ -399,6 +416,8 @@ Rules:
 - read-only packets may overlap when their outputs are distinct;
 - write-heavy packets require disjoint paths; isolated worktrees may be used
   only when the user explicitly requested or authorized them;
+- a writable `task-wide` packet is serialized against other writable packets
+  unless narrower disjoint ownership is explicitly established;
 - runtime lanes that share focus, devices, or external state must be
   serialized;
 - do not create duplicate agents to answer the same unresolved question;
@@ -489,10 +508,12 @@ specified_expectation:
 observed_evidence:
 discrepancy_classification:
 authority_used:
+authority_mode:
 changed_paths:
 reused_owners:
 checks_run:
 scope_check:
+semantic_scope_check:
 deviations:
 residual:
 next_dependency:
@@ -505,7 +526,8 @@ A `done` receipt means:
 - for product work, the receipt proves the pinned Spec Basis was used before
   source, runtime, or implementation conclusions and distinguishes specified
   expectation from observed evidence;
-- assigned scope was respected;
+- assigned path and semantic scope was respected, with every changed hunk
+  mapped to the packet outcome;
 - required checks completed;
 - deviations are explicit;
 - no hidden residual remains.
@@ -534,7 +556,7 @@ For a long-running or multi-packet goal, maintain one restart-safe registry.
 The registry should contain only the coordination state needed to resume:
 
 ```text
-packet | milestone | work class | support depth | budget variance | next capability | owner | contract epoch | dependencies | writable scope | status | receipt | residual
+packet | milestone | work class | support depth | budget variance | next capability | owner | contract epoch | dependencies | authority mode | writable scope | status | receipt | residual
 ```
 
 Recommended states:

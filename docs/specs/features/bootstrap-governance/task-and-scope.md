@@ -2,7 +2,7 @@
 
 - Node type: leaf
 - Status: Active
-- Contract: `bootstrap.governance.task-scope@5`
+- Contract: `bootstrap.governance.task-scope@6`
 - Clause: `BOOTSTRAP.SCOPE`
 - Read when: planning or executing an implementation-bearing request.
 - Do not read when: answering a bounded read-only question with no proposed mutation.
@@ -44,11 +44,30 @@ A newly discovered material dependency outside the plan is returned as the
 smallest scope amendment with cost and risk. Independent in-scope work may
 continue safely.
 
+## Authority modes
+
+Every approved implementation plan declares one authority mode. `bounded`
+permits only the named paths, operations, and behavior; everything else is
+protected. `task-wide` permits any repository file reasonably necessary for
+the approved outcome without an exact write set, but it does not by itself
+authorize unrelated work, destructive action, external-state changes, or work
+beyond that outcome. Explicit protected paths or behavior override either mode.
+When the mode is absent, use `bounded`.
+
+Path authority never enlarges semantic authority. Permission to edit a file or
+change a parent or container does not permit unrelated symbols, behavior,
+content, children, data, actions, or accepted layout in that file to change.
+Existing accepted behavior outside the named outcome remains protected in both
+modes. Every changed diff hunk must map to the authorized outcome; otherwise it
+is a scope violation. A required protected-behavior change is returned as a
+scope amendment rather than used as a workaround.
+
 ## Git and worktree
 
 Use only the branch selected when the task begins. Do not create or switch a
 branch or worktree without explicit permission. Existing changes block only
-overlapping task-owned paths. Preserve and exclude every unrelated change.
+the task-owned bounded paths, or any path a `task-wide` task must modify.
+Preserve and exclude every unrelated change.
 
 At the end of any task that changes files, create a checkpoint commit and push
 it from the currently checked-out branch. Before committing, verify that a safe,

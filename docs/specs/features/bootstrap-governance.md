@@ -6,7 +6,7 @@
 - Domain ID: `bootstrap.governance`
 - Authority: Active
 - Stability: Accepted
-- Contract revision: `bootstrap.governance@11`
+- Contract revision: `bootstrap.governance@12`
 - Clauses: `BOOTSTRAP.INSTALL`, `BOOTSTRAP.ROUTING`, `BOOTSTRAP.SCOPE`,
   `BOOTSTRAP.RESTART`, `BOOTSTRAP.PROPORTIONALITY`
 - Read when: changing portable Bootstrap setup, governance, prompts, templates, or workflow.

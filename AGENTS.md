@@ -14,10 +14,10 @@ Do not create, switch, rename, or publish another branch, and do not create a Gi
 worktree, unless the user explicitly asks for it. General approval to begin work,
 commit, or push is not permission to create a branch.
 
-Before editing, declare the task-owned write set in the plan when one is
-required. Existing changes are blockers only where they overlap the planned
-edits. Leave all non-overlapping changes untouched and exclude them from staging
-and commits.
+Before editing, a required plan declares either a bounded task-owned write set
+or task-wide repository authority. Existing changes are blockers only where
+they overlap paths the task must modify. Leave all other changes untouched and
+exclude them from staging and commits.
 
 Work is not complete or accepted while its changes exist only in another branch
 or worktree. Task changes must be integrated into the operator-selected current
@@ -89,6 +89,27 @@ execution steps, verification, and any unresolved decisions. Planning-only,
 investigation-only, and review-only requests do not authorize implementation.
 Do not delegate execution work before the plan is approved unless the user
 explicitly requested that delegation as part of planning.
+
+### Implementation authority
+
+Every approved implementation plan declares one authority mode:
+
+- `bounded`: only the named paths, operations, and behavior may change;
+- `task-wide`: any repository file reasonably necessary for the approved
+  outcome may change without an exact write set.
+
+`task-wide` does not by itself authorize unrelated work, destructive actions,
+external-state changes, or work beyond the approved outcome. Explicit protected
+paths or behavior override either mode. If the plan omits the mode, use
+`bounded`.
+
+Path permission is filesystem authority, not permission to change every symbol
+or behavior in that file. Existing accepted behavior outside the named outcome
+is protected in both modes. Permission to change a parent or container does not
+permit changing its content, children, data, actions, or accepted layout unless
+the plan explicitly authorizes that change. Every changed diff hunk must map to
+the authorized outcome. If protected behavior must change, stop and request the
+smallest scope amendment instead of using it as a workaround.
 
 Immediate execution is allowed when the user explicitly directs the agent to
 execute now or without a plan, including on the first implementation-bearing

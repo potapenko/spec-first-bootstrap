@@ -75,20 +75,27 @@ The resulting project must preserve these rules:
   for a future goal, the agent produces or saves it directly without first
   proposing a meta-plan; this does not authorize the described implementation;
 - the plan names the outcome, in-scope and out-of-scope work, steps,
-  verification, and unresolved decisions;
+  verification, unresolved decisions, and either `bounded` or `task-wide`
+  authority; omitted authority defaults to `bounded`;
 - explicit direction to execute now or without a plan waives the planning-
   approval gate even on the first implementation-bearing request, without
   bypassing other applicable gates or expanding scope;
 - after the first implementation-request gate is satisfied, an approved plan
   and plainly bounded low-risk follow-up work without material scope judgment
   may proceed directly;
-- the approved plan remains the execution boundary, and material additions are
-  returned as minimal proposed amendments rather than performed silently;
+- the approved plan remains the execution boundary, explicit protections
+  override either authority mode, and material additions are returned as
+  minimal proposed amendments rather than performed silently;
 - agents stay in the branch selected when the task begins and do not create,
   switch, rename, or publish another branch or create a worktree without an
   explicit user request; commit or push permission alone is insufficient;
-- before editing, a required plan declares the task-owned write set; existing
-  changes block only where their paths overlap that set;
+- before editing, a `bounded` plan declares task-owned paths, operations, and
+  behavior; a `task-wide` plan may use any repository file necessary for its
+  outcome without an exact write set; existing changes block only where they
+  overlap paths the task must modify;
+- file permission never authorizes unrelated symbols or behavior in that file,
+  parent or container permission never silently opens child content or layout,
+  and every changed diff hunk maps to the approved outcome;
 - non-overlapping existing changes remain untouched and are
   excluded from staging and commits; worktree conflicts are not bypassed
   through another branch or worktree;
@@ -110,7 +117,8 @@ The resulting project must preserve these rules:
   release-path capability and separate it from supporting work;
 - the first one or two implementation checkpoints target a smallest
   release-reachable vertical slice;
-- workers receive classified finite packets with authority, scope, owners,
+- workers receive classified finite packets with `bounded` or `task-wide`
+  authority, scope, owners,
   forbidden actions, release-path consumer, effort bound, economic stop,
   checks, stopping conditions, and a terminal receipt;
 - product packets carry a Markdown traversal receipt, exact pinned contract closure,
@@ -145,11 +153,13 @@ without explicit adapter scope. Verify that read-only work does not require an
 implementation plan, a requested plan artifact does not trigger a meta-plan,
 explicit execute-now or no-plan direction waives only planning approval,
 planning does not mutate task state, the current-branch boundary is active,
-required plans declare the task-owned write set, only overlapping changes block
-editing, non-overlapping changes stay outside staging and commits, work that
-changes files ends with a successful task-owned checkpoint commit and push after
-the safe-push preflight, the single-agent exception requires an explicit no-
-delegation instruction, and the approved-plan boundary rejects unapproved
+required plans declare an authority mode, `bounded` plans declare exact scope,
+omitted modes fail closed, protected same-file behavior remains unchanged,
+every changed hunk maps to the approved outcome, only relevant overlapping
+changes block editing, non-overlapping changes stay outside staging and commits,
+work that changes files ends with a successful task-owned checkpoint commit and
+push after the safe-push preflight, the single-agent exception requires an
+explicit no-delegation instruction, and the approved-plan boundary rejects unapproved
 adjacent work.
 
 Follow the project's checkpoint policy and report changed paths, coexistence
