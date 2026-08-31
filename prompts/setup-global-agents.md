@@ -104,6 +104,12 @@ smallest early release-path vertical slice, classified finite worker packets,
 default 60/25/15 planning, bounded support-only checkpoints, economic repair/
 diagnostic stops, risk-based model selection,
 risk-proportional review with independent review for named high-risk classes,
+fresh initial review of the actual artifact before builder-receipt reconciliation,
+mandatory criteria separate from optional quality references, evidence-backed
+findings, and integrated user-scenario verification. Missing required proof is
+`not_verified` and blocks verification; an observed mandatory failure is
+`reject`. Neither permits acceptance as a residual, and changing critics cannot
+reset repair or cost limits. Preserve
 ownership-safe parallelism, product-value-first terminal receipts and progress
 reports, one durable economic registry, explicit pause/resume, context-
 compaction recovery, and truthful completion.

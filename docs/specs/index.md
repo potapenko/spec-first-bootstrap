@@ -13,7 +13,7 @@ human authority view, not a second routing system.
 
 | Contract | Authority | Stability | Revision | Read when |
 | --- | --- | --- | --- | --- |
-| [Bootstrap governance](features/bootstrap-governance.md) | Active | Accepted | `bootstrap.governance@12` | Setup, governance, Markdown routing, prompts, templates, scope, or proportionality |
+| [Bootstrap governance](features/bootstrap-governance.md) | Active | Accepted | `bootstrap.governance@13` | Setup, governance, Markdown routing, prompts, templates, scope, proportionality, or review |
 | [Legacy spec migration](features/legacy-spec-migration.md) | Active | Accepted | `bootstrap.legacy-spec-migration@2` | Migrating a large existing spec library |
 | [Codex lifecycle](features/codex-lifecycle-enforcement.md) | Active | Evolving | `bootstrap.codex-lifecycle@3` | Optional Codex lifecycle adapter |
 
@@ -40,6 +40,7 @@ human authority view, not a second routing system.
 - [Planning deliverables and explicit waiver](deltas/2026-08-20-planning-deliverables-and-waiver.md)
 - [Checkpoint commit and push](deltas/2026-08-24-checkpoint-commit-and-push.md)
 - [Plan authority modes and semantic boundaries](deltas/2026-08-26-plan-authority-modes.md)
+- [Independent outcome review](deltas/2026-08-31-independent-outcome-review.md)
 
 ## Unknown precedence
 

@@ -310,6 +310,8 @@ Every worker packet must contain:
 - required behavior and invariants;
 - explicitly forbidden inventions;
 - exact checks or evidence to produce;
+- mandatory acceptance criteria and any optional quality references, with
+  their authority, applicable dimensions, and comparison conditions;
 - completion condition;
 - stopping and blocker conditions;
 - terminal receipt format;
@@ -445,31 +447,94 @@ production-quality subsystem merely because it has a diff. Review findings in
 support tooling block delivery only when they invalidate evidence needed for
 the next product decision or expose a real protected-domain risk.
 
-The standard pipeline is:
+### Acceptance basis
 
-1. authority evidence accepted;
-2. implementation receipt returned;
-3. the required proportional review is accepted, independently when the risk
-   or governing contract requires it;
-4. applicable build, test, lint, or structural verification accepted;
-5. applicable runtime, device, browser, or visual QA accepted;
-6. `/root` records the packet as accepted.
+Before implementation, `/root` pins mandatory acceptance criteria from the
+approved outcome and available project authority. Separately identify optional
+quality references and their applicable dimensions and comparison conditions.
+An existing approved criterion cannot be relabeled optional. An aspirational
+reference is not a blocking threshold unless the governing authority makes it
+one. Neither reviewers nor builders may weaken the bar or expand scope.
+This uses existing authority and does not require a specification layer.
 
-The reviewer receives:
+### Independent first observation
 
-- the original worker packet;
-- governing authority;
-- the changed diff or artifact;
-- the worker's terminal receipt.
+Where independent review is required or selected, use a non-author reviewer
+with fresh context. Do not fork a builder or root conversation containing
+implementation claims. Give the reviewer a neutral review packet containing:
 
-The reviewer should not receive the implementer's complete reasoning
-transcript.
+- the objective, governing authority and protected boundaries;
+- mandatory criteria and any optional references;
+- the actual artifact/diff and its revision or other stable identity;
+- neutral access, environment, safety and verification facts, plus evidence
+  locations needed to inspect the result.
 
-The reviewer returns one of:
+Do not initially provide the builder's narrative, verdict, terminal receipt,
+or prior review conclusions. Extract the necessary authority and constraints
+from the original packet without copying its implementation narrative.
+Never withhold safety restrictions or facts needed to operate safely.
+If fresh context is unavailable, do not label the review independent; a
+required independent-review gate stays blocked.
 
-- `accept`;
-- `accept_with_residual`;
-- `reject`.
+The reviewer inspects the actual result and records initial observations and
+criterion coverage before receiving the builder's receipt. Send these as an
+intermediate observation to `/root`, not acceptance or a terminal receipt.
+Only then does `/root` supply the builder's receipt and any prior findings to
+the same reviewer for the final stage. The reviewer then reconciles
+those observations with the receipt and, on repair, prior findings. Record
+disagreements and their evidence; neither the builder's explanation nor the
+critic's preference overrides the governing criteria. A blind A/B comparison
+is optional and useful only when artifacts and conditions are comparable.
+
+### Evidence and decision
+
+Review answers two distinct questions: does the user obtain the required
+outcome, and are the implementation and protected behavior correct? One
+reviewer may cover both when sufficient. Inspect the applicable
+action-state-result chain, not just changed files or the author's summary.
+Required runtime or visual evidence must describe the reviewed revision and
+relevant environment/state; green builds alone cannot establish that result.
+
+Each blocking finding names the criterion, observed evidence, user or safety
+impact, exact repair owner, and recheck. Be evidence-driven, not performatively
+harsh. Report all mandatory failures and prioritize the largest meaningful
+in-scope gap; do not manufacture style findings or suppress other failures.
+
+The reviewer returns one review verdict:
+
+- `accept`: every mandatory criterion in the assigned scope has supporting
+  evidence and no blocking failure remains;
+- `accept_with_residual`: mandatory criteria pass; only explicitly identified
+  nonblocking uncertainty or optional quality gaps remain;
+- `reject`: an observed mandatory criterion fails; also list any evidence gaps;
+- `not_verified`: required evidence is missing, stale or inaccessible, and no
+  mandatory failure is already established. Name the evidence and its owner;
+  missing proof alone is not a defect.
+
+The verdict is separate from worker execution status. `/root` maps `reject`
+to rejected work and a repair packet, and `not_verified` to blocked verification
+with an exact missing dependency. Neither permits dependent acceptance.
+A failed or unverified mandatory criterion cannot become an accepted residual.
+
+### Integrated acceptance
+
+The acceptance pipeline is:
+
+1. authority and acceptance basis pinned before implementation;
+2. implementation receipt returned to `/root`;
+3. applicable build/test and runtime/visual evidence obtained on the candidate;
+4. proportional review completed, using the two-stage independent observation
+   and receipt reconciliation above when independent review applies;
+5. integrated user-scenario evidence accepted for multi-part capabilities;
+6. `/root` records acceptance only when every required gate has evidence.
+
+Evidence collection and review may share a worker or an existing QA wave when
+safe and sufficiently independent. Local acceptance of parts does not prove
+their composition: a scoped verifier checks the complete user scenario and
+relevant boundaries on the integrated revision. `/root` coordinates this
+verification; it does not operate or judge raw runtime or visual output.
+If the artifact changes after observation, revalidate affected criteria before
+acceptance. Keep unaffected accepted work closed; do not duplicate valid QA.
 
 A reviewer reports findings and exact repair ownership. It does not silently
 become the replacement implementer.
@@ -485,6 +550,10 @@ unless stopping would leave a demonstrated data-loss, privacy, security,
 irreversible-action, or released-compatibility risk unsafe. Noncritical
 remaining findings become truthful residuals only when they do not violate the
 acceptance contract or invalidate a claimed capability.
+
+An unreachable reference, a new critic, or dissatisfaction without new evidence
+does not authorize more cycles, reviewer shopping, automatic fan-out, or
+reopening accepted work. The existing economic and safety gates still apply.
 
 Build and test evidence cannot substitute for runtime or visual evidence when
 the acceptance contract requires observable behavior.
@@ -533,6 +602,12 @@ A `done` receipt means:
 - no hidden residual remains.
 
 A long narrative without these facts is not a terminal receipt.
+
+Review receipts additionally record `review_verdict`, `artifact_revision`,
+`initial_observations`, `criteria_results`, `receipt_reconciliation`,
+`findings`, and `evidence_gaps`. Initial observations must precede access to
+builder claims; the final receipt includes both stages. Do not call a missing
+mandatory verification complete merely because the review attempt ended.
 
 `/root` records the receipt before reusing the worker slot or advancing a
 dependent packet.
@@ -653,6 +728,8 @@ Do not reconstruct program state from memory or from the live agent list.
 - every required independent review is accepted;
 - required build and test evidence is terminal;
 - required runtime and visual QA is terminal;
+- mandatory criteria and integrated user scenarios have accepted evidence for
+  the final relevant revision; no required review remains `not_verified`;
 - unresolved residuals are either explicitly allowed by the goal or remain
   truthfully blocking;
 - the restart-safe registry is terminal;

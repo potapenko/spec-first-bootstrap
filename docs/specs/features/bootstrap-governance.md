@@ -6,9 +6,9 @@
 - Domain ID: `bootstrap.governance`
 - Authority: Active
 - Stability: Accepted
-- Contract revision: `bootstrap.governance@12`
+- Contract revision: `bootstrap.governance@13`
 - Clauses: `BOOTSTRAP.INSTALL`, `BOOTSTRAP.ROUTING`, `BOOTSTRAP.SCOPE`,
-  `BOOTSTRAP.RESTART`, `BOOTSTRAP.PROPORTIONALITY`
+  `BOOTSTRAP.RESTART`, `BOOTSTRAP.PROPORTIONALITY`, `BOOTSTRAP.REVIEW`
 - Read when: changing portable Bootstrap setup, governance, prompts, templates, or workflow.
 - Do not read when: changing only optional adapter mechanics.
 - Maximum size: 100 physical lines.
@@ -28,6 +28,8 @@ inventing product behavior, or silently installing unrelated layers.
   root/branch/leaf traversal, Markdown links, dependencies, and node limits.
 - [Restart and delivery proportionality](bootstrap-governance/restart-and-delivery.md)
   — context recovery, release-path priority, and support-work limits.
+- [Independent outcome review](bootstrap-governance/review-and-acceptance.md)
+  — review independence, evidence, acceptance criteria, and integrated outcomes.
 
 ## Shared invariants
 

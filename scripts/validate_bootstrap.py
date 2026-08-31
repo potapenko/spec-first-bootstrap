@@ -69,7 +69,7 @@ REQUIRED_TEXT = {
         "the checkpoint commit and push succeed.",
     ),
     "docs/specs/index.md": (
-        "bootstrap.governance@12",
+        "bootstrap.governance@13",
         "bootstrap.legacy-spec-migration@2",
         "bootstrap.codex-lifecycle@3",
         "2026-08-18-markdown-first-routing.md",
@@ -78,11 +78,21 @@ REQUIRED_TEXT = {
         "2026-08-20-planning-deliverables-and-waiver.md",
         "2026-08-24-checkpoint-commit-and-push.md",
         "2026-08-26-plan-authority-modes.md",
+        "2026-08-31-independent-outcome-review.md",
     ),
     "docs/specs/features/bootstrap-governance.md": (
-        "bootstrap.governance@12",
+        "bootstrap.governance@13",
         "bootstrap-governance/markdown-routing.md",
+        "bootstrap-governance/review-and-acceptance.md",
         "100 physical lines",
+    ),
+    "docs/specs/features/bootstrap-governance/review-and-acceptance.md": (
+        "bootstrap.governance.review@1",
+        "BOOTSTRAP.REVIEW.INDEPENDENCE",
+        "BOOTSTRAP.REVIEW.VERDICT",
+        "BOOTSTRAP.REVIEW.INTEGRATION",
+        "`not_verified`",
+        "Standalone specification governance remains optional",
     ),
     "docs/specs/features/bootstrap-governance/task-and-scope.md": (
         "bootstrap.governance.task-scope@6",
@@ -163,6 +173,8 @@ REQUIRED_TEXT = {
         "execute-now or no-plan direction",
         "`bounded` or `task-wide`",
         "every changed diff hunk maps to the approved outcome",
+        "initial observations precede the builder's terminal",
+        "`not_verified` means missing required proof",
     ),
     "prompts/setup-global-agents.md": (
         "before committing",
@@ -172,6 +184,8 @@ REQUIRED_TEXT = {
         "execute-now or no-plan direction",
         "`bounded` or `task-wide`",
         "every changed diff hunk maps to the approved",
+        "before builder-receipt reconciliation",
+        "`not_verified` and blocks verification",
     ),
     "docs/agent-governance/root-orchestration.md": (
         "authority mode: `bounded` or `task-wide`",
@@ -179,6 +193,13 @@ REQUIRED_TEXT = {
         "every changed diff hunk",
         "a writable `task-wide` packet is serialized",
         "semantic_scope_check:",
+        "### Independent first observation",
+        "### Integrated acceptance",
+        "criterion coverage before receiving the builder's receipt",
+        "Only then does `/root` supply the builder's receipt",
+        "`not_verified` to blocked verification",
+        "reviewer shopping",
+        "`receipt_reconciliation`",
     ),
 }
 

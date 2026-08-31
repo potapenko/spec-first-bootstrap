@@ -130,6 +130,15 @@ The resulting project must preserve these rules:
 - shipping changes receive risk-proportional review, with
   independent review mandatory for the named high-risk classes or when another
   governing contract requires it;
+- independent review begins in fresh context with neutral criteria and actual
+  artifact evidence; initial observations precede the builder's terminal
+  receipt, which is reconciled afterward;
+- mandatory acceptance criteria remain distinct from optional quality
+  references; review covers user outcomes and implementation correctness,
+  with evidence-backed findings and integrated scenario verification;
+- `not_verified` means missing required proof and blocks verification;
+  `reject` means an observed mandatory failure. Neither may be accepted as a
+  residual, and a new critic cannot reset the existing repair or cost limits;
 - a third consecutive support-only implementation checkpoint, second
   repair/re-review cycle, or material diagnostic/tooling expansion triggers a
   delivery-and-cost reassessment and the required user-approval gate;
