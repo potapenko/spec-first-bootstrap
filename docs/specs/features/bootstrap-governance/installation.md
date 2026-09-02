@@ -2,7 +2,7 @@
 
 - Node type: leaf
 - Status: Active
-- Contract: `bootstrap.governance.installation@1`
+- Contract: `bootstrap.governance.installation@2`
 - Clause: `BOOTSTRAP.INSTALL`
 - Read when: installing or repairing Bootstrap layers in a project or user configuration.
 - Do not read when: the task only uses an already installed workflow.
@@ -18,6 +18,9 @@
   linked Markdown nodes.
 - Agent-work installation carries the complete persistent-goal continuity
   contract into the active project or user instruction chain.
+- Agent-work installation carries minimum-sufficient work and change-driven
+  verification into every task without adding numerical budgets or routine
+  economy reports.
 - Specification, agent-work, browser-QA, and lifecycle layers are independently
   selectable.
 - Optional adapters are installed only when explicitly requested.
@@ -40,7 +43,8 @@ truncation.
 
 ## Verification
 
-Confirm the active agent reads the installed gate, persistent goals retain
-dependency-ready work and resource-wait continuity, every local Markdown link
-resolves, all installed nodes stay within 100 physical lines, optional layers
-remain absent unless selected, and only task-owned target paths changed.
+Confirm the active agent reads the installed gate, chooses checks from changed
+behavior and demonstrated risk, expands work only from evidence, and keeps
+persistent-goal continuity. Every local Markdown link resolves, all installed
+nodes stay within 100 physical lines, optional layers remain absent unless
+selected, and only task-owned target paths changed.

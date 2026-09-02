@@ -3,7 +3,7 @@
 Use https://github.com/potapenko/spec-first-bootstrap as the canonical source.
 
 Set up current-branch discipline, plan-first task framing, strict execution-
-scope control, implementation economics, and the coordinator-and-workers
+scope control, minimum-sufficient work, and the coordinator-and-workers
 architecture inside the current project only. Do not modify the user's global
 Codex, Claude, or other agent configuration.
 
@@ -23,7 +23,7 @@ Read completely from the bootstrap repository:
 - the Project: task framing and scope control section in
   `docs/agent-governance/agents-sections.md`;
 - `docs/agent-governance/root-orchestration.md`;
-- the Project: outcome and resource proportionality section in
+- the Project: minimum-sufficient work section in
   `docs/agent-governance/agents-sections.md`;
 - the Project: persistent-goal agents section in
   `docs/agent-governance/agents-sections.md`.
@@ -39,7 +39,7 @@ Preserve unrelated content.
    scope control sections into the existing project-root instruction file.
 2. Install the full root contract as
    `docs/agent/root-orchestration.md`.
-3. Merge the compact Project: outcome and resource proportionality and Project:
+3. Merge the compact Project: minimum-sufficient work and Project:
    persistent-goal agents sections into the existing project-root instruction
    file. Never replace the complete file.
 4. Reconcile equivalent existing sections instead of appending
@@ -49,8 +49,8 @@ Preserve unrelated content.
    keep the agent layer compatible with their established authority paths.
 6. Do not change model defaults, reasoning defaults, concurrency limits,
    custom agent profiles, provider settings, or application configuration.
-   Apply the root contract's role-based model policy using models actually
-   supported by the active agent environment; do not hardcode another
+   Apply the root contract's expected-total-work model policy using models
+   actually supported by the active agent environment; do not hardcode another
    platform's model names.
 7. Do not install or modify the optional Codex lifecycle adapter unless the
    user explicitly requested it. Preserve an existing adapter and keep its
@@ -115,18 +115,19 @@ The resulting project must preserve these rules:
 - ordinary work remains single-agent when no persistent goal is active;
 - ordinary implementation and persistent goals measure progress by concrete
   release-path capability and separate it from supporting work;
-- the first one or two implementation checkpoints target a smallest
-  release-reachable vertical slice;
 - workers receive classified finite packets with `bounded` or `task-wide`
-  authority, scope, owners, forbidden actions, release-path consumer, effort
-  bound, economic reassessment, waiting/recovery conditions, and a terminal
-  receipt;
+  authority, scope, owners, forbidden actions, release-path consumer, economy
+  basis, waiting/recovery conditions, and a terminal receipt;
 - product packets carry a Markdown traversal receipt, exact pinned contract closure,
   specified expectation, protected behavior, assigned evidence, and contract
   epoch when product-truth governance applies;
-- model strength follows risk and judgment needs, with quality ahead of token
-  savings;
-- only independent ownership is parallelized;
+- model and reasoning strength minimize expected total work, including likely
+  retries and rework, without forcing low capability when risk requires more;
+- independent ownership is parallelized only when its time or context benefit
+  outweighs duplicated context and coordination;
+- verification is change-driven: presentation-only edits do not run logic
+  suites when behavior is unchanged, local logic gets focused checks, and full
+  suites require concrete cross-cutting risk or an explicit requirement;
 - shipping changes receive risk-proportional review, with
   independent review mandatory for the named high-risk classes or when another
   governing contract requires it;
@@ -138,14 +139,15 @@ The resulting project must preserve these rules:
   with evidence-backed findings and integrated scenario verification;
 - `not_verified` means missing required proof and blocks verification;
   `reject` means an observed mandatory failure. Neither may be accepted as a
-  residual, and a new critic cannot reset the existing repair or cost limits;
-- a third consecutive support-only implementation checkpoint, second
-  repair/re-review cycle, or material diagnostic/tooling expansion triggers a
-  delivery-and-cost reassessment; required work already inside an approved
-  persistent-goal plan continues without another approval;
+  residual; review repeats only for changed implementation, a remaining
+  mandatory failure, or newly available required evidence;
+- work starts on the most direct complete path, expands only from evidence or a
+  real dependency, and stops expanding once mandatory evidence is sufficient;
+- there are no numerical token budgets, percentage mixes, checkpoint quotas,
+  or routine economy reports; required approved-plan work continues;
 - one restart-safe registry carries packet state, applicable authority
-  revision, work classification, support depth, budget variance, next
-  capability, receipts, and residuals;
+  revision, work classification, next capability, economy basis, receipts, and
+  residuals;
 - a persistent goal stays active until its complete definition of done is
   verified or the user pauses or clears it;
 - plan order never overrides dependencies: run any dependency-ready authorized

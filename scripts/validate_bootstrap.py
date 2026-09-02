@@ -23,6 +23,11 @@ CURRENT_BRANCH_SECTION = re.compile(
     r"~~~markdown\n(.*?)\n~~~",
     re.DOTALL,
 )
+MINIMUM_WORK_SECTION = re.compile(
+    r"## (Project|Global): minimum-sufficient work\s+"
+    r"~~~markdown\n(.*?)\n~~~",
+    re.DOTALL,
+)
 
 REQUIRED_TEXT = {
     "AGENTS.md": (
@@ -30,8 +35,9 @@ REQUIRED_TEXT = {
         "Lifecycle restart gate",
         "traversal receipt",
         "Every node is limited to 100",
-        "Outcome and resource proportionality",
-        "60/25/15 planning target",
+        "Minimum-sufficient work",
+        "expected total token use",
+        "Presentation-only edits do not run",
         "Task framing and scope control",
         "first implementation-bearing request",
         "itself a plan is planning-only",
@@ -68,6 +74,10 @@ REQUIRED_TEXT = {
         "at most 100 physical lines",
         "Project: current branch only",
         "Global: current branch only",
+        "Project: minimum-sufficient work",
+        "Global: minimum-sufficient work",
+        "expected total token use",
+        "Presentation-only edits do not run",
         "Every approved implementation plan declares one authority mode",
         "Every changed diff hunk must map to",
         "verify that a safe,",
@@ -78,7 +88,7 @@ REQUIRED_TEXT = {
         "goal-level `blocked`",
     ),
     "docs/specs/index.md": (
-        "bootstrap.governance@14",
+        "bootstrap.governance@15",
         "bootstrap.legacy-spec-migration@2",
         "bootstrap.codex-lifecycle@3",
         "2026-08-18-markdown-first-routing.md",
@@ -89,21 +99,36 @@ REQUIRED_TEXT = {
         "2026-08-26-plan-authority-modes.md",
         "2026-08-31-independent-outcome-review.md",
         "2026-09-02-persistent-goal-continuity.md",
+        "2026-09-02-minimum-sufficient-work.md",
     ),
     "docs/specs/features/bootstrap-governance.md": (
-        "bootstrap.governance@14",
+        "bootstrap.governance@15",
+        "BOOTSTRAP.ECONOMY",
         "bootstrap-governance/goal-continuity.md",
         "bootstrap-governance/markdown-routing.md",
         "bootstrap-governance/review-and-acceptance.md",
         "100 physical lines",
     ),
     "docs/specs/features/bootstrap-governance/review-and-acceptance.md": (
-        "bootstrap.governance.review@2",
+        "bootstrap.governance.review@3",
         "BOOTSTRAP.REVIEW.INDEPENDENCE",
         "BOOTSTRAP.REVIEW.VERDICT",
         "BOOTSTRAP.REVIEW.INTEGRATION",
         "`not_verified`",
         "Standalone specification governance remains optional",
+        "Do not repeat an\nunchanged check",
+    ),
+    "docs/specs/features/bootstrap-governance/installation.md": (
+        "bootstrap.governance.installation@2",
+        "minimum-sufficient work",
+        "without adding numerical budgets",
+    ),
+    "docs/specs/features/bootstrap-governance/restart-and-delivery.md": (
+        "bootstrap.governance.restart-delivery@3",
+        "expected total token use",
+        "Presentation-only edits do not run",
+        "A full suite requires",
+        "Re-run a\ncheck only when",
     ),
     "docs/specs/features/bootstrap-governance/task-and-scope.md": (
         "bootstrap.governance.task-scope@6",
@@ -189,6 +214,8 @@ REQUIRED_TEXT = {
         "waiting_resource",
         "every three minutes without a fixed",
         "goal-level `blocked`",
+        "change-driven",
+        "no numerical token budgets",
     ),
     "prompts/setup-global-agents.md": (
         "before committing",
@@ -203,6 +230,8 @@ REQUIRED_TEXT = {
         "waiting_resource",
         "every three minutes without a fixed",
         "goal-level `blocked`",
+        "change-driven verification",
+        "without numerical budgets or percentage mixes",
     ),
     "docs/agent-governance/root-orchestration.md": (
         "authority mode: `bounded` or `task-wide`",
@@ -222,6 +251,10 @@ REQUIRED_TEXT = {
         "Recheck every three minutes",
         "no fixed retry or attempt ceiling",
         "must not invoke goal-level",
+        "Outcome and minimum-sufficient work",
+        "expected total token use",
+        "Verification is change-driven",
+        "economy_basis:",
     ),
     "docs/specs/features/bootstrap-governance/goal-continuity.md": (
         "bootstrap.governance.goal-continuity@1",
@@ -239,8 +272,51 @@ REQUIRED_TEXT = {
     "qa/cases/goal-continuity.md": (
         "GC-01: independent work",
         "GC-02: repeated contention",
-        "GC-07: economic reassessment",
+        "GC-07: economic routing",
         "GC-09: completion",
+    ),
+    "docs/specs/deltas/2026-09-02-minimum-sufficient-work.md": (
+        "bootstrap.delta.2026-09-02.minimum-sufficient-work",
+        "without token caps, numerical quotas",
+        "bootstrap.governance@15",
+    ),
+    "qa/cases/minimum-sufficient-work.md": (
+        "MW-01: presentation only",
+        "MW-04: full suite request",
+        "MW-07: unnecessary fan-out",
+        "MW-11: no budget theater",
+        "MW-13: persistent goal",
+    ),
+}
+
+FORBIDDEN_ECONOMY_TEXT = {
+    "AGENTS.md": (
+        "60/25/15 planning target",
+        "third consecutive support-only",
+        "second repair/re-review cycle",
+        "budget variance",
+    ),
+    "docs/agent-governance/agents-sections.md": (
+        "60/25/15 planning target",
+        "third consecutive support-only",
+        "second repair/re-review cycle",
+        "budget variance",
+    ),
+    "docs/agent-governance/root-orchestration.md": (
+        "strongest available reasoning model",
+        "strongest supported reasoning model",
+        "third consecutive support-only",
+        "Before dispatching a second repair cycle",
+        "budget_variance:",
+    ),
+    "prompts/setup-project-agents.md": (
+        "third consecutive support-only",
+        "support depth, budget variance",
+    ),
+    "prompts/setup-global-agents.md": (
+        "default 60/25/15 planning",
+        "bounded support-only checkpoints",
+        "reset repair or cost limits",
     ),
 }
 
@@ -336,6 +412,16 @@ def check_goal_continuity_text(errors: list[str]) -> None:
             if value in text:
                 errors.append(
                     f"{relative_path}: forbidden goal-continuity text remains: {value}"
+                )
+
+
+def check_economy_text(errors: list[str]) -> None:
+    for relative_path, forbidden_values in FORBIDDEN_ECONOMY_TEXT.items():
+        text = (ROOT / relative_path).read_text(encoding="utf-8")
+        for value in forbidden_values:
+            if value in text:
+                errors.append(
+                    f"{relative_path}: superseded economy text remains: {value}"
                 )
 
 
@@ -448,11 +534,15 @@ def main() -> int:
     check_checkpoint_text(errors)
     check_planning_text(errors)
     check_goal_continuity_text(errors)
+    check_economy_text(errors)
     check_forbidden_artifacts(errors)
     check_local_markdown_links(errors)
     check_markdown_fences(errors)
     check_mirrored_section(errors, TASK_SCOPE_SECTION, "task-scope section")
     check_mirrored_section(errors, CURRENT_BRANCH_SECTION, "current-branch section")
+    check_mirrored_section(
+        errors, MINIMUM_WORK_SECTION, "minimum-sufficient-work section"
+    )
     check_instruction_size(errors)
     check_hook_templates(errors)
     check_markdown_trees(errors)

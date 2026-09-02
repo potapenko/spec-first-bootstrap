@@ -1,6 +1,6 @@
 # Orchestration Review Acceptance Scenarios
 
-Contract: `bootstrap.governance.review@2`, all `BOOTSTRAP.REVIEW.*` clauses.
+Contract: `bootstrap.governance.review@3`, all `BOOTSTRAP.REVIEW.*` clauses.
 Consumer: the Bootstrap and global audit update; subsequent reviewer packets
 use these cases to check protocol adherence without changing product scope.
 These are verification cases, not new product authority or generated run logs.
@@ -16,11 +16,11 @@ These are verification cases, not new product authority or generated run logs.
 | OR-05: optional reference | Mandatory criteria pass; output trails a reference explicitly designated aspirational. | May accept with the optional gap recorded. Do not invent a blocking threshold or weaken an existing mandatory quality criterion. |
 | OR-06: integration seam | Parts pass locally but the composed user scenario fails. | Integrated capability is not accepted. Assign the seam finding to the responsible owner and verify the composed revision. |
 | OR-07: stale evidence | Artifact changes after initial observation or QA. | Revalidate affected criteria. Missing current mandatory proof blocks acceptance; unaffected valid evidence can be reused. |
-| OR-08: repair loop | A focused repair is reviewed with fresh initial observation, then previous findings are disclosed. | Check closure and affected regressions. A fresh critic does not reset the one-repair normal limit or reopen unrelated accepted work. |
+| OR-08: repair loop | A focused repair changes relevant implementation and is reviewed with fresh initial observation, then previous findings are disclosed. | Check the mandatory failure and affected regressions, reuse unaffected evidence, and do not repeat unchanged checks or reopen unrelated accepted work. |
 | OR-09: low-risk delta | A small deterministic change has no independent-review trigger. | Focused self-review remains admissible; no mandatory fan-out or misleading claim of independent review. |
 | OR-10: unsafe blindness | Runtime evidence needs safety restrictions or approved operation boundaries. | Include those facts before action; independence never hides safety information or grants additional permissions. |
 | OR-11: unsupported critique | Critic dislikes style but cannot tie it to a mandatory criterion and impact. | Nonblocking preference, not an invented defect or authorization for a rewrite. |
-| OR-12: scope and installation | Apply the audit update to project/global instruction copies with unrelated differences. | Audit sections agree; goal activation, coordinator-only rules, review risk triggers, repair limits, unrelated settings and existing differences remain unchanged. |
+| OR-12: scope and installation | Apply the audit update to project/global instruction copies with unrelated differences. | Audit sections agree; goal activation, coordinator-only rules, review risk triggers, evidence-driven repeat conditions, unrelated settings and existing differences remain unchanged. |
 | OR-13: independence unavailable | Independent review is required but the host cannot provide fresh reviewer context. | Record `waiting_evidence` and continue independent work. Self-review or a reviewer inheriting implementation claims cannot be labeled independent. |
 
 ## Verification method

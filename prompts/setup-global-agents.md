@@ -3,7 +3,7 @@
 Use https://github.com/potapenko/spec-first-bootstrap as the canonical source.
 
 Install current-branch discipline, plan-first task framing, strict execution-
-scope control, implementation economics, and the coordinator-and-workers
+scope control, minimum-sufficient work, and the coordinator-and-workers
 architecture in the current user's global agent configuration so it is
 available across future projects.
 
@@ -43,7 +43,7 @@ Read completely:
 - the Global: task framing and scope control section in
   `docs/agent-governance/agents-sections.md`;
 - `docs/agent-governance/root-orchestration.md`;
-- the Global: outcome and resource proportionality section in
+- the Global: minimum-sufficient work section in
   `docs/agent-governance/agents-sections.md`;
 - the Global: persistent-goal agents section in
   `docs/agent-governance/agents-sections.md`.
@@ -54,7 +54,7 @@ Read completely:
    scope control sections into the existing global instruction file.
 2. Install the full root contract beside the active user-level instruction
    entry point as `root-orchestration.md`.
-3. Merge the compact global outcome and resource proportionality and
+3. Merge the compact global minimum-sufficient-work and
    persistent-goal sections into the existing global instruction file. Never
    replace the complete file.
 4. Reconcile equivalent existing sections instead of creating duplicates.
@@ -64,8 +64,9 @@ Read completely:
    keep the agent layer compatible with their established authority paths.
 7. Do not change model defaults, reasoning defaults, concurrency limits,
    custom profiles, providers, or agent application configuration.
-   Apply the root contract's role-based policy using models actually supported
-   by the detected environment; do not hardcode another platform's model names.
+   Apply the root contract's expected-total-work policy using models actually
+   supported by the detected environment; do not hardcode another platform's
+   model names.
 8. Do not install or modify the optional Codex lifecycle adapter unless the
    user explicitly requested it. Preserve an existing adapter and keep its
    worker-start wording aligned with finite packet authority.
@@ -99,19 +100,20 @@ the checkpoint directive: before committing, the agent verifies a safe, writable
 upstream and that the push will not publish unrelated local commits. It then
 creates a task-owned checkpoint commit and pushes it from the currently checked-
 out branch. The task is not complete until both commit and push succeed. It must
-also preserve outcome-first progress for ordinary implementation and persistent goals, a
-smallest early release-path vertical slice, classified finite worker packets,
-default 60/25/15 planning, bounded support-only checkpoints, nonblocking
-economic reassessment for required approved-plan work, risk-based model selection,
+also preserve outcome-first progress for ordinary implementation and persistent
+goals, classified finite worker packets, minimum expected total token use
+without numerical budgets or percentage mixes, evidence-driven expansion,
+change-driven verification, task-fit model and reasoning selection,
 risk-proportional review with independent review for named high-risk classes,
 fresh initial review of the actual artifact before builder-receipt reconciliation,
 mandatory criteria separate from optional quality references, evidence-backed
 findings, and integrated user-scenario verification. Missing required proof is
 `not_verified` and blocks verification; an observed mandatory failure is
-`reject`. Neither permits acceptance as a residual, and changing critics cannot
-reset repair or cost limits. Preserve
-ownership-safe parallelism, product-value-first terminal receipts and progress
-reports, one durable economic registry, explicit user-controlled pause/resume,
+`reject`. Neither permits acceptance as a residual; review repeats only after
+relevant change, a remaining mandatory failure, or newly available evidence.
+Preserve ownership-safe and net-beneficial parallelism, compact product-value-
+first terminal receipts and progress reports, one durable coordination registry,
+explicit user-controlled pause/resume,
 context-compaction recovery, and truthful completion. A persistent goal remains
 active until its complete definition of done is verified or the user pauses or
 clears it. Plan order does not override dependencies: any dependency-ready item

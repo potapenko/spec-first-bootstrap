@@ -22,7 +22,7 @@ two, or all three in either scope.
 
 - `product-truth-governance.md` is the compact Markdown root; its ordinary
   links select the smallest complete governance path under `product-truth/`.
-- `root-orchestration.md` is the full outcome-first, economically proportional,
+- `root-orchestration.md` is the full outcome-first, minimum-sufficient,
   coordinator-only-by-default `/root` contract for persistent goals, with the
   explicit user-required no-delegation activation exception.
 - `web-qa-governance.md` is the full optional browser-QA contract.
@@ -55,10 +55,10 @@ two, or all three in either scope.
   that changes files ends with a checkpoint commit and push after a safe
   upstream and absence of unrelated local commits in the push have been
   verified.
-- Install the compact outcome/resource gate with the agent-work layer so
-  ordinary implementation and orchestrated goals share the same release-path
-  progress measure, while economic reassessment cannot stop required work in an
-  approved persistent-goal plan.
+- Install the compact minimum-sufficient-work gate with the agent-work layer so
+  ordinary implementation and orchestrated goals minimize expected total token
+  use, choose change-driven verification, expand only from evidence, and never
+  stop required work in an approved persistent-goal plan.
 - Install persistent-goal continuity so plan order never overrides dependencies,
   temporary resource contention is rechecked every three minutes without a
   fixed attempt ceiling, and item-level waiting never becomes voluntary

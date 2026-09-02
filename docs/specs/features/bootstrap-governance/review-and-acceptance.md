@@ -2,7 +2,7 @@
 
 - Node type: leaf
 - Status: Active
-- Contract: `bootstrap.governance.review@2`
+- Contract: `bootstrap.governance.review@3`
 - Clauses: `BOOTSTRAP.REVIEW.AUTHORITY`, `BOOTSTRAP.REVIEW.INDEPENDENCE`,
   `BOOTSTRAP.REVIEW.EVIDENCE`, `BOOTSTRAP.REVIEW.VERDICT`,
   `BOOTSTRAP.REVIEW.INTEGRATION`, `BOOTSTRAP.REVIEW.LIMITS`
@@ -75,10 +75,11 @@ work. Critics report findings and do not silently become implementation owners.
 ## BOOTSTRAP.REVIEW.LIMITS — Preserve proportionate delivery
 
 Existing risk-based independent-review triggers and low-risk self-review remain.
-One review and one focused repair/re-review remain the normal limit; further
-cycles follow the existing economic and safety gates. Prefer the largest
-meaningful in-scope gap without suppressing other mandatory failures.
-Neither an unreachable reference nor fresh critics justify indefinite retries,
-automatic fan-out, reviewer shopping, or reopening accepted work without evidence.
+Repeat review when relevant implementation changed, a mandatory failure remains,
+or previously missing required evidence becomes available. Do not repeat an
+unchanged check, restart review with a fresh critic, or reopen accepted work
+without new evidence. Prefer the largest meaningful in-scope gap without
+suppressing other mandatory failures. Neither an unreachable reference nor
+fresh critics justify automatic fan-out or reviewer shopping.
 Installation copies this protocol without changing models, providers, goals,
 permissions, concurrency defaults, or unrelated instruction layers.

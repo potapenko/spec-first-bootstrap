@@ -199,10 +199,10 @@ complete authority means the selected contract closure rather than every
 document under the specification root.
 ~~~
 
-## Project: outcome and resource proportionality
+## Project: minimum-sufficient work
 
 ~~~markdown
-## Outcome and resource proportionality
+## Minimum-sufficient work
 
 This applies to every implementation task, including ordinary single-agent work
 and finite workers inside an orchestrated goal.
@@ -213,32 +213,42 @@ models, maps, evidence, documentation, registries, and review are supporting
 work. Report them separately and never represent them as delivered product
 functionality.
 
-Start an ordinary milestone with a 60/25/15 planning target: 60% shipping
-implementation, 25% verification/review/QA, and 15% discovery/diagnostics/
-tooling/coordination. This is a tripwire, not a quota or permission to skip work
-required by demonstrated risk.
+Choose the reading, reasoning, tools, agents, and verification that minimize
+expected total token use while still delivering a reliable result. Expected
+cost includes duplicated context, coordination, tool output, retries, and
+rework; the cheapest individual step is not always the cheapest complete path.
+Ordinary tasks do not create token ledgers, numerical budgets, percentage mixes,
+or routine economy reports.
 
-Aim for the smallest release-reachable vertical slice in the first one or two
-implementation checkpoints. Every support artifact names the next
-dependency-ready implementation decision or capability that will consume it.
-Speculative support infrastructure and production-grade hardening of temporary
-Debug tooling are forbidden.
+Start with the most direct path likely to deliver the requested outcome or
+resolve the next material uncertainty. Every support action names its immediate
+implementation, decision, or acceptance consumer. Expand only when observed
+evidence shows the current path is insufficient, a real dependency or shared
+owner appears, a governing contract requires more, or a concrete risk needs
+broader proof. Stop expanding when the result and mandatory acceptance criteria
+have sufficient evidence. Do not production-harden temporary tooling or expand
+diagnostics speculatively.
 
-A third consecutive support-only implementation checkpoint, a second
-repair/re-review cycle, or material diagnostic/tooling expansion triggers an
-economic reassessment. Report capability delivered, capability being unlocked,
-expected additional time or token cost, why a truthful residual is insufficient,
-the cheapest safe alternative, and the stop condition. For an active persistent
-goal executing an approved plan, continue dependency-ready required work without
-another approval. Require approval only for work outside the approved boundary
-or optional expansion with no immediate approved-plan consumer. Never weaken a
-demonstrated data-loss, privacy, security, irreversible-action, or released-
-compatibility protection.
+Verification is change-driven. Select the smallest check that can detect a
+plausible regression from the actual change. Presentation-only edits do not run
+logic test suites when actions, state, persistence, services, and business rules
+are unchanged. Local logic receives focused checks; shared or high-risk changes
+receive affected-consumer or risk-mapped checks. A full suite requires concrete
+cross-cutting evidence or an explicit governing requirement. Re-run a check only
+when its inputs, environment, or relevant implementation changed.
 
-A residual must not hide a known acceptance failure or missing capability that
-is being claimed as delivered. Progress updates separate shipping capability
-and files from verification, diagnostics/tooling/coordination cost, elapsed
-effort, budget variance, and the next user-visible milestone.
+Use compact, decision-relevant command output and worker receipts rather than
+raw logs or complete reasoning transcripts. Parallelism is justified only when
+independent work's time or context-isolation benefit outweighs duplicated
+context and coordination. Choose model and reasoning strength to minimize
+expected total work, including likely rework, rather than from role names or
+maximum capability.
+
+This policy never weakens required evidence for data loss, privacy, security,
+irreversible actions, released compatibility, or the claimed user outcome. It
+never blocks required work already inside an approved persistent goal. A
+residual cannot hide a known acceptance failure or missing capability claimed
+as delivered.
 ~~~
 
 ## Project: persistent-goal agents
@@ -262,10 +272,10 @@ Without that explicit exception, `/root` remains coordinator-only. Before goal
 action, `/root` must read
 `docs/agent/root-orchestration.md` completely.
 
-That orchestration remains outcome-first and economically proportional. It
-classifies work, tracks support-only checkpoint depth and budget variance, and
-requires a delivery-and-cost reassessment before preparation or repair expands
-beyond the compact proportionality gate above.
+That orchestration remains outcome-first and applies the same minimum-sufficient
+rule to worker admission, model choice, context, verification, review, and
+retries. Required approved-plan work continues; expansion needs a concrete
+consumer, dependency, governing requirement, or evidence-backed risk.
 
 There is no coordinator direct-execution exception merely for small, urgent,
 mechanical, or supposedly faster work. `/root` delegates finite implementation,
@@ -534,10 +544,10 @@ summaries, memory, worker lists, old receipts, builds, tests, screenshots, and
 raw configuration never replace current contracts.
 ~~~
 
-## Global: outcome and resource proportionality
+## Global: minimum-sufficient work
 
 ~~~markdown
-## Outcome and resource proportionality
+## Minimum-sufficient work
 
 This applies to every implementation task, including ordinary single-agent work
 and finite workers inside an orchestrated goal.
@@ -548,32 +558,42 @@ models, maps, evidence, documentation, registries, and review are supporting
 work. Report them separately and never represent them as delivered product
 functionality.
 
-Start an ordinary milestone with a 60/25/15 planning target: 60% shipping
-implementation, 25% verification/review/QA, and 15% discovery/diagnostics/
-tooling/coordination. This is a tripwire, not a quota or permission to skip work
-required by demonstrated risk.
+Choose the reading, reasoning, tools, agents, and verification that minimize
+expected total token use while still delivering a reliable result. Expected
+cost includes duplicated context, coordination, tool output, retries, and
+rework; the cheapest individual step is not always the cheapest complete path.
+Ordinary tasks do not create token ledgers, numerical budgets, percentage mixes,
+or routine economy reports.
 
-Aim for the smallest release-reachable vertical slice in the first one or two
-implementation checkpoints. Every support artifact names the next
-dependency-ready implementation decision or capability that will consume it.
-Speculative support infrastructure and production-grade hardening of temporary
-Debug tooling are forbidden.
+Start with the most direct path likely to deliver the requested outcome or
+resolve the next material uncertainty. Every support action names its immediate
+implementation, decision, or acceptance consumer. Expand only when observed
+evidence shows the current path is insufficient, a real dependency or shared
+owner appears, a governing contract requires more, or a concrete risk needs
+broader proof. Stop expanding when the result and mandatory acceptance criteria
+have sufficient evidence. Do not production-harden temporary tooling or expand
+diagnostics speculatively.
 
-A third consecutive support-only implementation checkpoint, a second
-repair/re-review cycle, or material diagnostic/tooling expansion triggers an
-economic reassessment. Report capability delivered, capability being unlocked,
-expected additional time or token cost, why a truthful residual is insufficient,
-the cheapest safe alternative, and the stop condition. For an active persistent
-goal executing an approved plan, continue dependency-ready required work without
-another approval. Require approval only for work outside the approved boundary
-or optional expansion with no immediate approved-plan consumer. Never weaken a
-demonstrated data-loss, privacy, security, irreversible-action, or released-
-compatibility protection.
+Verification is change-driven. Select the smallest check that can detect a
+plausible regression from the actual change. Presentation-only edits do not run
+logic test suites when actions, state, persistence, services, and business rules
+are unchanged. Local logic receives focused checks; shared or high-risk changes
+receive affected-consumer or risk-mapped checks. A full suite requires concrete
+cross-cutting evidence or an explicit governing requirement. Re-run a check only
+when its inputs, environment, or relevant implementation changed.
 
-A residual must not hide a known acceptance failure or missing capability that
-is being claimed as delivered. Progress updates separate shipping capability
-and files from verification, diagnostics/tooling/coordination cost, elapsed
-effort, budget variance, and the next user-visible milestone.
+Use compact, decision-relevant command output and worker receipts rather than
+raw logs or complete reasoning transcripts. Parallelism is justified only when
+independent work's time or context-isolation benefit outweighs duplicated
+context and coordination. Choose model and reasoning strength to minimize
+expected total work, including likely rework, rather than from role names or
+maximum capability.
+
+This policy never weakens required evidence for data loss, privacy, security,
+irreversible actions, released compatibility, or the claimed user outcome. It
+never blocks required work already inside an approved persistent goal. A
+residual cannot hide a known acceptance failure or missing capability claimed
+as delivered.
 ~~~
 
 ## Global: persistent-goal agents
@@ -598,10 +618,10 @@ action, `/root` must read the sibling
 `root-orchestration.md` in the active user-level agent configuration directory
 and follow it completely.
 
-That orchestration remains outcome-first and economically proportional. It
-classifies work, tracks support-only checkpoint depth and budget variance, and
-requires a delivery-and-cost reassessment before preparation or repair expands
-beyond the compact proportionality gate above.
+That orchestration remains outcome-first and applies the same minimum-sufficient
+rule to worker admission, model choice, context, verification, review, and
+retries. Required approved-plan work continues; expansion needs a concrete
+consumer, dependency, governing requirement, or evidence-backed risk.
 
 There is no coordinator direct-execution exception merely for small, urgent,
 mechanical, or supposedly faster work. Spawned workers receive finite packets and do not read

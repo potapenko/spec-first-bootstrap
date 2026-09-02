@@ -2,8 +2,9 @@
 
 - Node type: leaf
 - Status: Active
-- Contract: `bootstrap.governance.restart-delivery@2`
-- Clauses: `BOOTSTRAP.RESTART`, `BOOTSTRAP.PROPORTIONALITY`
+- Contract: `bootstrap.governance.restart-delivery@3`
+- Clauses: `BOOTSTRAP.RESTART`, `BOOTSTRAP.PROPORTIONALITY`,
+  `BOOTSTRAP.ECONOMY`
 - Read when: recovering after lifecycle events or planning implementation support work.
 - Do not read when: neither restart nor delivery economics affects the task.
 - Maximum size: 100 physical lines.
@@ -24,19 +25,43 @@ Measure implementation progress first by release-path user capability.
 Specifications, evidence, diagnostics, tooling, coordination, and review are
 supporting work and must be reported separately.
 
-Aim for a smallest release-reachable vertical slice in the first one or two
-implementation checkpoints. Every support artifact names its next consumer.
-Do not production-harden temporary tooling or expand diagnostics speculatively.
+Start with the most direct path likely to implement the requested outcome or
+resolve the next material uncertainty. Every support action names its immediate
+implementation, decision, or acceptance consumer. Do not production-harden
+temporary tooling or expand diagnostics speculatively.
 
-A third consecutive support-only checkpoint, second repair/re-review cycle, or
-material tooling expansion requires a delivery-and-cost reassessment. For an
-active persistent goal executing an approved plan, the reassessment is a
-nonblocking routing decision: continue dependency-ready plan work and convert
-noncritical uncertainty to an explicit residual when safe. Additional approval
-is required only for work outside the approved envelope, an otherwise
-unauthorized action, or optional expansion that has no immediate plan consumer.
-Stronger safety gates remain for demonstrated data-loss, privacy, security,
-irreversible-action, or released-compatibility risk.
+## Minimum-sufficient work
+
+Choose the reading, reasoning, tools, agents, and verification that minimize
+expected total token use while still delivering a reliable result. Expected
+cost includes duplicated context, coordination, tool output, retries, and
+rework; the cheapest individual step is not always the cheapest complete path.
+Ordinary tasks do not create token ledgers, numerical budgets, percentage mixes,
+or economy reports.
+
+Expand the initial path only when observed evidence shows it is insufficient,
+a real dependency or shared owner appears, a governing contract requires more,
+or a concrete risk needs broader proof. Stop expanding when the requested
+result and mandatory acceptance criteria have sufficient evidence.
+
+Verification is change-driven. Select the smallest check that can detect a
+plausible regression from the actual change. Presentation-only edits do not run
+logic test suites when actions, state, persistence, services, and business rules
+are unchanged. Local logic receives focused checks; shared or high-risk changes
+receive the affected consumer or risk-mapped checks. A full suite requires
+concrete cross-cutting evidence or an explicit governing requirement. Re-run a
+check only when its inputs, environment, or relevant implementation changed.
+
+Use compact, decision-relevant command output and worker receipts instead of raw
+logs or complete reasoning transcripts. Parallelism is justified by independent
+work whose time or context-isolation benefit outweighs duplicated context and
+coordination. Model and reasoning strength are chosen to minimize expected total
+work, including likely rework, rather than from role names or maximum capability.
+
+Minimum-sufficient work never weakens required evidence for data loss, privacy,
+security, irreversible actions, released compatibility, or the claimed user
+outcome. It never blocks required work already inside an approved persistent
+goal.
 
 A residual may preserve bounded uncertainty but cannot hide a known acceptance
 failure or missing capability claimed as delivered.

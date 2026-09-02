@@ -36,7 +36,7 @@ the residual actually blocks the next product capability. A residual must not
 hide a known acceptance failure or missing capability that is being claimed as
 delivered.
 
-## Outcome and economic proportionality
+## Outcome and minimum-sufficient work
 
 For an implementation goal, progress is measured first by goal-relevant
 capability reachable from the product or release path. Debug harnesses, tests,
@@ -52,56 +52,42 @@ Classify every packet as exactly one of:
 - `tooling`: creates supporting infrastructure;
 - `coordination`: maintains authority, plans, or durable state.
 
-Classify each implementation checkpoint or integration wave by its primary
-outcome. A checkpoint that delivers release-path capability counts as
-`shipping_product` even when it also contains proportionate tests or support.
-A support-only checkpoint contains no shipping-product capability.
+Choose the reading, reasoning, tools, workers, and verification that minimize
+expected total token use while still delivering the reliable goal outcome.
+Expected cost includes duplicated context, coordination, tool output, retries,
+and likely rework; the cheapest individual packet is not always the cheapest
+complete path. Do not create numerical token budgets, percentage allocations,
+checkpoint quotas, or routine economy reports.
 
-Unless the user sets another budget, start ordinary product milestones with a
-planning target that sums to 100%:
-
-- 60% shipping implementation;
-- 25% verification, review, and QA;
-- 15% discovery, diagnostics, tooling, and coordination combined.
-
-This target is an economic tripwire, not a quota or reason to under-test risky
-work. Demonstrated data-loss, privacy, security, irreversible-action, or
-released-compatibility risk may justify more verification. `/root` states the
-risk, expected extra cost, and stop condition before expanding the work whenever
-safe to do so.
-
-The first one or two implementation checkpoints should produce the smallest
-release-reachable vertical slice. No goal may complete more than two consecutive
-support-only implementation checkpoints or integration waves without a fresh
-delivery review. Parallel support packets in one wave count as one checkpoint,
-not as several. Before a third support-only checkpoint, `/root` must report:
-
-- the user capability already delivered;
-- the exact capability the support work unlocks next;
-- why delivery cannot proceed with the uncertainty recorded as a residual;
-- the expected additional time or token cost;
-- the cheapest safe alternative, including a bounded user-assisted check when
-  that is materially cheaper;
-- the stop condition.
-
-For required work already inside the approved goal plan, this review changes
-routing but does not stop the goal or require another approval. Continue
-dependency-ready work and convert noncritical uncertainty to a truthful
-residual when safe. Explicit approval is required only for work outside the
-approved envelope or optional expansion with no immediate plan consumer.
+Start with the most direct path to the next release-reachable capability or
+material decision. Every support packet must name its immediate implementation,
+decision, or acceptance consumer. Expand only when observed evidence shows the
+current path is insufficient, a real dependency or shared owner appears, a
+governing contract requires more, or a concrete risk needs broader proof. Stop
+expanding when the goal outcome and mandatory acceptance evidence are sufficient.
+Required work already inside the approved plan continues; explicit approval is
+needed only for work outside the envelope or optional expansion without an
+immediate approved-plan consumer.
 
 Every model, map, observer, registry expansion, debug harness, or new tooling
 artifact must name the implementation decision or release-path capability that
-will consume it in the next dependency-ready implementation checkpoint.
+will consume it immediately when dependency-ready.
 Speculative support infrastructure is forbidden. Debug tooling answers one
 bounded question; it must not receive production-grade architecture or
 hardening unless it ships, directly protects user data, or the user approves
 the extra investment.
 
-When reliable cost metadata is available, report elapsed time, model-token use,
-agent turns, and checkpoint count. Always report shipping files or capabilities
-separately from supporting files and code. Do not infer product progress from
-lines written, tests passed, packets closed, or tokens spent.
+Verification is change-driven. A presentation-only edit does not run logic
+suites when actions, state, persistence, services, and business rules are
+unchanged. Local logic gets focused checks; shared or high-risk changes get
+affected-consumer or risk-mapped checks. A full suite needs concrete cross-
+cutting evidence or an explicit governing requirement. Re-run a check only when
+its inputs, environment, or relevant implementation changed.
+
+Use compact, decision-relevant tool output and receipts instead of raw logs or
+complete reasoning transcripts. Report shipping files or capabilities
+separately from supporting work. Do not infer product progress from lines
+written, tests passed, packets closed, or tokens spent.
 
 ## Activation boundary
 
@@ -302,10 +288,10 @@ Before every spawn, `/root` must verify that:
 11. the packet is classified as shipping, verification, diagnostic, tooling,
     or coordination work;
 12. it names the release-path capability delivered or immediately unlocked;
-13. its expected effort, current support-only checkpoint depth, cheapest safe
-    alternative, and economic reassessment condition are explicit;
-14. dispatch will not create a third consecutive support-only implementation
-    checkpoint without the delivery review or user approval required above.
+13. for delegation or nontrivial support work, its `economy_basis` names the
+    direct path, immediate consumer, and evidence that would justify expansion;
+14. its expected time or context-isolation benefit outweighs duplicated context
+    and coordination cost.
 
 Do not spawn an agent merely because capacity is available.
 
@@ -321,10 +307,9 @@ Every worker packet must contain:
 - one finite objective;
 - why the packet is ready now;
 - the release-path capability delivered or immediately unlocked;
-- an expected effort bound and the packet's economic reassessment condition;
-- the current support-only checkpoint depth in the milestone;
-- the cheapest safe alternative and whether a bounded user-assisted check is
-  available;
+- for delegation or nontrivial support and verification, an `economy_basis`
+  naming the direct path, immediate consumer, and evidence-based expansion
+  trigger;
 - for product work, a `spec_basis` section containing the Markdown traversal
   receipt, selected nodes, complete contract closure, revisions and clauses,
   explicitly excluded siblings, specified expectation, protected behavior,
@@ -409,35 +394,17 @@ reconciled.
 
 ## Model and reasoning policy
 
-Choose models for quality and task fit, not uniformity.
+Choose the supported model and reasoning strength that minimize expected total
+work for the packet, including likely retries, review failure, and rework. A
+bounded deterministic packet normally benefits from an efficient tool-capable
+model; ambiguous authority, cross-cutting behavior, security, concurrency, and
+high-risk review may justify stronger reasoning immediately. State the task
+property that justifies the choice when it is not obvious.
 
-Use the strongest available reasoning model for:
-
-- `/root`;
-- authority reconciliation;
-- architecture and ownership decisions;
-- ambiguous or cross-cutting product implementation;
-- security-sensitive work;
-- complex state and concurrency work;
-- independent review of high-risk changes.
-
-Use the strongest supported reasoning model appropriate to the active agent
-environment. Model names are platform-specific and may change; the installer
-must not invent an unavailable model or silently alter application defaults.
-
-Use an efficient tool-capable model for bounded and deterministic work such as:
-
-- targeted exploration;
-- known-file implementation with complete authority;
-- builds and focused test execution;
-- mechanical transformations;
-- structured evidence extraction.
-
-Use an efficient supported tool-capable model with medium reasoning for these
-roles, raising reasoning when the packet contains meaningful judgment.
-
-Never downgrade a worker solely to save tokens when doing so creates a
-material quality risk.
+Do not choose from the role name alone, default to maximum capability, or force
+a cheaper model when it creates material quality or rework risk. Model names are
+platform-specific; installers must not invent unavailable models or silently
+alter application defaults.
 
 Do not use automatic fan-out or the platform's maximum-cost reasoning tier as
 the default execution model for an explicitly orchestrated goal. `/root` owns
@@ -579,13 +546,12 @@ A rejected result normally returns to the original implementation owner with
 a focused repair packet. Do not create a new parallel implementation unless the
 original ownership is explicitly retired.
 
-One implementation review and one focused repair/re-review are the normal
-limit. Before a second repair cycle, `/root` performs a delivery-and-cost
-reassessment. Additional noncritical hardening requires explicit user approval
-unless stopping would leave a demonstrated data-loss, privacy, security,
-irreversible-action, or released-compatibility risk unsafe. Noncritical
-remaining findings become truthful residuals only when they do not violate the
-acceptance contract or invalidate a claimed capability.
+Repeat review or repair only when relevant implementation changed, a mandatory
+failure remains, or previously missing required evidence becomes available.
+Reuse unaffected accepted evidence. Do not repeat unchanged checks or start a
+fresh review merely to seek a different verdict. Noncritical remaining findings
+may become truthful residuals only when they do not violate the acceptance
+contract or invalidate a claimed capability.
 
 An unreachable reference, a new critic, or dissatisfaction without new evidence
 does not authorize more cycles, reviewer shopping, automatic fan-out, or
@@ -606,8 +572,7 @@ outcome:
 work_classification:
 shipping_capability_delivered:
 supporting_work_delivered:
-effort_used:
-budget_variance:
+economy_basis:
 spec_basis_read:
 specified_expectation:
 observed_evidence:
@@ -655,9 +620,8 @@ User capability now available:
 Shipping paths or artifact:
 Verification completed:
 Diagnostic/tooling/coordination cost:
-Elapsed time and tokens when available:
 Next visible milestone:
-Budget variance and routing decision:
+Expansion trigger, if any:
 ```
 
 ## Registry and durable state
@@ -667,7 +631,7 @@ For a long-running or multi-packet goal, maintain one restart-safe registry.
 The registry should contain only the coordination state needed to resume:
 
 ```text
-packet | milestone | work class | support depth | budget variance | next capability | owner | contract epoch | dependencies | authority mode | writable scope | status | receipt | residual
+packet | milestone | work class | next capability | economy basis | owner | contract epoch | dependencies | authority mode | writable scope | status | receipt | residual
 ```
 
 Recommended states:
@@ -687,8 +651,6 @@ Rules:
   `waiting_resource` is rechecked every three minutes without a fixed attempt
   ceiling;
 - stale `running` rows are reconciled before new dispatch;
-- milestone rows preserve support-only checkpoint depth and reset it only when
-  a checkpoint delivers release-path capability;
 - when a project versions semantic authority, an accepted semantic contract
   change advances the affected epoch, and packets pinned to the prior epoch are
   revalidated or retired;
@@ -714,11 +676,11 @@ After a failed or rejected packet:
 6. ask the user only when accepted evidence proves that external authority or
    a material product decision is required.
 
-Before dispatching a second repair cycle, `/root` determines whether the finding
-blocks the next shipping capability or is support hardening. After one focused
-repair/re-review cycle, additional noncritical hardening requires user approval.
-Do not convert a finite product task into an open-ended attempt to eliminate
-all uncertainty.
+Dispatch another repair or review only when a mandatory failure still blocks
+the goal, relevant implementation changed, or required evidence newly became
+available. Reuse unaffected evidence and stop optional hardening that has no
+immediate approved-plan consumer. Do not convert a finite product task into an
+open-ended attempt to eliminate all uncertainty.
 
 Repeated identical waiting conditions must not create duplicate investigation
 waves or a retry ceiling. Reuse existing evidence and return to other ready
