@@ -154,18 +154,41 @@ Speculative support infrastructure and production-grade hardening of temporary
 Debug tooling are forbidden.
 
 A third consecutive support-only implementation checkpoint, a second
-repair/re-review cycle, or material diagnostic/tooling expansion is an economic
-stop. Before continuing, report capability delivered, capability being
-unlocked, expected additional time or token cost, why a truthful residual is
-insufficient, the cheapest safe alternative, and the stop condition. Continue
-only with explicit user approval unless stopping would leave a demonstrated
-data-loss, privacy, security, irreversible-action, or released-compatibility
-risk unsafe.
+repair/re-review cycle, or material diagnostic/tooling expansion triggers an
+economic reassessment. Report capability delivered, capability being unlocked,
+expected additional time or token cost, why a truthful residual is insufficient,
+the cheapest safe alternative, and the stop condition. For an active persistent
+goal executing an approved plan, continue dependency-ready required work without
+another approval. Require approval only for work outside the approved boundary
+or optional expansion with no immediate approved-plan consumer. Never weaken a
+demonstrated data-loss, privacy, security, irreversible-action, or released-
+compatibility protection.
 
 A residual must not hide a known acceptance failure or missing capability that
 is being claimed as delivered. Progress updates separate shipping capability
 and files from verification, diagnostics/tooling/coordination cost, elapsed
 effort, budget variance, and the next user-visible milestone.
+
+## Persistent-goal continuity
+
+When a persistent goal is running, read
+`docs/agent-governance/root-orchestration.md` completely before goal action.
+The goal remains active until its complete definition of done is verified, or
+the user pauses or clears it. Local governance must not voluntarily set
+goal-level `blocked`.
+
+Plan order is not execution order. Continue any dependency-ready authorized
+item while unavailable items retain their exact resume state. Temporary
+resource contention uses `waiting_resource`, releases the lane, and is
+rechecked after another completed item or after three minutes. If only waiting
+work remains, use nonblocking continuation or bounded waits and recheck every
+three minutes without a fixed attempt ceiling. Missing proof uses
+`waiting_evidence`; missing user authority uses `awaiting_authority`. Packet
+failure or waiting never stops independent work or authorizes goal completion.
+
+A user-paused goal remains idle until explicitly resumed. A host-enforced
+blocked state is a platform constraint, not a local stopping policy or evidence
+that the goal is complete.
 
 ## Product Truth Gate
 

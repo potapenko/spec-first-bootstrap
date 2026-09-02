@@ -57,7 +57,12 @@ two, or all three in either scope.
   verified.
 - Install the compact outcome/resource gate with the agent-work layer so
   ordinary implementation and orchestrated goals share the same release-path
-  progress measure and economic stop conditions.
+  progress measure, while economic reassessment cannot stop required work in an
+  approved persistent-goal plan.
+- Install persistent-goal continuity so plan order never overrides dependencies,
+  temporary resource contention is rechecked every three minutes without a
+  fixed attempt ceiling, and item-level waiting never becomes voluntary
+  goal-level `blocked`.
 - Preserve project-specific product, framework, safety, build, test, database,
   storage, Git, and release rules.
 - Preserve coordinator-only persistent-goal behavior by default, while honoring

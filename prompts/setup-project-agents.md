@@ -118,9 +118,9 @@ The resulting project must preserve these rules:
 - the first one or two implementation checkpoints target a smallest
   release-reachable vertical slice;
 - workers receive classified finite packets with `bounded` or `task-wide`
-  authority, scope, owners,
-  forbidden actions, release-path consumer, effort bound, economic stop,
-  checks, stopping conditions, and a terminal receipt;
+  authority, scope, owners, forbidden actions, release-path consumer, effort
+  bound, economic reassessment, waiting/recovery conditions, and a terminal
+  receipt;
 - product packets carry a Markdown traversal receipt, exact pinned contract closure,
   specified expectation, protected behavior, assigned evidence, and contract
   epoch when product-truth governance applies;
@@ -141,11 +141,20 @@ The resulting project must preserve these rules:
   residual, and a new critic cannot reset the existing repair or cost limits;
 - a third consecutive support-only implementation checkpoint, second
   repair/re-review cycle, or material diagnostic/tooling expansion triggers a
-  delivery-and-cost reassessment and the required user-approval gate;
+  delivery-and-cost reassessment; required work already inside an approved
+  persistent-goal plan continues without another approval;
 - one restart-safe registry carries packet state, applicable authority
   revision, work classification, support depth, budget variance, next
   capability, receipts, and residuals;
-- a paused or blocked goal stays idle until explicitly resumed;
+- a persistent goal stays active until its complete definition of done is
+  verified or the user pauses or clears it;
+- plan order never overrides dependencies: run any dependency-ready authorized
+  item while unavailable items retain their exact resume state;
+- temporary contention uses `waiting_resource`, releases the lane, and is
+  rechecked after another completed item or every three minutes without a fixed
+  attempt ceiling; missing proof uses `waiting_evidence` and missing user
+  authority uses `awaiting_authority`;
+- packet failure or waiting never authorizes voluntary goal-level `blocked`;
 - context compaction resumes from the traversal receipt, selected closure, and
   durable state rather than chat memory or every sibling document.
 
@@ -169,7 +178,9 @@ changes block editing, non-overlapping changes stay outside staging and commits,
 work that changes files ends with a successful task-owned checkpoint commit and
 push after the safe-push preflight, the single-agent exception requires an
 explicit no-delegation instruction, and the approved-plan boundary rejects unapproved
-adjacent work.
+adjacent work. Verify dependency-ready scheduling, the three-minute resource
+recheck without a fixed attempt ceiling, waiting-state continuity, and absence
+of the former idle-on-blocked rule.
 
 Follow the project's checkpoint policy and report changed paths, coexistence
 with any already installed layers, verification, and exact residuals.

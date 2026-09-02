@@ -44,6 +44,11 @@ REQUIRED_TEXT = {
         "Permission to change a parent or container does not",
         "At the end of any task that changes files, create a checkpoint commit and push",
         "the checkpoint commit and push succeed.",
+        "Persistent-goal continuity",
+        "dependency-ready authorized",
+        "waiting_resource",
+        "three minutes without a fixed attempt ceiling",
+        "must not voluntarily set",
     ),
     "docs/spec-first-workflow.md": (
         "Strict Markdown-First Spec Workflow",
@@ -67,9 +72,13 @@ REQUIRED_TEXT = {
         "Every changed diff hunk must map to",
         "verify that a safe,",
         "the checkpoint commit and push succeed.",
+        "dependency-ready authorized item",
+        "waiting_resource",
+        "three minutes without a fixed",
+        "goal-level `blocked`",
     ),
     "docs/specs/index.md": (
-        "bootstrap.governance@13",
+        "bootstrap.governance@14",
         "bootstrap.legacy-spec-migration@2",
         "bootstrap.codex-lifecycle@3",
         "2026-08-18-markdown-first-routing.md",
@@ -79,15 +88,17 @@ REQUIRED_TEXT = {
         "2026-08-24-checkpoint-commit-and-push.md",
         "2026-08-26-plan-authority-modes.md",
         "2026-08-31-independent-outcome-review.md",
+        "2026-09-02-persistent-goal-continuity.md",
     ),
     "docs/specs/features/bootstrap-governance.md": (
-        "bootstrap.governance@13",
+        "bootstrap.governance@14",
+        "bootstrap-governance/goal-continuity.md",
         "bootstrap-governance/markdown-routing.md",
         "bootstrap-governance/review-and-acceptance.md",
         "100 physical lines",
     ),
     "docs/specs/features/bootstrap-governance/review-and-acceptance.md": (
-        "bootstrap.governance.review@1",
+        "bootstrap.governance.review@2",
         "BOOTSTRAP.REVIEW.INDEPENDENCE",
         "BOOTSTRAP.REVIEW.VERDICT",
         "BOOTSTRAP.REVIEW.INTEGRATION",
@@ -175,6 +186,9 @@ REQUIRED_TEXT = {
         "every changed diff hunk maps to the approved outcome",
         "initial observations precede the builder's terminal",
         "`not_verified` means missing required proof",
+        "waiting_resource",
+        "every three minutes without a fixed",
+        "goal-level `blocked`",
     ),
     "prompts/setup-global-agents.md": (
         "before committing",
@@ -186,6 +200,9 @@ REQUIRED_TEXT = {
         "every changed diff hunk maps to the approved",
         "before builder-receipt reconciliation",
         "`not_verified` and blocks verification",
+        "waiting_resource",
+        "every three minutes without a fixed",
+        "goal-level `blocked`",
     ),
     "docs/agent-governance/root-orchestration.md": (
         "authority mode: `bounded` or `task-wide`",
@@ -197,9 +214,33 @@ REQUIRED_TEXT = {
         "### Integrated acceptance",
         "criterion coverage before receiving the builder's receipt",
         "Only then does `/root` supply the builder's receipt",
-        "`not_verified` to blocked verification",
+        "`not_verified` to\n`waiting_evidence`",
         "reviewer shopping",
         "`receipt_reconciliation`",
+        "Goal continuity and ready-work scheduling",
+        "waiting_resource",
+        "Recheck every three minutes",
+        "no fixed retry or attempt ceiling",
+        "must not invoke goal-level",
+    ),
+    "docs/specs/features/bootstrap-governance/goal-continuity.md": (
+        "bootstrap.governance.goal-continuity@1",
+        "Plan order is not execution order",
+        "waiting_resource",
+        "recheck every three minutes",
+        "no fixed retry or",
+        "Local governance must not voluntarily",
+    ),
+    "docs/specs/deltas/2026-09-02-persistent-goal-continuity.md": (
+        "bootstrap.governance@14",
+        "explicit user request and approval on 2026-09-02",
+        "without a fixed attempt ceiling",
+    ),
+    "qa/cases/goal-continuity.md": (
+        "GC-01: independent work",
+        "GC-02: repeated contention",
+        "GC-07: economic reassessment",
+        "GC-09: completion",
     ),
 }
 
@@ -221,6 +262,19 @@ FORBIDDEN_PLANNING_TEXT = {
     ),
     "docs/agent-governance/agents-sections.md": (
         "After the new-chat first implementation gate has been satisfied, immediate",
+    ),
+}
+
+FORBIDDEN_GOAL_CONTINUITY_TEXT = {
+    "docs/agent-governance/agents-sections.md": (
+        "A paused or blocked goal remains idle",
+    ),
+    "docs/agent-governance/root-orchestration.md": (
+        "status: done | blocked | failed",
+        "-> blocked",
+    ),
+    "prompts/setup-project-agents.md": (
+        "a paused or blocked goal stays idle",
     ),
 }
 
@@ -272,6 +326,16 @@ def check_planning_text(errors: list[str]) -> None:
             if value in text:
                 errors.append(
                     f"{relative_path}: forbidden planning text remains: {value}"
+                )
+
+
+def check_goal_continuity_text(errors: list[str]) -> None:
+    for relative_path, forbidden_values in FORBIDDEN_GOAL_CONTINUITY_TEXT.items():
+        text = (ROOT / relative_path).read_text(encoding="utf-8")
+        for value in forbidden_values:
+            if value in text:
+                errors.append(
+                    f"{relative_path}: forbidden goal-continuity text remains: {value}"
                 )
 
 
@@ -383,6 +447,7 @@ def main() -> int:
     check_required_text(errors)
     check_checkpoint_text(errors)
     check_planning_text(errors)
+    check_goal_continuity_text(errors)
     check_forbidden_artifacts(errors)
     check_local_markdown_links(errors)
     check_markdown_fences(errors)

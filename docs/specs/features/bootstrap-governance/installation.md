@@ -16,6 +16,8 @@
   and size limits before editing.
 - Installers merge a compact routing gate and keep detailed governance in
   linked Markdown nodes.
+- Agent-work installation carries the complete persistent-goal continuity
+  contract into the active project or user instruction chain.
 - Specification, agent-work, browser-QA, and lifecycle layers are independently
   selectable.
 - Optional adapters are installed only when explicitly requested.
@@ -38,6 +40,7 @@ truncation.
 
 ## Verification
 
-Confirm the active agent reads the installed gate, every local Markdown link
+Confirm the active agent reads the installed gate, persistent goals retain
+dependency-ready work and resource-wait continuity, every local Markdown link
 resolves, all installed nodes stay within 100 physical lines, optional layers
 remain absent unless selected, and only task-owned target paths changed.

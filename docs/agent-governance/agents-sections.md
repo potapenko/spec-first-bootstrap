@@ -225,13 +225,15 @@ Speculative support infrastructure and production-grade hardening of temporary
 Debug tooling are forbidden.
 
 A third consecutive support-only implementation checkpoint, a second
-repair/re-review cycle, or material diagnostic/tooling expansion is an economic
-stop. Before continuing, report capability delivered, capability being
-unlocked, expected additional time or token cost, why a truthful residual is
-insufficient, the cheapest safe alternative, and the stop condition. Continue
-only with explicit user approval unless stopping would leave a demonstrated
-data-loss, privacy, security, irreversible-action, or released-compatibility
-risk unsafe.
+repair/re-review cycle, or material diagnostic/tooling expansion triggers an
+economic reassessment. Report capability delivered, capability being unlocked,
+expected additional time or token cost, why a truthful residual is insufficient,
+the cheapest safe alternative, and the stop condition. For an active persistent
+goal executing an approved plan, continue dependency-ready required work without
+another approval. Require approval only for work outside the approved boundary
+or optional expansion with no immediate approved-plan consumer. Never weaken a
+demonstrated data-loss, privacy, security, irreversible-action, or released-
+compatibility protection.
 
 A residual must not hide a known acceptance failure or missing capability that
 is being claimed as delivered. Progress updates separate shipping capability
@@ -271,10 +273,17 @@ investigation, review, build, test, runtime, browser, device, and visual
 packets; workers receive only their bounded packet and do not read the full
 root manual unless assigned the coordinator role.
 
-A paused or blocked goal remains idle until the user explicitly resumes it. A
-separate side task may be single-agent only when it does not inspect, change,
-decide, verify, unblock, or advance goal-owned work. Without a running goal,
-work normally as a single agent unless delegation is explicitly requested.
+A persistent goal stays active until its complete definition of done is
+verified, or the user pauses or clears it. Plan order is not execution order:
+continue any dependency-ready authorized item. Temporary resource contention
+uses `waiting_resource`, releases the lane, and is rechecked after another item
+finishes or after three minutes. If only waiting work remains, use nonblocking
+continuation or bounded waits and recheck every three minutes without a fixed
+attempt ceiling. Missing proof uses `waiting_evidence`; missing user authority
+uses `awaiting_authority`. Item failure or waiting never authorizes voluntary
+goal-level `blocked`. A user-paused goal remains idle until explicitly resumed.
+Without a running goal, work normally as a single agent unless delegation is
+explicitly requested.
 ~~~
 
 ## Project: optional browser QA
@@ -551,13 +560,15 @@ Speculative support infrastructure and production-grade hardening of temporary
 Debug tooling are forbidden.
 
 A third consecutive support-only implementation checkpoint, a second
-repair/re-review cycle, or material diagnostic/tooling expansion is an economic
-stop. Before continuing, report capability delivered, capability being
-unlocked, expected additional time or token cost, why a truthful residual is
-insufficient, the cheapest safe alternative, and the stop condition. Continue
-only with explicit user approval unless stopping would leave a demonstrated
-data-loss, privacy, security, irreversible-action, or released-compatibility
-risk unsafe.
+repair/re-review cycle, or material diagnostic/tooling expansion triggers an
+economic reassessment. Report capability delivered, capability being unlocked,
+expected additional time or token cost, why a truthful residual is insufficient,
+the cheapest safe alternative, and the stop condition. For an active persistent
+goal executing an approved plan, continue dependency-ready required work without
+another approval. Require approval only for work outside the approved boundary
+or optional expansion with no immediate approved-plan consumer. Never weaken a
+demonstrated data-loss, privacy, security, irreversible-action, or released-
+compatibility protection.
 
 A residual must not hide a known acceptance failure or missing capability that
 is being claimed as delivered. Progress updates separate shipping capability
@@ -596,10 +607,17 @@ There is no coordinator direct-execution exception merely for small, urgent,
 mechanical, or supposedly faster work. Spawned workers receive finite packets and do not read
 the full root manual unless assigned the coordinator role.
 
-A paused or blocked goal remains idle until explicitly resumed. A separate
-side task may be single-agent only when it does not inspect, change, decide,
-verify, unblock, or advance goal-owned work. Without a running goal, work
-normally as a single agent unless delegation is explicitly requested.
+A persistent goal stays active until its complete definition of done is
+verified, or the user pauses or clears it. Plan order is not execution order:
+continue any dependency-ready authorized item. Temporary resource contention
+uses `waiting_resource`, releases the lane, and is rechecked after another item
+finishes or after three minutes. If only waiting work remains, use nonblocking
+continuation or bounded waits and recheck every three minutes without a fixed
+attempt ceiling. Missing proof uses `waiting_evidence`; missing user authority
+uses `awaiting_authority`. Item failure or waiting never authorizes voluntary
+goal-level `blocked`. A user-paused goal remains idle until explicitly resumed.
+Without a running goal, work normally as a single agent unless delegation is
+explicitly requested.
 ~~~
 
 ## Global: optional browser QA

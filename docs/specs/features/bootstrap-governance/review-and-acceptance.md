@@ -2,7 +2,7 @@
 
 - Node type: leaf
 - Status: Active
-- Contract: `bootstrap.governance.review@1`
+- Contract: `bootstrap.governance.review@2`
 - Clauses: `BOOTSTRAP.REVIEW.AUTHORITY`, `BOOTSTRAP.REVIEW.INDEPENDENCE`,
   `BOOTSTRAP.REVIEW.EVIDENCE`, `BOOTSTRAP.REVIEW.VERDICT`,
   `BOOTSTRAP.REVIEW.INTEGRATION`, `BOOTSTRAP.REVIEW.LIMITS`
@@ -34,7 +34,8 @@ It excludes the builder's narrative, verdict, terminal receipt, and prior review
 conclusions. Send initial observations to the root as an intermediate message;
 only then does it provide the receipt and prior findings to the same reviewer
 for final reconciliation. The intermediate message is not acceptance.
-Unavailable fresh context leaves a required independent-review gate blocked.
+Unavailable fresh context records `waiting_evidence` for the required
+independent-review gate while independent authorized work continues.
 Never hide safety restrictions or evidence needed to operate safely for blindness.
 Blind A/B comparison is optional and only appropriate for comparable artifacts.
 
@@ -57,8 +58,9 @@ is `not_verified` when no mandatory failure is already established. Record all
 evidence gaps even when rejecting. Missing evidence is not proof of a defect.
 `accept_with_residual` cannot hide a failed or unverified mandatory criterion.
 The verdict is distinct from the worker's execution status. `/root` maps
-`reject` to repair and `not_verified` to blocked verification, with the exact
-missing evidence and responsible owner; neither permits dependent acceptance.
+`reject` to repair and `not_verified` to `waiting_evidence`, with the exact
+missing evidence and responsible owner; neither permits dependent acceptance or
+voluntary goal-level `blocked`.
 
 ## BOOTSTRAP.REVIEW.INTEGRATION — Verify the whole scenario
 

@@ -101,8 +101,8 @@ creates a task-owned checkpoint commit and pushes it from the currently checked-
 out branch. The task is not complete until both commit and push succeed. It must
 also preserve outcome-first progress for ordinary implementation and persistent goals, a
 smallest early release-path vertical slice, classified finite worker packets,
-default 60/25/15 planning, bounded support-only checkpoints, economic repair/
-diagnostic stops, risk-based model selection,
+default 60/25/15 planning, bounded support-only checkpoints, nonblocking
+economic reassessment for required approved-plan work, risk-based model selection,
 risk-proportional review with independent review for named high-risk classes,
 fresh initial review of the actual artifact before builder-receipt reconciliation,
 mandatory criteria separate from optional quality references, evidence-backed
@@ -111,8 +111,15 @@ findings, and integrated user-scenario verification. Missing required proof is
 `reject`. Neither permits acceptance as a residual, and changing critics cannot
 reset repair or cost limits. Preserve
 ownership-safe parallelism, product-value-first terminal receipts and progress
-reports, one durable economic registry, explicit pause/resume, context-
-compaction recovery, and truthful completion.
+reports, one durable economic registry, explicit user-controlled pause/resume,
+context-compaction recovery, and truthful completion. A persistent goal remains
+active until its complete definition of done is verified or the user pauses or
+clears it. Plan order does not override dependencies: any dependency-ready item
+may run. Temporary contention uses `waiting_resource`, releases the lane, and
+is rechecked after other ready work or every three minutes without a fixed
+attempt ceiling. Missing proof uses `waiting_evidence`; missing user authority
+uses `awaiting_authority`. Item failure or waiting does not authorize voluntary
+goal-level `blocked`.
 When the explicit single-agent exception is inactive, `/root` remains
 coordinator-only.
 When product-truth governance applies, product packets and receipts must carry
@@ -139,7 +146,9 @@ changes block editing, non-overlapping changes stay outside staging and
 commits, work that changes files ends with a successful task-owned checkpoint
 commit and push after the safe-push preflight, the single-agent exception
 requires an explicit no-delegation instruction, and the approved-plan boundary
-rejects unapproved adjacent work.
+rejects unapproved adjacent work. Verify dependency-ready scheduling, the
+three-minute resource recheck without a fixed attempt ceiling, waiting-state
+continuity, and absence of the former idle-on-blocked rule.
 
 Report the detected environment, exact paths, coexistence with any already
 installed layers, permission used, verification, and residuals.

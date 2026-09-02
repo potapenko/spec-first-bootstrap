@@ -6,9 +6,10 @@
 - Domain ID: `bootstrap.governance`
 - Authority: Active
 - Stability: Accepted
-- Contract revision: `bootstrap.governance@13`
+- Contract revision: `bootstrap.governance@14`
 - Clauses: `BOOTSTRAP.INSTALL`, `BOOTSTRAP.ROUTING`, `BOOTSTRAP.SCOPE`,
-  `BOOTSTRAP.RESTART`, `BOOTSTRAP.PROPORTIONALITY`, `BOOTSTRAP.REVIEW`
+  `BOOTSTRAP.RESTART`, `BOOTSTRAP.PROPORTIONALITY`, `BOOTSTRAP.GOAL`,
+  `BOOTSTRAP.REVIEW`
 - Read when: changing portable Bootstrap setup, governance, prompts, templates, or workflow.
 - Do not read when: changing only optional adapter mechanics.
 - Maximum size: 100 physical lines.
@@ -28,6 +29,9 @@ inventing product behavior, or silently installing unrelated layers.
   root/branch/leaf traversal, Markdown links, dependencies, and node limits.
 - [Restart and delivery proportionality](bootstrap-governance/restart-and-delivery.md)
   — context recovery, release-path priority, and support-work limits.
+- [Persistent goal continuity](bootstrap-governance/goal-continuity.md) —
+  dependency-ready scheduling, resource waits, retry continuity, and terminal
+  goal-state rules.
 - [Independent outcome review](bootstrap-governance/review-and-acceptance.md)
   — review independence, evidence, acceptance criteria, and integrated outcomes.
 
@@ -46,9 +50,10 @@ not copied into portable governance.
 
 ## Failure policy
 
-Stop before writing when the active instruction entrypoint is ambiguous, an
-existing change overlaps task-owned paths, or a required semantic change lies
-outside the approved envelope. Preserve independent completed work.
+Stop only the affected slice before writing when the active instruction
+entrypoint is ambiguous, an existing change overlaps task-owned paths, or a
+required semantic change lies outside the approved envelope. Preserve
+independent completed work and continue other authorized work when safe.
 
 ## Evidence and verification
 

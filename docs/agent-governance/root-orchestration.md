@@ -74,8 +74,7 @@ The first one or two implementation checkpoints should produce the smallest
 release-reachable vertical slice. No goal may complete more than two consecutive
 support-only implementation checkpoints or integration waves without a fresh
 delivery review. Parallel support packets in one wave count as one checkpoint,
-not as several. Before a third support-only checkpoint, `/root` must stop and
-report:
+not as several. Before a third support-only checkpoint, `/root` must report:
 
 - the user capability already delivered;
 - the exact capability the support work unlocks next;
@@ -85,8 +84,11 @@ report:
   that is materially cheaper;
 - the stop condition.
 
-If no immediate product consumer exists, the third support-only checkpoint is
-not admissible without explicit user approval.
+For required work already inside the approved goal plan, this review changes
+routing but does not stop the goal or require another approval. Continue
+dependency-ready work and convert noncritical uncertainty to a truthful
+residual when safe. Explicit approval is required only for work outside the
+approved envelope or optional expansion with no immediate plan consumer.
 
 Every model, map, observer, registry expansion, debug harness, or new tooling
 artifact must name the implementation decision or release-path capability that
@@ -122,17 +124,50 @@ Work advances a goal when it does any of the following:
 - inspects or changes a goal-owned artifact;
 - determines product, architecture, data, or behavior decisions for the goal;
 - implements, tests, builds, reviews, launches, or verifies goal work;
-- resolves a goal blocker, dependency, residual, or acceptance condition;
+- resolves a goal waiting condition, dependency, residual, or acceptance condition;
 - updates the goal's plan, registry, evidence, checkpoint, or completion claim.
 
 There is no direct-execution exception for work that appears small, simple,
 urgent, mechanical, or faster for `/root` to perform itself.
 
-A paused or blocked goal remains idle until the user explicitly resumes it.
+A user-paused goal remains idle until the user explicitly resumes it. Local
+governance must not voluntarily set goal-level `blocked`; a host-enforced
+blocked state is reported as a platform constraint and resumes only through the
+host's supported user action.
 
 An explicitly identified side task is outside this contract only when it does
 not inspect, change, decide, verify, unblock, or advance goal-owned work. A side
 task must not be used as a disguised goal implementation lane.
+
+## Goal continuity and ready-work scheduling
+
+A persistent goal remains active until its complete definition of done is
+verified, or the user pauses or clears it. `/root` must not invoke goal-level
+`blocked` as a local stopping policy. Packet failure, resource contention,
+missing evidence, elapsed time, token use, retry count, and unfinished work are
+not terminal goal conditions.
+
+Plan order is not execution order. On every coordination pass, `/root`:
+
+1. reconciles running and returned packets;
+2. selects any dependency-ready authorized packet, regardless of list order;
+3. dispatches all ownership-safe ready work before waiting;
+4. revisits due waiting items after the next completed packet or at their
+   recorded `recheck_at` time;
+5. when only waiting items remain, uses the host's nonblocking continuation,
+   scheduler, or bounded wait mechanism until the earliest recheck.
+
+Temporary contention uses `waiting_resource`. Record the resource, owner when
+known, last observation, and a recheck time three minutes later; release the
+worker slot and shared lane. Recheck every three minutes while the resource is
+needed. Each external operation retains an explicit timeout, but the goal has
+no fixed retry or attempt ceiling. Do not use a long shell sleep or busy loop.
+
+Missing mandatory proof uses `waiting_evidence`. A protected operation that
+needs user or external authority uses `awaiting_authority`. Continue every
+independent authorized packet before waiting. These item states preserve the
+exact resume condition and never imply goal completion or local goal-level
+blocking.
 
 ## Root role
 
@@ -150,7 +185,7 @@ task must not be used as a disguised goal implementation lane.
 - update goal coordination documents;
 - make path-limited coordination and checkpoint commits from accepted worker
   results;
-- report progress, decisions, blockers, risks, and next steps to the user.
+- report progress, decisions, waiting conditions, risks, and next steps to the user.
 
 `/root` must not:
 
@@ -180,7 +215,7 @@ delegation trigger, not permission for direct execution.
 - the dependency graph;
 - packet states and ownership leases;
 - accepted terminal receipts;
-- exact blockers and residuals;
+- exact waiting conditions and residuals;
 - checkpoints;
 - the next dependency-ready work.
 
@@ -207,7 +242,7 @@ When the project has an applicable product-truth or specification-governance
 layer, `/root` follows its named contract and keeps the accepted change
 envelope and current contract revision as durable goal state. A provisional
 specification discrepancy is then an evidence-reconciliation trigger, not by
-itself a user decision or implementation blocker.
+itself a user decision or reason to stop the goal.
 
 The agent architecture does not require or install that layer. Without it,
 `/root` uses the user's objective and the project's existing product,
@@ -261,14 +296,14 @@ Before every spawn, `/root` must verify that:
 6. the authority mode, writable ownership, and protected boundaries are
    explicit;
 7. concurrent packets do not overlap in ownership;
-8. completion and stopping conditions are measurable;
+8. completion, waiting, and user-controlled stopping conditions are measurable;
 9. the worker will produce unique evidence or implementation;
 10. delegation preserves or improves quality and context isolation;
 11. the packet is classified as shipping, verification, diagnostic, tooling,
     or coordination work;
 12. it names the release-path capability delivered or immediately unlocked;
 13. its expected effort, current support-only checkpoint depth, cheapest safe
-    alternative, and economic stop condition are explicit;
+    alternative, and economic reassessment condition are explicit;
 14. dispatch will not create a third consecutive support-only implementation
     checkpoint without the delivery review or user approval required above.
 
@@ -286,7 +321,7 @@ Every worker packet must contain:
 - one finite objective;
 - why the packet is ready now;
 - the release-path capability delivered or immediately unlocked;
-- an expected effort bound and the packet's economic stop condition;
+- an expected effort bound and the packet's economic reassessment condition;
 - the current support-only checkpoint depth in the milestone;
 - the cheapest safe alternative and whether a bounded user-assisted check is
   available;
@@ -313,7 +348,7 @@ Every worker packet must contain:
 - mandatory acceptance criteria and any optional quality references, with
   their authority, applicable dimensions, and comparison conditions;
 - completion condition;
-- stopping and blocker conditions;
+- waiting, recovery, and user-controlled stopping conditions;
 - terminal receipt format;
 - assigned model and reasoning effort;
 - whether nested delegation is allowed.
@@ -351,7 +386,8 @@ Workers must:
 - stay inside their packet;
 - preserve unrelated work;
 - use accepted authority and existing canonical owners;
-- stop on a real missing dependency or contract conflict;
+- return the exact waiting dependency or contract conflict while allowing
+  `/root` to continue independent work;
 - run only the assigned checks;
 - return one terminal receipt.
 
@@ -473,8 +509,8 @@ Do not initially provide the builder's narrative, verdict, terminal receipt,
 or prior review conclusions. Extract the necessary authority and constraints
 from the original packet without copying its implementation narrative.
 Never withhold safety restrictions or facts needed to operate safely.
-If fresh context is unavailable, do not label the review independent; a
-required independent-review gate stays blocked.
+If fresh context is unavailable, do not label the review independent; record
+`waiting_evidence` for the required independent-review gate.
 
 The reviewer inspects the actual result and records initial observations and
 criterion coverage before receiving the builder's receipt. Send these as an
@@ -512,8 +548,8 @@ The reviewer returns one review verdict:
   missing proof alone is not a defect.
 
 The verdict is separate from worker execution status. `/root` maps `reject`
-to rejected work and a repair packet, and `not_verified` to blocked verification
-with an exact missing dependency. Neither permits dependent acceptance.
+to rejected work and a repair packet, and `not_verified` to
+`waiting_evidence` with an exact missing dependency. Neither permits dependent acceptance.
 A failed or unverified mandatory criterion cannot become an accepted residual.
 
 ### Integrated acceptance
@@ -564,7 +600,7 @@ Every worker returns a compact terminal receipt using this minimum structure:
 
 ```text
 packet_id:
-status: done | blocked | failed
+status: done | waiting_resource | waiting_evidence | awaiting_authority | failed
 
 outcome:
 work_classification:
@@ -621,7 +657,7 @@ Verification completed:
 Diagnostic/tooling/coordination cost:
 Elapsed time and tokens when available:
 Next visible milestone:
-Budget variance and stop decision:
+Budget variance and routing decision:
 ```
 
 ## Registry and durable state
@@ -638,14 +674,18 @@ Recommended states:
 
 ```text
 queued -> running -> review -> accepted
-                  -> blocked
+                  -> waiting_resource -> running
+                  -> waiting_evidence -> running
+                  -> awaiting_authority -> running
                   -> rejected -> running
 ```
 
 Rules:
 
 - `accepted` work is terminal unless new evidence invalidates it;
-- a blocked packet resumes only from its exact residual;
+- a waiting packet resumes only from its exact recorded dependency and
+  `waiting_resource` is rechecked every three minutes without a fixed attempt
+  ceiling;
 - stale `running` rows are reconciled before new dispatch;
 - milestone rows preserve support-only checkpoint depth and reset it only when
   a checkpoint delivers release-path capability;
@@ -680,7 +720,9 @@ repair/re-review cycle, additional noncritical hardening requires user approval.
 Do not convert a finite product task into an open-ended attempt to eliminate
 all uncertainty.
 
-Repeated identical blockers must not create duplicate investigation waves.
+Repeated identical waiting conditions must not create duplicate investigation
+waves or a retry ceiling. Reuse existing evidence and return to other ready
+work between rechecks.
 
 ## Pause, resume, and compaction
 
@@ -730,13 +772,14 @@ Do not reconstruct program state from memory or from the live agent list.
 - required runtime and visual QA is terminal;
 - mandatory criteria and integrated user scenarios have accepted evidence for
   the final relevant revision; no required review remains `not_verified`;
-- unresolved residuals are either explicitly allowed by the goal or remain
-  truthfully blocking;
+- every required waiting item is resolved; `waiting_resource`,
+  `waiting_evidence`, and `awaiting_authority` remain incomplete rather than
+  being relabeled terminal;
 - the restart-safe registry is terminal;
 - accepted progress is preserved in the required checkpoint.
 
-A known acceptance failure or missing claimed capability is blocking, not a
-noncritical residual.
+A known acceptance failure or missing claimed capability keeps the goal
+incomplete; it is not a noncritical residual.
 
 Do not mark a goal complete because time or token budget is nearly exhausted.
 
