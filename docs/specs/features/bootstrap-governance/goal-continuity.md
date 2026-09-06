@@ -2,7 +2,7 @@
 
 - Node type: leaf
 - Status: Active
-- Contract: `bootstrap.governance.goal-continuity@1`
+- Contract: `bootstrap.governance.goal-continuity@2`
 - Clauses: `BOOTSTRAP.GOAL.ACTIVE`, `BOOTSTRAP.GOAL.READY`,
   `BOOTSTRAP.GOAL.WAIT`, `BOOTSTRAP.GOAL.RECOVER`, `BOOTSTRAP.GOAL.TERMINAL`
 - Read when: installing, coordinating, reviewing, or repairing persistent-goal work.
@@ -11,10 +11,23 @@
 
 ## Active-until-complete
 
-A persistent goal remains active until its complete definition of done is
-verified, or the user pauses or clears it. Local governance must not voluntarily
-set goal-level `blocked`. Host-enforced termination is reported as a platform
-constraint, not reinterpreted as completion or a local policy choice.
+A persistent goal remains incomplete until its complete definition of done is
+verified. Continue authorized work until user pause/clear or a mandatory host
+transition. Do not use goal-level `blocked` as a discretionary stopping policy.
+When the host requires it after a repeated genuine impasse and no meaningful
+independent work remains, follow that transition and preserve the exact resume
+condition. Never equate a blocked state with completion or silently resume it.
+
+## Execution mode
+
+At goal start, record `single-agent` for bounded sequential work or `coordinated`
+when independent work or context isolation justifies delegation. Honor explicit
+user choice. Goal existence alone does not require workers. Preserve the mode
+on resume; change it only for new dependency, risk, or context evidence, with a
+reason and safe ownership handoff. No mode change expands user authority.
+Coordinator-only restrictions apply only in coordinated mode. Required
+independent review remains required in either mode; a no-delegation instruction
+does not turn self-review into independent acceptance.
 
 ## Dependency-ready scheduling
 
@@ -42,7 +55,7 @@ Implementation failure triggers classification, focused repair, stronger
 reasoning, alternative execution, or narrower decomposition. Missing evidence
 uses `waiting_evidence`; required user or external authority uses
 `awaiting_authority`. Continue all independent authorized work in either case.
-These item states never imply goal completion or local goal-level blocking.
+These item states never imply completion. Mandatory host state rules still apply.
 
 Economic reassessment changes routing, records cost, and removes optional work
 without an immediate approved-plan consumer. It does not stop required work
@@ -54,4 +67,4 @@ other protected operations still require their existing authorization.
 `complete` requires every mandatory plan outcome and acceptance condition.
 Packet counts, elapsed time, token use, retry count, temporary resource
 contention, missing optional polish, or an unfinished plan cannot justify a
-terminal goal state.
+completion. Mandatory host impasse transitions remain an exception for blocking.

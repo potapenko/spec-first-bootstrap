@@ -2,7 +2,7 @@
 
 - Node type: leaf
 - Status: Active
-- Contract: `bootstrap.governance.restart-delivery@3`
+- Contract: `bootstrap.governance.restart-delivery@4`
 - Clauses: `BOOTSTRAP.RESTART`, `BOOTSTRAP.PROPORTIONALITY`,
   `BOOTSTRAP.ECONOMY`
 - Read when: recovering after lifecycle events or planning implementation support work.
@@ -18,6 +18,8 @@ only nodes on the selected path plus the next required evidence.
 Restart from the root only when the task changed or the recorded path is
 missing or ambiguous. Chat memory, summaries, old tests, and screenshots do not
 replace current nodes. Finite workers restart from their pinned packet.
+Restore the approved boundary and recorded execution mode without requesting
+the same approval again. Load shared work rules once through their linked owner.
 
 ## Delivery proportionality
 
@@ -60,8 +62,8 @@ work, including likely rework, rather than from role names or maximum capability
 
 Minimum-sufficient work never weakens required evidence for data loss, privacy,
 security, irreversible actions, released compatibility, or the claimed user
-outcome. It never blocks required work already inside an approved persistent
-goal.
+outcome. It never creates a discretionary stop for approved-plan work; mandatory
+host impasse transitions still apply.
 
 A residual may preserve bounded uncertainty but cannot hide a known acceptance
 failure or missing capability claimed as delivered.

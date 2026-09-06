@@ -36,124 +36,39 @@ the residual actually blocks the next product capability. A residual must not
 hide a known acceptance failure or missing capability that is being claimed as
 delivered.
 
+## Shared work rules and activation
+
+Read [work governance](work-governance.md) and its applicable task-framing,
+scope, minimum-sufficient-work, and goal-execution nodes first. They own approval
+continuity, authority modes, checkpoint policy, execution-mode selection,
+readiness, waiting, host state, and restart. Do not duplicate those definitions.
+
+This full contract applies only while advancing a goal recorded as
+`coordinated`. In `single-agent` mode the primary agent executes directly under
+the shared rules; it does not load coordinator-only restrictions. An explicit
+user no-delegation instruction remains binding. Required independent review
+is never replaced by self-review.
+
+A coordinated goal cannot evade its role boundaries by calling a small step a
+side task. Change execution mode only through the recorded evidence-based
+handoff in goal-execution. Finite workers use their assigned packet.
+
 ## Outcome and minimum-sufficient work
 
-For an implementation goal, progress is measured first by goal-relevant
-capability reachable from the product or release path. Debug harnesses, tests,
-models, maps, registries, documentation, evidence collectors, and review work
-are supporting work. They may enable delivery, but they do not count as the
-product outcome and must never be reported as though they do.
-
-Classify every packet as exactly one of:
-
-- `shipping_product`: adds or changes goal-relevant release-path capability;
-- `verification`: verifies an implemented capability;
-- `diagnostic`: answers one concrete defect or feasibility question;
-- `tooling`: creates supporting infrastructure;
-- `coordination`: maintains authority, plans, or durable state.
-
-Choose the reading, reasoning, tools, workers, and verification that minimize
-expected total token use while still delivering the reliable goal outcome.
-Expected cost includes duplicated context, coordination, tool output, retries,
-and likely rework; the cheapest individual packet is not always the cheapest
-complete path. Do not create numerical token budgets, percentage allocations,
-checkpoint quotas, or routine economy reports.
-
-Start with the most direct path to the next release-reachable capability or
-material decision. Every support packet must name its immediate implementation,
-decision, or acceptance consumer. Expand only when observed evidence shows the
-current path is insufficient, a real dependency or shared owner appears, a
-governing contract requires more, or a concrete risk needs broader proof. Stop
-expanding when the goal outcome and mandatory acceptance evidence are sufficient.
-Required work already inside the approved plan continues; explicit approval is
-needed only for work outside the envelope or optional expansion without an
-immediate approved-plan consumer.
-
-Every model, map, observer, registry expansion, debug harness, or new tooling
-artifact must name the implementation decision or release-path capability that
-will consume it immediately when dependency-ready.
-Speculative support infrastructure is forbidden. Debug tooling answers one
-bounded question; it must not receive production-grade architecture or
-hardening unless it ships, directly protects user data, or the user approves
-the extra investment.
-
-Verification is change-driven. A presentation-only edit does not run logic
-suites when actions, state, persistence, services, and business rules are
-unchanged. Local logic gets focused checks; shared or high-risk changes get
-affected-consumer or risk-mapped checks. A full suite needs concrete cross-
-cutting evidence or an explicit governing requirement. Re-run a check only when
-its inputs, environment, or relevant implementation changed.
-
-Use compact, decision-relevant tool output and receipts instead of raw logs or
-complete reasoning transcripts. Report shipping files or capabilities
-separately from supporting work. Do not infer product progress from lines
-written, tests passed, packets closed, or tokens spent.
-
-## Activation boundary
-
-This contract applies when all conditions are true:
-
-1. a persistent goal is running; and
-2. the current request directly or indirectly advances that goal; and
-3. the user has not explicitly required the current chat to complete that goal
-   without subagents, workers, or delegation.
-
-When condition 3 is false, the primary agent works as a normal single agent for
-that goal and must not spawn workers. It may inspect, implement, build, test,
-launch, and perform other in-scope goal actions itself. This single-agent
-exception lasts only while the explicit no-delegation instruction is active and
-does not weaken any specification, safety, approval, destructive-action,
-framework, or product-authority boundary.
-
-Work advances a goal when it does any of the following:
-
-- inspects or changes a goal-owned artifact;
-- determines product, architecture, data, or behavior decisions for the goal;
-- implements, tests, builds, reviews, launches, or verifies goal work;
-- resolves a goal waiting condition, dependency, residual, or acceptance condition;
-- updates the goal's plan, registry, evidence, checkpoint, or completion claim.
-
-There is no direct-execution exception for work that appears small, simple,
-urgent, mechanical, or faster for `/root` to perform itself.
-
-A user-paused goal remains idle until the user explicitly resumes it. Local
-governance must not voluntarily set goal-level `blocked`; a host-enforced
-blocked state is reported as a platform constraint and resumes only through the
-host's supported user action.
-
-An explicitly identified side task is outside this contract only when it does
-not inspect, change, decide, verify, unblock, or advance goal-owned work. A side
-task must not be used as a disguised goal implementation lane.
+Use the shared minimum-sufficient-work definition. Classify each packet as
+`shipping_product`, `verification`, `diagnostic`, `tooling`, or `coordination`.
+Supporting work names its immediate capability or decision consumer. Its
+`economy_basis` records why delegation or nontrivial support is justified.
+Do not report packet counts or tooling as delivered product capability.
 
 ## Goal continuity and ready-work scheduling
 
-A persistent goal remains active until its complete definition of done is
-verified, or the user pauses or clears it. `/root` must not invoke goal-level
-`blocked` as a local stopping policy. Packet failure, resource contention,
-missing evidence, elapsed time, token use, retry count, and unfinished work are
-not terminal goal conditions.
-
-Plan order is not execution order. On every coordination pass, `/root`:
-
-1. reconciles running and returned packets;
-2. selects any dependency-ready authorized packet, regardless of list order;
-3. dispatches all ownership-safe ready work before waiting;
-4. revisits due waiting items after the next completed packet or at their
-   recorded `recheck_at` time;
-5. when only waiting items remain, uses the host's nonblocking continuation,
-   scheduler, or bounded wait mechanism until the earliest recheck.
-
-Temporary contention uses `waiting_resource`. Record the resource, owner when
-known, last observation, and a recheck time three minutes later; release the
-worker slot and shared lane. Recheck every three minutes while the resource is
-needed. Each external operation retains an explicit timeout, but the goal has
-no fixed retry or attempt ceiling. Do not use a long shell sleep or busy loop.
-
-Missing mandatory proof uses `waiting_evidence`. A protected operation that
-needs user or external authority uses `awaiting_authority`. Continue every
-independent authorized packet before waiting. These item states preserve the
-exact resume condition and never imply goal completion or local goal-level
-blocking.
+Apply goal-execution's ready-work and mandatory host impasse rules. Reconcile returned
+packets, dispatch ownership-safe ready work, then revisit waiting conditions.
+Use `waiting_resource`, `waiting_evidence`, or `awaiting_authority` on packets.
+Recheck every three minutes during temporary contention, with no fixed retry or
+attempt ceiling unless the host requires an impasse transition. No meaningful
+independent work may be abandoned merely because another item is waiting.
 
 ## Root role
 
@@ -703,7 +618,7 @@ On resume or context compaction, `/root` first re-reads:
 - applicable global and project instructions;
 - the compact product-truth router and applicable routed governance leaves when
   that layer is installed and the goal contains product work;
-- the persistent goal;
+- the persistent goal and recorded execution mode;
 - the governing plan or runbook;
 - the single registry;
 - the latest Markdown traversal receipt, selected nodes, pinned contract closure,

@@ -21,11 +21,12 @@ class MinimumSufficientWorkTests(unittest.TestCase):
         matches = MINIMUM_WORK_SECTION.findall(source)
         self.assertEqual({scope for scope, _ in matches}, {"Project", "Global"})
         self.assertEqual(len(matches), 2)
-        self.assertEqual(matches[0][1], matches[1][1])
+        self.assertEqual(matches[0][1].replace("docs/agent/", ""), matches[1][1])
 
         payload = matches[0][1]
         installed = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
-        self.assertEqual(installed.count(payload), 1)
+        self.assertEqual(installed.count(payload.replace("docs/agent/", "docs/agent-governance/")), 1)
+        payload = (ROOT / "docs/agent-governance/work/minimum-sufficient-work.md").read_text()
         self.assertIn("expected total token use", payload)
         self.assertIn("Presentation-only edits do not run", payload)
         self.assertIn("A full suite requires concrete", payload)
@@ -37,9 +38,9 @@ class MinimumSufficientWorkTests(unittest.TestCase):
         )
         for required in (
             "Outcome and minimum-sufficient work",
-            "expected total token use",
+            "work-governance.md",
             "economy_basis",
-            "Verification is change-driven",
+            "minimum-sufficient-work",
             "expected time or context-isolation benefit outweighs",
             "Repeat review or repair only when relevant implementation changed",
         ):
@@ -71,13 +72,13 @@ class MinimumSufficientWorkTests(unittest.TestCase):
     def test_contract_revisions_and_cases_are_current(self) -> None:
         expected = {
             "docs/specs/features/bootstrap-governance.md":
-                "bootstrap.governance@15",
+                "bootstrap.governance@16",
             "docs/specs/features/bootstrap-governance/installation.md":
-                "bootstrap.governance.installation@2",
+                "bootstrap.governance.installation@3",
             "docs/specs/features/bootstrap-governance/restart-and-delivery.md":
-                "bootstrap.governance.restart-delivery@3",
+                "bootstrap.governance.restart-delivery@4",
             "docs/specs/features/bootstrap-governance/review-and-acceptance.md":
-                "bootstrap.governance.review@3",
+                "bootstrap.governance.review@4",
             "qa/cases/minimum-sufficient-work.md":
                 "MW-13: persistent goal",
         }

@@ -2,7 +2,7 @@
 
 - Node type: leaf
 - Status: Active
-- Contract: `bootstrap.governance.installation@2`
+- Contract: `bootstrap.governance.installation@3`
 - Clause: `BOOTSTRAP.INSTALL`
 - Read when: installing or repairing Bootstrap layers in a project or user configuration.
 - Do not read when: the task only uses an already installed workflow.
@@ -28,6 +28,15 @@
   release, and operator rules remain intact.
 - Target projects receive only their own product contracts, never Bootstrap
   example behavior.
+- Portable defaults and deliberate local overrides remain distinct. Record
+  override owner, scope, and precedence; preserve them during upgrades.
+- Install one linked work-governance tree; compact gates reference it instead
+  of duplicating full planning, scope, economy, and goal-execution rules.
+- Global checkpoint default is a task-owned local commit. Automatic push is
+  a project opt-in; preserve existing project commit-and-push requirements.
+- Skill guidance cannot reopen an approval already granted by the user.
+  Resolve duplicate skill routing through its source or plugin configuration,
+  only when that separate local configuration work is explicitly authorized.
 
 ## Non-goals
 

@@ -2,7 +2,7 @@
 
 - Node type: leaf
 - Status: Active
-- Contract: `bootstrap.governance.review@3`
+- Contract: `bootstrap.governance.review@4`
 - Clauses: `BOOTSTRAP.REVIEW.AUTHORITY`, `BOOTSTRAP.REVIEW.INDEPENDENCE`,
   `BOOTSTRAP.REVIEW.EVIDENCE`, `BOOTSTRAP.REVIEW.VERDICT`,
   `BOOTSTRAP.REVIEW.INTEGRATION`, `BOOTSTRAP.REVIEW.LIMITS`
@@ -59,8 +59,8 @@ evidence gaps even when rejecting. Missing evidence is not proof of a defect.
 `accept_with_residual` cannot hide a failed or unverified mandatory criterion.
 The verdict is distinct from the worker's execution status. `/root` maps
 `reject` to repair and `not_verified` to `waiting_evidence`, with the exact
-missing evidence and responsible owner; neither permits dependent acceptance or
-voluntary goal-level `blocked`.
+missing evidence and responsible owner; neither permits dependent acceptance.
+Follow mandatory host impasse transitions without weakening acceptance criteria.
 
 ## BOOTSTRAP.REVIEW.INTEGRATION — Verify the whole scenario
 
@@ -68,7 +68,8 @@ Acceptance of separate parts does not establish acceptance of their composition.
 Before accepting a multi-part capability, a scoped verifier checks the integrated
 user scenario and relevant boundaries on the composed revision. This may share
 an existing review/QA wave; no duplicate audit is required.
-The root coordinates and evaluates receipts, not raw runtime or visual output.
+In coordinated mode the root evaluates receipts, not raw runtime or visual output.
+Single-agent execution retains all required independent-review gates.
 Revalidate affected criteria after relevant changes; preserve unaffected accepted
 work. Critics report findings and do not silently become implementation owners.
 

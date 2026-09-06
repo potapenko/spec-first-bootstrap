@@ -13,7 +13,7 @@ human authority view, not a second routing system.
 
 | Contract | Authority | Stability | Revision | Read when |
 | --- | --- | --- | --- | --- |
-| [Bootstrap governance](features/bootstrap-governance.md) | Active | Accepted | `bootstrap.governance@15` | Setup, governance, Markdown routing, prompts, templates, scope, minimum-sufficient work, goal continuity, or review |
+| [Bootstrap governance](features/bootstrap-governance.md) | Active | Accepted | `bootstrap.governance@16` | Setup, governance, Markdown routing, prompts, templates, scope, minimum-sufficient work, goal continuity, or review |
 | [Legacy spec migration](features/legacy-spec-migration.md) | Active | Accepted | `bootstrap.legacy-spec-migration@2` | Migrating a large existing spec library |
 | [Codex lifecycle](features/codex-lifecycle-enforcement.md) | Active | Evolving | `bootstrap.codex-lifecycle@3` | Optional Codex lifecycle adapter |
 
@@ -43,6 +43,8 @@ human authority view, not a second routing system.
 - [Independent outcome review](deltas/2026-08-31-independent-outcome-review.md)
 - [Persistent goal continuity](deltas/2026-09-02-persistent-goal-continuity.md)
 - [Minimum-sufficient work](deltas/2026-09-02-minimum-sufficient-work.md)
+
+- [Workflow compatibility and local overrides](deltas/2026-09-06-workflow-compatibility.md)
 
 ## Unknown precedence
 

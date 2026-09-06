@@ -2,7 +2,7 @@
 
 - Node type: leaf
 - Status: Active
-- Contract: `bootstrap.governance.task-scope@6`
+- Contract: `bootstrap.governance.task-scope@7`
 - Clause: `BOOTSTRAP.SCOPE`
 - Read when: planning or executing an implementation-bearing request.
 - Do not read when: answering a bounded read-only question with no proposed mutation.
@@ -44,6 +44,10 @@ A newly discovered material dependency outside the plan is returned as the
 smallest scope amendment with cost and risk. Independent in-scope work may
 continue safely.
 
+Approval persists across follow-ups and compaction. A complete brief or an
+approved plan is not reopened by a skill's generic confirmation workflow.
+Ask only for a material unresolved decision or genuinely new authority.
+
 ## Authority modes
 
 Every approved implementation plan declares one authority mode. `bounded`
@@ -69,13 +73,13 @@ branch or worktree without explicit permission. Existing changes block only
 the task-owned bounded paths, or any path a `task-wide` task must modify.
 Preserve and exclude every unrelated change.
 
-At the end of any task that changes files, create a checkpoint commit and push
-it from the currently checked-out branch. Before committing, verify that a safe,
-writable upstream exists and that the push will not publish unrelated local
-commits. If either condition cannot be established, do not create the checkpoint
-commit. Commit only the files you changed for the task, and leave unrelated
-working-tree changes untouched. Do not report the task as complete until both
-the checkpoint commit and push succeed.
+The global default is a task-owned local checkpoint commit. Automatic push
+requires project opt-in. This Bootstrap repository retains commit and push.
+Preserve explicit project policy during installation and record its precedence.
+For commit-and-push projects, before committing verify a safe, writable upstream
+and that the push will not publish unrelated local commits; otherwise do not
+create the checkpoint. Completion requires both the checkpoint commit and push
+to succeed. Commit-only projects need no upstream. Never include unrelated work.
 
 ## Invariants
 

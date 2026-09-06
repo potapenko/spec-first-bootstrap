@@ -24,9 +24,9 @@ Follow prompts/setup-project-spec-first.md from that repository. Keep the setup 
 Use this when the project should keep work on the operator-selected branch,
 plan implementation-bearing or materially ambiguous work before execution,
 keep implementation inside the approved scope, use outcome-first economics, or
-handle long-running work through a coordinator and focused agents. An explicit
-no-delegation instruction keeps a persistent goal in the current chat as
-single-agent work. The layer does not require specifications or browser QA.
+handle long-running work through a coordinator and focused agents. Bounded sequential goals can stay single-agent; independent work or useful
+context isolation selects coordinated execution. Explicit user mode choice is
+preserved, including a prohibition on delegation. The layer does not require specifications or browser QA.
 
 ```text
 Use https://github.com/potapenko/spec-first-bootstrap as the reference and set up current-branch, plan-first, scope-controlled agent work and coordinated multi-agent work for long-running goals in this project.
@@ -90,6 +90,10 @@ Follow prompts/setup-global-browser-qa.md from that repository. Install only the
 Global setup installs reusable guidance. It does not automatically add specs,
 agent files, or QA folders to every existing repository.
 
+Global checkpoint default is a local commit. Automatic push is project opt-in;
+existing project checkpoint rules remain in force. Work rules are installed as
+a linked tree, with deliberate local overrides preserved explicitly.
+
 ## Optional Codex lifecycle enforcement
 
 Codex users can optionally reinforce any already-installed instruction layers
@@ -116,9 +120,9 @@ context, and requires explicit scope and hook trust verification.
   investigations proceed directly, plan the first implementation-bearing
   request and later materially ambiguous work, and use either exact `bounded`
   authority or outcome-scoped `task-wide` authority. Both protect accepted
-  behavior outside the approved outcome, even inside a writable file. During
-  persistent goals the main agent coordinates by default, or works alone when
-  the user explicitly forbids delegation.
+  behavior outside the approved outcome, even inside a writable file. Persistent
+  goals record single-agent or coordinated execution from the work and retain
+  that mode on restart. Required independent review applies in either mode.
 - **Browser QA** adds optional real-browser cases and run reports for web UI
   projects. It remains separate from product specifications and implementation.
 

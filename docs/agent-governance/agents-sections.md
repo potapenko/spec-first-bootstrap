@@ -10,28 +10,14 @@ instructions and are read only when their boundary applies.
 ~~~markdown
 ## Current branch only
 
-Agents must work only in the Git branch that is checked out when the task begins.
+Use only the branch selected when the task begins. Do not create, switch,
+rename, or publish another branch or create a worktree without explicit user
+permission. Declare bounded task-owned paths or task-wide authority before
+editing; preserve unrelated changes and exclude them from checkpoints.
+Follow scope-and-checkpoints through `docs/agent/work-governance.md`.
 
-Do not create, switch, rename, or publish another branch, and do not create a Git
-worktree, unless the user explicitly asks for it. General approval to begin work,
-commit, or push is not permission to create a branch.
-
-Before editing, a required plan declares either a bounded task-owned write set
-or task-wide repository authority. Existing changes are blockers only where
-they overlap paths the task must modify. Leave all other changes untouched and
-exclude them from staging and commits.
-
-Work is not complete or accepted while its changes exist only in another branch
-or worktree. Task changes must be integrated into the operator-selected current
-branch.
-
-At the end of any task that changes files, create a checkpoint commit and push
-it from the currently checked-out branch. Before committing, verify that a safe,
-writable upstream exists and that the push will not publish unrelated local
-commits. If either condition cannot be established, do not create the checkpoint
-commit. Commit only the files you changed for the task, and leave unrelated
-working-tree changes untouched. Do not report the task as complete until both
-the checkpoint commit and push succeed.
+Global default: local checkpoint commit. Preserve explicit project checkpoint
+policy; automatic push is project opt-in.
 ~~~
 
 ## Project: task framing and scope control
@@ -39,103 +25,12 @@ the checkpoint commit and push succeed.
 ~~~markdown
 ## Task framing and scope control
 
-### New-chat first implementation request gate
-
-This gate applies only to the first implementation-bearing request in a new
-chat: a request that asks to modify code, task artifacts, or external state.
-
-A request whose requested result is itself a plan is planning-only, including
-when the user asks to save that plan in a file for a future goal. Perform the
-bounded planning work and produce or save the requested plan directly. Do not
-first propose a meta-plan or ask for approval merely to create the plan. This
-does not authorize implementation of the work described by that plan.
-
-Questions, explanations, read-only investigations, reviews, diagnoses, status
-checks, and Git-history inspection do not require a plan or user approval.
-Perform them directly and return the evidence-backed answer.
-
-If a read-only request reveals a possible change, report the findings without
-automatically turning the request into an implementation task. Propose an
-implementation plan only when the user has asked for a change.
-
-For a request that includes implementation, complete the planning phase before
-asking the user to approve implementation.
-
-The planning phase includes all bounded, non-mutating work needed to make the
-implementation plan concrete and evidence-based: reading applicable
-instructions, specifications, source, tests, documentation, logs,
-configuration, and Git history; tracing ownership and dependencies; running
-safe read-only checks; and diagnosing or reproducing the reported problem when
-needed.
-
-Do not propose a plan to perform this planning work. Perform it first. The plan
-presented to the user must report the established findings and describe the
-actual implementation: intended outcome, exact scope, relevant owners or files,
-required changes, protected behavior, verification, out-of-scope work, and only
-those decisions that genuinely cannot be resolved without the user.
-
-Absent an applicable planning-deliverable or explicit immediate-execution
-exception, before the user approves that implementation plan, do not modify
-code or task artifacts, mutate external state, or delegate implementation work.
-
-The gate does not repeat for every user message. Clarifications, answers to the
-agent's questions, additions within the proposed or approved scope, objections,
-status questions, and ordinary follow-up requests in the same chat are not a
-new-chat first request. A resume, lifecycle restart, context compaction, or
-automatic continuation of the same chat also does not reactivate the gate.
-
-After the first implementation plan has been approved, continue within its
-boundary without asking for a new plan on every message. For a later task in the
-same chat, require a new plan only when it introduces a new feature, initiative,
-or other material scope judgment. A plainly bounded, low-risk follow-up that
-requires no material scope choice may be executed without another plan.
-
-The plan states the intended outcome, in-scope work, out-of-scope work,
-execution steps, verification, and any unresolved decisions. Planning-only,
-investigation-only, and review-only requests do not authorize implementation.
-Do not delegate execution work before the plan is approved unless the user
-explicitly requested that delegation as part of planning.
-
-### Implementation authority
-
-Every approved implementation plan declares one authority mode:
-
-- `bounded`: only the named paths, operations, and behavior may change;
-- `task-wide`: any repository file reasonably necessary for the approved
-  outcome may change without an exact write set.
-
-`task-wide` does not by itself authorize unrelated work, destructive actions,
-external-state changes, or work beyond the approved outcome. Explicit protected
-paths or behavior override either mode. If the plan omits the mode, use
-`bounded`.
-
-Path permission is filesystem authority, not permission to change every symbol
-or behavior in that file. Existing accepted behavior outside the named outcome
-is protected in both modes. Permission to change a parent or container does not
-permit changing its content, children, data, actions, or accepted layout unless
-the plan explicitly authorizes that change. Every changed diff hunk must map to
-the authorized outcome. If protected behavior must change, stop and request the
-smallest scope amendment instead of using it as a workaround.
-
-Immediate execution is allowed when the user explicitly directs the agent to
-execute now or without a plan, including on the first implementation-bearing
-request; when the user has already approved the governing plan; or, after the
-new-chat gate has been satisfied, when a subsequent task or follow-up is plainly
-bounded, low-risk, and requires no material scope choice. A generic imperative
-to build a non-trivial feature is not by itself an immediate-execution waiver.
-Immediate execution does not bypass any applicable safety, specification,
-approval, destructive-action, or environment gate.
-
-Once approved, the plan is the execution boundary. Make equivalent technical
-choices and perform directly necessary supporting edits and verification
-without repeated approval, but do not add adjacent features, refactors,
-cleanup, tooling, or other helpful extras that are not required by the approved
-outcome.
-
-If execution reveals a material dependency outside the approved boundary, stop
-the affected slice and return the exact dependency, the minimum proposed scope
-addition, expected cost, and risk. Wait for user approval before crossing that
-boundary. Continue independent in-scope work when safe.
+Before implementation, read the task-framing and scope rules through
+`docs/agent/work-governance.md`. Complete bounded investigation before presenting the first
+implementation-bearing plan; wait for approval unless the user explicitly
+requests immediate execution. A requested plan is produced directly.
+Approval persists across follow-ups, skills, and compaction. Use `bounded` or
+`task-wide` authority; neither opens protected adjacent behavior.
 ~~~
 
 ## Project: product specifications
@@ -204,51 +99,9 @@ document under the specification root.
 ~~~markdown
 ## Minimum-sufficient work
 
-This applies to every implementation task, including ordinary single-agent work
-and finite workers inside an orchestrated goal.
-
-Measure progress first by the concrete capability requested by the user and
-reachable from the product or release path. Tests, diagnostics, Debug harnesses,
-models, maps, evidence, documentation, registries, and review are supporting
-work. Report them separately and never represent them as delivered product
-functionality.
-
-Choose the reading, reasoning, tools, agents, and verification that minimize
-expected total token use while still delivering a reliable result. Expected
-cost includes duplicated context, coordination, tool output, retries, and
-rework; the cheapest individual step is not always the cheapest complete path.
-Ordinary tasks do not create token ledgers, numerical budgets, percentage mixes,
-or routine economy reports.
-
-Start with the most direct path likely to deliver the requested outcome or
-resolve the next material uncertainty. Every support action names its immediate
-implementation, decision, or acceptance consumer. Expand only when observed
-evidence shows the current path is insufficient, a real dependency or shared
-owner appears, a governing contract requires more, or a concrete risk needs
-broader proof. Stop expanding when the result and mandatory acceptance criteria
-have sufficient evidence. Do not production-harden temporary tooling or expand
-diagnostics speculatively.
-
-Verification is change-driven. Select the smallest check that can detect a
-plausible regression from the actual change. Presentation-only edits do not run
-logic test suites when actions, state, persistence, services, and business rules
-are unchanged. Local logic receives focused checks; shared or high-risk changes
-receive affected-consumer or risk-mapped checks. A full suite requires concrete
-cross-cutting evidence or an explicit governing requirement. Re-run a check only
-when its inputs, environment, or relevant implementation changed.
-
-Use compact, decision-relevant command output and worker receipts rather than
-raw logs or complete reasoning transcripts. Parallelism is justified only when
-independent work's time or context-isolation benefit outweighs duplicated
-context and coordination. Choose model and reasoning strength to minimize
-expected total work, including likely rework, rather than from role names or
-maximum capability.
-
-This policy never weakens required evidence for data loss, privacy, security,
-irreversible actions, released compatibility, or the claimed user outcome. It
-never blocks required work already inside an approved persistent goal. A
-residual cannot hide a known acceptance failure or missing capability claimed
-as delivered.
+Use the minimum-sufficient-work rules through `docs/agent/work-governance.md`.
+Choose the smallest complete path and change-driven verification. Expand only
+from concrete evidence or required acceptance, not available tools or capacity.
 ~~~
 
 ## Project: persistent-goal agents
@@ -256,44 +109,13 @@ as delivered.
 ~~~markdown
 ## Persistent-goal coordination
 
-When a persistent goal is running and the current request advances that goal,
-the primary agent acts as `/root`: a context-preserving, coordinator-only
-agent, unless the user explicitly requires the current chat to complete the
-goal without subagents, workers, or delegation.
-
-Under that explicit single-agent exception, the primary agent works as a normal
-single agent for the goal and must not spawn workers. It may inspect, implement,
-build, test, launch, and perform other in-scope goal actions itself. The
-exception lasts only while the explicit no-delegation instruction is active and
-does not weaken specification, safety, approval, destructive-action, framework,
-or product-authority boundaries.
-
-Without that explicit exception, `/root` remains coordinator-only. Before goal
-action, `/root` must read
-`docs/agent/root-orchestration.md` completely.
-
-That orchestration remains outcome-first and applies the same minimum-sufficient
-rule to worker admission, model choice, context, verification, review, and
-retries. Required approved-plan work continues; expansion needs a concrete
-consumer, dependency, governing requirement, or evidence-backed risk.
-
-There is no coordinator direct-execution exception merely for small, urgent,
-mechanical, or supposedly faster work. `/root` delegates finite implementation,
-investigation, review, build, test, runtime, browser, device, and visual
-packets; workers receive only their bounded packet and do not read the full
-root manual unless assigned the coordinator role.
-
-A persistent goal stays active until its complete definition of done is
-verified, or the user pauses or clears it. Plan order is not execution order:
-continue any dependency-ready authorized item. Temporary resource contention
-uses `waiting_resource`, releases the lane, and is rechecked after another item
-finishes or after three minutes. If only waiting work remains, use nonblocking
-continuation or bounded waits and recheck every three minutes without a fixed
-attempt ceiling. Missing proof uses `waiting_evidence`; missing user authority
-uses `awaiting_authority`. Item failure or waiting never authorizes voluntary
-goal-level `blocked`. A user-paused goal remains idle until explicitly resumed.
-Without a running goal, work normally as a single agent unless delegation is
-explicitly requested.
+Before goal action, read goal-execution through `docs/agent/work-governance.md`.
+Record `single-agent` for bounded sequential work or `coordinated` when
+independent packets or context isolation justify delegation. Honor user choice
+and preserve the mode on restart. Only coordinated goals load `docs/agent/root-orchestration.md`;
+finite workers use their packets and pinned contracts.
+Continue independent ready work while preserving exact waiting conditions.
+Follow mandatory host impasse transitions; blocked never means complete.
 ~~~
 
 ## Project: optional browser QA
@@ -369,103 +191,12 @@ their task. Branch summaries cannot create product intent.
 ~~~markdown
 ## Task framing and scope control
 
-### New-chat first implementation request gate
-
-This gate applies only to the first implementation-bearing request in a new
-chat: a request that asks to modify code, task artifacts, or external state.
-
-A request whose requested result is itself a plan is planning-only, including
-when the user asks to save that plan in a file for a future goal. Perform the
-bounded planning work and produce or save the requested plan directly. Do not
-first propose a meta-plan or ask for approval merely to create the plan. This
-does not authorize implementation of the work described by that plan.
-
-Questions, explanations, read-only investigations, reviews, diagnoses, status
-checks, and Git-history inspection do not require a plan or user approval.
-Perform them directly and return the evidence-backed answer.
-
-If a read-only request reveals a possible change, report the findings without
-automatically turning the request into an implementation task. Propose an
-implementation plan only when the user has asked for a change.
-
-For a request that includes implementation, complete the planning phase before
-asking the user to approve implementation.
-
-The planning phase includes all bounded, non-mutating work needed to make the
-implementation plan concrete and evidence-based: reading applicable
-instructions, specifications, source, tests, documentation, logs,
-configuration, and Git history; tracing ownership and dependencies; running
-safe read-only checks; and diagnosing or reproducing the reported problem when
-needed.
-
-Do not propose a plan to perform this planning work. Perform it first. The plan
-presented to the user must report the established findings and describe the
-actual implementation: intended outcome, exact scope, relevant owners or files,
-required changes, protected behavior, verification, out-of-scope work, and only
-those decisions that genuinely cannot be resolved without the user.
-
-Absent an applicable planning-deliverable or explicit immediate-execution
-exception, before the user approves that implementation plan, do not modify
-code or task artifacts, mutate external state, or delegate implementation work.
-
-The gate does not repeat for every user message. Clarifications, answers to the
-agent's questions, additions within the proposed or approved scope, objections,
-status questions, and ordinary follow-up requests in the same chat are not a
-new-chat first request. A resume, lifecycle restart, context compaction, or
-automatic continuation of the same chat also does not reactivate the gate.
-
-After the first implementation plan has been approved, continue within its
-boundary without asking for a new plan on every message. For a later task in the
-same chat, require a new plan only when it introduces a new feature, initiative,
-or other material scope judgment. A plainly bounded, low-risk follow-up that
-requires no material scope choice may be executed without another plan.
-
-The plan states the intended outcome, in-scope work, out-of-scope work,
-execution steps, verification, and any unresolved decisions. Planning-only,
-investigation-only, and review-only requests do not authorize implementation.
-Do not delegate execution work before the plan is approved unless the user
-explicitly requested that delegation as part of planning.
-
-### Implementation authority
-
-Every approved implementation plan declares one authority mode:
-
-- `bounded`: only the named paths, operations, and behavior may change;
-- `task-wide`: any repository file reasonably necessary for the approved
-  outcome may change without an exact write set.
-
-`task-wide` does not by itself authorize unrelated work, destructive actions,
-external-state changes, or work beyond the approved outcome. Explicit protected
-paths or behavior override either mode. If the plan omits the mode, use
-`bounded`.
-
-Path permission is filesystem authority, not permission to change every symbol
-or behavior in that file. Existing accepted behavior outside the named outcome
-is protected in both modes. Permission to change a parent or container does not
-permit changing its content, children, data, actions, or accepted layout unless
-the plan explicitly authorizes that change. Every changed diff hunk must map to
-the authorized outcome. If protected behavior must change, stop and request the
-smallest scope amendment instead of using it as a workaround.
-
-Immediate execution is allowed when the user explicitly directs the agent to
-execute now or without a plan, including on the first implementation-bearing
-request; when the user has already approved the governing plan; or, after the
-new-chat gate has been satisfied, when a subsequent task or follow-up is plainly
-bounded, low-risk, and requires no material scope choice. A generic imperative
-to build a non-trivial feature is not by itself an immediate-execution waiver.
-Immediate execution does not bypass any applicable safety, specification,
-approval, destructive-action, or environment gate.
-
-Once approved, the plan is the execution boundary. Make equivalent technical
-choices and perform directly necessary supporting edits and verification
-without repeated approval, but do not add adjacent features, refactors,
-cleanup, tooling, or other helpful extras that are not required by the approved
-outcome.
-
-If execution reveals a material dependency outside the approved boundary, stop
-the affected slice and return the exact dependency, the minimum proposed scope
-addition, expected cost, and risk. Wait for user approval before crossing that
-boundary. Continue independent in-scope work when safe.
+Before implementation, read the task-framing and scope rules through
+`work-governance.md`. Complete bounded investigation before presenting the first
+implementation-bearing plan; wait for approval unless the user explicitly
+requests immediate execution. A requested plan is produced directly.
+Approval persists across follow-ups, skills, and compaction. Use `bounded` or
+`task-wide` authority; neither opens protected adjacent behavior.
 ~~~
 
 ## Global: current branch only
@@ -473,28 +204,14 @@ boundary. Continue independent in-scope work when safe.
 ~~~markdown
 ## Current branch only
 
-Agents must work only in the Git branch that is checked out when the task begins.
+Use only the branch selected when the task begins. Do not create, switch,
+rename, or publish another branch or create a worktree without explicit user
+permission. Declare bounded task-owned paths or task-wide authority before
+editing; preserve unrelated changes and exclude them from checkpoints.
+Follow scope-and-checkpoints through `work-governance.md`.
 
-Do not create, switch, rename, or publish another branch, and do not create a Git
-worktree, unless the user explicitly asks for it. General approval to begin work,
-commit, or push is not permission to create a branch.
-
-Before editing, a required plan declares either a bounded task-owned write set
-or task-wide repository authority. Existing changes are blockers only where
-they overlap paths the task must modify. Leave all other changes untouched and
-exclude them from staging and commits.
-
-Work is not complete or accepted while its changes exist only in another branch
-or worktree. Task changes must be integrated into the operator-selected current
-branch.
-
-At the end of any task that changes files, create a checkpoint commit and push
-it from the currently checked-out branch. Before committing, verify that a safe,
-writable upstream exists and that the push will not publish unrelated local
-commits. If either condition cannot be established, do not create the checkpoint
-commit. Commit only the files you changed for the task, and leave unrelated
-working-tree changes untouched. Do not report the task as complete until both
-the checkpoint commit and push succeed.
+Global default: local checkpoint commit. Preserve explicit project checkpoint
+policy; automatic push is project opt-in.
 ~~~
 
 ## Project: Codex lifecycle restart adapter
@@ -549,51 +266,9 @@ raw configuration never replace current contracts.
 ~~~markdown
 ## Minimum-sufficient work
 
-This applies to every implementation task, including ordinary single-agent work
-and finite workers inside an orchestrated goal.
-
-Measure progress first by the concrete capability requested by the user and
-reachable from the product or release path. Tests, diagnostics, Debug harnesses,
-models, maps, evidence, documentation, registries, and review are supporting
-work. Report them separately and never represent them as delivered product
-functionality.
-
-Choose the reading, reasoning, tools, agents, and verification that minimize
-expected total token use while still delivering a reliable result. Expected
-cost includes duplicated context, coordination, tool output, retries, and
-rework; the cheapest individual step is not always the cheapest complete path.
-Ordinary tasks do not create token ledgers, numerical budgets, percentage mixes,
-or routine economy reports.
-
-Start with the most direct path likely to deliver the requested outcome or
-resolve the next material uncertainty. Every support action names its immediate
-implementation, decision, or acceptance consumer. Expand only when observed
-evidence shows the current path is insufficient, a real dependency or shared
-owner appears, a governing contract requires more, or a concrete risk needs
-broader proof. Stop expanding when the result and mandatory acceptance criteria
-have sufficient evidence. Do not production-harden temporary tooling or expand
-diagnostics speculatively.
-
-Verification is change-driven. Select the smallest check that can detect a
-plausible regression from the actual change. Presentation-only edits do not run
-logic test suites when actions, state, persistence, services, and business rules
-are unchanged. Local logic receives focused checks; shared or high-risk changes
-receive affected-consumer or risk-mapped checks. A full suite requires concrete
-cross-cutting evidence or an explicit governing requirement. Re-run a check only
-when its inputs, environment, or relevant implementation changed.
-
-Use compact, decision-relevant command output and worker receipts rather than
-raw logs or complete reasoning transcripts. Parallelism is justified only when
-independent work's time or context-isolation benefit outweighs duplicated
-context and coordination. Choose model and reasoning strength to minimize
-expected total work, including likely rework, rather than from role names or
-maximum capability.
-
-This policy never weakens required evidence for data loss, privacy, security,
-irreversible actions, released compatibility, or the claimed user outcome. It
-never blocks required work already inside an approved persistent goal. A
-residual cannot hide a known acceptance failure or missing capability claimed
-as delivered.
+Use the minimum-sufficient-work rules through `work-governance.md`.
+Choose the smallest complete path and change-driven verification. Expand only
+from concrete evidence or required acceptance, not available tools or capacity.
 ~~~
 
 ## Global: persistent-goal agents
@@ -601,43 +276,13 @@ as delivered.
 ~~~markdown
 ## Persistent-goal coordination
 
-When a persistent goal is running and the current request advances that goal,
-the primary agent acts as `/root`: a context-preserving, coordinator-only
-agent, unless the user explicitly requires the current chat to complete the
-goal without subagents, workers, or delegation.
-
-Under that explicit single-agent exception, the primary agent works as a normal
-single agent for the goal and must not spawn workers. It may inspect, implement,
-build, test, launch, and perform other in-scope goal actions itself. The
-exception lasts only while the explicit no-delegation instruction is active and
-does not weaken specification, safety, approval, destructive-action, framework,
-or product-authority boundaries.
-
-Without that explicit exception, `/root` remains coordinator-only. Before goal
-action, `/root` must read the sibling
-`root-orchestration.md` in the active user-level agent configuration directory
-and follow it completely.
-
-That orchestration remains outcome-first and applies the same minimum-sufficient
-rule to worker admission, model choice, context, verification, review, and
-retries. Required approved-plan work continues; expansion needs a concrete
-consumer, dependency, governing requirement, or evidence-backed risk.
-
-There is no coordinator direct-execution exception merely for small, urgent,
-mechanical, or supposedly faster work. Spawned workers receive finite packets and do not read
-the full root manual unless assigned the coordinator role.
-
-A persistent goal stays active until its complete definition of done is
-verified, or the user pauses or clears it. Plan order is not execution order:
-continue any dependency-ready authorized item. Temporary resource contention
-uses `waiting_resource`, releases the lane, and is rechecked after another item
-finishes or after three minutes. If only waiting work remains, use nonblocking
-continuation or bounded waits and recheck every three minutes without a fixed
-attempt ceiling. Missing proof uses `waiting_evidence`; missing user authority
-uses `awaiting_authority`. Item failure or waiting never authorizes voluntary
-goal-level `blocked`. A user-paused goal remains idle until explicitly resumed.
-Without a running goal, work normally as a single agent unless delegation is
-explicitly requested.
+Before goal action, read goal-execution through `work-governance.md`.
+Record `single-agent` for bounded sequential work or `coordinated` when
+independent packets or context isolation justify delegation. Honor user choice
+and preserve the mode on restart. Only coordinated goals load `root-orchestration.md`;
+finite workers use their packets and pinned contracts.
+Continue independent ready work while preserving exact waiting conditions.
+Follow mandatory host impasse transitions; blocked never means complete.
 ~~~
 
 ## Global: optional browser QA

@@ -1,6 +1,6 @@
 # Orchestration Review Acceptance Scenarios
 
-Contract: `bootstrap.governance.review@3`, all `BOOTSTRAP.REVIEW.*` clauses.
+Contract: `bootstrap.governance.review@4`, all `BOOTSTRAP.REVIEW.*` clauses.
 Consumer: the Bootstrap and global audit update; subsequent reviewer packets
 use these cases to check protocol adherence without changing product scope.
 These are verification cases, not new product authority or generated run logs.
