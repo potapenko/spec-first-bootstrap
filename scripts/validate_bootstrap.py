@@ -115,7 +115,7 @@ REQUIRED_TEXT = {
         'mandatory host impasse',
     ),
     "docs/specs/index.md": (
-        "bootstrap.governance@16",
+        "bootstrap.governance@17",
         "bootstrap.legacy-spec-migration@2",
         "bootstrap.codex-lifecycle@3",
         "2026-08-18-markdown-first-routing.md",
@@ -129,7 +129,7 @@ REQUIRED_TEXT = {
         "2026-09-02-minimum-sufficient-work.md",
     ),
     "docs/specs/features/bootstrap-governance.md": (
-        "bootstrap.governance@16",
+        "bootstrap.governance@17",
         "BOOTSTRAP.ECONOMY",
         "bootstrap-governance/goal-continuity.md",
         "bootstrap-governance/markdown-routing.md",
@@ -151,7 +151,7 @@ REQUIRED_TEXT = {
         "without adding numerical budgets",
     ),
     "docs/specs/features/bootstrap-governance/restart-and-delivery.md": (
-        "bootstrap.governance.restart-delivery@4",
+        "bootstrap.governance.restart-delivery@5",
         "expected total token use",
         "Presentation-only edits do not run",
         "A full suite requires",

@@ -42,9 +42,19 @@ when its inputs, environment, or relevant implementation changed.
 Use compact, decision-relevant command output and worker receipts rather than
 raw logs or complete reasoning transcripts. Parallelism is justified only when
 independent work's time or context-isolation benefit outweighs duplicated
-context and coordination. Choose model and reasoning strength to minimize
-expected total work, including likely rework, rather than from role names or
-maximum capability.
+context and coordination.
+
+Inherit the user's current model and reasoning settings by default, including
+an explicitly selected high-capability model. Honor user constraints and
+host/tool restrictions. Override only when permitted and justified by a concrete
+task property: ambiguity, risk, latency, or expected total work including rework.
+Explain an override; routine inheritance needs no separate justification.
+Recommendations are advisory: complex work may benefit from stronger reasoning,
+mechanical work from an efficient tool-capable model. Model capability and
+reasoning effort are separate choices, without mandatory tiers or role mappings.
+Use currently supported host options for overrides, never generation guesses or
+invented aliases. Keep a usable inherited setting or report the exact limitation
+when an override is unavailable. Do not change application defaults.
 
 This policy never weakens required evidence for data loss, privacy, security,
 irreversible actions, released compatibility, or the claimed user outcome. It

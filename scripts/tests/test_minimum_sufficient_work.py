@@ -69,14 +69,45 @@ class MinimumSufficientWorkTests(unittest.TestCase):
                 self.assertNotIn("60/25/15", text)
                 self.assertNotIn("budget_variance:", text)
 
+    def test_model_policy_preserves_inheritance_and_override_boundaries(self) -> None:
+        paths = (
+            "docs/agent-governance/root-orchestration.md",
+            "docs/agent-governance/work/minimum-sufficient-work.md",
+            "docs/specs/features/bootstrap-governance/restart-and-delivery.md",
+        )
+        for relative in paths:
+            text = " ".join((ROOT / relative).read_text().split())
+            with self.subTest(path=relative):
+                for required in (
+                    "Inherit the user's current model and reasoning settings by default",
+                    "explicitly selected high-capability model",
+                    "host/tool restriction",
+                    "Override only when permitted and justified by a concrete task property",
+                    "currently supported",
+                    "exact limitation",
+                    "application defaults",
+                ):
+                    self.assertIn(required, text)
+                self.assertNotRegex(text, r"(?i)\bgpt-\d|\b(astra|sol|terra|luna)\b")
+                self.assertNotIn("default to maximum capability", text)
+                self.assertNotIn("maximum-cost reasoning tier", text)
+
+        root = " ".join((ROOT / paths[0]).read_text().split())
+        self.assertIn("`inherit` by default", root)
+        self.assertIn("explicit model and effort assignments are optional", root)
+        self.assertIn("Omit override parameters when the host supports inheritance", root)
+        self.assertIn("a policy label, not a model ID", root)
+        self.assertNotIn("- assigned model and reasoning effort;", root)
+        self.assertIn("Model selection does not authorize delegation", root)
+
     def test_contract_revisions_and_cases_are_current(self) -> None:
         expected = {
             "docs/specs/features/bootstrap-governance.md":
-                "bootstrap.governance@16",
+                "bootstrap.governance@17",
             "docs/specs/features/bootstrap-governance/installation.md":
                 "bootstrap.governance.installation@3",
             "docs/specs/features/bootstrap-governance/restart-and-delivery.md":
-                "bootstrap.governance.restart-delivery@4",
+                "bootstrap.governance.restart-delivery@5",
             "docs/specs/features/bootstrap-governance/review-and-acceptance.md":
                 "bootstrap.governance.review@4",
             "qa/cases/minimum-sufficient-work.md":

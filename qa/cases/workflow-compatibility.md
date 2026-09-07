@@ -1,7 +1,7 @@
 # Workflow Compatibility Acceptance Scenarios
 
-Basis: `bootstrap.governance@16`, installation @3, task-scope @7,
-goal-continuity @2, restart-delivery @4, review @4.
+Basis: `bootstrap.governance@17`, installation @3, task-scope @7,
+goal-continuity @2, restart-delivery @5, review @4.
 Consumer: portable installer verification and the approved local deployment.
 
 | Case | Action and starting state | Required result |

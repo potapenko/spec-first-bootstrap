@@ -250,7 +250,8 @@ Every worker packet must contain:
 - completion condition;
 - waiting, recovery, and user-controlled stopping conditions;
 - terminal receipt format;
-- assigned model and reasoning effort;
+- model and reasoning policy: `inherit` by default, or a permitted override
+  with its task-specific justification;
 - whether nested delegation is allowed.
 
 `bounded` permits only the packet's named paths, operations, and behavior.
@@ -309,21 +310,31 @@ reconciled.
 
 ## Model and reasoning policy
 
-Choose the supported model and reasoning strength that minimize expected total
-work for the packet, including likely retries, review failure, and rework. A
-bounded deterministic packet normally benefits from an efficient tool-capable
-model; ambiguous authority, cross-cutting behavior, security, concurrency, and
-high-risk review may justify stronger reasoning immediately. State the task
-property that justifies the choice when it is not obvious.
+Inherit the user's current model and reasoning settings by default, including
+an explicitly selected high-capability model. Apply the shared
+[minimum-sufficient-work policy](work/minimum-sufficient-work.md). Model
+capability and reasoning effort are separate choices; recommendations are
+advisory, without mandatory tiers, generation names, or role mappings.
 
-Do not choose from the role name alone, default to maximum capability, or force
-a cheaper model when it creates material quality or rework risk. Model names are
-platform-specific; installers must not invent unavailable models or silently
-alter application defaults.
+A worker packet may say `inherit`; explicit model and effort assignments are
+optional. Omit override parameters when the host supports inheritance. `inherit`
+is a policy label, not a model ID. An explicit user constraint or host/tool
+restriction takes precedence; do not override it from an efficiency preference.
 
-Do not use automatic fan-out or the platform's maximum-cost reasoning tier as
-the default execution model for an explicitly orchestrated goal. `/root` owns
-every spawn, packet, and acceptance decision.
+Override only when permitted and justified by a concrete task property, such as
+ambiguity, risk, latency, or expected total work including retries and rework.
+Explain only the override. Complex or high-risk work may benefit from stronger
+reasoning; mechanical work may benefit from an efficient tool-capable model.
+Do not downgrade when it creates material quality or rework risk.
+
+Resolve overrides from currently supported host models and effort values, not
+from generation names or an invented latest/best alias. If the override is
+unavailable, retain a usable inherited setting or report the exact limitation.
+Concrete model IDs belong in environment settings or explicit run overrides;
+installers must not silently alter application defaults.
+
+Model selection does not authorize delegation. `/root` owns every spawn,
+packet, and acceptance decision; automatic fan-out remains disallowed.
 
 ## Concurrency and ownership
 

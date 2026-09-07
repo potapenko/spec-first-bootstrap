@@ -2,7 +2,7 @@
 
 - Node type: leaf
 - Status: Active
-- Contract: `bootstrap.governance.restart-delivery@4`
+- Contract: `bootstrap.governance.restart-delivery@5`
 - Clauses: `BOOTSTRAP.RESTART`, `BOOTSTRAP.PROPORTIONALITY`,
   `BOOTSTRAP.ECONOMY`
 - Read when: recovering after lifecycle events or planning implementation support work.
@@ -57,8 +57,26 @@ check only when its inputs, environment, or relevant implementation changed.
 Use compact, decision-relevant command output and worker receipts instead of raw
 logs or complete reasoning transcripts. Parallelism is justified by independent
 work whose time or context-isolation benefit outweighs duplicated context and
-coordination. Model and reasoning strength are chosen to minimize expected total
-work, including likely rework, rather than from role names or maximum capability.
+coordination.
+
+Inherit the user's current model and reasoning settings by default, including
+an explicitly selected high-capability model. Worker packets may say `inherit`;
+explicit model and effort assignments are optional. Omit override parameters
+when the host supports inheritance; `inherit` is a policy label, not a model ID.
+Honor explicit user constraints and host/tool restrictions. Override only when
+permitted and justified by a concrete task property, such as ambiguity, risk,
+latency, or expected total work including retries and rework. Explain only an
+override; routine inheritance needs no separate justification.
+
+Recommendations describe task needs, not mandatory model tiers or role mappings.
+Complex or high-risk work may benefit from stronger reasoning; mechanical work
+may benefit from an efficient tool-capable model. Model capability and reasoning
+effort are separate choices. Resolve any override from the host's currently
+supported models and effort values; never infer capability from generation names
+or invent a model alias. If an override is unavailable, retain a usable inherited
+setting or report the exact limitation. Keep concrete model IDs in environment
+settings or explicit run overrides, not portable governance. Installation never
+changes application defaults.
 
 Minimum-sufficient work never weakens required evidence for data loss, privacy,
 security, irreversible actions, released compatibility, or the claimed user
