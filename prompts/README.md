@@ -14,8 +14,8 @@ Recommended for most users:
    specification and product-truth layer in the current project.
 2. [`setup-project-agents.md`](setup-project-agents.md) installs current-branch
    discipline, implementation-request planning, approved-scope control,
-   outcome/resource proportionality, coordinator-and-workers rules for
-   persistent goals, and the explicit no-delegation single-agent exception.
+   outcome/resource proportionality, and single-chat execution for every task
+   and persistent goal. Additional agents require an explicit user request.
 3. [`optional-web-qa.md`](optional-web-qa.md) installs optional browser QA in a
    web UI project.
 

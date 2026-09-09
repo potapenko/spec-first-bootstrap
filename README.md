@@ -24,12 +24,13 @@ Follow prompts/setup-project-spec-first.md from that repository. Keep the setup 
 Use this when the project should keep work on the operator-selected branch,
 plan implementation-bearing or materially ambiguous work before execution,
 keep implementation inside the approved scope, use outcome-first economics, or
-handle long-running work through a coordinator and focused agents. Bounded sequential goals can stay single-agent; independent work or useful
-context isolation selects coordinated execution. Explicit user mode choice is
-preserved, including a prohibition on delegation. The layer does not require specifications or browser QA.
+handle long-running work in the current chat. Every task and goal is single-agent
+by default. Only an explicit user request enables multi-agent work; complexity,
+skills, review, and project rules cannot authorize delegation. The layer does
+not require specifications or browser QA.
 
 ```text
-Use https://github.com/potapenko/spec-first-bootstrap as the reference and set up current-branch, plan-first, scope-controlled agent work and coordinated multi-agent work for long-running goals in this project.
+Use https://github.com/potapenko/spec-first-bootstrap as the reference and set up current-branch, plan-first, scope-controlled work in this project. Every task and long-running goal must use the current chat by default; additional agents require my explicit request.
 
 Follow prompts/setup-project-agents.md from that repository. Install only the agent-work layer. Keep the setup inside this project. Do not create or resume a goal, change agent application settings, or change product code during setup.
 ```
@@ -74,7 +75,7 @@ Follow prompts/setup-global-spec-first.md from that repository. Install only the
 ### 2. Add agent work governance globally
 
 ```text
-Use https://github.com/potapenko/spec-first-bootstrap as the reference and set up current-branch, plan-first, scope-controlled agent work and coordinated multi-agent work for long-running goals globally for all my projects.
+Use https://github.com/potapenko/spec-first-bootstrap as the reference and set up current-branch, plan-first, scope-controlled work globally for all my projects. Every task and long-running goal must use the current chat by default; additional agents require my explicit request.
 
 Follow prompts/setup-global-agents.md from that repository. Install only the agent-work layer. Do not install specification governance or browser-QA guidance. Detect the active agent environment, show me the exact global paths before writing, preserve all existing global instructions, and do not create or resume a goal or modify any project repository.
 ```
@@ -121,8 +122,10 @@ context, and requires explicit scope and hook trust verification.
   request and later materially ambiguous work, and use either exact `bounded`
   authority or outcome-scoped `task-wide` authority. Both protect accepted
   behavior outside the approved outcome, even inside a writable file. Persistent
-  goals record single-agent or coordinated execution from the work and retain
-  that mode on restart. Required independent review applies in either mode.
+  goals stay in the current chat unless the user explicitly requests agents.
+  Restore that scoped authorization on restart; old automatic modes do not
+  authorize delegation. Required independent review does not grant permission
+  to launch an agent; unavailable mandatory proof remains an acceptance gap.
 - **Browser QA** adds optional real-browser cases and run reports for web UI
   projects. It remains separate from product specifications and implementation.
 

@@ -21,7 +21,8 @@ Present the actual outcome, in-scope and out-of-scope work, owners, protected
 behavior, execution steps, verification, authority mode, and unresolved material
 decisions. Wait for approval before implementation unless the user explicitly
 directs execution now or without a plan. A generic imperative is not a waiver.
-Do not delegate implementation before approval.
+Do not delegate implementation before approval. Plan approval alone does not
+authorize additional agents; only an explicit user request permits delegation.
 
 A request whose result is itself a plan is planning-only. Produce or save the
 requested plan directly without a meta-plan or asking for approval to create it.

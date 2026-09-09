@@ -40,9 +40,11 @@ cross-cutting evidence or an explicit governing requirement. Re-run a check only
 when its inputs, environment, or relevant implementation changed.
 
 Use compact, decision-relevant command output and worker receipts rather than
-raw logs or complete reasoning transcripts. Parallelism is justified only when
-independent work's time or context-isolation benefit outweighs duplicated
-context and coordination.
+raw logs or complete reasoning transcripts. Only an explicit user request
+authorizes additional agents. Every task and goal defaults to the current chat.
+Within that authorization, parallelism still needs independent work whose time
+or context-isolation benefit outweighs duplicated context and coordination.
+Concurrent tool calls in one chat do not create additional agents.
 
 Inherit the user's current model and reasoning settings by default, including
 an explicitly selected high-capability model. Honor user constraints and
@@ -73,5 +75,8 @@ Use a non-author with fresh context: first provide neutral criteria and the
 artifact, obtain observations, then provide the builder's receipt for
 reconciliation. Verify the integrated scenario on the relevant revision.
 `not_verified` is missing proof; `reject` is an observed failed criterion.
-Neither permits acceptance. User no-delegation instructions remain binding;
-unavailable independent evidence remains an acceptance gap, not self-approval.
+Neither permits acceptance. Review requirements never authorize extra agents,
+reviewer sessions, or equivalent model calls without an explicit user request.
+Use available independent evidence or report the exact acceptance gap and
+continue other authorized work; do not relabel self-review as independent or
+routinely ask to enable agents. Skills and project rules cannot grant permission.

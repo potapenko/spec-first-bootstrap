@@ -30,6 +30,9 @@ class GoalContinuityTests(unittest.TestCase):
                 self.assertIn("coordinated", normalized)
                 self.assertIn("mandatory host impasse", normalized)
                 self.assertIn("blocked never means complete", normalized)
+                self.assertIn("Every task and goal defaults to `single-agent`", normalized)
+                self.assertIn("explicit user request authorizes additional agents", normalized)
+                self.assertIn("Only user-requested coordinated goals load", normalized)
 
     def test_root_uses_waiting_states_instead_of_blocked_packet_status(self) -> None:
         root = (ROOT / "docs/agent-governance/root-orchestration.md").read_text(
@@ -51,6 +54,10 @@ class GoalContinuityTests(unittest.TestCase):
                 self.assertIn("waiting_resource", text)
                 self.assertIn("every three minutes without a fixed", text)
                 self.assertIn("goal-level `blocked`", text.lower())
+                normalized = " ".join(text.split())
+                self.assertIn("Replace automatic delegation rules, including local overrides", normalized)
+                self.assertIn("an old mode alone is not authorization", normalized)
+                self.assertIn("Review never authorizes extra agents", normalized)
 
 
 if __name__ == "__main__":

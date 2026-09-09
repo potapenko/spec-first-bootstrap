@@ -13,7 +13,7 @@ human authority view, not a second routing system.
 
 | Contract | Authority | Stability | Revision | Read when |
 | --- | --- | --- | --- | --- |
-| [Bootstrap governance](features/bootstrap-governance.md) | Active | Accepted | `bootstrap.governance@17` | Setup, governance, Markdown routing, prompts, templates, scope, minimum-sufficient work, goal continuity, or review |
+| [Bootstrap governance](features/bootstrap-governance.md) | Active | Accepted | `bootstrap.governance@18` | Setup, governance, Markdown routing, prompts, templates, scope, minimum-sufficient work, goal continuity, or review |
 | [Legacy spec migration](features/legacy-spec-migration.md) | Active | Accepted | `bootstrap.legacy-spec-migration@2` | Migrating a large existing spec library |
 | [Codex lifecycle](features/codex-lifecycle-enforcement.md) | Active | Evolving | `bootstrap.codex-lifecycle@3` | Optional Codex lifecycle adapter |
 
@@ -47,6 +47,7 @@ human authority view, not a second routing system.
 - [Workflow compatibility and local overrides](deltas/2026-09-06-workflow-compatibility.md)
 
 - [Model setting inheritance](deltas/2026-09-07-model-setting-inheritance.md)
+- [Single-chat default and explicit delegation](deltas/2026-09-09-explicit-delegation.md)
 
 ## Unknown precedence
 

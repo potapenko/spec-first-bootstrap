@@ -10,7 +10,8 @@ one named project or the explicitly selected global configuration.
 - [Work governance](work-governance.md) routes to the shared definitions for
   task framing, scope/checkpoints, minimum-sufficient work, and goal execution.
 - [Root orchestration](root-orchestration.md) owns the detailed coordinator
-  packet, ownership, review, and registry protocol only for coordinated goals.
+  packet, ownership, review, and registry protocol only for user-requested
+  coordinated goals.
 - [Compact sections](agents-sections.md) provide instruction-chain gates.
   Adapt paths at installation; do not duplicate the full shared definitions.
 
@@ -30,14 +31,17 @@ changes no project. Preserve safety, framework, product, build, data, Git,
 release, and operator rules. Never replace the whole target instruction file.
 
 Install the complete linked work tree and conditionally loaded coordinator
-contract. Preserve explicit local overrides with their owner and scope. Global
+contract. Replace automatic delegation rules; they are not preserved overrides.
+Preserve unrelated local overrides with their owner and scope. Global
 checkpoint default is local commit; automatic push is project opt-in. This
 Bootstrap repository retains commit and push. Never publish unrelated commits.
 
 Honor user authorization across follow-ups and skills without weakening the
-first substantive planning gate or protected scope. Select and retain goal
-execution mode from the work; only coordinated mode restricts the root to
-coordination. Required independent review remains required in either mode.
+first substantive planning gate or protected scope. Every task and goal defaults
+to the current chat. Only an explicit user request authorizes additional agents;
+retain its scope on restart. Complexity, skills, project rules, and required
+review do not authorize delegation. Only user-requested coordinated mode
+restricts the root to coordination. Missing independent proof remains a gap.
 
 Continue ready work across resource waits, preserve exact resume conditions,
 and follow mandatory host impasse transitions. A blocked goal is incomplete.

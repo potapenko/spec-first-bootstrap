@@ -103,13 +103,13 @@ class MinimumSufficientWorkTests(unittest.TestCase):
     def test_contract_revisions_and_cases_are_current(self) -> None:
         expected = {
             "docs/specs/features/bootstrap-governance.md":
-                "bootstrap.governance@17",
+                "bootstrap.governance@18",
             "docs/specs/features/bootstrap-governance/installation.md":
-                "bootstrap.governance.installation@3",
+                "bootstrap.governance.installation@4",
             "docs/specs/features/bootstrap-governance/restart-and-delivery.md":
-                "bootstrap.governance.restart-delivery@5",
+                "bootstrap.governance.restart-delivery@6",
             "docs/specs/features/bootstrap-governance/review-and-acceptance.md":
-                "bootstrap.governance.review@4",
+                "bootstrap.governance.review@5",
             "qa/cases/minimum-sufficient-work.md":
                 "MW-13: persistent goal",
         }

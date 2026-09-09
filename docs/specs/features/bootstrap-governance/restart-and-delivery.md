@@ -2,7 +2,7 @@
 
 - Node type: leaf
 - Status: Active
-- Contract: `bootstrap.governance.restart-delivery@5`
+- Contract: `bootstrap.governance.restart-delivery@6`
 - Clauses: `BOOTSTRAP.RESTART`, `BOOTSTRAP.PROPORTIONALITY`,
   `BOOTSTRAP.ECONOMY`
 - Read when: recovering after lifecycle events or planning implementation support work.
@@ -18,8 +18,10 @@ only nodes on the selected path plus the next required evidence.
 Restart from the root only when the task changed or the recorded path is
 missing or ambiguous. Chat memory, summaries, old tests, and screenshots do not
 replace current nodes. Finite workers restart from their pinned packet.
-Restore the approved boundary and recorded execution mode without requesting
-the same approval again. Load shared work rules once through their linked owner.
+Restore the approved boundary and scoped user authorization without requesting
+the same approval again. A recorded coordinated mode without an explicit user
+request is not authorization; use the current chat after reconciling ownership.
+Load shared work rules once through their linked owner.
 
 ## Delivery proportionality
 
@@ -55,9 +57,11 @@ concrete cross-cutting evidence or an explicit governing requirement. Re-run a
 check only when its inputs, environment, or relevant implementation changed.
 
 Use compact, decision-relevant command output and worker receipts instead of raw
-logs or complete reasoning transcripts. Parallelism is justified by independent
-work whose time or context-isolation benefit outweighs duplicated context and
-coordination.
+logs or complete reasoning transcripts. Additional agents require an explicit
+user request first; only then weigh independent work's time or context-isolation
+benefit against duplicated context and coordination. Task complexity, skills,
+review requirements, or project instructions cannot grant that authorization.
+Concurrent tool calls within the current chat do not create additional agents.
 
 Inherit the user's current model and reasoning settings by default, including
 an explicitly selected high-capability model. Worker packets may say `inherit`;

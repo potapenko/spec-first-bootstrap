@@ -1,6 +1,6 @@
 # Persistent Goal Continuity Acceptance Scenarios
 
-Contract: `bootstrap.governance.goal-continuity@2`, all `BOOTSTRAP.GOAL.*`
+Contract: `bootstrap.governance.goal-continuity@3`, all `BOOTSTRAP.GOAL.*`
 clauses. Consumer: Bootstrap validation and future persistent-goal reviews.
 
 | Case | Setup and action | Required result |
@@ -14,6 +14,9 @@ clauses. Consumer: Bootstrap validation and future persistent-goal reviews.
 | GC-07: economic routing | An approved persistent goal has required plan work remaining while optional support or repeated checks are proposed. | Continue dependency-ready required work, omit support without an immediate consumer, and expand only from evidence; do not invent a budget stop or approval prerequisite. |
 | GC-08: user pause | The user explicitly pauses or clears the goal. | Stop new work and preserve the exact resume state. |
 | GC-09: completion | All required plan items and acceptance checks are verified. | Mark complete exactly once; elapsed time, retries, packet closure, or partial work never substitute. |
+| GC-10: default execution | Start a large goal without an explicit multi-agent request. | Execute directly in the current chat; do not load coordinator-only restrictions or launch workers. |
+| GC-11: scoped opt-in | User explicitly requests multi-agent execution for the goal. | Record request and scope with coordinated mode; delegate only within that scope and preserve it on restart. |
+| GC-12: old automatic mode | Resume an old coordinated goal without user delegation authorization. | Reconcile ownership without new dispatch, preserve accepted results, and continue single-agent. |
 
 ## Verification method
 

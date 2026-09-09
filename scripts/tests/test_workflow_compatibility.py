@@ -43,6 +43,14 @@ class WorkflowInstallTests(unittest.TestCase):
                 result = validate([owner / "work-governance.md"], [owner / "work-governance.md", owner / "work"])
                 self.assertEqual(result["nodes"], 5)
                 self.assertIn("automatic push is project opt-in", installed)
+                self.assertIn("Every task and goal defaults to `single-agent`", installed)
+                self.assertIn("explicit user request authorizes additional agents", installed)
+                self.assertIn("an old mode alone is insufficient", installed)
+                self.assertIn("Only user-requested coordinated goals load", installed)
+                goal = " ".join((owner / "work/goal-execution.md").read_text().split())
+                self.assertIn("equivalent CLI/API model delegation", goal)
+                self.assertIn("reconcile running owners without new dispatch", goal)
+                self.assertIn("User revocation likewise stops new dispatch", goal)
 
     def test_shared_owners_cover_approval_modes_and_host_precedence(self) -> None:
         framing = (SOURCE / "work/task-framing.md").read_text()
@@ -53,7 +61,7 @@ class WorkflowInstallTests(unittest.TestCase):
             (framing, ("Approval persists", "User instructions and existing authorization", "Silence is not consent")),
             (scope, ("An omitted mode defaults to `bounded`", "project opt-in", "no unrelated local commits")),
             (goal, ("`single-agent`", "`coordinated`", "no meaningful independent work remains", "Never evade", "Preserve the mode")),
-            (economy, ("Independent acceptance in either execution mode", "shared released owners", "unavailable independent evidence")),
+            (economy, ("Independent acceptance in either execution mode", "shared released owners", "Review requirements never authorize extra agents")),
         ):
             for clause in required:
                 self.assertIn(clause, " ".join(text.split()))

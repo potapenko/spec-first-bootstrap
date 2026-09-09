@@ -20,7 +20,7 @@ here instead of repeating them.
   host-required transitions, and restart.
 
 Implementation requires task framing, scope, and minimum-sufficient work.
-Goal work also requires goal execution. Only coordinated goals load the full
+Goal work also requires goal execution. Only user-requested coordinated goals load the full
 [coordinator contract](root-orchestration.md). Finite workers read their packet
 and pinned rules, not the coordinator's complete context.
 
@@ -34,6 +34,9 @@ Keep deliberate target overrides in a named section of the active instruction
 chain with their scope, owner, and precedence. Global defaults are inherited;
 explicit project rules govern that project. Never convert a local preference
 into a portable default or erase it during synchronization.
+
+Automatic delegation is not a preserved override: every task and goal defaults
+to the current chat, and only an explicit user request authorizes extra agents.
 
 Update the shared definitions once, then reconcile compact routing gates.
 Do not reinstall a full global layer locally merely to repeat the same rules.

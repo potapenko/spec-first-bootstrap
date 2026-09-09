@@ -1,11 +1,14 @@
 # Orchestration Review Acceptance Scenarios
 
-Contract: `bootstrap.governance.review@4`, all `BOOTSTRAP.REVIEW.*` clauses.
+Contract: `bootstrap.governance.review@5`, all `BOOTSTRAP.REVIEW.*` clauses.
 Consumer: the Bootstrap and global audit update; subsequent reviewer packets
 use these cases to check protocol adherence without changing product scope.
 These are verification cases, not new product authority or generated run logs.
 
 ## Scenario checks
+
+Cases involving agent dispatch assume an explicit user request within that
+scope. A review requirement alone never supplies delegation authority.
 
 | Case | Setup and action | Required result |
 | --- | --- | --- |
@@ -22,6 +25,7 @@ These are verification cases, not new product authority or generated run logs.
 | OR-11: unsupported critique | Critic dislikes style but cannot tie it to a mandatory criterion and impact. | Nonblocking preference, not an invented defect or authorization for a rewrite. |
 | OR-12: scope and installation | Apply the audit update to project/global instruction copies with unrelated differences. | Audit sections agree; goal activation, coordinator-only rules, review risk triggers, evidence-driven repeat conditions, unrelated settings and existing differences remain unchanged. |
 | OR-13: independence unavailable | Independent review is required but the host cannot provide fresh reviewer context. | Record `waiting_evidence` and continue independent work. Self-review or a reviewer inheriting implementation claims cannot be labeled independent. |
+| OR-14: no delegation request | Independent review is required but the user has not requested agents. | Use available independent proof or report the exact gap and continue other authorized work. Do not launch a reviewer, substitute another model call, or routinely ask to enable agents. |
 
 ## Verification method
 

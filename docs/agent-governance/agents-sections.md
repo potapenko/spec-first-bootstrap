@@ -110,9 +110,11 @@ from concrete evidence or required acceptance, not available tools or capacity.
 ## Persistent-goal coordination
 
 Before goal action, read goal-execution through `docs/agent/work-governance.md`.
-Record `single-agent` for bounded sequential work or `coordinated` when
-independent packets or context isolation justify delegation. Honor user choice
-and preserve the mode on restart. Only coordinated goals load `docs/agent/root-orchestration.md`;
+Every task and goal defaults to `single-agent` in the current chat. Only an
+explicit user request authorizes additional agents and `coordinated` execution.
+Complexity, skills, project rules, or review requirements cannot authorize it.
+Preserve scoped user authorization on restart; an old mode alone is insufficient.
+Only user-requested coordinated goals load `docs/agent/root-orchestration.md`;
 finite workers use their packets and pinned contracts.
 Continue independent ready work while preserving exact waiting conditions.
 Follow mandatory host impasse transitions; blocked never means complete.
@@ -277,9 +279,11 @@ from concrete evidence or required acceptance, not available tools or capacity.
 ## Persistent-goal coordination
 
 Before goal action, read goal-execution through `work-governance.md`.
-Record `single-agent` for bounded sequential work or `coordinated` when
-independent packets or context isolation justify delegation. Honor user choice
-and preserve the mode on restart. Only coordinated goals load `root-orchestration.md`;
+Every task and goal defaults to `single-agent` in the current chat. Only an
+explicit user request authorizes additional agents and `coordinated` execution.
+Complexity, skills, project rules, or review requirements cannot authorize it.
+Preserve scoped user authorization on restart; an old mode alone is insufficient.
+Only user-requested coordinated goals load `root-orchestration.md`;
 finite workers use their packets and pinned contracts.
 Continue independent ready work while preserving exact waiting conditions.
 Follow mandatory host impasse transitions; blocked never means complete.

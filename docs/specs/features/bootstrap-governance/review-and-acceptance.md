@@ -2,7 +2,7 @@
 
 - Node type: leaf
 - Status: Active
-- Contract: `bootstrap.governance.review@4`
+- Contract: `bootstrap.governance.review@5`
 - Clauses: `BOOTSTRAP.REVIEW.AUTHORITY`, `BOOTSTRAP.REVIEW.INDEPENDENCE`,
   `BOOTSTRAP.REVIEW.EVIDENCE`, `BOOTSTRAP.REVIEW.VERDICT`,
   `BOOTSTRAP.REVIEW.INTEGRATION`, `BOOTSTRAP.REVIEW.LIMITS`
@@ -26,6 +26,12 @@ Reviewers cannot invent requirements, weaken criteria, or expand scope.
 Standalone specification governance remains optional for the agent-work layer.
 
 ## BOOTSTRAP.REVIEW.INDEPENDENCE — Independent first observation
+
+An independent-review requirement does not authorize additional agents. Only an
+explicit user request permits agent delegation, including reviewer sessions or
+equivalent model calls. Otherwise use available independent evidence or report
+the exact acceptance gap while continuing other authorized work. Do not routinely
+ask to enable agents, or label self-review independent to close the gap.
 
 Where independent review is required or selected, use a non-author reviewer with
 fresh context. Its initial packet contains the objective, governing constraints,

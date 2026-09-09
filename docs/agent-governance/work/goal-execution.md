@@ -9,31 +9,33 @@
 ## Select and retain the mode
 
 Only an explicit user request starts a persistent goal. Installing governance
-never creates or resumes one. At goal start, record the mode and rationale in
-the governing plan or restart state:
+never creates or resumes one. Every task and goal defaults to `single-agent`
+execution in the current chat, regardless of size, duration, or complexity.
+Only an explicit user request for multi-agent work authorizes `coordinated`
+execution. Record that request and its scope with the mode in existing restart
+state. A request to implement, continue, or complete a goal is not delegation
+authorization. Honor explicit user mode choice; do not routinely ask to change it.
 
-- `single-agent`: bounded, sequential work can be completed directly without
-  worthwhile independent implementation lanes or context isolation.
-- `coordinated`: independent finite packets or context isolation justify the
-  coordinator/worker overhead. Load the full coordinator contract.
-
-Honor explicit user mode choice. A goal alone does not justify delegation;
-available slots are not a utilization target. Ordinary tasks remain single-agent
-unless delegation is explicitly requested or required by an applicable contract.
+Skills, project rules, independent review, risk, context isolation, and available
+slots cannot authorize additional agents. Apply the same boundary to reviewer
+sessions, nested workers, other chats, and equivalent CLI/API model delegation.
+Load the full coordinator contract only for user-requested coordinated goals.
 
 In single-agent mode the primary agent may inspect, implement, test, operate,
 and verify authorized work. In coordinated mode `/root` only coordinates;
 finite workers own implementation and runtime evidence. Required independent
-review applies in either mode. If the user forbids all delegation and required
+review applies in either mode but does not authorize an agent. If required
 independent proof is unavailable, report that acceptance gap and continue any
 independent authorized work; self-review is not independent review.
 
-Preserve the mode on follow-ups and restart. Change it only when a new
-dependency, risk, or context-isolation need justifies it, or the user requests
-it. Record the reason, reconcile running owners before handoff, and preserve
-accepted work. A mode change never widens authority or circumvents user choice.
-For older goals without a recorded mode, retain the established execution mode
-and record it before continuing; do not silently convert a coordinated goal.
+Preserve the mode and scoped user authorization on follow-ups and restart.
+Only the user can authorize a switch to coordinated execution. New complexity,
+dependencies, risks, or an old recorded mode cannot supply that authorization.
+For older goals without evidence of an explicit user request, use single-agent
+execution. Before taking over, reconcile running owners without new dispatch,
+preserve accepted work, and record the handoff. User revocation likewise stops
+new dispatch and safely returns work to the current chat. Do not restart paused
+or blocked goals while installing these rules.
 
 ## Ready work and waiting
 

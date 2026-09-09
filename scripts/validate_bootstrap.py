@@ -43,6 +43,11 @@ REQUIRED_TEXT = {
         'no meaningful independent work remains',
         'Never evade',
         'Preserve the mode',
+        'Only an explicit user request for multi-agent work authorizes `coordinated`',
+        'review applies in either mode but does not authorize an agent',
+        'equivalent CLI/API model delegation',
+        'reconcile running owners without new dispatch',
+        'User revocation likewise stops new dispatch',
     ),
     'docs/agent-governance/work/scope-and-checkpoints.md': (
         'Every approved implementation plan declares one authority mode',
@@ -73,6 +78,9 @@ REQUIRED_TEXT = {
         'local overrides',
     ),
     'AGENTS.md': (
+        'Every task and goal defaults to `single-agent` in the current chat',
+        'explicit user request authorizes additional agents',
+        'Only user-requested coordinated goals load',
         'Mandatory pre-action specification gate',
         'Lifecycle restart gate',
         'traversal receipt',
@@ -115,7 +123,7 @@ REQUIRED_TEXT = {
         'mandatory host impasse',
     ),
     "docs/specs/index.md": (
-        "bootstrap.governance@17",
+        "bootstrap.governance@18",
         "bootstrap.legacy-spec-migration@2",
         "bootstrap.codex-lifecycle@3",
         "2026-08-18-markdown-first-routing.md",
@@ -129,7 +137,7 @@ REQUIRED_TEXT = {
         "2026-09-02-minimum-sufficient-work.md",
     ),
     "docs/specs/features/bootstrap-governance.md": (
-        "bootstrap.governance@17",
+        "bootstrap.governance@18",
         "BOOTSTRAP.ECONOMY",
         "bootstrap-governance/goal-continuity.md",
         "bootstrap-governance/markdown-routing.md",
@@ -137,7 +145,7 @@ REQUIRED_TEXT = {
         "100 physical lines",
     ),
     "docs/specs/features/bootstrap-governance/review-and-acceptance.md": (
-        "bootstrap.governance.review@4",
+        "bootstrap.governance.review@5",
         "BOOTSTRAP.REVIEW.INDEPENDENCE",
         "BOOTSTRAP.REVIEW.VERDICT",
         "BOOTSTRAP.REVIEW.INTEGRATION",
@@ -146,12 +154,12 @@ REQUIRED_TEXT = {
         "Do not repeat an\nunchanged check",
     ),
     "docs/specs/features/bootstrap-governance/installation.md": (
-        "bootstrap.governance.installation@3",
+        "bootstrap.governance.installation@4",
         "minimum-sufficient work",
         "without adding numerical budgets",
     ),
     "docs/specs/features/bootstrap-governance/restart-and-delivery.md": (
-        "bootstrap.governance.restart-delivery@5",
+        "bootstrap.governance.restart-delivery@6",
         "expected total token use",
         "Presentation-only edits do not run",
         "A full suite requires",
@@ -285,7 +293,7 @@ REQUIRED_TEXT = {
         'economy_basis:',
     ),
     'docs/specs/features/bootstrap-governance/goal-continuity.md': (
-        'bootstrap.governance.goal-continuity@2',
+        'bootstrap.governance.goal-continuity@3',
         'Plan order is not execution order',
         'waiting_resource',
         'recheck every three minutes',
@@ -372,8 +380,14 @@ FORBIDDEN_PLANNING_TEXT = {
 }
 
 FORBIDDEN_GOAL_CONTINUITY_TEXT = {
+    "docs/agent-governance/work/goal-execution.md": (
+        "unless delegation is explicitly requested or required by an applicable contract",
+        "Change it only when a new dependency, risk, or context-isolation need justifies it",
+        "retain the established execution mode",
+    ),
     "docs/agent-governance/agents-sections.md": (
         "A paused or blocked goal remains idle",
+        "independent packets or context isolation justify delegation",
     ),
     "docs/agent-governance/root-orchestration.md": (
         "status: done | blocked | failed",
@@ -381,6 +395,17 @@ FORBIDDEN_GOAL_CONTINUITY_TEXT = {
     ),
     "prompts/setup-project-agents.md": (
         "a paused or blocked goal stays idle",
+        "worthwhile independent work or context isolation uses `coordinated`",
+    ),
+    "prompts/setup-global-agents.md": (
+        "worthwhile independent work or context isolation uses `coordinated`",
+    ),
+    "README.md": (
+        "context isolation selects coordinated execution",
+        "goals record single-agent or coordinated execution from the work",
+    ),
+    "prompts/README.md": (
+        "explicit no-delegation single-agent exception",
     ),
 }
 
@@ -437,7 +462,7 @@ def check_planning_text(errors: list[str]) -> None:
 
 def check_goal_continuity_text(errors: list[str]) -> None:
     for relative_path, forbidden_values in FORBIDDEN_GOAL_CONTINUITY_TEXT.items():
-        text = (ROOT / relative_path).read_text(encoding="utf-8")
+        text = " ".join((ROOT / relative_path).read_text(encoding="utf-8").split())
         for value in forbidden_values:
             if value in text:
                 errors.append(

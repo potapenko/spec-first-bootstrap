@@ -2,7 +2,7 @@
 
 - Node type: leaf
 - Status: Active
-- Contract: `bootstrap.governance.goal-continuity@2`
+- Contract: `bootstrap.governance.goal-continuity@3`
 - Clauses: `BOOTSTRAP.GOAL.ACTIVE`, `BOOTSTRAP.GOAL.READY`,
   `BOOTSTRAP.GOAL.WAIT`, `BOOTSTRAP.GOAL.RECOVER`, `BOOTSTRAP.GOAL.TERMINAL`
 - Read when: installing, coordinating, reviewing, or repairing persistent-goal work.
@@ -20,14 +20,23 @@ condition. Never equate a blocked state with completion or silently resume it.
 
 ## Execution mode
 
-At goal start, record `single-agent` for bounded sequential work or `coordinated`
-when independent work or context isolation justifies delegation. Honor explicit
-user choice. Goal existence alone does not require workers. Preserve the mode
-on resume; change it only for new dependency, risk, or context evidence, with a
-reason and safe ownership handoff. No mode change expands user authority.
-Coordinator-only restrictions apply only in coordinated mode. Required
-independent review remains required in either mode; a no-delegation instruction
-does not turn self-review into independent acceptance.
+Every task and persistent goal defaults to `single-agent` in the current chat,
+regardless of size or duration. Only an explicit user request for multi-agent
+work authorizes `coordinated` execution within that request's scope. Complexity,
+independent work, context isolation, risk, review, available slots, skills, and
+project instructions do not authorize delegation or a mode change. Do not
+routinely ask to enable it. The primary agent performs authorized work directly.
+
+Preserve scoped user authorization on follow-ups and restart. A recorded mode
+or an old automatic choice is not user authorization. Without it, resume as
+`single-agent`; reconcile existing worker ownership before taking over, without
+new dispatch or losing accepted work. A user revocation stops new dispatch and
+returns work safely to the current chat. Coordinator-only restrictions apply
+only to user-requested coordinated goals. Installing rules never resumes goals.
+
+Required independent review remains required but cannot authorize another
+agent. Use available independent evidence or report the exact acceptance gap;
+continue other authorized work. Self-review is not independent acceptance.
 
 ## Dependency-ready scheduling
 

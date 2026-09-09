@@ -43,16 +43,22 @@ the environment and not already authorized. Never expose secrets or providers.
    A requested plan artifact does not trigger a meta-plan. Omitted authority
    defaults to `bounded`; both `bounded` and `task-wide` protect unrelated
    behavior, including other content inside writable files.
-5. Install mode selection: bounded sequential goals use `single-agent`;
-   worthwhile independent work or context isolation uses `coordinated`. Honor
-   user choice and retain the recorded mode on restart. Only coordinated goals
-   activate coordinator-only restrictions; finite workers use pinned packets.
+5. Every task and goal defaults to `single-agent` in the current chat. Only an
+   explicit user request authorizes additional agents and `coordinated` work.
+   Replace automatic delegation rules, including local overrides; complexity,
+   skills, project rules, context isolation, and review cannot authorize agents.
+   Preserve scoped user authorization on restart; an old mode alone is not
+   authorization. Reconcile ownership before direct takeover without new dispatch.
+   Only user-requested coordinated goals load the coordinator-only contract.
 6. Preserve dependency-ready scheduling and `waiting_resource`,
    `waiting_evidence`, and `awaiting_authority`. Recheck temporary contention
    every three minutes without a fixed attempt ceiling, subject to mandatory
    host impasse transitions. Goal-level `blocked` is never completion and is
    used only when the current host contract requires it after genuine impasse.
 7. Preserve independent review for the named high-risk classes in either mode.
+   Review never authorizes extra agents or equivalent model calls. Use available
+   independent evidence or report the gap and continue other work; do not
+   routinely ask to enable agents or label self-review independent.
    Independent observation precedes builder-receipt reconciliation. Missing
    mandatory proof is `not_verified`; a failed criterion is `reject`. Neither
    can be accepted as a residual. Preserve integrated user-scenario acceptance.
@@ -74,7 +80,8 @@ shadowed gate, goal change, hidden layer installation, or unrelated config edit.
 Trace first-request planning, direct plan delivery, execute-now exception,
 approved follow-up without reapproval, both authority modes, same-file scope,
 current-branch protection, dirty-path handling, and checkpoint-policy selection.
-Trace both goal modes, mode retention on compaction, independent ready work,
+Trace the single-chat default for large goals, explicit scoped delegation,
+legacy automatic-mode recovery, authorization retention on compaction, ready work,
 resource waits, mandatory host blocking, and required independent acceptance.
 Use change-driven verification without numerical budgets or percentage mixes;
 full suites require concrete cross-cutting risk or an explicit requirement.

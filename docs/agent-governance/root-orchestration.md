@@ -2,8 +2,10 @@
 
 ## Purpose
 
-This document governs the primary `/root` agent while it coordinates a running
-persistent goal.
+This document governs the primary `/root` agent only while it coordinates a
+running persistent goal under an explicit user request for multi-agent work.
+Every task and goal otherwise runs directly in the current chat; none of the
+coordinator-only restrictions below applies to single-agent execution.
 
 `/root` is the keeper of the complete goal model. Its primary responsibility is
 to preserve continuity across many workers, checkpoints, pauses, failures, and
@@ -43,15 +45,16 @@ scope, minimum-sufficient-work, and goal-execution nodes first. They own approva
 continuity, authority modes, checkpoint policy, execution-mode selection,
 readiness, waiting, host state, and restart. Do not duplicate those definitions.
 
-This full contract applies only while advancing a goal recorded as
-`coordinated`. In `single-agent` mode the primary agent executes directly under
-the shared rules; it does not load coordinator-only restrictions. An explicit
-user no-delegation instruction remains binding. Required independent review
-is never replaced by self-review.
+This full contract applies only while advancing a goal for which the user
+explicitly requested multi-agent work within the current scope, recorded as
+`coordinated`. An old mode alone is not authorization. Every task and goal
+otherwise uses `single-agent`: the primary agent executes directly and does not
+load coordinator-only restrictions. Review requirements never authorize agents;
+missing independent evidence remains a gap, not self-review acceptance.
 
 A coordinated goal cannot evade its role boundaries by calling a small step a
-side task. Change execution mode only through the recorded evidence-based
-handoff in goal-execution. Finite workers use their assigned packet.
+side task. Use the user-authorized mode and ownership handoff in goal-execution.
+Finite workers use their assigned packet. A user revocation stops new dispatch.
 
 ## Outcome and minimum-sufficient work
 
@@ -184,7 +187,8 @@ personal preference, or a plausible invention.
 
 Before every spawn, `/root` must verify that:
 
-1. the packet has one concrete and finite outcome;
+1. an explicit user request authorizes this delegation within its scope, and
+   the packet has one concrete and finite outcome;
 2. the packet is dependency-ready;
 3. for product work, `/root` has completed the applicable pre-decision
    specification-discovery gate and the packet contains the exact Spec Basis
@@ -252,7 +256,8 @@ Every worker packet must contain:
 - terminal receipt format;
 - model and reasoning policy: `inherit` by default, or a permitted override
   with its task-specific justification;
-- whether nested delegation is allowed.
+- the explicit user request authorizing delegation and its scope;
+- whether that request and `/root` both allow nested delegation.
 
 `bounded` permits only the packet's named paths, operations, and behavior.
 `task-wide` permits any repository file reasonably necessary for the packet's
@@ -302,8 +307,8 @@ Workers must not:
 - reinterpret the entire goal;
 - ask the user questions that can be answered from assigned evidence;
 - mark goal-level completion;
-- spawn their own workers unless `/root` explicitly authorizes a separate,
-  non-overlapping nested packet.
+- spawn their own workers unless the user's delegation request covers it and
+  `/root` explicitly authorizes a separate, non-overlapping nested packet.
 
 A scope violation makes the result unacceptable until independently
 reconciled.
@@ -639,7 +644,7 @@ On resume or context compaction, `/root` first re-reads:
 
 Then `/root`:
 
-- confirms goal state;
+- confirms goal state and the explicit user request authorizing delegation;
 - reopens the recorded Markdown path and revalidates or retires work affected by revision
   drift without loading unselected sibling contracts;
 - reconciles stale running work;
