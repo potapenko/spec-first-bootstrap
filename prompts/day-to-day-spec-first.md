@@ -19,13 +19,24 @@ Every specification node must contain at most 100 physical lines; prefer
 only and cannot authorize product behavior. JSON manifests and generated
 routing registries are not part of the specification system.
 
+For continuing work, reuse the established basis while its full required
+content remains available, applicable, and current. Use recovery below after
+context loss; do not rerun the initial gate merely because compaction occurred.
+
 Only after this gate, inspect the smallest complete applicable source, design,
 QA, runtime, history, upstream, and release evidence set. Classify material
 discrepancies, accept only a legitimate Contract Delta, pin the final Spec
 Basis, implement the authorized slice, update QA, and follow the repository's
 checkpoint policy.
 
-After startup, resume, clear, or context compaction, reopen the recorded
-Markdown path, detect node or contract revision drift, and reread only the
-selected nodes and next-action evidence. Traverse from the root again only
-when the task changed or the prior path is missing or ambiguous.
+After startup, resume, clear, or compaction, recover the objective, accepted
+scope, completed work, selected route, unresolved items, and next action from
+available context, including its summary. Continue the same authorized task.
+Reuse instructions and contracts whose contents, applicability, and currency
+are established. Read required documents completely, with dependencies, when
+missing, potentially changed, or uncertain; do not automatically reload every
+previously activated route. Re-establish the Spec Basis when revisions drift.
+Traverse from the specification root when the task/domain changes or the route
+is missing or uncertain. Summaries cannot create intent, expand authority, or
+replace missing contract content. Preserve accepted work and approval; recovery
+never resumes paused or blocked goals by itself. Workers use their finite packet.

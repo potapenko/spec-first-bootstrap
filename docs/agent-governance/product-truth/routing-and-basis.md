@@ -4,17 +4,16 @@
 - Read when: selecting product contracts or establishing a provisional or final Spec Basis.
 - Do not read when: work is proven non-product and behavior-neutral.
 - Maximum size: 100 physical lines.
-- Contract: `governance.product-truth.routing@1`
+- Contract: `governance.product-truth.routing@2`
 - Clauses: `PT.ROUTE.TRAVERSE`, `PT.ROUTE.CLOSURE`, `PT.ROUTE.RECEIPT`,
   `PT.BASIS.PROVISIONAL`, `PT.BASIS.FINAL`
-
 ## PT.ROUTE.TRAVERSE — Mandatory pre-decision traversal
 
 Before a project-specific product answer, diagnosis, hypothesis,
 recommendation, source inspection, runtime interpretation, non-reading task
 tool, implementation, or verification:
 
-1. re-read applicable instruction layers;
+1. read applicable instruction layers when establishing the task basis;
 2. start at the project specification root Markdown node;
 3. use each branch's `summary`, `read_when`, and `do_not_read_when` to descend;
 4. select the smallest nodes that govern the named task;
@@ -23,13 +22,17 @@ tool, implementation, or verification:
 7. state the Markdown traversal receipt and provisional Spec Basis;
 8. only then inspect implementation evidence.
 
+For continuing work, reuse a basis whose full required content is available,
+applicable, and current. Recovery loads missing, potentially changed, or uncertain
+content completely, including dependencies. Summaries cannot replace missing
+contracts. Route again when the task/domain changes or the route is uncertain.
+
 A branch summary is non-normative navigation text. It cannot replace a
 contract or create product intent. A Markdown node may be a branch, leaf, or
 both.
 
 When no Markdown path matches, record the missing contract and use Discover.
 When two Active nodes conflict without precedence, stop only the affected slice.
-
 ## PT.ROUTE.CLOSURE — Smallest complete contract set
 
 Completeness is measured by the selected contract closure, not by reading
@@ -48,7 +51,6 @@ expand the closure, and record the discrepancy before acting.
 
 Task-to-domain selection requires product judgment. Dependency links and
 revision checking may be verified mechanically after the path is selected.
-
 ## PT.ROUTE.RECEIPT — Auditable context provenance
 
 Before evidence inspection, record:
@@ -65,7 +67,6 @@ Before evidence inspection, record:
 The receipt proves traversal provenance. It does not replace the contracts. For
 long-running work it is durable; for bounded work it may appear in the first
 progress update or Contract Change Envelope.
-
 ## PT.BASIS.PROVISIONAL — Investigation frame
 
 The provisional basis states:
@@ -81,7 +82,6 @@ The provisional basis states:
 
 It frames investigation and does not allow spec-only escalation. A mismatch is
 an evidence-reconciliation trigger, not automatically a user decision.
-
 ## PT.BASIS.FINAL — Reconciled implementation authority
 
 After inspecting the smallest complete applicable evidence set, classify every

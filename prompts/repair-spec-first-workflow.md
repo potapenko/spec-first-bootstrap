@@ -25,8 +25,8 @@ templates. Repair the smallest coherent surface so that:
 6. Restore/Reconcile/Evolve/Discover/Behavior-neutral, the Contract Change
    Envelope, provisional/final Spec Basis, discrepancy classification,
    legitimate Contract Delta, revision pinning, and QA mappings remain active;
-7. startup or compaction reopens the recorded Markdown path without loading
-   unrelated siblings;
+7. startup or compaction recovers the accepted task from available context,
+   loading only missing, potentially changed, or uncertain required content;
 8. JSON manifests, generated route registries, and resolver requirements are
    removed from the specification and governance trees.
 
@@ -38,5 +38,6 @@ must not classify or rewrite the corpus without an approved migration plan.
 Use `apply_patch`. Verify links, reachability, node sizes, contradictory or
 duplicate gates, preserved instructions, project-only scope, no JSON in the
 Markdown trees, no product implementation changes, docs checks, and
-`git diff --check`. Do not install or modify a lifecycle hook unless explicitly
-in scope. Follow the target checkpoint policy and report exact residuals.
+`git diff --check`. Never install the retired lifecycle adapter. Preserve hook
+registrations and scripts; removal requires the separately authorized migration
+in `prompts/migrate-codex-lifecycle.md`. Follow the target checkpoint policy and report exact residuals.

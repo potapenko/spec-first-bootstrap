@@ -75,7 +75,7 @@ Before any project-specific answer, diagnosis, hypothesis, investigation,
 recommendation, interpretation, decision, plan, source inspection, non-reading
 task tool, implementation, runtime action, or verification:
 
-1. Re-read every applicable global and project instruction layer.
+1. Read applicable global and project instructions when establishing the task basis.
 2. Start at `docs/specs/README.md`. Follow ordinary Markdown links through
    only the matching branch summaries.
 3. Select the smallest governing Markdown nodes and follow their explicit
@@ -92,6 +92,11 @@ task tool, implementation, runtime action, or verification:
    runtime, history, upstream, and release evidence set.
 8. Classify discrepancies, accept only a legitimate Contract Delta, pin the
    final reconciled basis, and only then implement and verify.
+
+For a continuing task, reuse the established basis when its full required
+content is available, applicable, and current. After context loss, load missing
+or uncertain contracts completely; summaries cannot replace them. Route again
+when the task/domain changes or the previous route is missing or uncertain.
 
 Until steps 1-6 are complete, do not inspect implementation sources, interpret
 runtime evidence, form a failure hypothesis, recommend a repair, infer product
@@ -114,21 +119,15 @@ unreliable contract first, inspect source and runtime only as evidence,
 separate observed from intended behavior, and create first-pass specs without
 changing product implementation.
 
-## Lifecycle restart gate
+## Context recovery and operational hygiene
 
-When a lifecycle hook reports startup, resume, clear, context compaction, or a
-worker start, take no task action until the applicable instruction hierarchy
-and current linked authority have been re-established. Re-read the current
-goal, envelope, latest traversal receipt, selected Markdown nodes, pinned contract
-closure, epochs, deltas, discrepancies, and only the next-action QA evidence.
-Reopen the recorded path to detect revision drift. Traverse from the root again
-only when the task changed or the receipt is missing or ambiguous; do not reload
-unselected siblings merely because context was compacted.
-
-State the Markdown path and contracts re-read in the next progress update. Chat
-summaries, memory, worker lists, previous receipts, green builds, tests,
-screenshots, and raw configuration do not replace current contracts. Workers
-use their pinned packet and linked closure rather than the root conversation.
+After startup, resume, clear, or compaction, recover the current task from
+available context. Use context-recovery through `docs/agent-governance/work-governance.md`;
+reload only missing, potentially changed, or uncertain required documents.
+Summaries cannot create authority or replace missing contract content.
+For generated run evidence or SSH identities, use operational-hygiene through
+the same work tree. Temporary results stay outside the repository and agent
+configuration; additional SSH identities need exact-operation user approval.
 
 ## When a spec is required
 

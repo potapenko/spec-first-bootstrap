@@ -69,7 +69,8 @@ token use, packet count, or temporary contention do not. Follow the host's
 supported user action for resuming blocked work; never silently resume it.
 
 On user pause, dispatch no new work; reconcile running ownership and preserve
-the next resume action. On resume or compaction, re-read applicable instructions,
-the goal, approved plan, recorded mode, registry if needed, selected contract
-closure, and next required evidence. Retain prior approval and accepted work;
-do not re-read unselected sibling contracts or reconstruct authority from memory.
+the next resume action. On resume or compaction, use
+[context recovery](context-recovery.md). Retain prior approval, accepted work,
+mode authorization, selected closure, and exact wait state from available context.
+Read missing, potentially changed, or uncertain required documents before acting.
+Check live ownership when taking over work; a summary is not current owner state.

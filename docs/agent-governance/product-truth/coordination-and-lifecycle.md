@@ -4,7 +4,7 @@
 - Read when: coordinating workers, pinning revisions, or recovering after a lifecycle event.
 - Do not read when: a bounded single-agent task has no coordination or restart concern.
 - Maximum size: 100 physical lines.
-- Contract: `governance.product-truth.coordination@1`
+- Contract: `governance.product-truth.coordination@2`
 - Clauses: `PT.PACKET.CONTEXT`, `PT.PACKET.ROLES`, `PT.EPOCH.PIN`,
   `PT.LIFECYCLE.RESTORE`, `PT.RECEIPT.DISCREPANCY`
 
@@ -52,19 +52,26 @@ work, the restart-safe registry records each packet's selected nodes and epoch.
 
 ## PT.LIFECYCLE.RESTORE — Restart and context compaction
 
-After startup, resume, clear, or compaction, re-read applicable instruction
-layers, the current objective and envelope, the latest traversal receipt,
-selected Markdown nodes, pinned contract closure, revisions, accepted deltas,
-unresolved discrepancies, and only the evidence/QA instructions needed next.
+After startup, resume, clear, or compaction, recover the objective, accepted
+scope/envelope, completed work, selected route, unresolved discrepancies, and
+next action from available context, including its summary or finite packet.
+Recovery does not authorize new work or resume paused/blocked goals.
 
-Reopen the recorded Markdown path. If node or contract revisions differ,
-record revision drift and re-establish the Spec Basis before product action. If
-the task or domain changed, traverse from the root node again. Do not reread
-unselected sibling contracts merely because context was compacted.
+Retain the selected contract closure and accepted deltas without automatically
+reloading them. Before the next action, read required instructions, contracts,
+state, or evidence whose contents are unavailable, may have changed, or are
+uncertain. Select QA guidance for the next required check, not every prior phase.
+Read selected contracts completely when loading them; recovery is not permission
+to omit dependencies or replace missing contract content with a summary.
 
-Chat summaries, memory, worker lists, old receipts, builds, tests, screenshots,
-and raw configuration do not replace current contracts. Workers restart from
-their finite packet and pinned closure rather than the root conversation.
+If revisions differ, record drift and re-establish the Spec Basis before the
+affected product action. If the task/domain changes or the recorded route is
+missing or uncertain, establish the relevant route from the specification root. Do not
+reload unrelated siblings or all previously activated routes after compaction.
+
+Summaries preserve continuity but cannot create intent, expand authority, or
+override current contracts. Resolve uncertain authority before acting. Workers
+recover from their finite packet and pinned closure, not the root conversation.
 
 ## PT.RECEIPT.DISCREPANCY — Compact return
 

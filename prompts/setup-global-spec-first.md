@@ -21,8 +21,10 @@ a duplicate. Do not install a resolver or any JSON routing registry. Workers
 receive only the selected Markdown path, pinned contracts, evidence paths, and
 protected boundaries needed by their task.
 
-Use `apply_patch` for edits. Preserve any existing optional lifecycle adapter
-and reconcile only its restart wording when necessary.
+Use `apply_patch` for edits. Reconcile obsolete Bootstrap rereading text in
+this instruction layer with selective recovery. Preserve existing hook
+registrations and scripts; never install the retired adapter. Removal needs a
+separately authorized migration through `prompts/migrate-codex-lifecycle.md`.
 
 Verify canonical Markdown content, local links, node reachability, the hard
 100-line maximum per node with 50–80 preferred, one active non-shadowed gate,

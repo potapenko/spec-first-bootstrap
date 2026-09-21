@@ -42,18 +42,14 @@ repository. They must detect the active agent environment, state exact target
 paths, preserve existing global instructions, and request the required
 filesystem permission. They change no project during installation.
 
-## Optional Codex lifecycle adapter
+## Retired Codex lifecycle adapter
 
-The adapter reinforces whichever instruction layers are already installed. It
-is Codex-specific and is not a fourth governance dependency.
-
-- [`setup-project-codex-lifecycle.md`](setup-project-codex-lifecycle.md)
-  installs it only in one trusted project.
-- [`setup-global-codex-lifecycle.md`](setup-global-codex-lifecycle.md) installs
-  it only in the active user's Codex home.
-
-Both prompts preserve existing hooks, avoid duplicate global/project coverage,
-and include trust and fixture-test verification.
+Bootstrap no longer installs lifecycle reminder hooks. Legacy
+[project](setup-project-codex-lifecycle.md) and
+[global](setup-global-codex-lifecycle.md) setup prompts are informational notices.
+They do not authorize deleting existing hooks. For an explicitly scoped removal,
+use [migration](migrate-codex-lifecycle.md); unrelated hooks and the general
+hooks feature remain unchanged. Ordinary setup preserves existing registrations.
 
 ## Follow-up project work
 

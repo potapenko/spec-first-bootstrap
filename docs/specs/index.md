@@ -13,16 +13,16 @@ human authority view, not a second routing system.
 
 | Contract | Authority | Stability | Revision | Read when |
 | --- | --- | --- | --- | --- |
-| [Bootstrap governance](features/bootstrap-governance.md) | Active | Accepted | `bootstrap.governance@18` | Setup, governance, Markdown routing, prompts, templates, scope, minimum-sufficient work, goal continuity, or review |
+| [Bootstrap governance](features/bootstrap-governance.md) | Active | Accepted | `bootstrap.governance@19` | Setup, governance, Markdown routing, prompts, templates, scope, minimum-sufficient work, goal continuity, or review |
 | [Legacy spec migration](features/legacy-spec-migration.md) | Active | Accepted | `bootstrap.legacy-spec-migration@2` | Migrating a large existing spec library |
-| [Codex lifecycle](features/codex-lifecycle-enforcement.md) | Active | Evolving | `bootstrap.codex-lifecycle@3` | Optional Codex lifecycle adapter |
+| [Codex lifecycle](features/codex-lifecycle-enforcement.md) | Active | Evolving | `bootstrap.codex-lifecycle@4` | Retired adapter entrypoints and explicit migration |
 
 ## Precedence
 
 - Bootstrap governance controls portable installation and Markdown-node rules.
 - Legacy migration is more specific for corpus conversion and depends on the
   governance routing and scope clauses.
-- Codex lifecycle is more specific only for optional Codex hook mechanics.
+- Codex lifecycle is more specific only for retired entrypoints and migration.
 - Persistent-goal and browser-QA layers remain independently selectable.
 
 ## Accepted deltas
@@ -52,3 +52,4 @@ human authority view, not a second routing system.
 ## Unknown precedence
 
 None.
+- [Context recovery and lifecycle retirement](deltas/2026-09-21-context-recovery.md)

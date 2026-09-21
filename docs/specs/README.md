@@ -13,7 +13,7 @@ document in advance.
 ## Choose the next node
 
 - [Bootstrap contracts](features/README.md) — choose installation/governance,
-  legacy-library migration, or optional Codex lifecycle behavior.
+  legacy-library migration, or retired Codex lifecycle migration.
 - [Markdown routing contract](routing.md) — read when changing the node
   protocol, traversal rules, link semantics, or size limit.
 - [Human authority index](index.md) — read when authority, stability,

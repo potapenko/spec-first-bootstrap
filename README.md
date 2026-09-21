@@ -95,19 +95,17 @@ Global checkpoint default is a local commit. Automatic push is project opt-in;
 existing project checkpoint rules remain in force. Work rules are installed as
 a linked tree, with deliberate local overrides preserved explicitly.
 
-## Optional Codex lifecycle enforcement
+## Context recovery and retired lifecycle hooks
 
-Codex users can optionally reinforce any already-installed instruction layers
-after startup, resume, clear, context compaction, and subagent start. This is an
-environment adapter, not a dependency of the three layers above.
+Bootstrap recovers the accepted task from available context after startup,
+resume, clear, or compaction. It loads required documents only when missing,
+potentially changed, or uncertain. Summaries never create authority or replace
+missing contracts. This policy is independent of the selected model.
 
-For one trusted project, use
-[`prompts/setup-project-codex-lifecycle.md`](prompts/setup-project-codex-lifecycle.md).
-For the active user's Codex home, use
-[`prompts/setup-global-codex-lifecycle.md`](prompts/setup-global-codex-lifecycle.md).
-
-The adapter preserves existing hooks, uses event-specific root and worker
-context, and requires explicit scope and hook trust verification.
+The old lifecycle reminder adapter is retired; setup no longer ships hooks.
+Existing installations are changed only through an explicitly scoped
+[migration](prompts/migrate-codex-lifecycle.md), preserving unrelated hooks and
+the general hooks feature. Old setup links are informational retirement notices.
 
 ## What the three layers do
 
@@ -165,7 +163,8 @@ approval before changing the target repository.
 - optional browser-QA files;
 - detailed governance sources read by installer agents under
   `docs/agent-governance/`.
-- an optional Codex lifecycle adapter with hook templates and fixture tests.
+- selective context recovery and a migration guide for retired lifecycle hooks;
+- temporary run-evidence hygiene and protection of established SSH identities.
 
 More detailed working prompts are listed in
 [`prompts/README.md`](prompts/README.md). The specification workflow is in
@@ -181,7 +180,6 @@ python3 scripts/check_spec_markdown.py \
   --root docs/agent-governance/product-truth-governance.md \
   --scan docs/agent-governance/product-truth
 python3 -m unittest discover -s scripts/tests -v
-python3 -m unittest discover -s integrations/codex-lifecycle/tests -v
 ```
 
 This Bootstrap was extracted from several months of work on four internal

@@ -12,6 +12,8 @@ one named project or the explicitly selected global configuration.
 - [Root orchestration](root-orchestration.md) owns the detailed coordinator
   packet, ownership, review, and registry protocol only for user-requested
   coordinated goals.
+- [Context recovery](work/context-recovery.md) avoids automatic document reloads.
+- [Operational hygiene](work/operational-hygiene.md) governs run evidence and SSH keys.
 - [Compact sections](agents-sections.md) provide instruction-chain gates.
   Adapt paths at installation; do not duplicate the full shared definitions.
 
@@ -20,8 +22,8 @@ one named project or the explicitly selected global configuration.
 - [Product truth](product-truth-governance.md) routes to the selected contract
   authority, evidence, and acceptance rules.
 - [Browser QA](web-qa-governance.md) is optional.
-- The [Codex lifecycle adapter](../../integrations/codex-lifecycle/) is optional
-  and must not be installed or changed without its own explicit scope.
+- The [Codex lifecycle adapter](../../integrations/codex-lifecycle/) is retired.
+  It is never installed; migration of existing hooks needs its own explicit scope.
 
 ## Installation invariants
 

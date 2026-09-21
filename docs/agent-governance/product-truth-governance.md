@@ -43,6 +43,7 @@ Completeness means the selected Markdown path plus explicit dependency links,
 not every sibling. Branch summaries are navigation only. Semantic changes need
 legitimate authority and advance affected revisions.
 
-After compaction, reopen only the recorded path and required next evidence.
+After compaction, reuse established context and load only missing, potentially
+changed, or uncertain required content under the lifecycle recovery contract.
 Every governance node follows the same 100-physical-line maximum as product
 nodes.

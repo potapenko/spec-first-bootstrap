@@ -31,8 +31,11 @@ ambiguous contracts.
 5. Every node must be Markdown, reachable from an approved Markdown root, and
    no more than 100 physical lines; prefer 50–80.
 6. Keep framework, safety, build, test, Git, database, storage, and release
-   rules intact. Do not install persistent-goal, browser-QA, or lifecycle
-   layers unless separately requested.
+   rules intact. Do not install persistent-goal or browser-QA layers unless
+   separately requested. Never install the retired lifecycle adapter. Preserve
+   existing hook registrations/scripts; removal needs separately authorized
+   migration through `prompts/migrate-codex-lifecycle.md`. Reconcile obsolete
+   Bootstrap rereading text in this instruction layer with selective recovery.
 
 Use `apply_patch` for edits.
 

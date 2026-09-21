@@ -48,7 +48,7 @@ Before any project-specific answer, diagnosis, hypothesis, investigation,
 recommendation, decision, plan, source inspection, non-reading task tool,
 runtime action, implementation, or verification:
 
-1. re-read every applicable instruction layer;
+1. read applicable instruction layers when establishing the task basis;
 2. start at `docs/specs/README.md`;
 3. follow matching branch summaries and ordinary Markdown links, select the
    smallest governing nodes, follow explicit dependencies, and read the
@@ -60,6 +60,11 @@ runtime action, implementation, or verification:
    behavior, established flow, and evidence still needed;
 6. explicitly record a missing or ambiguous route and use Discover before
    consulting implementation evidence.
+
+For a continuing task, reuse the established basis when its full required
+content is available, applicable, and current. After context loss, load missing
+or uncertain contracts completely; summaries cannot replace them. Route again
+when the task/domain changes or the previous route is missing or uncertain.
 
 Until that gate is complete, do not inspect implementation sources, interpret
 runtime evidence, form a failure hypothesis, recommend a repair, infer product
@@ -152,7 +157,7 @@ Before any project-specific answer, diagnosis, hypothesis, investigation,
 recommendation, decision, plan, source inspection, non-reading task tool,
 runtime action, implementation, or verification:
 
-1. re-read every applicable instruction layer;
+1. read applicable instruction layers when establishing the task basis;
 2. start at `docs/specs/README.md`;
 3. follow matching branch summaries and ordinary Markdown links, select the
    smallest governing nodes, follow explicit dependencies, and read the
@@ -164,6 +169,11 @@ runtime action, implementation, or verification:
    behavior, established flow, and evidence still needed;
 6. explicitly record a missing or ambiguous route and use Discover before
    consulting implementation evidence.
+
+For a continuing task, reuse the established basis when its full required
+content is available, applicable, and current. After context loss, load missing
+or uncertain contracts completely; summaries cannot replace them. Route again
+when the task/domain changes or the previous route is missing or uncertain.
 
 Until that gate is complete, do not inspect implementation sources, interpret
 runtime evidence, form a failure hypothesis, recommend a repair, infer product
@@ -216,53 +226,6 @@ Global default: local checkpoint commit. Preserve explicit project checkpoint
 policy; automatic push is project opt-in.
 ~~~
 
-## Project: Codex lifecycle restart adapter
-
-~~~markdown
-## Codex lifecycle restart gate
-
-When a trusted Codex lifecycle hook reports startup, resume, clear, context
-compaction, or a worker start, take no task action until the applicable
-instruction hierarchy and current linked authority have been re-established.
-
-For a root or single-agent session, re-establish current goal state, governing
-plan or runbook, registry, Contract Change Envelope, specification index,
-latest Markdown traversal receipt, selected nodes and contract closure, contract epoch,
-accepted deltas, unresolved discrepancies, and next-action QA instructions.
-Reopen the recorded Markdown path to detect revision drift and do not load unselected
-siblings merely because context was compacted. A worker reads its finite packet
-and pinned Markdown closure; it does not reconstruct authority from the root
-conversation or read the root manual unless assigned the coordinator role.
-
-State the route and contracts re-read in the next progress update. Chat
-summaries, memory, worker lists, old receipts, builds, tests, screenshots, and
-raw configuration never replace current contracts.
-~~~
-
-## Global: Codex lifecycle restart adapter
-
-~~~markdown
-## Codex lifecycle restart gate
-
-When a trusted Codex lifecycle hook reports startup, resume, clear, context
-compaction, or a worker start, take no task action until the applicable global
-and project instruction hierarchy and current linked authority have been
-re-established.
-
-For a root or single-agent session, re-establish current goal state, governing
-plan or runbook, registry, Contract Change Envelope, specification index,
-latest Markdown traversal receipt, selected nodes and contract closure, contract epoch,
-accepted deltas, unresolved discrepancies, and next-action QA instructions.
-Reopen the recorded Markdown path to detect revision drift and do not load unselected
-siblings merely because context was compacted. A worker reads its finite packet
-and pinned Markdown closure; it does not reconstruct authority from the root
-conversation or read the root manual unless assigned the coordinator role.
-
-State the route and contracts re-read in the next progress update. Chat
-summaries, memory, worker lists, old receipts, builds, tests, screenshots, and
-raw configuration never replace current contracts.
-~~~
-
 ## Global: minimum-sufficient work
 
 ~~~markdown
@@ -304,4 +267,32 @@ specification or persistent-goal agent layers. Cases verify the best available
 named product authority through explicit action-state-result chains and link
 stable contract identifiers when they exist. Browser observations and QA cases
 do not independently create product intent or authorize weaker expectations.
+~~~
+
+## Project: context recovery and operational hygiene
+
+~~~markdown
+## Context recovery and operational hygiene
+
+After startup, resume, clear, or compaction, recover the current task from
+available context. Use context-recovery through `docs/agent/work-governance.md`;
+reload only missing, potentially changed, or uncertain required documents.
+Summaries cannot create authority or replace missing contract content.
+For generated run evidence or SSH identities, use operational-hygiene through
+the same work tree. Temporary results stay outside the repository and agent
+configuration; additional SSH identities need exact-operation user approval.
+~~~
+
+## Global: context recovery and operational hygiene
+
+~~~markdown
+## Context recovery and operational hygiene
+
+After startup, resume, clear, or compaction, recover the current task from
+available context. Use context-recovery through `work-governance.md`;
+reload only missing, potentially changed, or uncertain required documents.
+Summaries cannot create authority or replace missing contract content.
+For generated run evidence or SSH identities, use operational-hygiene through
+the same work tree. Temporary results stay outside the repository and agent
+configuration; additional SSH identities need exact-operation user approval.
 ~~~

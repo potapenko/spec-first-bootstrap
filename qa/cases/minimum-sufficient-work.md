@@ -1,6 +1,6 @@
 # Minimum-Sufficient Work Acceptance Scenarios
 
-Contracts: `bootstrap.governance.restart-delivery@6`, `BOOTSTRAP.ECONOMY`,
+Contracts: `bootstrap.governance.restart-delivery@7`, `BOOTSTRAP.ECONOMY`,
 and `bootstrap.governance.review@5`, `BOOTSTRAP.REVIEW.LIMITS`.
 Consumer: Bootstrap validation and future agent-work installation reviews.
 

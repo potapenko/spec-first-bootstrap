@@ -26,3 +26,6 @@ If your project has a browser UI and you want a lightweight starter pack for
 browser QA, see:
 
 - `qa/web/`
+
+For context recovery and retired lifecycle migration, use
+[these cases](cases/context-recovery.md).

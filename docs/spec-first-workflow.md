@@ -20,7 +20,7 @@ Bootstrap sources keep governance under `docs/agent-governance/`.
 
 ## Mandatory order
 
-1. Re-read applicable instruction layers.
+1. Read applicable instruction layers when establishing the task basis.
 2. Open the governance Markdown root and follow only the matching links.
 3. Open the specification root `README.md`.
 4. Follow child descriptions one Markdown node at a time.
@@ -32,6 +32,9 @@ Bootstrap sources keep governance under `docs/agent-governance/`.
 10. Inspect the smallest complete source/design/QA/runtime/history evidence set.
 11. Classify discrepancies and accept only a legitimate Contract Delta.
 12. Pin the final basis, then implement and verify the authorized slice.
+
+For continuing work, reuse the established basis while its required contents
+remain available, applicable, and current. Recovery follows the rule below.
 
 Until step 9, do not inspect implementation source, interpret runtime evidence,
 form a failure hypothesis, recommend a repair, or infer product intent.
@@ -58,10 +61,17 @@ files never enlarge the authorized domain.
 
 ## Restart
 
-After startup, resume, clear, or compaction, re-read applicable instructions,
-the latest traversal receipt and envelope, then reopen only the Markdown nodes
-on the selected path and the next required evidence. Start from the root again
-only if the task changed or the path is missing or ambiguous.
+After startup, resume, clear, or compaction, recover the objective, accepted
+scope, completed work, selected route, unresolved items, and next action from
+available context, including its summary. Continue the same authorized task.
+Reuse instructions and contracts whose contents, applicability, and currency
+are established. Read required documents completely, with dependencies, when
+missing, potentially changed, or uncertain; do not automatically reload every
+previously activated route. Re-establish the Spec Basis when revisions drift.
+Traverse from the specification root when the task/domain changes or the route
+is missing or uncertain. Summaries cannot create intent, expand authority, or
+replace missing contract content. Preserve accepted work and approval; recovery
+never resumes paused or blocked goals by itself. Workers use their finite packet.
 
 ## Validation
 

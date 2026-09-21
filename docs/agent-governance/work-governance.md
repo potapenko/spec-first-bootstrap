@@ -16,10 +16,15 @@ here instead of repeating them.
   current branch, existing changes, and local/project checkpoint policy.
 - [Minimum-sufficient work](work/minimum-sufficient-work.md): proportionate
   reading, tools, delegation, verification, and completion evidence.
+- [Context recovery](work/context-recovery.md): continuity and selective reload
+  after startup, resume, clear, or compaction; no lifecycle hooks.
+- [Operational hygiene](work/operational-hygiene.md): temporary run evidence
+  and exact-operation authorization for additional SSH identities.
 - [Goal execution](work/goal-execution.md): execution mode, readiness, waits,
   host-required transitions, and restart.
 
 Implementation requires task framing, scope, and minimum-sufficient work.
+Recovery, evidence capture, and SSH identity work load their matching rules.
 Goal work also requires goal execution. Only user-requested coordinated goals load the full
 [coordinator contract](root-orchestration.md). Finite workers read their packet
 and pinned rules, not the coordinator's complete context.

@@ -1,4 +1,4 @@
-# Optional Codex Lifecycle Enforcement
+# Codex Lifecycle Adapter Retirement
 
 - Node type: leaf
 - Status: Active
@@ -6,48 +6,44 @@
 - Domain ID: `bootstrap.codex-lifecycle`
 - Authority: Active
 - Stability: Evolving
-- Contract revision: `bootstrap.codex-lifecycle@3`
-- Clauses: `CODEX.LIFECYCLE.ROOT`, `CODEX.LIFECYCLE.WORKER`,
-  `CODEX.LIFECYCLE.COMPACTION`, `CODEX.LIFECYCLE.INSTALL`
-- Read when: changing the optional Codex lifecycle adapter.
-- Do not read when: changing portable Markdown routing without adapter mechanics.
+- Contract revision: `bootstrap.codex-lifecycle@4`
+- Clauses: `CODEX.LIFECYCLE.INSTALL`, `CODEX.LIFECYCLE.MIGRATE`
+- Read when: handling legacy adapter entrypoints or migrating an existing installation.
+- Do not read when: only portable context recovery is involved.
 - Maximum size: 100 physical lines.
 
-## Goal and scope
+## Retirement
 
-Reinforce the active instruction hierarchy after startup, resume, clear,
-compaction, and worker-start events. Cover project/global templates,
-installation, trust, deduplication, and fixtures.
+Bootstrap no longer ships or installs lifecycle reminder scripts or hook
+templates. Legacy setup entrypoints explain retirement and link to migration;
+invoking an old install prompt does not authorize removal of existing hooks.
+Portable recovery follows
+[restart and delivery](bootstrap-governance/restart-and-delivery.md).
 
-The adapter does not install other governance layers, inject full specs or
-conversations, change model/application defaults, or prove that files were read.
+## Explicit migration
 
-## Required behavior
+Migration is independently authorized for one named project or active user
+configuration. Ordinary setup and repair preserve existing hook registrations.
+Do not disable the general hooks feature or replace a whole hooks collection.
 
-- Root events inject a concise checklist to restore instructions, objective,
-  envelope, latest Markdown traversal path, selected nodes, and next evidence.
-- Worker events require the finite packet and only its linked contract nodes.
-- Compaction restores context before the immediate continuation request.
-- Root traversal restarts at the Markdown root only when the task changed or
-  the prior path is missing or ambiguous.
-- Existing hooks are preserved and equivalent hooks are reconciled.
-- Setup reports any required trust-review step.
+Inspect the selected configuration, registrations, and referenced script before
+editing. Match Bootstrap provenance, exact command target, and script content
+against a known historical revision. A basename or event name alone is not proof.
+Remove only proven Bootstrap reminder commands, preserving sibling commands,
+events, metadata, and unrelated sources. Customized or uncertain entries remain
+unchanged with an exact residual. Stop that slice if the format cannot be edited
+while preserving unrelated content.
 
-## Invariants and failure policy
+Delete a proven legacy script only after all its references in the inspected
+sources are gone and no remaining ownership is uncertain. Never execute a
+candidate hook to identify it. Reconcile only obsolete Bootstrap rereading text
+in the authorized instruction chain; preserve safety and product contracts.
 
-The adapter is optional and Codex-specific. It reinforces `AGENTS.md` and
-never replaces it. Global and project hooks are not both installed for one
-scope without explicit choice. Output stays concise and contains no secrets.
+## Verification
 
-Malformed input produces a conservative root response. Unsupported events fall
-back to root context. Setup stops when the active Codex home or trusted project
-root cannot be resolved.
-
-## Evidence and verification
-
-Evidence: Codex hook documentation, lifecycle integration README, templates,
-implementation script, and fixtures.
-
-Verify all four root sources, worker startup, malformed input, template parsing,
-event-specific context, Markdown-path restoration, sibling exclusion, and
-absence of mandatory JSON routing state.
+Use the [migration prompt](../../../prompts/migrate-codex-lifecycle.md).
+Inspect a bounded proposed diff, parse the edited representation, compare
+unrelated hook configuration, and verify no dangling removed-script references.
+Mixed-hook, customized-script, already-retired, and wrong-scope cases must be
+covered. Report uninspected sources and do not claim global hook absence from
+one empty user configuration. No live migration is implied by updating Bootstrap.

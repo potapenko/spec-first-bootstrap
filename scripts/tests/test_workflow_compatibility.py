@@ -15,6 +15,7 @@ SECTION = re.compile(r"## (Project|Global): ([^\n]+)\n\n~~~markdown\n(.*?)\n~~~"
 WORK_SECTIONS = {
     "current branch only", "task framing and scope control",
     "minimum-sufficient work", "persistent-goal agents",
+    "context recovery and operational hygiene",
 }
 
 
@@ -38,11 +39,16 @@ class WorkflowInstallTests(unittest.TestCase):
                 self.assertTrue(installed.startswith(override))
                 self.assertEqual(installed.count("## Task framing and scope control"), 1)
                 refs = re.findall(r"`([^`]*work-governance\.md)`", installed)
-                self.assertEqual(len(refs), 4)
+                self.assertEqual(len(refs), 5)
                 self.assertTrue(all((target / ref).is_file() for ref in refs))
                 result = validate([owner / "work-governance.md"], [owner / "work-governance.md", owner / "work"])
-                self.assertEqual(result["nodes"], 5)
+                self.assertEqual(result["nodes"], 7)
                 self.assertIn("automatic push is project opt-in", installed)
+                self.assertIn("reload only missing, potentially changed, or uncertain", installed)
+                self.assertIn("additional SSH identities need exact-operation user approval", installed)
+                self.assertTrue((owner / "work/context-recovery.md").is_file())
+                self.assertTrue((owner / "work/operational-hygiene.md").is_file())
+                self.assertFalse((target / ".codex").exists())
                 self.assertIn("Every task and goal defaults to `single-agent`", installed)
                 self.assertIn("explicit user request authorizes additional agents", installed)
                 self.assertIn("an old mode alone is insufficient", installed)

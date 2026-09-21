@@ -2,7 +2,7 @@
 
 - Node type: leaf
 - Status: Active
-- Contract: `bootstrap.governance.restart-delivery@6`
+- Contract: `bootstrap.governance.restart-delivery@7`
 - Clauses: `BOOTSTRAP.RESTART`, `BOOTSTRAP.PROPORTIONALITY`,
   `BOOTSTRAP.ECONOMY`
 - Read when: recovering after lifecycle events or planning implementation support work.
@@ -11,13 +11,15 @@
 
 ## Restart
 
-After startup, resume, clear, or compaction, re-read applicable instructions,
-the current objective and envelope, the latest Markdown traversal receipt, and
-only nodes on the selected path plus the next required evidence.
-
-Restart from the root only when the task changed or the recorded path is
-missing or ambiguous. Chat memory, summaries, old tests, and screenshots do not
-replace current nodes. Finite workers restart from their pinned packet.
+After startup, resume, clear, or compaction, recover the objective, accepted
+scope, completed work, selected route, unresolved items, and next action from
+available context, including its summary or finite packet. Do not automatically
+reload instructions or contracts whose contents and currency are established.
+Read required documents completely when missing, potentially changed, or uncertain,
+including their dependencies. Re-establish the basis when revisions drift.
+Traverse from the root only when the task/domain changed or the route is missing
+or uncertain. Summaries cannot create intent, expand authority, or replace missing
+contract content. Recovery never resumes paused or blocked goals by itself.
 Restore the approved boundary and scoped user authorization without requesting
 the same approval again. A recorded coordinated mode without an explicit user
 request is not authorization; use the current chat after reconciling ownership.

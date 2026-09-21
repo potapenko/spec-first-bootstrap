@@ -3,7 +3,6 @@
 
 from __future__ import annotations
 
-import json
 import re
 import sys
 from pathlib import Path
@@ -82,7 +81,7 @@ REQUIRED_TEXT = {
         'explicit user request authorizes additional agents',
         'Only user-requested coordinated goals load',
         'Mandatory pre-action specification gate',
-        'Lifecycle restart gate',
+        'Context recovery',
         'traversal receipt',
         'Every node is limited to 100',
         'Task framing and scope control',
@@ -123,9 +122,9 @@ REQUIRED_TEXT = {
         'mandatory host impasse',
     ),
     "docs/specs/index.md": (
-        "bootstrap.governance@18",
+        "bootstrap.governance@19",
         "bootstrap.legacy-spec-migration@2",
-        "bootstrap.codex-lifecycle@3",
+        "bootstrap.codex-lifecycle@4",
         "2026-08-18-markdown-first-routing.md",
         "2026-08-19-current-branch-checkpoint-policy.md",
         "2026-08-19-local-checkpoint-commits.md",
@@ -137,7 +136,7 @@ REQUIRED_TEXT = {
         "2026-09-02-minimum-sufficient-work.md",
     ),
     "docs/specs/features/bootstrap-governance.md": (
-        "bootstrap.governance@18",
+        "bootstrap.governance@19",
         "BOOTSTRAP.ECONOMY",
         "bootstrap-governance/goal-continuity.md",
         "bootstrap-governance/markdown-routing.md",
@@ -154,12 +153,12 @@ REQUIRED_TEXT = {
         "Do not repeat an\nunchanged check",
     ),
     "docs/specs/features/bootstrap-governance/installation.md": (
-        "bootstrap.governance.installation@4",
+        "bootstrap.governance.installation@5",
         "minimum-sufficient work",
         "without adding numerical budgets",
     ),
     "docs/specs/features/bootstrap-governance/restart-and-delivery.md": (
-        "bootstrap.governance.restart-delivery@6",
+        "bootstrap.governance.restart-delivery@7",
         "expected total token use",
         "Presentation-only edits do not run",
         "A full suite requires",
@@ -557,18 +556,19 @@ def check_instruction_size(errors: list[str]) -> None:
         errors.append(f"AGENTS.md: {size} bytes exceeds default 32 KiB chain limit")
 
 
-def check_hook_templates(errors: list[str]) -> None:
+def check_lifecycle_retirement(errors: list[str]) -> None:
     adapter = ROOT / "integrations/codex-lifecycle"
-    for name in ("global-hooks.json.template", "project-hooks.json.template"):
-        path = adapter / name
-        try:
-            payload = json.loads(path.read_text(encoding="utf-8"))
-        except (json.JSONDecodeError, OSError) as error:
-            errors.append(f"{path.relative_to(ROOT)}: invalid JSON: {error}")
-            continue
-        hooks = payload.get("hooks", {})
-        if "SessionStart" not in hooks or "SubagentStart" not in hooks:
-            errors.append(f"{path.relative_to(ROOT)}: missing lifecycle event")
+    for name in ("lifecycle_restart.py", "context_compaction_restart.py",
+                 "global-hooks.json.template", "project-hooks.json.template"):
+        if (adapter / name).exists():
+            errors.append(f"retired lifecycle artifact remains: {name}")
+    for scope in ("project", "global"):
+        path = ROOT / f"prompts/setup-{scope}-codex-lifecycle.md"
+        text = path.read_text()
+        for marker in ("retired", "informational and changes no files",
+                       "migrate-codex-lifecycle.md"):
+            if marker not in text:
+                errors.append(f"{path.relative_to(ROOT)}: missing retirement guard: {marker}")
 
 
 def check_markdown_trees(errors: list[str]) -> None:
@@ -608,7 +608,7 @@ def main() -> int:
         errors, MINIMUM_WORK_SECTION, "minimum-sufficient-work section"
     )
     check_instruction_size(errors)
-    check_hook_templates(errors)
+    check_lifecycle_retirement(errors)
     check_markdown_trees(errors)
 
     if errors:

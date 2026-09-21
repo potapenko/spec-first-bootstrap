@@ -6,7 +6,7 @@
 - Domain ID: `bootstrap.governance`
 - Authority: Active
 - Stability: Accepted
-- Contract revision: `bootstrap.governance@18`
+- Contract revision: `bootstrap.governance@19`
 - Clauses: `BOOTSTRAP.INSTALL`, `BOOTSTRAP.ROUTING`, `BOOTSTRAP.SCOPE`,
   `BOOTSTRAP.RESTART`, `BOOTSTRAP.PROPORTIONALITY`, `BOOTSTRAP.ECONOMY`,
   `BOOTSTRAP.GOAL`, `BOOTSTRAP.REVIEW`
@@ -30,6 +30,8 @@ inventing product behavior, or silently installing unrelated layers.
 - [Restart and delivery proportionality](bootstrap-governance/restart-and-delivery.md)
   — context recovery, minimum-sufficient work, change-driven verification, and
   evidence-driven expansion.
+- [Operational hygiene](bootstrap-governance/operational-hygiene.md) —
+  temporary run evidence and established SSH identities.
 - [Persistent goal continuity](bootstrap-governance/goal-continuity.md) —
   dependency-ready scheduling, resource waits, retry continuity, and terminal
   goal-state rules.

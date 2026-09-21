@@ -14,8 +14,9 @@ Do not change product code or install specification or browser-QA layers.
 Read the following canonical sources completely:
 
 - `docs/agent-governance/README.md`;
-- the Global current-branch, task-framing, minimum-sufficient-work, and
-  persistent-goal sections in `docs/agent-governance/agents-sections.md`;
+- the Global current-branch, task-framing, minimum-sufficient-work,
+  persistent-goal, and context-recovery/operational-hygiene sections in
+  `docs/agent-governance/agents-sections.md`;
 - `docs/agent-governance/work-governance.md` and every node under its `work/`
   directory (installation carries the whole work layer);
 - `docs/agent-governance/root-orchestration.md`.
@@ -30,7 +31,7 @@ the environment and not already authorized. Never expose secrets or providers.
 
 1. Install `work-governance.md`, the complete `work/` directory, and
    `root-orchestration.md` beside the active global instruction file, preserving relative links.
-2. Merge the four compact sections into the active instruction chain. Adjust
+2. Merge the five compact sections into the active instruction chain. Adjust
    their paths for the target. Existing equivalent rules become routing gates,
    not another full copy. Do not replace the complete target instruction file.
 3. Record deliberate local overrides with their owner, scope, and precedence.
@@ -66,7 +67,14 @@ the environment and not already authorized. Never expose secrets or providers.
    Product workers receive their finite traversal receipt and pinned closure
    when that layer applies. Keep root orchestration conditional on coordinated
    goal work. Model, reasoning, permissions, providers, concurrency, plugin
-   configuration, and existing lifecycle adapters remain unchanged.
+   configuration, and existing hook registrations/scripts remain unchanged.
+
+Install context recovery without mandatory lifecycle rereading. Include
+operational hygiene for temporary run evidence and established SSH identities.
+Replace obsolete Bootstrap rereading instructions within this authorized layer;
+keep unrelated safety rules. Do not change keys, delete existing evidence, or
+migrate hook registrations as part of ordinary setup. Use the separate
+`prompts/migrate-codex-lifecycle.md` only with explicit target migration authority.
 
 Use `apply_patch` for edits. Skill/plugin conflict repair is a separate explicit
 configuration scope, never a hidden part of installing this portable layer.

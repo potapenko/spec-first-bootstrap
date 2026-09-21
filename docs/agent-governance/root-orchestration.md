@@ -629,29 +629,21 @@ When the user pauses a goal:
 - preserve progress in a scoped checkpoint;
 - leave the goal idle.
 
-On resume or context compaction, `/root` first re-reads:
-
-- applicable global and project instructions;
-- the compact product-truth router and applicable routed governance leaves when
-  that layer is installed and the goal contains product work;
-- the persistent goal and recorded execution mode;
-- the governing plan or runbook;
-- the single registry;
-- the latest Markdown traversal receipt, selected nodes, pinned contract closure,
-  current epochs, accepted Contract Deltas, and unresolved discrepancies for
-  product work;
-- only the action-specific instructions needed for the next packet.
+On resume or context compaction, `/root` follows
+[context recovery](work/context-recovery.md). Recover the objective, plan,
+recorded user authorization, registry, selected closure, epochs, accepted deltas,
+and unresolved discrepancies from available context. Load required content only
+when missing, potentially changed, or uncertain; preserve complete dependencies.
 
 Then `/root`:
 
 - confirms goal state and the explicit user request authorizing delegation;
-- reopens the recorded Markdown path and revalidates or retires work affected by revision
-  drift without loading unselected sibling contracts;
-- reconciles stale running work;
-- confirms real worker capacity;
-- dispatches only dependency-ready packets.
+- revalidates or retires work affected by revision drift;
+- reconciles current running ownership and confirms real worker capacity;
+- dispatches only dependency-ready packets within the accepted scope.
 
-Do not reconstruct program state from memory or from the live agent list.
+Summaries preserve continuity, but cannot create authority or prove live program
+state. A live agent list alone is not a substitute for the registry.
 
 ## Completion
 
