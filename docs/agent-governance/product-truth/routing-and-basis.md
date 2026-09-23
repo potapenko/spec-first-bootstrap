@@ -4,7 +4,7 @@
 - Read when: selecting product contracts or establishing a provisional or final Spec Basis.
 - Do not read when: work is proven non-product and behavior-neutral.
 - Maximum size: 100 physical lines.
-- Contract: `governance.product-truth.routing@2`
+- Contract: `governance.product-truth.routing@3`
 - Clauses: `PT.ROUTE.TRAVERSE`, `PT.ROUTE.CLOSURE`, `PT.ROUTE.RECEIPT`,
   `PT.BASIS.PROVISIONAL`, `PT.BASIS.FINAL`
 ## PT.ROUTE.TRAVERSE — Mandatory pre-decision traversal
@@ -22,21 +22,24 @@ tool, implementation, or verification:
 7. state the Markdown traversal receipt and provisional Spec Basis;
 8. only then inspect implementation evidence.
 
+Before the first and each new material choice, distinguish its basis in a read
+contract, explicit user authority, or an agent proposal. State it briefly in the
+existing Spec Basis, plan, or explanation, not before every tool call. An
+agent-authored plan, summary, or Active label cannot by itself establish a requirement.
+Equivalent implementation and established test mechanisms need no new approval.
+
 For continuing work, reuse a basis whose full required content is available,
 applicable, and current. Recovery loads missing, potentially changed, or uncertain
 content completely, including dependencies. Summaries cannot replace missing
 contracts. Route again when the task/domain changes or the route is uncertain.
 
-A branch summary is non-normative navigation text. It cannot replace a
-contract or create product intent. A Markdown node may be a branch, leaf, or
-both.
-
+A branch summary navigates; it cannot replace a contract or create intent.
+A Markdown node may be a branch, leaf, or both.
 When no Markdown path matches, record the missing contract and use Discover.
 When two Active nodes conflict without precedence, stop only the affected slice.
 ## PT.ROUTE.CLOSURE — Smallest complete contract set
 
-Completeness is measured by the selected contract closure, not by reading
-every document in a directory or every sibling domain. The closure contains:
+Completeness means the selected contract closure, not every sibling:
 
 - selected local contracts;
 - explicit `requires` dependencies and named clauses;
@@ -56,8 +59,7 @@ revision checking may be verified mechanically after the path is selected.
 Before evidence inspection, record:
 
 - task and root Markdown node;
-- selected node paths and traversal order;
-- branch nodes read;
+- selected node paths, traversal order, and branch nodes read;
 - complete contract closure, clause IDs, and revisions;
 - cross-domain dependencies;
 - explicitly excluded sibling nodes;
@@ -71,10 +73,8 @@ progress update or Contract Change Envelope.
 
 The provisional basis states:
 
-- change mode and current envelope;
-- Markdown traversal receipt;
-- specified expectation;
-- protected behavior and domains;
+- change mode, current envelope, and Markdown traversal receipt;
+- specified expectation, protected behavior and domains;
 - established operational flow from governing documents;
 - apparent gaps or conflicts;
 - evidence still needed;

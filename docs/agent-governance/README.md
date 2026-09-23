@@ -22,8 +22,9 @@ one named project or the explicitly selected global configuration.
 - [Product truth](product-truth-governance.md) routes to the selected contract
   authority, evidence, and acceptance rules.
 - [Browser QA](web-qa-governance.md) is optional.
-- The [Codex lifecycle adapter](../../integrations/codex-lifecycle/) is retired.
-  It is never installed; migration of existing hooks needs its own explicit scope.
+- The [Codex context reminder](../../integrations/codex-lifecycle/) is a separate
+  opt-in integration. The mandatory-rereading adapter remains retired;
+  migration of existing hooks needs its own explicit scope.
 
 ## Installation invariants
 

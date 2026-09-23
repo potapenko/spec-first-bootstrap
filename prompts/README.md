@@ -42,9 +42,10 @@ repository. They must detect the active agent environment, state exact target
 paths, preserve existing global instructions, and request the required
 filesystem permission. They change no project during installation.
 
-## Retired Codex lifecycle adapter
+## Optional Codex reminder and legacy migration
 
-Bootstrap no longer installs lifecycle reminder hooks. Legacy
+The [short context reminder](setup-codex-context-reminder.md) is a separately
+selected integration; ordinary setup does not install hooks. Legacy
 [project](setup-project-codex-lifecycle.md) and
 [global](setup-global-codex-lifecycle.md) setup prompts are informational notices.
 They do not authorize deleting existing hooks. For an explicitly scoped removal,

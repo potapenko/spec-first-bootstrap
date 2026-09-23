@@ -1,6 +1,6 @@
 # Retired Codex Lifecycle Setup (Global)
 
-The Bootstrap lifecycle reminder adapter is retired. Do not install or recreate
+The legacy mandatory-rereading adapter is retired. Do not install or recreate
 scripts, hook registrations, or mandatory rereading gates from historical versions.
 Context recovery now uses available, applicable, current context and loads missing,
 potentially changed, or uncertain required documents completely.
@@ -11,3 +11,6 @@ It does not authorize removing existing hooks or changing the general hooks feat
 For an explicit request to remove the old adapter from the active user's configuration, use
 [the migration prompt](migrate-codex-lifecycle.md). Preserve other hook sources,
 settings, and product/safety instructions. Ordinary setup never performs migration.
+
+The new [optional context reminder](setup-codex-context-reminder.md) has its own
+explicit opt-in prompt; this legacy entrypoint does not select or install it.

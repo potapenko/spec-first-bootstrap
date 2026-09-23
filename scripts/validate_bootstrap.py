@@ -122,9 +122,9 @@ REQUIRED_TEXT = {
         'mandatory host impasse',
     ),
     "docs/specs/index.md": (
-        "bootstrap.governance@19",
+        "bootstrap.governance@20",
         "bootstrap.legacy-spec-migration@2",
-        "bootstrap.codex-lifecycle@4",
+        "bootstrap.codex-lifecycle@5",
         "2026-08-18-markdown-first-routing.md",
         "2026-08-19-current-branch-checkpoint-policy.md",
         "2026-08-19-local-checkpoint-commits.md",
@@ -136,7 +136,7 @@ REQUIRED_TEXT = {
         "2026-09-02-minimum-sufficient-work.md",
     ),
     "docs/specs/features/bootstrap-governance.md": (
-        "bootstrap.governance@19",
+        "bootstrap.governance@20",
         "BOOTSTRAP.ECONOMY",
         "bootstrap-governance/goal-continuity.md",
         "bootstrap-governance/markdown-routing.md",
@@ -153,7 +153,7 @@ REQUIRED_TEXT = {
         "Do not repeat an\nunchanged check",
     ),
     "docs/specs/features/bootstrap-governance/installation.md": (
-        "bootstrap.governance.installation@5",
+        "bootstrap.governance.installation@6",
         "minimum-sufficient work",
         "without adding numerical budgets",
     ),
@@ -165,7 +165,7 @@ REQUIRED_TEXT = {
         "Re-run a\ncheck only when",
     ),
     'docs/specs/features/bootstrap-governance/task-and-scope.md': (
-        'bootstrap.governance.task-scope@7',
+        'bootstrap.governance.task-scope@8',
         'meta-plan or ask for approval',
         'explicitly directs the agent to execute now',
         '`bounded`',

@@ -1,7 +1,7 @@
 # Context Recovery and Lifecycle Retirement Cases
 
-Basis: bootstrap.governance@19; installation@5; restart-delivery@7;
-bootstrap.codex-lifecycle@4; product-truth coordination@2 and routing@2;
+Basis: bootstrap.governance@20; installation@6; restart-delivery@7;
+bootstrap.codex-lifecycle@5; product-truth coordination@2 and routing@3;
 bootstrap.governance.operational-hygiene@1.
 
 | Case | Starting state / action | Required result |
@@ -21,6 +21,9 @@ bootstrap.governance.operational-hygiene@1.
 | CR-13 | Generated run output needs capture. | Task-scoped temporary directory outside repository and agent home; only own files cleaned after acceptance. |
 | CR-14 | Explicit deliverable or durable handoff evidence. | Follow output contract or named non-repository state/retention rule; no blanket deletion of existing evidence. |
 | CR-15 | SSH convenience suggests an additional identity. | Use established convention; exact-operation approval required for additional key actions. |
+| CR-16 | Explicit optional reminder install for one target. | Only its script/registration added; selective recovery, other hooks, local overrides and model/permission settings preserved. |
+| CR-17 | Malformed/unrelated SessionStart input or injected extra fields. | Successful silent no-op for unsupported input; supported output is static and has no file/network/state effects. |
+| CR-18 | New reminder definition not yet trusted by host. | Follow normal trust; do not bypass it or claim host delivery from direct script tests. |
 
 Structural checks and installed-layout fixtures verify wiring and artifact
 absence. Review migration instructions against CR-08–12 as a bounded walkthrough.

@@ -95,15 +95,17 @@ Global checkpoint default is a local commit. Automatic push is project opt-in;
 existing project checkpoint rules remain in force. Work rules are installed as
 a linked tree, with deliberate local overrides preserved explicitly.
 
-## Context recovery and retired lifecycle hooks
+## Context recovery and optional reminder
 
 Bootstrap recovers the accepted task from available context after startup,
 resume, clear, or compaction. It loads required documents only when missing,
 potentially changed, or uncertain. Summaries never create authority or replace
 missing contracts. This policy is independent of the selected model.
 
-The old lifecycle reminder adapter is retired; setup no longer ships hooks.
-Existing installations are changed only through an explicitly scoped
+An optional [short context reminder](prompts/setup-codex-context-reminder.md)
+can reinforce this order in Codex when separately selected. Ordinary setup
+does not install it. The old mandatory-rereading adapter remains retired.
+Legacy installations are changed only through an explicitly scoped
 [migration](prompts/migrate-codex-lifecycle.md), preserving unrelated hooks and
 the general hooks feature. Old setup links are informational retirement notices.
 
@@ -163,7 +165,7 @@ approval before changing the target repository.
 - optional browser-QA files;
 - detailed governance sources read by installer agents under
   `docs/agent-governance/`.
-- selective context recovery and a migration guide for retired lifecycle hooks;
+- selective context recovery, an opt-in reminder, and safe legacy-hook migration;
 - temporary run-evidence hygiene and protection of established SSH identities.
 
 More detailed working prompts are listed in

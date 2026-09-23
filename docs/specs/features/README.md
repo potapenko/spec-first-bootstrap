@@ -16,14 +16,14 @@ Choose exactly the smallest matching child. Do not open all contracts.
 - [Legacy specification migration](legacy-spec-migration.md) — converting a
   large existing specification library into bounded Markdown nodes without
   corpus-wide reading.
-- [Codex lifecycle retirement](codex-lifecycle-enforcement.md) —
-  legacy entrypoints and explicitly scoped removal of old reminder hooks.
+- [Codex lifecycle](codex-lifecycle-enforcement.md) — optional context reminder,
+  legacy entrypoints and explicitly scoped removal of old mandatory hooks.
 
 ## Selection rules
 
 The governance contract has precedence for portable setup behavior. Legacy
 migration depends on its routing and scope rules. Codex lifecycle retirement
-is more specific only for old adapter entrypoints and migration.
+is more specific for the optional reminder, old entrypoints and migration.
 
 For authority status, stability, and accepted deltas, use the
 [human authority index](../index.md).

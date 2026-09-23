@@ -1,9 +1,13 @@
-# Retired Codex Lifecycle Adapter
+# Optional Codex Context Reminder
 
-Bootstrap no longer ships the lifecycle reminder scripts or hook templates.
-Mandatory rereading after startup, resume, clear, compaction, or worker start
-has been replaced by selective [context recovery](../../docs/agent-governance/work/context-recovery.md).
-This policy is model-neutral and does not change application defaults.
+The small context_reminder.py emits static context on SessionStart for startup,
+resume, clear and compact. It points to active instructions, selective
+[context recovery](../../docs/agent-governance/work/context-recovery.md) and
+decision provenance. It does not track reads, write state or block tools.
+Use its [separate opt-in prompt](../../prompts/setup-codex-context-reminder.md).
+Ordinary setup never installs this adapter or changes application defaults.
+
+The old mandatory-rereading scripts and templates remain retired.
 
 The old [project](../../prompts/setup-project-codex-lifecycle.md) and
 [global](../../prompts/setup-global-codex-lifecycle.md) setup links remain as
@@ -17,7 +21,7 @@ the general hooks feature. Customized or uncertain candidates remain unchanged.
 Historical script/template bodies are available at Git revision
 `085a84015bad1e5c3ba115c894123ad718eff188` for ownership comparison only.
 
-See the [retirement contract](../../docs/specs/features/codex-lifecycle-enforcement.md)
+See the [lifecycle contract](../../docs/specs/features/codex-lifecycle-enforcement.md)
 and [verification cases](../../qa/cases/context-recovery.md). Structural checks
 run through `scripts/validate_bootstrap.py` and `scripts/tests`; they do not
-claim runtime migration or empirical model obedience.
+claim host delivery, runtime migration or empirical model obedience.

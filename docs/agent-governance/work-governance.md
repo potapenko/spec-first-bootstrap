@@ -17,7 +17,7 @@ here instead of repeating them.
 - [Minimum-sufficient work](work/minimum-sufficient-work.md): proportionate
   reading, tools, delegation, verification, and completion evidence.
 - [Context recovery](work/context-recovery.md): continuity and selective reload
-  after startup, resume, clear, or compaction; no lifecycle hooks.
+  after startup, resume, clear, or compaction; no required lifecycle hook.
 - [Operational hygiene](work/operational-hygiene.md): temporary run evidence
   and exact-operation authorization for additional SSH identities.
 - [Goal execution](work/goal-execution.md): execution mode, readiness, waits,

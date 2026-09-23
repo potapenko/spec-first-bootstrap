@@ -2,6 +2,8 @@
 
 Use this prompt only when the user explicitly requests migration/removal of the
 old Bootstrap reminders in one named project or the active user configuration.
+The optional context_reminder.py is not a legacy mandatory-rereading payload;
+preserve it unless that separate integration is explicitly in removal scope.
 An old installation request is not removal authority. Resolve and state exact
 target paths; do not select another project, modify both scopes, or touch plugins.
 

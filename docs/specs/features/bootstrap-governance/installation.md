@@ -2,7 +2,7 @@
 
 - Node type: leaf
 - Status: Active
-- Contract: `bootstrap.governance.installation@5`
+- Contract: `bootstrap.governance.installation@6`
 - Clause: `BOOTSTRAP.INSTALL`
 - Read when: installing or repairing Bootstrap layers in a project or user configuration.
 - Do not read when: the task only uses an already installed workflow.
@@ -27,9 +27,10 @@
   verification into every task without adding numerical budgets or routine
   economy reports.
 - Specification, agent-work, and browser-QA layers are independently selectable.
-- The retired lifecycle adapter is never installed or recreated. Existing
-  hooks are migrated only in a separately authorized target scope under the
-  [retirement contract](../codex-lifecycle-enforcement.md).
+- Ordinary setup never installs the retired mandatory-rereading adapter or
+  the new optional context reminder. The latter requires its own explicit
+  selection; existing hooks require separate migration authority under the
+  [lifecycle contract](../codex-lifecycle-enforcement.md).
 - Agent-work installation includes context recovery and
   [operational hygiene](operational-hygiene.md), without changing SSH setup.
 - Existing project safety, framework, build, test, Git, database, storage,

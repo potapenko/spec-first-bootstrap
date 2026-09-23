@@ -5,8 +5,8 @@
 - Contract ID: `bootstrap.governance`
 - Domain ID: `bootstrap.governance`
 - Authority: Active
-- Stability: Accepted
-- Contract revision: `bootstrap.governance@19`
+- Stability: Evolving; optional reminder verification in progress.
+- Contract revision: `bootstrap.governance@20`
 - Clauses: `BOOTSTRAP.INSTALL`, `BOOTSTRAP.ROUTING`, `BOOTSTRAP.SCOPE`,
   `BOOTSTRAP.RESTART`, `BOOTSTRAP.PROPORTIONALITY`, `BOOTSTRAP.ECONOMY`,
   `BOOTSTRAP.GOAL`, `BOOTSTRAP.REVIEW`

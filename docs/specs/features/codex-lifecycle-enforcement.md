@@ -1,4 +1,4 @@
-# Codex Lifecycle Adapter Retirement
+# Codex Context Reminder and Legacy Retirement
 
 - Node type: leaf
 - Status: Active
@@ -6,19 +6,37 @@
 - Domain ID: `bootstrap.codex-lifecycle`
 - Authority: Active
 - Stability: Evolving
-- Contract revision: `bootstrap.codex-lifecycle@4`
-- Clauses: `CODEX.LIFECYCLE.INSTALL`, `CODEX.LIFECYCLE.MIGRATE`
-- Read when: handling legacy adapter entrypoints or migrating an existing installation.
+- Contract revision: `bootstrap.codex-lifecycle@5`
+- Clauses: `CODEX.LIFECYCLE.INSTALL`, `CODEX.LIFECYCLE.MIGRATE`, `CODEX.LIFECYCLE.REMINDER`
+- Read when: selecting the optional context reminder or handling legacy migration.
 - Do not read when: only portable context recovery is involved.
 - Maximum size: 100 physical lines.
 
 ## Retirement
 
-Bootstrap no longer ships or installs lifecycle reminder scripts or hook
-templates. Legacy setup entrypoints explain retirement and link to migration;
+The legacy mandatory-rereading scripts and templates remain retired.
+Legacy setup entrypoints explain retirement and link to migration;
 invoking an old install prompt does not authorize removal of existing hooks.
 Portable recovery follows
 [restart and delivery](bootstrap-governance/restart-and-delivery.md).
+
+## Optional reminder
+
+An explicitly selected integration may install context_reminder.py and one
+synchronous SessionStart registration for startup, resume, clear and compact.
+Ordinary project/global setup does not install it. Use the separate
+[opt-in prompt](../../../prompts/setup-codex-context-reminder.md).
+
+The script emits short static additionalContext pointing to active instructions,
+selective recovery and decision provenance. It reads only hook stdin and writes
+only stdout; no files, subprocesses, network, state or reflected input fields.
+Malformed input or an unsupported event/source is a successful silent no-op.
+It does not deny tools, mandate blanket rereading, renew approval or prove
+compliance. Preserve normal host hook trust; never bypass it.
+
+Test the wire protocol and absence of side effects separately from actual host
+delivery and observed model decisions. Successful script execution proves
+neither host delivery nor understanding. Retain the selected recovery behavior.
 
 ## Explicit migration
 

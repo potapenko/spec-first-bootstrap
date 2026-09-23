@@ -27,6 +27,14 @@ For a material dependency outside the boundary, stop the affected slice and
 return the exact dependency, minimum scope addition, expected cost, and risk.
 Continue independent authorized work; wait before crossing the boundary.
 
+When a plan has been approved, preserve its accepted content as the original
+message or a fixed file revision, and retain the actual user approval identifying
+that version; no new registry is needed.
+Progress and proposals must not rewrite that meaning. Changes to agreed results,
+resource/responsibility boundaries, or execution/acceptance conditions require
+any missing authority before execution. Equivalent implementation and already
+authorized deltas need no renewed approval. Proposals may appear directly in Drafts.
+
 ## Current branch and existing work
 
 Use only the branch checked out when the task begins. Do not create, switch,

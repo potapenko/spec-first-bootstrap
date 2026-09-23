@@ -21,4 +21,7 @@ never resumes paused or blocked goals by itself. Workers use their finite packet
 Resolve uncertain authority before the affected action. Retain exact waiting
 conditions and inspect current external state when the next action depends on
 it. Available context is not proof that a running owner or resource is unchanged.
-No lifecycle hook is required. Do not install or restore a reminder script.
+No lifecycle hook is required. A separately selected optional reminder may
+reinforce this order without blanket rereading, new authority or a tool barrier.
+Ordinary governance setup never installs a hook or restores the retired
+mandatory-rereading adapter.

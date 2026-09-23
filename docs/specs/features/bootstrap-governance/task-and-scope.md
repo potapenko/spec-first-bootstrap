@@ -2,7 +2,7 @@
 
 - Node type: leaf
 - Status: Active
-- Contract: `bootstrap.governance.task-scope@7`
+- Contract: `bootstrap.governance.task-scope@8`
 - Clause: `BOOTSTRAP.SCOPE`
 - Read when: planning or executing an implementation-bearing request.
 - Do not read when: answering a bounded read-only question with no proposed mutation.
@@ -43,6 +43,11 @@ adjacent features, cleanup, refactors, or tooling do not.
 A newly discovered material dependency outside the plan is returned as the
 smallest scope amendment with cost and risk. Independent in-scope work may
 continue safely.
+
+Plans distinguish established requirements from proposed material choices.
+The accepted plan version and actual approval source remain verifiable;
+execution progress cannot silently change their meaning. Own plans, summaries
+and status labels cannot by themselves establish requirements or grant authority.
 
 Approval persists across follow-ups and compaction. A complete brief or an
 approved plan is not reopened by a skill's generic confirmation workflow.
