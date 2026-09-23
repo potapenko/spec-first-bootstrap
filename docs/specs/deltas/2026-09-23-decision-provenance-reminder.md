@@ -66,7 +66,10 @@ Existing config.toml content was preserved and excluded from the checkpoint;
 one SessionStart registration was added. The direct installed-script wire test
 passed. The AGENTS pointer appeared in the current thread's instruction refresh.
 
-Host trust/delivery and model-behavior effect remain not_verified. Computer Use
-refused control of the Codex app for safety reasons; that restriction and hook
-trust were not bypassed. Normal user hook review is the remaining activation
-step; do not claim the direct subprocess run was host delivery.
+Computer Use refused control of the Codex app; the restriction was not bypassed.
+The user completed normal hook trust in the app. A management-only hooks/list
+request through the same bundled Codex binary confirmed the exact command,
+global source, enabled=true, trustStatus=trusted and no discovery errors.
+No thread, model run or new task was created for that check. Activation
+prerequisites are satisfied. Actual lifecycle delivery and model-behavior effect
+remain unobserved; neither discovery nor direct script tests prove them.
