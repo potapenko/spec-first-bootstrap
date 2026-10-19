@@ -173,6 +173,35 @@ More detailed working prompts are listed in
 [`docs/spec-first-workflow.md`](docs/spec-first-workflow.md), and the optional
 browser-QA pack is in [`qa/web/`](qa/web/).
 
+### Optional Rust specification navigator
+
+`spec-nav` reads current Markdown without an index, network access, or writes.
+Run from the repository root with a Rust toolchain; keep build output in system
+temp. It is optional and is not installed by the setup prompts.
+
+```sh
+spec_nav_build="$(mktemp -d "${TMPDIR:-/tmp}/spec-nav-build.XXXXXX")"
+export CARGO_TARGET_DIR="$spec_nav_build/target"
+cargo run --locked --manifest-path tools/spec-nav/Cargo.toml -- map
+cargo run --locked --manifest-path tools/spec-nav/Cargo.toml -- map docs/specs/features/README.md
+cargo run --locked --manifest-path tools/spec-nav/Cargo.toml -- read docs/specs/features/spec-nav.md
+cargo run --locked --manifest-path tools/spec-nav/Cargo.toml -- deps docs/specs/features/spec-nav.md
+cargo test --locked --manifest-path tools/spec-nav/Cargo.toml
+```
+
+`map` shows source descriptions and outgoing links without opening their targets.
+`read` returns the full original Markdown. `deps` follows only links in declared
+Dependency/Dependencies sections, retains every incoming reason, and reports
+partial traversal explicitly. Exit codes are 0 for completion, 1 for document
+or traversal errors, and 2 for usage errors. The CLI never fetches remote links.
+
+A map does not replace reading the selected contracts. A complete declared
+closure does not prove semantic completeness. See the
+[command contract](docs/specs/features/spec-nav.md) and
+[verification cases](qa/spec-nav.md). Agent-efficiency trials remain deferred.
+The build directory above contains disposable build artifacts; remove it after
+use. No persistent installation is needed.
+
 Run the Bootstrap's lightweight structural checks with:
 
 ```sh

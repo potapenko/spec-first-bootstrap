@@ -19,6 +19,9 @@ Choose exactly the smallest matching child. Do not open all contracts.
 - [Codex lifecycle](codex-lifecycle-enforcement.md) — optional context reminder,
   legacy entrypoints and explicitly scoped removal of old mandatory hooks.
 
+- [Spec Nav CLI](spec-nav.md) — optional Rust map/read/deps navigation over
+  current Markdown, output semantics and failure handling.
+
 ## Selection rules
 
 The governance contract has precedence for portable setup behavior. Legacy

@@ -16,6 +16,7 @@ human authority view, not a second routing system.
 | [Bootstrap governance](features/bootstrap-governance.md) | Active | Evolving | `bootstrap.governance@20` | Setup, governance, Markdown routing, prompts, templates, scope, minimum-sufficient work, goal continuity, or review |
 | [Legacy spec migration](features/legacy-spec-migration.md) | Active | Accepted | `bootstrap.legacy-spec-migration@2` | Migrating a large existing spec library |
 | [Codex lifecycle](features/codex-lifecycle-enforcement.md) | Active | Evolving | `bootstrap.codex-lifecycle@5` | Optional context reminder, retired entrypoints and explicit migration |
+| [Spec Nav CLI](features/spec-nav.md) | Active | Evolving | `bootstrap.spec-nav@1` | Optional Rust navigation commands and their verification |
 
 ## Precedence
 
@@ -26,6 +27,8 @@ human authority view, not a second routing system.
 - Persistent-goal and browser-QA layers remain independently selectable.
 
 ## Accepted deltas
+
+- [Spec Nav v1](deltas/spec-nav-v1.md)
 
 - [Strict predecision lifecycle](deltas/2026-08-09-strict-predecision-lifecycle.md)
 - [Outcome/resource proportionality](deltas/2026-08-10-outcome-resource-proportionality.md)

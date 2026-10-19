@@ -1,0 +1,11 @@
+[package]
+name = "spec-nav"
+version = "0.1.0"
+edition = "2024"
+publish = false
+license = "MIT"
+description = "Read-only navigation over project Markdown specifications"
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+pulldown-cmark = "0.13"
